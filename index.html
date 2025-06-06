@@ -5,15 +5,19 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>佐野徹夜 | Official Site</title>
 
+<!-- ▼――― Google Fonts：Noto Serif JP（200/300/400/700） ――― -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;700&display=swap" rel="stylesheet">
+
 <style>
-  /* ===== 変数 ===== */
   :root{
-    --bg:#FCFCFC;        /* Gray 99 ─ ほぼ白 */
-    --text:#1A1A1A;      /* Almost-Black */
-    --accent:#1A1A1A;    /* リンクも統一 */
+    --bg:#FCFCFC;        /* ほぼ白のライトグレー */
+    --text:#1A1A1A;      /* 高コントラストなダークグレー */
+    --accent:#1A1A1A;
   }
 
-  /* ===== ベース ===== */
+  /* ------- ベース ------- */
   html{font-size:16px;}
   body{
     margin:0;
@@ -21,17 +25,17 @@
     color:var(--text);
     font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,"Noto Sans JP","ヒラギノ角ゴ ProN","Hiragino Kaku Gothic ProN",sans-serif;
     line-height:1.6;
-    font-size:0.9rem;     /* 小さめ */
+    font-size:0.9rem;
   }
 
-  /* ===== レイアウト ===== */
+  /* ------- レイアウト共通 ------- */
   header,main,footer{max-width:720px;margin:0 auto;}
-  header{padding:2rem 1rem 0.75rem;text-align:center;}  /* ↓下側を詰めた */
-  main  {padding:0.5rem 1rem 3rem;}                     /* ↑上側を0.5remに */
-  section:first-of-type{margin-top:0;}                  /* 最初のsectionをヘッダーに密着 */
-  
-  /* ===== ナビゲーション ===== */
-  nav{margin-top:1.25rem;}                              /* h1 とリンクの間を微調整 */
+  header{padding:2rem 1rem 0.75rem;text-align:center;}
+  main  {padding:0.5rem 1rem 3rem;}
+  section:first-of-type{margin-top:0;}
+
+  /* ------- ナビ ------- */
+  nav{margin-top:1.25rem;}
   nav a{
     color:var(--accent);
     text-decoration:none;
@@ -41,17 +45,48 @@
   }
   nav a:hover{text-decoration:underline;}
 
-  /* ===== タイポ ===== */
-  h1,h2{margin:0 0 0.75rem;font-weight:400;letter-spacing:0.04em;}
-  h1{font-size:1.8rem;}
-  h2{font-size:1.2rem;margin-top:2rem;}
+  /* ------- 見出し ------- */
+  h1{
+    font-family:"Noto Serif JP","Yu Mincho","Hiragino Mincho ProN",serif; /* 細身セリフ体 */
+    font-weight:200;              /* Extra Light */
+    letter-spacing:0.08em;
+    font-size:1.8rem;
+    margin:0 0 0.75rem;
+  }
+  h2{
+    margin:0 0 0.75rem;
+    font-weight:400;
+    letter-spacing:0.04em;
+    font-size:1.2rem;
+    margin-top:2rem;
+  }
 
-  /* ===== リスト ===== */
+  /* ------- Works 書影グリッド ------- */
+  .works-grid{
+    display:flex;
+    flex-wrap:wrap;
+    gap:1rem;
+  }
+  .works-grid a{
+    flex:0 0 calc(50% - 0.5rem);  /* 2列レイアウト */
+  }
+  .works-grid img{
+    width:100%;
+    height:auto;
+    display:block;
+    border-radius:4px;
+  }
+
+  /* ------- リスト ------- */
   ul{list-style:none;padding:0;margin:0;}
   li+li{margin-top:0.75rem;}
 
-  /* ===== フッター ===== */
-  footer{font-size:0.75rem;text-align:center;opacity:0.7;}
+  /* ------- フッター ------- */
+  footer{
+    font-size:0.75rem;
+    text-align:center;
+    opacity:0.7;
+  }
 </style>
 </head>
 
@@ -67,31 +102,72 @@
 </header>
 
 <main>
+  <!-- ========= About ========= -->
   <section id="about">
     <h2>About</h2>
-    <p>1991年生まれ。2016年『君は月夜に光り輝く』で第23回電撃小説大賞を受賞しデビュー。以降、小説を中心に活動。</p>
+    <p>佐野徹夜（さの てつや）――1987年1月23日、京都府生まれ。同志社大学文学部卒。</p>
+    <p>2016年『君は月夜に光り輝く』で第23回電撃小説大賞《大賞》を受賞し、翌2017年デビュー。同作は2019年に映画化されベストセラーに。</p>
+    <p>以降、青春と喪失を描く長篇を重ね、2023年『透明になれなかった僕たちのために』で一般文芸へ。現在は連載エッセイ〈母へ〉を「Book Bang」で継続中。</p>
   </section>
 
+  <!-- ========= Works ========= -->
   <section id="works">
-    <h2>Works（抜粋）</h2>
-    <ul>
-      <li>『君は月夜に光り輝く』</li>
-      <li>『先に生まれる』</li>
-      <li>『この世界で誰よりきれいな明日』</li>
-    </ul>
+    <h2>Works（表紙タイル・最新刊→デビュー順）</h2>
+
+    <div class="works-grid">
+      <!-- 2024 君に贈る15ページ -->
+      <a href="https://www.amazon.co.jp/dp/4049160048" target="_blank" rel="noopener">
+        <img src="https://cover.openbd.jp/9784049160048.jpg" alt="君に贈る15ページ 書影">
+      </a>
+
+      <!-- 2023 透明になれなかった僕たちのために -->
+      <a href="https://www.amazon.co.jp/dp/4309031293" target="_blank" rel="noopener">
+        <img src="https://cover.openbd.jp/9784309031293.jpg" alt="透明になれなかった僕たちのために 書影">
+      </a>
+
+      <!-- 2020 さよなら世界の終わり -->
+      <a href="https://www.amazon.co.jp/dp/4101801908" target="_blank" rel="noopener">
+        <img src="https://cover.openbd.jp/9784101801902.jpg" alt="さよなら世界の終わり 書影">
+      </a>
+
+      <!-- 2019 君は月夜に光り輝く +Fragments -->
+      <a href="https://www.amazon.co.jp/dp/4049123398" target="_blank" rel="noopener">
+        <img src="https://cover.openbd.jp/9784049123395.jpg" alt="君は月夜に光り輝く +Fragments 書影">
+      </a>
+
+      <!-- 2018 アオハル・ポイント -->
+      <a href="https://www.amazon.co.jp/dp/4049120372" target="_blank" rel="noopener">
+        <img src="https://cover.openbd.jp/9784049120370.jpg" alt="アオハル・ポイント 書影">
+      </a>
+
+      <!-- 2017 この世界に i をこめて -->
+      <a href="https://www.amazon.co.jp/dp/4048934147" target="_blank" rel="noopener">
+        <img src="https://cover.openbd.jp/9784048934145.jpg" alt="この世界に i をこめて 書影">
+      </a>
+
+      <!-- 2017 君は月夜に光り輝く -->
+      <a href="https://www.amazon.co.jp/dp/4048926756" target="_blank" rel="noopener">
+        <img src="https://cover.openbd.jp/9784048926751.jpg" alt="君は月夜に光り輝く 書影">
+      </a>
+    </div>
+
+    <p style="margin-top:1rem;font-size:0.85rem;">※コミカライズ『一年に一度しか会えない君の話。』（作画：伊緒直道／一迅社、2024–）も刊行中。</p>
   </section>
 
+  <!-- ========= News ========= -->
   <section id="news">
-    <h2>News</h2>
+    <h2>News（2024–2025）</h2>
     <ul>
-      <li>2025-06-01　最新刊『灰の水平線』発売。</li>
-      <li>2025-05-10　「本の旅人」インタビュー掲載。</li>
+      <li>2025-05-16　エッセイ〈母へ〉第15回「あなたはいつも優しくて」公開（Book Bang）</li>
+      <li>2024-12-25　短篇集『君に贈る15ページ』発売、書下ろし「わたしたちの教室」収録</li>
+      <li>2023-11-09　長篇『透明になれなかった僕たちのために』刊行（河出書房新社）</li>
     </ul>
   </section>
 
+  <!-- ========= Contact ========= -->
   <section id="contact">
     <h2>Contact</h2>
-    <p>お仕事のご依頼・お問い合わせは下記メールアドレスまで。</p>
+    <p>お仕事のご依頼・ご相談は下記メールアドレスまでお願いいたします。</p>
     <p><a href="mailto:info@example.com" style="color:var(--accent);">info@example.com</a></p>
   </section>
 </main>
