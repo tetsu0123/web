@@ -5,89 +5,76 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>佐野徹夜 | Official Site</title>
 
-<!-- Google Fonts：Noto Serif JP（Extra-Light 200 を見出し用に） -->
+<!-- 日本語本文用 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;700&display=swap" rel="stylesheet">
 
 <style>
-  :root{
-    --bg:#FCFCFC;
-    --text:#1A1A1A;
-    --accent:#1A1A1A;
-  }
+:root{
+  --bg:#FCFCFC;
+  --text:#1A1A1A;
+  --accent:#1A1A1A;
+  --hover-blue:#0A4DA2;
+}
 
-  /* ===== ベース ===== */
-  html{font-size:16px;}
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,
-                 "Noto Sans JP","ヒラギノ角ゴ ProN","Hiragino Kaku Gothic ProN",sans-serif;
-    line-height:1.6;
-    font-size:0.9rem;
-  }
+html{font-size:16px;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,
+              "Noto Sans JP","ヒラギノ角ゴ ProN",sans-serif;
+  line-height:1.6;
+  font-size:0.9rem;
+}
 
-  /* ===== レイアウト ===== */
-  header,main,footer{max-width:720px;margin:0 auto;}
-  header{padding:2rem 1rem 0.75rem;text-align:center;}
-  main  {padding:0.5rem 1rem 3rem;}
-  section:first-of-type{margin-top:0;}
+header,main{max-width:720px;margin:0 auto;}
+header{padding:2rem 1rem 0.75rem;text-align:center;}
+main  {padding:0.5rem 1rem 3rem;}
 
-  /* ===== ナビ ===== */
-  nav{margin-top:1.25rem;}
-  nav a{
-    color:var(--accent);
-    text-decoration:none;
-    margin:0 0.75rem;
-    font-size:0.85rem;
-    letter-spacing:0.05em;
-  }
-  nav a:hover{text-decoration:underline;}
+nav{margin-top:1.25rem;}
+nav a{
+  font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight:400;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  font-size:0.78rem;              /* メニュー：さらに小さめ */
+  color:var(--accent);
+  text-decoration:none;
+  margin:0 0.75rem;
+  transition:color .3s ease;
+}
+nav a:hover{color:var(--hover-blue);}
 
-  /* ===== 見出し ===== */
-  h1{
-    font-family:"Noto Serif JP","Yu Mincho","Hiragino Mincho ProN",serif;
-    font-weight:200;
-    letter-spacing:0.08em;
-    font-size:1.8rem;
-    margin:0 0 0.75rem;
-  }
-  h2{
-    margin:0 0 0.75rem;
-    font-weight:400;
-    letter-spacing:0.04em;
-    font-size:1.2rem;
-    margin-top:2rem;
-  }
+h1{
+  font-family:"Noto Serif JP","Yu Mincho","Hiragino Mincho ProN",serif;
+  font-weight:200;
+  letter-spacing:0.08em;
+  font-size:1.8rem;
+  margin:0 0 0.75rem;
+}
 
-  /* ===== Works グリッド ===== */
-  .works-grid{
-    display:flex;
-    flex-wrap:wrap;
-    gap:1rem;
-  }
-  .works-grid a{
-    flex:0 0 calc(50% - 0.5rem);   /* 1 行 2 冊 */
-  }
-  .works-grid img{
-    width:100%;
-    height:auto;
-    display:block;
-    border-radius:4px;
-  }
+/* セクション見出しも少し小さめに */
+h2{
+  font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight:400;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  font-size:1rem;                 /* ← 以前の 1.2rem から小型化 */
+  margin:2rem 0 0.75rem;
+}
 
-  /* ===== 各種リスト ===== */
-  ul{list-style:none;padding:0;margin:0;}
-  li+li{margin-top:0.75rem;}
+.works-grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:1rem;
+}
+.works-grid a{flex:0 0 calc(50% - 0.5rem);}
+.works-grid img{width:100%;height:auto;display:block;border-radius:4px;}
 
-  /* ===== フッター ===== */
-  footer{
-    font-size:0.75rem;
-    text-align:center;
-    opacity:0.7;
-  }
+ul{list-style:none;padding:0;margin:0;}
+li+li{margin-top:0.75rem;}
 </style>
 </head>
 
@@ -95,17 +82,17 @@
 <header>
   <h1>佐野徹夜</h1>
   <nav>
-    <a href="#about">About</a>
-    <a href="#works">Works</a>
-    <a href="#news">News</a>
-    <a href="#contact">Contact</a>
+    <a href="about">ABOUT</a>
+    <a href="#works">WORKS</a>
+    <a href="#news">NEWS</a>
+    <a href="#contact">CONTACT</a>
   </nav>
 </header>
 
 <main>
   <!-- ========= About ========= -->
   <section id="about">
-    <h2>About</h2>
+    <h2>ABOUT</h2>
     <p>1987年1月23日、京都府生まれ。</p>
     <p>『君は月夜に光り輝く』でデビュー。同作は映画化された。</p>
     <p>現在は新作長編小説を準備中。</p>
@@ -113,39 +100,32 @@
 
   <!-- ========= Works ========= -->
   <section id="works">
-    <h2>Works</h2>
-
+    <h2>WORKS</h2>
     <div class="works-grid">
-      <!-- 最新刊 → デビュー順に並べる -->
-
       <a href="https://www.amazon.co.jp/dp/4309031293" target="_blank" rel="noopener">
         <img src="https://images-na.ssl-images-amazon.com/images/P/4309031293.09.LZZZZZZZ.jpg" alt="透明になれなかった僕たちのために 書影">
       </a>
-
       <a href="https://www.amazon.co.jp/dp/4101801908" target="_blank" rel="noopener">
         <img src="https://images-na.ssl-images-amazon.com/images/P/4101801908.09.LZZZZZZZ.jpg" alt="さよなら世界の終わり 書影">
       </a>
-
       <a href="https://www.amazon.co.jp/dp/4049123398" target="_blank" rel="noopener">
         <img src="https://images-na.ssl-images-amazon.com/images/P/4049123398.09.LZZZZZZZ.jpg" alt="君は月夜に光り輝く +Fragments 書影">
       </a>
-
       <a href="https://www.amazon.co.jp/dp/4049120372" target="_blank" rel="noopener">
         <img src="https://images-na.ssl-images-amazon.com/images/P/4049120372.09.LZZZZZZZ.jpg" alt="アオハル・ポイント 書影">
       </a>
-
       <a href="https://www.amazon.co.jp/dp/4048934147" target="_blank" rel="noopener">
         <img src="https://images-na.ssl-images-amazon.com/images/P/4048934147.09.LZZZZZZZ.jpg" alt="この世界に i をこめて 書影">
       </a>
-
       <a href="https://www.amazon.co.jp/dp/4048926756" target="_blank" rel="noopener">
         <img src="https://images-na.ssl-images-amazon.com/images/P/4048926756.09.LZZZZZZZ.jpg" alt="君は月夜に光り輝く 書影">
       </a>
     </div>
+  </section>
 
   <!-- ========= News ========= -->
   <section id="news">
-    <h2>News</h2>
+    <h2>NEWS</h2>
     <ul>
       <li>2025-05-16　エッセイ〈母へ〉第15回「あなたはいつも優しくて」</li>
       <li>2024-12-25　短篇集『君に贈る15ページ』発売、書き下ろし「わたしたちの教室」収録</li>
@@ -155,14 +135,10 @@
 
   <!-- ========= Contact ========= -->
   <section id="contact">
-    <h2>Contact</h2>
-    <p>お仕事のご依頼・ご相談は下記メールアドレスまでお願いいたします（メールはスタッフも拝読します）。</p>
+    <h2>CONTACT</h2>
+    <p>お仕事のご依頼・ご相談は下記メールアドレスまでお願いいたします。</p>
     <p>sanotetsuya.lnfo@gmail.com</p>
   </section>
 </main>
-
-<footer>
-  © 2025 Tetsuya Sano. All rights reserved.
-</footer>
 </body>
 </html>
