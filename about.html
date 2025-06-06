@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>About | web-aki</title>
 
-  <!-- Web fonts -->
+  <!-- Web Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 
@@ -18,18 +18,17 @@
     }
     *{box-sizing:border-box;margin:0;padding:0}
     body{
-      position:relative;                /* グリッドを後ろへ送る土台 */
+      position:relative;
       font-family:'Inter',sans-serif;
       background:var(--bg);
       color:var(--fg);
       line-height:1.75;
     }
 
-    /* 背景グリッド（写真の上に乗らないよう z-index:-1） */
+    /* 背景格子（写真より背面） */
     body::before{
       content:"";
-      position:fixed;inset:0;
-      z-index:-1;                       /* ← 写真より背面 */
+      position:fixed;inset:0;z-index:-1;
       pointer-events:none;
       background-image:
         linear-gradient(to right,var(--grid) 1px,transparent 1px),
@@ -56,27 +55,20 @@
       position:relative;
     }
     .vlabel{
-      position:absolute;
-      left:50%;top:50%;
+      position:absolute;left:50%;top:50%;
       transform:translate(-50%,-50%);
-      writing-mode:vertical-rl;
-      text-orientation:mixed;
+      writing-mode:vertical-rl;text-orientation:mixed;
       font-family:'Plus Jakarta Sans',sans-serif;
-      font-weight:500;
-      font-size:68px;
-      letter-spacing:.08em;
-      background:var(--accent);
-      color:#000;
-      padding:12px 0;
-      line-height:1;
+      font-weight:500;font-size:68px;letter-spacing:.08em;
+      background:var(--accent);color:#000;padding:12px 0;line-height:1;
     }
 
     /* ===== PROFILE ===== */
     .profile-pic{
       grid-column:1/6;
-      width:100%;
-      max-width:500px;     /* 実寸に合わせる */
-      aspect-ratio:1/1;    /* スクエア */
+      width:100%;               /* グリッド幅いっぱい */
+      max-width:450px;          /* 大画面での暴走防止 */
+      aspect-ratio:4/5;         /* 1080×1350 ≒ 4:5 */
       height:auto;
       object-fit:cover;
       border:6px solid #fff;
@@ -84,22 +76,14 @@
     }
     .profile-text{
       grid-column:6/-1;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
+      display:flex;flex-direction:column;justify-content:center;
     }
     .profile-text h2{
       font-family:'Plus Jakarta Sans',sans-serif;
-      font-weight:500;
-      font-size:36px;
-      margin-bottom:8px;
+      font-weight:500;font-size:36px;margin-bottom:8px;
     }
     .profile-text p{margin:.45em 0;}
-    .profile-text a{
-      color:var(--fg);
-      text-decoration:none;
-      border-bottom:1px solid var(--accent);
-    }
+    .profile-text a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--accent);}
 
     /* ===== TIMELINE ===== */
     .timeline{
@@ -109,42 +93,28 @@
       grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
     }
     .card{
-      background:#fff;
-      border:1.5px solid var(--grid);
-      padding:24px;
+      background:#fff;border:1.5px solid var(--grid);padding:24px;
     }
     .card h4{
       font-family:'Plus Jakarta Sans',sans-serif;
-      font-weight:500;
-      font-size:20px;
-      margin-bottom:6px;
-      line-height:1.2;
+      font-weight:500;font-size:20px;margin-bottom:6px;line-height:1.2;
     }
     .card h4::before{
-      content:"";
-      display:inline-block;
-      width:4px; height:22px;
+      content:"";display:inline-block;
+      width:4px;height:22px;
       background:var(--accent);
-      margin-right:8px;
-      transform:translateY(2px);
+      margin-right:8px;transform:translateY(2px);
     }
-    .card p{
-      font-size:14px;
-      line-height:1.6;
-    }
+    .card p{font-size:14px;line-height:1.6;}
 
     /* ===== CTA ===== */
     .cta{
-      grid-column:4/10;
-      text-align:center;
-      margin-top:64px;
+      grid-column:4/10;text-align:center;margin-top:64px;
     }
     .cta a{
-      background:var(--accent);
-      color:#000;
+      background:var(--accent);color:#000;
       padding:8px 32px;
-      font-family:'Plus Jakarta Sans',sans-serif;
-      font-weight:500;
+      font-family:'Plus Jakarta Sans',sans-serif;font-weight:500;
       text-decoration:none;
     }
 
@@ -205,7 +175,7 @@
 
     <div class="card">
       <h4>2020</h4>
-      <p>長篇『さよなら世界の終わり』刊行（新潮文庫 nｅx）。</p>
+      <p>長篇『さよなら世界の終わり』刊行（新潮文庫 nex）。</p>
     </div>
 
     <div class="card">
