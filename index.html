@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>佐野徹夜 | Official Site</title>
 
-<!-- フォント -->
+<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;700&display=swap" rel="stylesheet">
@@ -17,21 +17,16 @@
   --text:#1A1A1A;
   --accent:#1A1A1A;
   --hover-blue:#0A4DA2;
-
-  /* 進捗メーター */
   --meter-fill:#24A38A;
   --meter-border:#1A1A1A;
 }
 
 html{font-size:16px;}
 body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
+  margin:0;background:var(--bg);color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,
               "Noto Sans JP","ヒラギノ角ゴ ProN",sans-serif;
-  line-height:1.6;
-  font-size:0.9rem;
+  line-height:1.6;font-size:0.9rem;
 }
 
 header,main{max-width:720px;margin:0 auto;}
@@ -40,82 +35,53 @@ main  {padding:0 1rem 3rem;}
 
 nav{margin-top:1rem;}
 nav a{
-  font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-weight:400;
-  text-transform:uppercase;
-  letter-spacing:.06em;
-  font-size:0.78rem;
-  color:var(--accent);
-  text-decoration:none;
-  margin:0 0.75rem;
+  font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:400;
+  text-transform:uppercase;letter-spacing:.06em;font-size:0.78rem;
+  color:var(--accent);text-decoration:none;margin:0 0.75rem;
   transition:color .3s ease;
 }
 nav a:hover{color:var(--hover-blue);}
 
-/* ───── 進捗メーター ───── */
+/* ── 新作メーター ─────────────────── */
 .progress-row{
-  margin:0.5rem auto 0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:0.25rem;
+  margin:1.5rem 0;
+  display:flex;justify-content:center;align-items:center;gap:0.4rem;
 }
-
 .meter-label{
-  font-size:0.85rem;
-  letter-spacing:0.05em;
+  font-size:0.85rem;letter-spacing:0.05em;
 }
-
 .bar{
-  position:relative;
-  width:150px;              /* ★ さらに 15% 短縮（旧 176px） */
+  width:240px;                        /* ★ 1.6倍に拡大 (150px → 240px) */
   height:1.4rem;
   border:2px solid var(--meter-border);
   border-radius:0.2rem;
   overflow:hidden;
 }
-
 .fill{
-  height:100%;
-  width:65%;
-  background:var(--meter-fill);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
-  font-family:'Noto Sans JP',sans-serif;
-  font-weight:700;
-  font-size:0.75rem;
+  width:65%;height:100%;background:var(--meter-fill);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:0.75rem;
   transition:width 0.6s ease;
 }
-
 .fill .status{font-weight:500;}
 
+/* 見出し類 */
 h1{
   font-family:"Noto Serif JP","Yu Mincho","Hiragino Mincho ProN",serif;
-  font-weight:200;
-  letter-spacing:0.08em;
-  font-size:1.8rem;
-  margin:0 0 0.75rem;
+  font-weight:200;letter-spacing:0.08em;font-size:1.8rem;margin:0 0 0.75rem;
 }
-
 h2{
-  font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-weight:400;
-  text-transform:uppercase;
-  letter-spacing:.05em;
-  font-size:1rem;
+  font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:400;
+  text-transform:uppercase;letter-spacing:.05em;font-size:1rem;
   margin:1.4rem 0 0.75rem;
 }
 h2:first-of-type{margin-top:1rem;}
-
 h2 a{color:inherit;text-decoration:none;}
 h2 a:hover{color:var(--hover-blue);}
 
+/* Works グリッド */
 .works-grid{
-  display:flex;
-  flex-wrap:wrap;
-  gap:1rem;
+  display:flex;flex-wrap:wrap;gap:1rem;
 }
 .works-grid a{flex:0 0 calc(50% - 0.5rem);}
 .works-grid img{width:100%;height:auto;display:block;border-radius:4px;}
@@ -128,14 +94,6 @@ li+li{margin-top:0.75rem;}
 <body>
 <header>
   <h1>佐野徹夜</h1>
-
-  <!-- 新作メーター -->
-  <div class="progress-row">
-    <span class="meter-label">新作メーター:</span>
-    <div class="bar">
-      <div class="fill">65% (初稿完成)</div>
-    </div>
-  </div>
 
   <nav>
     <a href="about">ABOUT</a>
@@ -153,6 +111,14 @@ li+li{margin-top:0.75rem;}
     <p>『君は月夜に光り輝く』でデビュー。同作は映画化された。</p>
     <p>現在は新作長編小説を準備中。</p>
   </section>
+
+  <!-- ========= 新作メーター ========= -->
+  <div class="progress-row">
+    <span class="meter-label">新作メーター:</span>
+    <div class="bar">
+      <div class="fill">65% (初稿完成)</div>
+    </div>
+  </div>
 
   <!-- ========= Works ========= -->
   <section id="works">
