@@ -8,9 +8,7 @@
 <!-- フォント -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Noto Serif（見出し用） -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;700&display=swap" rel="stylesheet">
-<!-- Noto Sans（本文・メーター用） -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 
 <style>
@@ -70,7 +68,7 @@ nav a:hover{color:var(--hover-blue);}
 
 .bar{
   position:relative;
-  width:185px;              /* 以前より +5% */
+  width:150px;              /* ★ さらに 15% 短縮（旧 176px） */
   height:1.4rem;
   border:2px solid var(--meter-border);
   border-radius:0.2rem;
@@ -79,23 +77,20 @@ nav a:hover{color:var(--hover-blue);}
 
 .fill{
   height:100%;
-  width:65%;                 /* 進捗率 */
+  width:65%;
   background:var(--meter-fill);
   display:flex;
   align-items:center;
   justify-content:center;
   color:#fff;
-  font-family:'Noto Sans JP',sans-serif;  /* 65% と (初稿完成) を同フォントに */
-  font-weight:700;            /* 65% を太めに */
+  font-family:'Noto Sans JP',sans-serif;
+  font-weight:700;
   font-size:0.75rem;
   transition:width 0.6s ease;
 }
 
-.fill .status{
-  font-weight:500;           /* 同フォントでわずかに細く */
-}
+.fill .status{font-weight:500;}
 
-/* ───── 見出し調整 ───── */
 h1{
   font-family:"Noto Serif JP","Yu Mincho","Hiragino Mincho ProN",serif;
   font-weight:200;
@@ -112,7 +107,6 @@ h2{
   font-size:1rem;
   margin:1.4rem 0 0.75rem;
 }
-
 h2:first-of-type{margin-top:1rem;}
 
 h2 a{color:inherit;text-decoration:none;}
@@ -135,20 +129,20 @@ li+li{margin-top:0.75rem;}
 <header>
   <h1>佐野徹夜</h1>
 
+  <!-- 新作メーター -->
+  <div class="progress-row">
+    <span class="meter-label">新作メーター:</span>
+    <div class="bar">
+      <div class="fill">65% (初稿完成)</div>
+    </div>
+  </div>
+
   <nav>
     <a href="about">ABOUT</a>
     <a href="works.html">WORKS</a>
     <a href="/news">NEWS</a>
     <a href="#contact">CONTACT</a>
   </nav>
-
-  <div class="progress-row">
-    <span class="meter-label">新作メーター:</span>
-
-    <div class="bar">
-      <div class="fill">65% (初稿完成)</span></div>
-    </div>
-  </div>
 </header>
 
 <main>
