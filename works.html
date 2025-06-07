@@ -127,8 +127,10 @@ body{
 .back-link:hover::after{width:100%}
 
 /* responsive ----------------------------------------------------------- */
-@media(max-width:768px){
+@media (max-width:768px){
     .regular-grid{grid-template-columns:repeat(2,1fr)}
+    /* ← スマホ時に左右 8px だけ余白を確保 */
+    .container{padding:0 8px;}
 }
 </style>
 </head>
