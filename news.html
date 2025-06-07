@@ -1,54 +1,67 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TETSUYA SANO | NEWS</title>
-<style>
-/* ===== リセット ===== */
-*{margin:0;padding:0;box-sizing:border-box;}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TETSUYA SANO | NEWS</title>
+  <style>
+    /* ===== リセット ===== */
+    *{margin:0;padding:0;box-sizing:border-box;}
 
-/* ===== ベース ===== */
-body{
-  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,
-              "Noto Sans JP",sans-serif;
-  background:#fafafa;              /* 薄いグレー背景 */
-  color:#111;font-size:14px;line-height:1.6;
-}
-a{color:#111;text-decoration:none;}
-a:hover{opacity:.75;}
+    /* ===== ベース ===== */
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,
+                  "Noto Sans JP",sans-serif;
+      background:#fafafa;
+      color:#111;font-size:14px;line-height:1.6;
+    }
+    a{color:#111;text-decoration:none;}
 
-/* ===== ヘッダー ===== */
-.header{
-  display:flex;align-items:center;gap:24px;
-  padding:10px 16px;border-bottom:1px solid #ccc;
-  background:#fff;position:sticky;top:0;z-index:999;
-}
-.logo{font-size:24px;font-weight:700;letter-spacing:-1px;}
-.nav{display:flex;gap:16px;font-size:12px;font-weight:600;}
-.nav a:hover{border-bottom:2px solid #111;}
+    /* ===== ヘッダー ===== */
+    .header{
+      display:flex;align-items:center;gap:24px;
+      padding:10px 16px;border-bottom:1px solid #ccc;
+      background:#fff;position:sticky;top:0;z-index:999;
+    }
 
-/* ===== ニュースボックス ===== */
-.news-box{
-  max-width:760px;margin:32px auto;padding:24px 20px;
-  background:#fff;border:1px solid #ccc;border-radius:4px;
-  box-shadow:0 2px 4px rgba(0,0,0,.05);
-}
-.article{border-bottom:1px solid #bbb;padding:16px 0;} /* 濃い区切り線 */
-.article:last-child{border-bottom:none;}
-.article h2{font-size:15px;font-weight:700;margin-bottom:4px;}
-.meta{font-size:11px;color:#666;margin-bottom:8px;}
+    /* ―― さらに控えめに崩した NEWS ロゴ ―― */
+    .logo{
+      font-size:24px;font-weight:700;letter-spacing:-1px;line-height:1;
+    }
+    .logo span{display:inline-block;}
+    .logo span:nth-child(1){transform:rotate(-2deg) translateY(.5px);}
+    .logo span:nth-child(2){transform:rotate( 1deg) translateY(-.5px);}
+    .logo span:nth-child(3){transform:rotate(-1deg) translateY(.5px);}
+    .logo span:nth-child(4){transform:rotate( 2deg) translateY(-.5px);}
 
-/* ===== フッター ===== */
-.footer{
-  text-align:center;padding:24px 0;font-size:12px;
-}
-</style>
+    /* ===== ナビゲーション ===== */
+    .nav{
+      display:flex;gap:16px;font-size:12px;font-weight:600;
+    }
+    .nav a{transition:color .2s ease;}
+    .nav a:hover{color:#D4AE00;}   /* 落ち着いたマスタード */
+
+    /* ===== ニュースボックス ===== */
+    .news-box{
+      max-width:760px;margin:32px auto;padding:24px 20px;
+      background:#fff;border:1px solid #ccc;border-radius:4px;
+      box-shadow:0 2px 4px rgba(0,0,0,.05);
+    }
+    .article{border-bottom:1px solid #bbb;padding:16px 0;}
+    .article:last-child{border-bottom:none;}
+    .article h2{font-size:15px;font-weight:700;margin-bottom:4px;}
+    .meta{font-size:11px;color:#666;margin-bottom:8px;}
+
+    /* ===== フッター ===== */
+    .footer{
+      text-align:center;padding:24px 0;font-size:12px;
+    }
+  </style>
 </head>
 <body>
 
 <header class="header">
-  <div class="logo">NEWS</div>
+  <div class="logo"><span>N</span><span>E</span><span>W</span><span>S</span></div>
   <nav class="nav">
     <a href="/about">プロフィール</a>
     <a href="/works">作品</a>
@@ -62,8 +75,7 @@ a:hover{opacity:.75;}
   <article class="article">
     <h2>エッセイ〈母へ〉第15回公開</h2>
     <p class="meta">2025-05-16</p>
-    <p>「yom yom」で連載中の書簡エッセイ〈母へ〉最新話
-       『あなたはいつも優しくて』が公開。</p>
+    <p>「yom yom」で連載中の書簡エッセイ〈母へ〉最新話『あなたはいつも優しくて』が公開。</p>
   </article>
 
   <article class="article">
