@@ -13,7 +13,7 @@
     :root{
       --bg:#F5F5F5;     /* ページ地 */
       --fg:#1A1A1A;     /* 文字色 */
-      --accent:#39FF14; /* ネオングリーン */
+      --accent:#39FF14; /* ネオングリーン（カード内では上書きして黒に） */
       --grid:#DDDDDD;   /* 背景格子 */
     }
     *{box-sizing:border-box;margin:0;padding:0}
@@ -114,10 +114,11 @@
       font-family:'Plus Jakarta Sans',sans-serif;
       font-weight:500;font-size:20px;margin-bottom:6px;line-height:1.2;
     }
+    /* カード内のネオングリーンを黒に上書き */
     .card h4::before{
       content:"";display:inline-block;
       width:4px;height:22px;
-      background:var(--accent);
+      background:#000;           /* ← ここを黒に */
       margin-right:8px;transform:translateY(2px);
     }
     .card p{font-size:14px;line-height:1.6;}
@@ -215,8 +216,7 @@
 
     <div class="card">
       <h4>2024</h4>
-      <p>
-         コミック『一年に一度しか会えない君の話。』刊行</p>
+      <p>コミック『一年に一度しか会えない君の話。』刊行</p>
     </div>
 
   </section>
