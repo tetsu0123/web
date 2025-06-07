@@ -42,6 +42,9 @@ nav a{
 }
 nav a:hover{color:var(--hover-blue);}
 
+/* ── 余白を増やすセクション ───────────────── */
+.spaced{margin-top:1.5rem;}
+
 /* ── 新作メーター ─────────────────── */
 .progress-row{
   margin:1.5rem 0;
@@ -51,7 +54,7 @@ nav a:hover{color:var(--hover-blue);}
   font-size:0.85rem;letter-spacing:0.05em;
 }
 .bar{
-  width:240px;                        /* ★ 1.6倍に拡大 (150px → 240px) */
+  width:240px;
   height:1.4rem;
   border:2px solid var(--meter-border);
   border-radius:0.2rem;
@@ -106,22 +109,14 @@ li+li{margin-top:0.75rem;}
 <main>
   <!-- ========= About ========= -->
   <section id="about">
-    <h2>ABOUT</h2>
+    <h2><a href="/about">ABOUT</a></h2>
     <p>1987年1月23日、京都府生まれ。</p>
     <p>『君は月夜に光り輝く』でデビュー。同作は映画化された。</p>
     <p>現在は新作長編小説を準備中。</p>
   </section>
 
-  <!-- ========= 新作メーター ========= -->
-  <div class="progress-row">
-    <span class="meter-label">新作メーター:</span>
-    <div class="bar">
-      <div class="fill">65% (初稿完成)</div>
-    </div>
-  </div>
-
   <!-- ========= Works ========= -->
-  <section id="works">
+  <section id="works" class="spaced">
     <h2><a href="works.html">WORKS</a></h2>
     <div class="works-grid">
       <a href="https://www.amazon.co.jp/dp/4309031293" target="_blank" rel="noopener">
@@ -146,7 +141,7 @@ li+li{margin-top:0.75rem;}
   </section>
 
   <!-- ========= News ========= -->
-  <section id="news">
+  <section id="news" class="spaced">
     <h2><a href="/news">NEWS</a></h2>
     <ul>
       <li>2025-05-16　エッセイ〈母へ〉第15回「あなたはいつも優しくて」</li>
@@ -156,11 +151,19 @@ li+li{margin-top:0.75rem;}
   </section>
 
   <!-- ========= Contact ========= -->
-  <section id="contact">
+  <section id="contact" class="spaced">
     <h2>CONTACT</h2>
     <p>お仕事のご依頼・ご相談は下記メールアドレスまでお願いいたします。</p>
     <p>sanotetsuya.lnfo@gmail.com</p>
   </section>
+
+  <!-- ========= 新作メーター（最下部に配置） ========= -->
+  <div class="progress-row">
+    <span class="meter-label">新作メーター:</span>
+    <div class="bar">
+      <div class="fill">65% (初稿完成)</div>
+    </div>
+  </div>
 </main>
 </body>
 </html>
