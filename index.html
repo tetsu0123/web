@@ -47,6 +47,14 @@ nav a{
 }
 nav a:hover{color:var(--hover-blue);}
 
+.meter{
+  display:block;
+  margin:1.5rem auto 0;   /* 上余白・中央揃え */
+  max-width:260px;        /* 好みで調整 */
+  width:60%;
+  height:auto;
+}
+
 h1{
   font-family:"Noto Serif JP","Yu Mincho","Hiragino Mincho ProN",serif;
   font-weight:200;
@@ -87,9 +95,12 @@ li+li{margin-top:0.75rem;}
   <nav>
     <a href="about">ABOUT</a>
     <a href="works.html">WORKS</a>
-    <a href="/news">NEWS</a>           <!-- ★ 変更 -->
+    <a href="/news">NEWS</a>
     <a href="#contact">CONTACT</a>
   </nav>
+
+  <!-- 追加：中央に表示するメーター画像 -->
+  <img src="meter.png" alt="New Work Progress Meter" class="meter">
 </header>
 
 <main>
@@ -128,7 +139,7 @@ li+li{margin-top:0.75rem;}
 
   <!-- ========= News ========= -->
   <section id="news">
-    <h2><a href="/news">NEWS</a></h2>   <!-- ★ 変更 -->
+    <h2><a href="/news">NEWS</a></h2>
     <ul>
       <li>2025-05-16　エッセイ〈母へ〉第15回「あなたはいつも優しくて」</li>
       <li>2024-12-25　短篇集『君に贈る15ページ』発売、書き下ろし「わたしたちの教室」収録</li>
