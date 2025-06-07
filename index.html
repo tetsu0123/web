@@ -39,7 +39,7 @@ nav a{
   font-weight:400;
   text-transform:uppercase;
   letter-spacing:.06em;
-  font-size:0.78rem;              /* メニュー：さらに小さめ */
+  font-size:0.78rem;
   color:var(--accent);
   text-decoration:none;
   margin:0 0.75rem;
@@ -55,15 +55,18 @@ h1{
   margin:0 0 0.75rem;
 }
 
-/* セクション見出しも少し小さめに */
 h2{
   font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
   font-weight:400;
   text-transform:uppercase;
   letter-spacing:.05em;
-  font-size:1rem;                 /* ← 以前の 1.2rem から小型化 */
+  font-size:1rem;
   margin:2rem 0 0.75rem;
 }
+
+/* 見出し内リンクの見た目を保持 */
+h2 a{color:inherit;text-decoration:none;}
+h2 a:hover{color:var(--hover-blue);}
 
 .works-grid{
   display:flex;
@@ -83,7 +86,7 @@ li+li{margin-top:0.75rem;}
   <h1>佐野徹夜</h1>
   <nav>
     <a href="about">ABOUT</a>
-    <a href="#works">WORKS</a>
+    <a href="works.html">WORKS</a>   <!-- ★ ここを変更 -->
     <a href="#news">NEWS</a>
     <a href="#contact">CONTACT</a>
   </nav>
@@ -100,7 +103,7 @@ li+li{margin-top:0.75rem;}
 
   <!-- ========= Works ========= -->
   <section id="works">
-    <h2>WORKS</h2>
+    <h2><a href="works.html">WORKS</a></h2> <!-- ★ ここを変更 -->
     <div class="works-grid">
       <a href="https://www.amazon.co.jp/dp/4309031293" target="_blank" rel="noopener">
         <img src="https://images-na.ssl-images-amazon.com/images/P/4309031293.09.LZZZZZZZ.jpg" alt="透明になれなかった僕たちのために 書影">
