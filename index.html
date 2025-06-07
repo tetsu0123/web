@@ -8,8 +8,10 @@
 <!-- フォント -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Noto Serif（見出し用） -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<!-- Noto Sans（本文・メーター用） -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -66,10 +68,9 @@ nav a:hover{color:var(--hover-blue);}
   letter-spacing:0.05em;
 }
 
-/* ラベルをバー内部右端へ配置 */
 .bar{
   position:relative;
-  width:220px;
+  width:185px;              /* 以前より +5% */
   height:1.4rem;
   border:2px solid var(--meter-border);
   border-radius:0.2rem;
@@ -84,21 +85,14 @@ nav a:hover{color:var(--hover-blue);}
   align-items:center;
   justify-content:center;
   color:#fff;
-  font-weight:700;
+  font-family:'Noto Sans JP',sans-serif;  /* 65% と (初稿完成) を同フォントに */
+  font-weight:700;            /* 65% を太めに */
   font-size:0.75rem;
   transition:width 0.6s ease;
 }
 
-/* 空き部分に「初稿完成」を表示 */
-.bar-label{
-  position:absolute;
-  right:4px;                 /* 右端に寄せる */
-  top:50%;
-  transform:translateY(-50%);
-  font-size:0.75rem;
-  letter-spacing:0.05em;
-  color:var(--text);
-  pointer-events:none;       /* クリック不可に */
+.fill .status{
+  font-weight:500;           /* 同フォントでわずかに細く */
 }
 
 /* ───── 見出し調整 ───── */
@@ -152,7 +146,7 @@ li+li{margin-top:0.75rem;}
     <span class="meter-label">新作メーター:</span>
 
     <div class="bar">
-      <div class="fill">65%(初稿完成)</div>
+      <div class="fill">65% (初稿完成)</span></div>
     </div>
   </div>
 </header>
