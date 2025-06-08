@@ -2,39 +2,47 @@
 <meta charset="utf-8">
 <title>字下げツール</title>
 <style>
-body{font-family:system-ui, sans-serif;margin:2rem;}
+body{font-family:system-ui,sans-serif;margin:2rem;}
 textarea{width:100%;height:6rem;margin:0.5rem 0;}
 button{padding:0.4rem 1rem;}
 .counter{font-size:0.9rem;color:#666;}
 </style>
 
 <h1>字下げツール</h1>
-<p class=counter id=cnt>文字数: 0</p>
-<textarea id=in placeholder="ここに文章を貼ってください"></textarea>
-<button id=go>変換</button>
-<textarea id=out placeholder="結果がここに出ます"></textarea>
+<p class="counter" id="cnt">文字数: 0</p>
+<textarea id="in"  placeholder="ここに文章を貼ってください"></textarea>
+<button  id="go">変換</button>
+<textarea id="out" placeholder="結果がここに出ます"></textarea>
 
 <script>
 const inBox  = document.getElementById('in');
 const outBox = document.getElementById('out');
 const cnt    = document.getElementById('cnt');
 
-// 文字数カウント
+// 1) 入力文字数カウント（改行は除外）
 inBox.addEventListener('input', () => {
   cnt.textContent = `文字数: ${inBox.value.replace(/\n/g,'').length}`;
 });
 
-// 変換ボタン
+// 2) 変換
 document.getElementById('go').onclick = () => {
-  const lines = inBox.value.split(/\r?\n/).map(l => {
-    // 会話文かどうか判定
-    if (/^[「『（(〖\[]/.test(l)) return l;
-    // 行頭が全角スペースでなければ追加
-    return l.startsWith('　') ? l : '　' + l;
+  // 行単位で処理
+  const lines = inBox.value.split(/\r?\n/).map(line => {
+    // 空行は手つかずで返す
+    if (line.trim() === '') return line;
+
+    // 会話文なら字下げしない
+    if (/^[「『（(〖\[]/.test(line)) return line;
+
+    // すでに全角スペースで始まっていなければ追加
+    return line.startsWith('　') ? line : '　' + line;
   });
-  // 感嘆符直後の半角スペースを全角に
-  const txt = lines.join('\n')
-    .replace(/([！？])\s/g, '$1　');
-  outBox.value = txt;
+
+  // 全文を連結 → 半角スペース→全角スペース置換 → 感嘆符・疑問符後の空白置換
+  const result = lines.join('\n')
+    .replace(/ /g, '　')         // 半角→全角 :contentReference[oaicite:0]{index=0}
+    .replace(/([！？])\s/g, '$1　'); // 句読点後の空白を全角に
+
+  outBox.value = result;
 };
 </script>
