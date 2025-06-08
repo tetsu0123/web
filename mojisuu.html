@@ -1,143 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ZINE SAMPLE</title>
-
-<!-- === Fonts (Inter ≈ Helvetica, EB Garamond ≈ Editorial New) === -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=EB+Garamond:wght@500;700&display=swap" rel="stylesheet">
-
+<meta charset="utf-8">
+<title>文字数 & 原稿用紙カウンタ</title>
 <style>
-/* ---------- 1. 基本トークン ---------- */
-:root{
-  --red:#E4001B;      /* 032c 的アクセント :contentReference[oaicite:1]{index=1} */
-  --ink:#1A1A1A;      /* 活版ブラック */
-  --paper:#FAFAFA;    /* わずかに黄味のある紙地 */
-  --grid:1px solid var(--ink);
-}
-
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{
-  height:100%;
-  color:var(--ink);
-  background:var(--paper);
-  font-family:"Inter",Arial,sans-serif;
-  scroll-behavior:smooth;
-}
-
-/* ---------- 2. ページ送り ---------- */
-main{
-  height:100%;
-  overflow-y:auto;
-  scroll-snap-type:y mandatory;          /* CSS Scroll Snap :contentReference[oaicite:2]{index=2} */
-}
-.page{
-  height:100vh;                          /* 1 ビュー = 1 見開き */
-  scroll-snap-align:start;
-  display:grid;
-  grid-template-columns:repeat(12,1fr);  /* 12 カラム :contentReference[oaicite:3]{index=3} */
-  gap:1rem;
-  padding:2rem;
-  position:relative;
-  border-top:var(--grid);
-}
-
-/* ---------- 3. タイポ & レイアウト ---------- */
-h1,h2{
-  font-family:"EB Garamond",serif;       /* Display face */
-  line-height:0.85;
-  letter-spacing:-.02em;
-}
-h1{
-  font-size:clamp(3rem,15vw,12rem);      /* 巨大タイポ */
-  grid-column:1/-1;
-  align-self:end;
-}
-h2{
-  font-size:clamp(1.5rem,6vw,4rem);
-  margin-bottom:.5rem;
-}
-
-p{font-size:1rem;line-height:1.6;max-width:60ch}
-a{color:inherit;text-decoration:none;position:relative}
-a::after{content:"";position:absolute;inset:100% 0 0 0;background:var(--red);height:2px;transition:transform .3s;transform:scaleX(0);transform-origin:left}
-a:hover::after{transform:scaleX(1)}      /* 罫線リンクホバー */
-
-img{width:100%;height:auto;display:block;filter:url(#halftone);} /* ハーフトーン適用 */
-
-/* ---------- 4. セクション別 ---------- */
-.cover{background:var(--red);color:var(--paper)}
-.cover h1{mix-blend-mode:screen;}        /* 版ズレ／ブレンド :contentReference[oaicite:4]{index=4} */
-
-.editorial img{grid-column:1/8}
-.editorial .text{grid-column:8/-1;align-self:center}
-
-.interview .quote{grid-column:1/5;font-size:2rem;font-style:italic}
-.interview .body{grid-column:6/-1;align-self:center}
-
-.portfolio{overflow-x:auto;display:flex;scroll-snap-type:x mandatory}
-.portfolio figure{min-width:100%;scroll-snap-align:center;padding-right:1rem}
-
-.credits{font-size:.75rem;font-family:monospace}
-
-/* ---------- 5. 汚し用ノイズ ---------- */
-body::before{
-  content:"";
-  position:fixed;inset:0;
-  background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAB...") repeat;
-  opacity:.05;pointer-events:none;mix-blend-mode:multiply;
-}
+body{font:16px/1.6 system-ui,sans-serif;margin:2rem}
+label{margin-right:.8rem}
+textarea{width:100%;height:10rem;margin:.5rem 0;font:14px/1.5 monospace}
+table{border-collapse:collapse;margin-top:1rem}
+th,td{border:1px solid #aaa;padding:.3rem .6rem;text-align:right}
+th{background:#f5f5f5;text-align:left}
+button{padding:.4rem 1rem;margin-right:.6rem}
 </style>
-</head>
-<body>
-<svg width="0" height="0" style="position:absolute">
-  <!-- Halftone filter (Stack Overflow 参照) :contentReference[oaicite:5]{index=5} -->
-  <filter id="halftone">
-    <feGaussianBlur stdDeviation="1"></feGaussianBlur>
-    <feComponentTransfer>
-      <feFuncA type="discrete" tableValues="1 1 1 0"></feFuncA>
-    </feComponentTransfer>
-  </filter>
-</svg>
 
-<main>
-  <!-- 1) COVER -->
-  <section class="page cover">
-    <h1>ZINE<br>SAMPLE</h1>
-  </section>
+<h1>文字数 & 原稿用紙カウンタ</h1>
 
-  <!-- 2) EDITORIAL -->
-  <section class="page editorial">
-    <img src="https://images.unsplash.com/photo-1534278931827-0fa8c9b4bbfa?auto=format&fit=crop&w=1400&q=80" alt="fashion shot">
-    <div class="text">
-      <h2>Manifesto</h2>
-      <p>We print pixels. We smear ink across glass. Each scroll a page, each click a staple. Welcome to the seam between screen and pulp.</p>
-    </div>
-  </section>
+<label><input type="checkbox" id="live" checked>リアルタイムでカウント</label>
+<button id="count">カウント</button>
+<button id="reset">リセット</button>
 
-  <!-- 3) INTERVIEW -->
-  <section class="page interview">
-    <div class="quote">“Screens have no scent, so we gave them the smell of fresh toner.”</div>
-    <div class="body">
-      <p>Conversation with underground printmaker Ada Ø about resurrecting zine culture online. Recorded in an abandoned risograph studio under the U-Bahn.</p>
-    </div>
-  </section>
+<textarea id="src" placeholder="ここに文章を貼り付け"></textarea>
 
-  <!-- 4) PORTFOLIO -->
-  <section class="page portfolio">
-    <figure><img src="https://images.unsplash.com/photo-1547817183-e7b51c8745f3?auto=format&fit=crop&w=1400&q=80" alt="art work 1"></figure>
-    <figure><img src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=1400&q=80" alt="art work 2"></figure>
-    <figure><img src="https://images.unsplash.com/photo-1529940891180-7c95ccd50b21?auto=format&fit=crop&w=1400&q=80" alt="art work 3"></figure>
-  </section>
+<table>
+  <tbody>
+    <tr><th>改行・空白を除く文字数</th><td id="chars">0</td></tr>
+    <tr><th>原稿用紙 (400 字)</th><td id="pages">0</td></tr>
+  </tbody>
+</table>
 
-  <!-- 5) CREDITS -->
-  <section class="page credits">
-    <p>Design & Code  —  Tetsuya Sano × ChatGPT (o3)</p>
-    <p>Typeface  —  EB Garamond, Inter</p>
-    <p>Images  —  Unsplash / Public Domain</p>
-    <p>Inspired by 032c, Middle Plane, PW-Magazine, Bad Nudes</p>
-  </section>
-</main>
-</body>
-</html>
+<script>
+document.addEventListener('DOMContentLoaded', () => {   // ←① DOM 構築後に実行
+  const $ = id => document.getElementById(id);
+
+  function count() {
+    const pure = $('src').value
+      .replace(/\r?\n/g,'')       // 改行削除
+      .replace(/\s|\u3000/g,'');  // 半角・全角空白削除
+    const len = [...pure].length; // 絵文字対応の文字数
+    $('chars').textContent = len;
+    $('pages').textContent = (Math.ceil(len / 400 * 10) / 10).toFixed(1);
+  }
+
+  $('count').onclick  = count;
+  $('reset').onclick  = () => { $('src').value=''; count(); };
+  $('live').onchange  = () =>
+    $('live').checked
+      ? $('src').addEventListener('input', count)
+      : $('src').removeEventListener('input', count);
+
+  $('src').addEventListener('input', count); // リアルタイム
+  count();                                   // ←② 初期表示
+});
+</script>
