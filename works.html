@@ -14,7 +14,8 @@
 :root{
   --key-blue:#0d3b66;
   --key-blue-light:#2a5a9e;
-  --bg-light:#f7f9fb;
+  /* 背景色を②と同じに統一 */
+  --bg-light:#FCFCFC;
   --border:#dce1e7;
   --text:#1a1a1a;
   --text-muted:#6b7280;
@@ -34,7 +35,7 @@ a:hover{color:var(--key-blue)}
 /* ───────── 白背景ブロック ───────── */
 .box{background:#fff;padding:0 32px;border:1px solid var(--border)}
 .box-top{border-radius:12px 12px 0 0;border-bottom:none}
-.box-middle{border-radius:0 0 12px 12px;border-top:none}      /* ★ここを追加 */
+.box-middle{border-radius:0 0 12px 12px;border-top:none}
 
 /* ───────── ヘッダー ───────── */
 .header{
@@ -74,6 +75,12 @@ a:hover{color:var(--key-blue)}
   display:flex;gap:24px;align-items:flex-start;
   padding-bottom:24px;margin-bottom:24px;
   border-bottom:1px solid var(--border)
+}
+/* ★最終行だけ線と余白をなくす */
+.content-row:last-child{
+  border-bottom:none;
+  margin-bottom:0;
+  padding-bottom:0;
 }
 .content-number{
   font-family:'Inter',sans-serif;font-size:18px;font-weight:600;
