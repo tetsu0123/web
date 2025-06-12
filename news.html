@@ -15,6 +15,7 @@
   --frame:#000;
   --gap:18px;
   --max:780px;           /* 雑誌 1 ページ相当 */
+  --hover-blue:#0A4DA2;  /* リンク hover 時の共通ブルー */
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;background:var(--paper);color:var(--ink);
@@ -61,6 +62,8 @@ ul{list-style:none;padding:0;margin:0;}
 
 /* ---- FOOTER (OPTIONAL) ---- */
 .footer{margin-top:calc(var(--gap)*2);font-size:.8rem;text-align:right;}
+.footer a{color:var(--ink);text-decoration:none;transition:color .3s;font-family:inherit;}
+.footer a:hover{color:var(--hover-blue);}
 
 /* ---- MOBILE ---- */
 @media(max-width:600px){
@@ -135,11 +138,11 @@ ul{list-style:none;padding:0;margin:0;}
       <span class="text"><b>長編小説『透明になれなかった僕たちのために』</b>刊行</span>
     </li>
 
-  </ul>
-
-  <div class="footer"><a href="/">戻る</a></div>
+</ul>
 
 </div>
+
+<div class="footer"><a href="/">戻る</a></div>
 
 </body>
 </html>
