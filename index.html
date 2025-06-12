@@ -19,6 +19,8 @@
   --hover-blue:#0A4DA2;
   --meter-fill:#24A38A;
   --meter-border:#1A1A1A;
+  --footer-bg:#111;
+  --footer-text:#FFF;
 }
 
 html{font-size:16px;}
@@ -31,7 +33,7 @@ body{
 
 header,main{max-width:720px;margin:0 auto;}
 header{padding:2rem 1rem 0.25rem;text-align:center;}
-main  {padding:0 1rem 3rem;}
+main  {padding:0 1rem;}
 
 nav{margin-top:1rem;}
 nav a{
@@ -42,23 +44,17 @@ nav a{
 }
 nav a:hover{color:var(--hover-blue);}
 
-/* ── 余白を増やすセクション ───────────────── */
 .spaced{margin-top:1.5rem;}
 
 /* ── 新作メーター ─────────────────── */
 .progress-row{
-  margin:1.5rem 0;
+  margin:1.5rem 0 0.7rem;
   display:flex;justify-content:center;align-items:center;gap:0.4rem;
 }
-.meter-label{
-  font-size:0.85rem;letter-spacing:0.05em;
-}
+.meter-label{font-size:0.85rem;letter-spacing:0.05em;}
 .bar{
-  width:240px;
-  height:1.4rem;
-  border:2px solid var(--meter-border);
-  border-radius:0.2rem;
-  overflow:hidden;
+  width:240px;height:1.4rem;border:2px solid var(--meter-border);
+  border-radius:0.2rem;overflow:hidden;
 }
 .fill{
   width:65%;height:100%;background:var(--meter-fill);
@@ -68,7 +64,6 @@ nav a:hover{color:var(--hover-blue);}
 }
 .fill .status{font-weight:500;}
 
-/* 見出し類 */
 h1{
   font-family:"Noto Serif JP","Yu Mincho","Hiragino Mincho ProN",serif;
   font-weight:200;letter-spacing:0.08em;font-size:1.8rem;margin:0 0 0.75rem;
@@ -82,7 +77,6 @@ h2:first-of-type{margin-top:1rem;}
 h2 a{color:inherit;text-decoration:none;}
 h2 a:hover{color:var(--hover-blue);}
 
-/* Works グリッド */
 .works-grid{
   display:flex;flex-wrap:wrap;gap:1rem;
 }
@@ -91,13 +85,22 @@ h2 a:hover{color:var(--hover-blue);}
 
 ul{list-style:none;padding:0;margin:0;}
 li+li{margin-top:0.75rem;}
+
+/* ── フッター ─────────────────── */
+footer{
+  background:var(--footer-bg);color:var(--footer-text);
+  text-align:center;
+  padding:0.4rem 0 0.6rem;
+  font-size:0.8rem;letter-spacing:0.06em;
+}
+footer a{color:var(--footer-text);text-decoration:none;}
+footer a:hover{color:var(--hover-blue);}
 </style>
 </head>
 
 <body>
 <header>
   <h1>佐野徹夜</h1>
-
   <nav>
     <a href="about">ABOUT</a>
     <a href="works.html">WORKS</a>
@@ -106,7 +109,6 @@ li+li{margin-top:0.75rem;}
 </header>
 
 <main>
-  <!-- ========= About ========= -->
   <section id="about">
     <h2><a href="/about">ABOUT</a></h2>
     <p>1987年1月23日、京都府生まれ。</p>
@@ -114,7 +116,6 @@ li+li{margin-top:0.75rem;}
     <p>現在は新作長編小説を準備中。</p>
   </section>
 
-  <!-- ========= Works ========= -->
   <section id="works" class="spaced">
     <h2><a href="works.html">WORKS</a></h2>
     <div class="works-grid">
@@ -139,7 +140,6 @@ li+li{margin-top:0.75rem;}
     </div>
   </section>
 
-  <!-- ========= News ========= -->
   <section id="news" class="spaced">
     <h2><a href="/news">NEWS</a></h2>
     <ul>
@@ -149,8 +149,6 @@ li+li{margin-top:0.75rem;}
     </ul>
   </section>
 
-
-  <!-- ========= 新作メーター（最下部に配置） ========= -->
   <div class="progress-row">
     <span class="meter-label">新作メーター:</span>
     <div class="bar">
@@ -158,5 +156,12 @@ li+li{margin-top:0.75rem;}
     </div>
   </div>
 </main>
+
+<footer>
+  <a href="https://x.com/dame_murahito" target="_blank" rel="noopener">X</a> /
+  <a href="https://www.instagram.com/tetsuya.sano123/" target="_blank" rel="noopener">Instagram</a> /
+  TikTok /
+  <a href="https://note.com/sano_tetsuya" target="_blank" rel="noopener">note</a>
+</footer>
 </body>
 </html>
