@@ -6,6 +6,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 
 <style>
 /* ===== カラーパレット（web-aki.pages.dev と同じ真っ白） ===== */
@@ -19,7 +20,9 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;background:var(--paper);color:var(--ink);
-  font-family:"Helvetica Neue","Hiragino Kaku Gothic ProN",sans-serif;line-height:1.55;}
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,
+              "Noto Sans JP","ヒラギノ角ゴ ProN",sans-serif;
+  line-height:1.55;}
 
 .wrapper{
   max-width:var(--max);
@@ -61,8 +64,18 @@ ul{list-style:none;padding:0;margin:0;}
 .text b{font-weight:700;}
 
 /* ---- FOOTER (OPTIONAL) ---- */
-.footer{margin-top:calc(var(--gap)*2);font-size:.8rem;text-align:right;}
-.footer a{color:var(--ink);text-decoration:none;transition:color .3s;font-family:inherit;}
+.footer{
+  margin:4px auto 0;
+  max-width:calc(var(--max) + 4px);
+  font-size:.8rem;
+  text-align:right;
+}
+.footer a{
+  color:var(--ink);
+  text-decoration:none;
+  transition:color .3s;
+  font-family:inherit;
+}
 .footer a:hover{color:var(--hover-blue);}
 
 /* ---- MOBILE ---- */
