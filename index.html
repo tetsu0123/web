@@ -32,8 +32,7 @@ body{
               "Noto Sans JP","ヒラギノ角ゴ ProN",sans-serif;
   line-height:1.6;font-size:0.9rem;
 
-  /* フッター高さ分の余白 */
-  padding-bottom:24px;
+  /* 追従フッター用の余白は不要になった */
 }
 
 header,main{max-width:720px;margin:0 auto;}
@@ -69,19 +68,17 @@ h2 a:hover{color:var(--hover-blue);}
 
 ul{list-style:none;padding:0;margin:0;} li+li{margin-top:0.75rem;}
 
-/* ── 追従フッター ─────────────────── */
+/* ── フッター ────────────────────── */
 footer{
-  position:fixed;
-  left:0;bottom:0;width:100%;
   height:24px;                 /* 高さ */
-  background:var(--footer-bg);color:var(--footer-text);
+  background:var(--footer-bg);
+  color:var(--footer-text);
   text-align:center;
 
   padding-top:3px;             /* 上側余白で文字を少し下げる */
   line-height:1;               /* 行高詰め */
 
   font-size:0.75rem;letter-spacing:0.05em;
-  z-index:100;
 }
 
 /* フッター内リンクの hover 色固定 */
