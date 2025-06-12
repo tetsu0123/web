@@ -1,195 +1,129 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<!DOCTYPE html><html lang="ja"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>TETSUYA SANO | NEWS</title>
 
-<!-- ざっくり“太い黒”が出る Google Fonts  -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@800&family=Noto+Sans+JP:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
 
 <style>
-/* --------------------------------------------------
-   カラー＆タイポ
--------------------------------------------------- */
 :root{
-  --ts-blue : #6bbbf7;     /* スカイブルー */
-  --ts-peach: #ffc1a5;     /* サーモンピンク */
-  --ts-black: #000;        /* ポスターと同じ真黒 */
+  --glass-bg : rgba(255,255,255,.06);
+  --glass-hl : rgba(255,255,255,.28);
+  --txt-main : #fff;
+  --txt-sub  : rgba(255,255,255,.70);
 }
-
-/* --------------------------------------------------
-   リセット
--------------------------------------------------- */
 *{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;font-family:'Inter','Noto Sans JP',sans-serif;color:var(--txt-main);}
 
-/* --------------------------------------------------
-   放射ストライプ背景
-   --------------------------------------------------
-   ・0% 100%（左下）を原点に concentric な円弧を生成
-   ・8px おきに色を切り替えて “均一ストライプ” を再現
--------------------------------------------------- */
+/* === 背景：ローカル body.jpg を使用 === */
 body{
-  font-family:'Noto Sans JP','Raleway',sans-serif;
-  color:var(--ts-black);
   background:
-    repeating-radial-gradient(
-      circle at 0% 100%,
-      var(--ts-blue)  0    8px,
-      var(--ts-peach) 8px 16px
-    );
-  /* 全画面がポスター柄 */
-  min-height:100vh;
+    radial-gradient(circle at 65% 82%,rgba(255,255,255,.14) 0 20%,transparent 60%),
+    radial-gradient(circle at 28% 28%,rgba(255,255,255,.10) 0 22%,transparent 60%),
+    linear-gradient(#0000001a,#0000001a),
+    url("body.jpg") center/cover no-repeat fixed;
 }
 
-/* --------------------------------------------------
-   ヘッダー（ポスターのバンド部分に相当）
--------------------------------------------------- */
-.header{
-  background:var(--ts-peach);
-  display:flex;
-  justify-content:center;
-  padding:32px 16px;
+/* === ガラスカード共通 === */
+.glass{
+  position:relative;
+  background:var(--glass-bg);
+  border:1px solid var(--glass-hl);
+  border-radius:14px;
+  backdrop-filter:blur(18px) saturate(180%);
+  -webkit-backdrop-filter:blur(18px) saturate(180%);
+  box-shadow:0 6px 18px rgba(0,0,0,.65);
+}
+.glass::after{
+  content:"";
+  position:absolute;inset:0;border-radius:inherit;
+  background:linear-gradient(155deg,rgba(255,255,255,.18),transparent 60%);
+  pointer-events:none;
 }
 
-/* Franz K Endo と同じ“極太／真黒／大文字”トーン */
-.logo{
-  font-family:'Raleway',sans-serif;
-  font-size:48px;
-  font-weight:800;
-  letter-spacing:-1px;
-  line-height:1;
-  color:var(--ts-black);
-  text-transform:uppercase;
-}
+/* === ヘッダー === */
+.header{display:flex;justify-content:center;padding:32px 24px;}
+.logo{font-size:40px;font-weight:900;letter-spacing:.8px;text-transform:uppercase;}
 
-/* ナビは今回は隠してミニマル構成に */
-.nav{display:none}
-
-/* --------------------------------------------------
-   NEWS コンテンツ
--------------------------------------------------- */
-.news-box{
-  max-width:760px;
-  margin:64px auto;
-  background:rgba(255,255,255,.92);      /* 文字が読めるだけの白被せ */
-  padding:40px 28px;
-  border-radius:6px;
-  backdrop-filter:saturate(180%) blur(4px);
-}
-
-.article{
-  border-bottom:1px solid rgba(0,0,0,.15);
-  padding:24px 0;
-}
+/* === NEWS 一覧 === */
+.news-box{max-width:780px;margin:56px auto 80px;padding:48px 44px;}
+.article{padding:28px 0;border-bottom:1px solid rgba(255,255,255,.18);}
 .article:last-child{border-bottom:none}
+.article h2{font-size:20px;font-weight:900;margin-bottom:10px;text-shadow:0 0 2px #000;}
+.meta{font-size:12px;font-weight:600;color:var(--txt-sub);margin-bottom:14px;}
 
-/* 見出しはポスターの日本語部分を踏襲 → 桃色帯の上に黒文字 */
-.article h2{
-  display:inline-block;
-  background:var(--ts-peach);
-  padding:2px 6px;
-  font-size:20px;
-  font-weight:800;
-  line-height:1.25;
-  color:var(--ts-black);
-}
+/* === フッター === */
+.footer{text-align:center;font-size:13px;font-weight:600;color:var(--txt-sub);margin-bottom:60px;}
+a{color:inherit;text-decoration:none} a:hover{text-decoration:underline}
+</style></head><body>
 
-.meta{
-  font-size:11px;
-  font-weight:700;
-  margin:6px 0 10px;
-  letter-spacing:.05em;
-  text-transform:uppercase;
-}
+<header class="header glass"><h1 class="logo">TETSUYA&nbsp;SANO</h1></header>
 
-.footer{
-  text-align:center;
-  margin:48px 0 32px;
-  font-weight:700;
-}
-a{color:inherit;text-decoration:none}
-a:hover{text-decoration:underline}
-</style>
-</head>
-<body>
-
-<header class="header">
-  <h1 class="logo">NEWS</h1>
-</header>
-
-<main class="news-box">
-
+<main class="news-box glass">
   <!-- 2025 --------------------------------------------------------------- -->
   <article class="article">
     <h2>エッセイ〈母へ〉第15回公開</h2>
-    <p class="meta">2025-05-16</p>
+    <p class="meta">2025‒05‒16</p>
     <p>「yom yom」で連載中の書簡エッセイ〈母へ〉最新話『あなたはいつも優しくて』が公開。</p>
   </article>
 
   <article class="article">
     <h2>ジャ・ジャンクー監督『新世紀ロマンティクス』へ推薦コメント</h2>
-    <p class="meta">2025-05-04</p>
+    <p class="meta">2025‒05‒04</p>
     <p>映画公式サイト、パンフレット、SNS に寄稿。</p>
   </article>
 
   <!-- 2024 --------------------------------------------------------------- -->
   <article class="article">
     <h2>帯推薦『ノイズ・キャンセル』（持田 冥介）</h2>
-    <p class="meta">2024-11-15</p>
+    <p class="meta">2024‒11‒15</p>
     <p>メディアワークス文庫新刊に帯コメントを寄稿。</p>
   </article>
 
   <article class="article">
     <h2>帯推薦『無貌の君へ、白紙の僕より』（にのまえ あきら）</h2>
-    <p class="meta">2024-10-22</p>
+    <p class="meta">2024‒10‒22</p>
     <p>第30回電撃小説大賞受賞作の帯に推薦文を寄稿。</p>
   </article>
 
   <article class="article">
     <h2>漫画『一年に一度しか会えない君の話。』1巻発売</h2>
-    <p class="meta">2024-03-18</p>
+    <p class="meta">2024‒03‒18</p>
     <p>作画・伊緒直道氏とのコミック第１巻が一迅社 HOWL コミックスより刊行。</p>
   </article>
 
   <article class="article">
     <h2>「別冊文藝春秋」３月号インタビュー掲載</h2>
-    <p class="meta">2024-03-01</p>
+    <p class="meta">2024‒03‒01</p>
     <p>『透明になれなかった僕たちのために』創作秘話を語るインタビューが掲載。</p>
   </article>
 
   <!-- 2023 --------------------------------------------------------------- -->
   <article class="article">
     <h2>映画『MY (K)NIGHT』推薦コメント公開</h2>
-    <p class="meta">2023-12-01</p>
+    <p class="meta">2023‒12‒01</p>
     <p>公式サイトに推薦コメントを寄稿。</p>
   </article>
 
   <article class="article">
     <h2>映画『シチリア・サマー』推薦コメント公開</h2>
-    <p class="meta">2023-11-21</p>
+    <p class="meta">2023‒11‒21</p>
     <p>公式サイト、SNSに推薦コメントを寄稿。</p>
   </article>
 
   <article class="article">
     <h2>TBS「王様のブランチ」BOOKコーナー出演</h2>
-    <p class="meta">2023-11-11</p>
+    <p class="meta">2023‒11‒11</p>
     <p>新刊『透明になれなかった僕たちのために』を紹介し、執筆秘話を語る。</p>
   </article>
 
   <article class="article">
     <h2>長編小説『透明になれなかった僕たちのために』刊行</h2>
-    <p class="meta">2023-11-08</p>
+    <p class="meta">2023‒11‒08</p>
     <p>河出書房新社より発売。幼なじみ３人の思春期の痛みを描く青春小説。</p>
   </article>
-
 </main>
 
-<footer class="footer">
-  <a href="/">TOPに戻る</a>
-</footer>
-
-</body>
-</html>
+<footer class="footer"><a href="/">TOPに戻る</a></footer>
+</body></html>
