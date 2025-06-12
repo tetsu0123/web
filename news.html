@@ -1,77 +1,128 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TETSUYA SANO | NEWS</title>
-  <style>
-    /* ===== リセット ===== */
-    *{margin:0;padding:0;box-sizing:border-box;}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TETSUYA SANO | NEWS</title>
 
-    /* ===== ベース ===== */
-    body{
-      font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,
-                  "Noto Sans JP",sans-serif;
-      background:#fafafa;
-      color:#111;font-size:14px;line-height:1.6;
-    }
-    a{color:#111;text-decoration:none;}
+<!-- ざっくり“太い黒”が出る Google Fonts  -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@800&family=Noto+Sans+JP:wght@700&display=swap" rel="stylesheet">
 
-    /* ===== ヘッダー ===== */
-    .header{
-      display:flex;align-items:center;gap:24px;
-      padding:10px 16px;border-bottom:1px solid #ccc;
-      background:#fff;position:sticky;top:0;z-index:999;
-    }
+<style>
+/* --------------------------------------------------
+   カラー＆タイポ
+-------------------------------------------------- */
+:root{
+  --ts-blue : #6bbbf7;     /* スカイブルー */
+  --ts-peach: #ffc1a5;     /* サーモンピンク */
+  --ts-black: #000;        /* ポスターと同じ真黒 */
+}
 
-    /* ―― さらに控えめに崩した NEWS ロゴ ―― */
-    .logo{
-      font-size:24px;font-weight:700;letter-spacing:-1px;line-height:1;
-    }
-    .logo span{display:inline-block;}
-    .logo span:nth-child(1){transform:rotate(-2deg) translateY(.5px);}
-    .logo span:nth-child(2){transform:rotate( 1deg) translateY(-.5px);}
-    .logo span:nth-child(3){transform:rotate(-1deg) translateY(.5px);}
-    .logo span:nth-child(4){transform:rotate( 2deg) translateY(-.5px);}
+/* --------------------------------------------------
+   リセット
+-------------------------------------------------- */
+*{margin:0;padding:0;box-sizing:border-box}
 
-    /* ===== ナビゲーション ===== */
-    .nav{
-      display:flex;gap:16px;font-size:12px;font-weight:600;
-    }
-    .nav a{transition:color .2s ease;}
-    .nav a:hover{color:#D4AE00;}   /* 落ち着いたマスタード */
+/* --------------------------------------------------
+   放射ストライプ背景
+   --------------------------------------------------
+   ・0% 100%（左下）を原点に concentric な円弧を生成
+   ・8px おきに色を切り替えて “均一ストライプ” を再現
+-------------------------------------------------- */
+body{
+  font-family:'Noto Sans JP','Raleway',sans-serif;
+  color:var(--ts-black);
+  background:
+    repeating-radial-gradient(
+      circle at 0% 100%,
+      var(--ts-blue)  0    8px,
+      var(--ts-peach) 8px 16px
+    );
+  /* 全画面がポスター柄 */
+  min-height:100vh;
+}
 
-    /* ===== ニュースボックス ===== */
-    .news-box{
-      max-width:760px;margin:32px auto;padding:24px 20px;
-      background:#fff;border:1px solid #ccc;border-radius:4px;
-      box-shadow:0 2px 4px rgba(0,0,0,.05);
-    }
-    .article{border-bottom:1px solid #bbb;padding:16px 0;}
-    .article:last-child{border-bottom:none;}
-    .article h2{font-size:15px;font-weight:700;margin-bottom:4px;}
-    .meta{font-size:11px;color:#666;margin-bottom:8px;}
+/* --------------------------------------------------
+   ヘッダー（ポスターのバンド部分に相当）
+-------------------------------------------------- */
+.header{
+  background:var(--ts-peach);
+  display:flex;
+  justify-content:center;
+  padding:32px 16px;
+}
 
-    /* ===== フッター ===== */
-    .footer{
-      text-align:center;padding:24px 0;font-size:12px;
-    }
-  </style>
+/* Franz K Endo と同じ“極太／真黒／大文字”トーン */
+.logo{
+  font-family:'Raleway',sans-serif;
+  font-size:48px;
+  font-weight:800;
+  letter-spacing:-1px;
+  line-height:1;
+  color:var(--ts-black);
+  text-transform:uppercase;
+}
+
+/* ナビは今回は隠してミニマル構成に */
+.nav{display:none}
+
+/* --------------------------------------------------
+   NEWS コンテンツ
+-------------------------------------------------- */
+.news-box{
+  max-width:760px;
+  margin:64px auto;
+  background:rgba(255,255,255,.92);      /* 文字が読めるだけの白被せ */
+  padding:40px 28px;
+  border-radius:6px;
+  backdrop-filter:saturate(180%) blur(4px);
+}
+
+.article{
+  border-bottom:1px solid rgba(0,0,0,.15);
+  padding:24px 0;
+}
+.article:last-child{border-bottom:none}
+
+/* 見出しはポスターの日本語部分を踏襲 → 桃色帯の上に黒文字 */
+.article h2{
+  display:inline-block;
+  background:var(--ts-peach);
+  padding:2px 6px;
+  font-size:20px;
+  font-weight:800;
+  line-height:1.25;
+  color:var(--ts-black);
+}
+
+.meta{
+  font-size:11px;
+  font-weight:700;
+  margin:6px 0 10px;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+
+.footer{
+  text-align:center;
+  margin:48px 0 32px;
+  font-weight:700;
+}
+a{color:inherit;text-decoration:none}
+a:hover{text-decoration:underline}
+</style>
 </head>
 <body>
 
 <header class="header">
-  <div class="logo"><span>N</span><span>E</span><span>W</span><span>S</span></div>
-  <nav class="nav">
-    <a href="/about">プロフィール</a>
-    <a href="/works">作品</a>
-    <a href="mailto:sanotetsuya.lnfo@gmail.com">お問い合わせ</a>
-  </nav>
+  <h1 class="logo">NEWS</h1>
 </header>
 
 <main class="news-box">
 
-  <!-- 2025 -->
+  <!-- 2025 --------------------------------------------------------------- -->
   <article class="article">
     <h2>エッセイ〈母へ〉第15回公開</h2>
     <p class="meta">2025-05-16</p>
@@ -84,7 +135,7 @@
     <p>映画公式サイト、パンフレット、SNS に寄稿。</p>
   </article>
 
-  <!-- 2024 -->
+  <!-- 2024 --------------------------------------------------------------- -->
   <article class="article">
     <h2>帯推薦『ノイズ・キャンセル』（持田 冥介）</h2>
     <p class="meta">2024-11-15</p>
@@ -109,7 +160,7 @@
     <p>『透明になれなかった僕たちのために』創作秘話を語るインタビューが掲載。</p>
   </article>
 
-  <!-- 2023 -->
+  <!-- 2023 --------------------------------------------------------------- -->
   <article class="article">
     <h2>映画『MY (K)NIGHT』推薦コメント公開</h2>
     <p class="meta">2023-12-01</p>
