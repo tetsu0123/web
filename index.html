@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -23,88 +24,166 @@
   --footer-text:#FFF;
   --border:#E5E5E5;
   --surface:#FFFFFF;
+  --text-light:#666;
+  --text-lighter:#999;
+  --icon-box:16px;
 }
 
 html{font-size:16px;}
 body{
   margin:0;background:var(--bg);color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,
-              "Noto Sans JP","ヒラギノ角ゴ ProN",sans-serif;
-  line-height:1.6;font-size:0.9rem;
+  font-family:"Noto Sans JP","Inter",-apple-system,BlinkMacSystemFont,sans-serif;
+  line-height:1.75;font-size:0.95rem;
+  letter-spacing:0.02em;
+}
+
+/* 英文に対してInterフォントを適用 */
+body:lang(en), p:lang(en), li:lang(en),
+[lang="en"], .english {
+  font-family:"Inter","Noto Sans JP",-apple-system,BlinkMacSystemFont,sans-serif;
 }
 
 header,main{max-width:720px;margin:0 auto;}
-header{padding:2rem 1rem 0.25rem;text-align:center;}
+header{padding:3rem 1rem 1rem;text-align:center;}
 main  {padding:0 1rem;}
 
-nav{margin-top:1rem;}
+nav{margin-top:2rem;}
 nav a{
-  font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:400;
-  text-transform:uppercase;letter-spacing:.06em;font-size:0.78rem;
-  color:var(--accent);text-decoration:none;margin:0 0.75rem;
-  transition:color .3s ease;
+  font-family:"Inter",sans-serif;font-weight:300;
+  text-transform:uppercase;letter-spacing:.15em;font-size:0.75rem;
+  color:var(--text-lighter);text-decoration:none;margin:0 1.5rem;
+  transition:all .4s ease;position:relative;
+}
+nav a::after{
+  content:'';position:absolute;bottom:-6px;left:0;width:0;height:1px;
+  background:var(--hover-blue);transition:width .4s ease;
 }
 nav a:hover{color:var(--hover-blue);}
+nav a:hover::after{width:100%;}
 
-.spaced{margin-top:1.5rem;}
+.spaced{margin-top:3rem;}
 
-h1{font-family:"Noto Serif JP","Yu Mincho","Hiragino Mincho ProN",serif;font-weight:200;letter-spacing:0.08em;font-size:1.8rem;margin:0 0 0.75rem;}
-h2{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.05em;font-size:1rem;margin:1.4rem 0 0.75rem;}
-h2:first-of-type{margin-top:1rem;}
-h2 a{color:inherit;text-decoration:none;}
+h1{
+  font-family:"Noto Serif JP","Yu Mincho","Hiragino Mincho ProN",serif;
+  font-weight:200;letter-spacing:0.08em;font-size:2.5rem;
+  margin:0 0 2rem;line-height:1.3;
+}
+h2{
+  font-family:"Noto Serif JP","Yu Mincho","Hiragino Mincho ProN",serif;
+  font-weight:300;letter-spacing:.08em;font-size:1.3rem;
+  margin:3rem 0 1.5rem;color:var(--text-light);
+}
+
+#works h2{
+  margin-bottom:0.2rem;
+}
+h2:first-of-type{margin-top:0;}
+h2 a{color:inherit;text-decoration:none;transition:color .3s ease;
+  font-family:"Inter",sans-serif;
+  font-weight:350;
+  text-transform:uppercase;
+  letter-spacing:0.15em;
+  font-size:1.2rem;
+}
 h2 a:hover{color:var(--hover-blue);}
 
 .works-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:1.5rem;
+  gap:2rem;
+  margin-top:2rem;
 }
 
 .works-grid a{
   display:block;
-  transition:transform 0.3s ease,box-shadow 0.3s ease;
-  border-radius:6px;
+  transition:all 0.4s ease;
+  border-radius:4px;
   overflow:hidden;
   background:var(--surface);
+  position:relative;
+}
+
+.works-grid a::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;bottom:0;
+  background:linear-gradient(135deg, rgba(10,77,162,0.1), rgba(74,144,164,0.1));
+  opacity:0;
+  transition:opacity 0.4s ease;
 }
 
 .works-grid a:hover{
-  transform:translateY(-4px);
-  box-shadow:0 8px 25px rgba(0,0,0,0.1);
+  transform:translateY(-6px);
+  box-shadow:0 12px 30px rgba(0,0,0,0.08);
 }
 
-.works-grid img{width:100%;height:auto;display:block;}
+.works-grid a:hover::before{
+  opacity:1;
+}
 
-ul{list-style:none;padding:0;margin:0;} li+li{margin-top:0.75rem;}
+.works-grid img{
+  width:100%;height:auto;display:block;
+  transition:transform 0.4s ease;
+}
+
+.works-grid a:hover img{
+  transform:scale(1.02);
+}
+
+ul{
+  list-style:none;padding:0;margin:0;
+  line-height:1.8;
+} 
+li+li{margin-top:1rem;}
+li{
+  font-size:0.9rem;
+  color:var(--text);
+  transition:all 0.6s ease;
+}
+li:hover{
+  color:var(--hover-blue);
+  transform:translateX(3px);
+}
 
 /* ── 新作メーター（改良版）─────────────────── */
 .progress-container{
   background:var(--surface);
-  border:1px solid var(--border);
+  border:1px solid rgba(229,229,229,0.4);
   border-radius:8px;
-  padding:2rem;
-  margin:3rem 0;
+  padding:0.4rem;
+  margin:1.33rem 0 0.25rem;
   position:relative;
   overflow:hidden;
+  box-shadow:0 4px 20px rgba(0,0,0,0.02);
 }
 
+.progress-container::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:1px;
+  background:transparent;
+  opacity:0.6;
+}
 
 .progress-label{
-  font-family:'Noto Sans JP',sans-serif;
-  font-size:0.8rem;
-  color:var(--text);
-  margin-bottom:1rem;
-  letter-spacing:0.1em;
+  font-family:"Inter",sans-serif;
+  font-size:0.7rem;
+  color:var(--text-lighter);
+  margin-bottom:0.5rem;
+  letter-spacing:0.15em;
   text-transform:uppercase;
+  text-align:center;
 }
 
 .progress-bar{
-  width:100%;
-  height:4px;
+  width:85%;
+  height:3px;
   background:var(--meter-bg);
   border-radius:2px;
   overflow:hidden;
   position:relative;
+  margin:0.3rem auto;
 }
 
 .progress-fill{
@@ -113,26 +192,24 @@ ul{list-style:none;padding:0;margin:0;} li+li{margin-top:0.75rem;}
   background:linear-gradient(90deg,var(--meter-fill),#6BA6CD);
   border-radius:2px;
   position:relative;
-  animation:progressLoad 2s ease-out;
+  animation:progressLoad 2.5s ease-out;
 }
 
 .progress-fill::after{
   content:'';
   position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);
-  animation:progressShine 2s ease-in-out infinite;
+  top:0;left:0;right:0;bottom:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent);
+  animation:progressShine 3s ease-in-out infinite;
 }
 
 .progress-text{
-  font-family:'Noto Sans JP',sans-serif;
-  font-size:0.85rem;
-  color:var(--text);
-  margin-top:0.75rem;
+  font-family:"Noto Sans JP",sans-serif;
+  font-size:0.8rem;
+  color:var(--text-light);
+  margin-top:0.5rem;
   text-align:center;
+  letter-spacing:0.03em;
 }
 
 
@@ -148,24 +225,117 @@ ul{list-style:none;padding:0;margin:0;} li+li{margin-top:0.75rem;}
 
 /* ── フッター（改良版）────────────────────── */
 footer{
-  background:var(--footer-bg);
-  color:var(--footer-text);
-  text-align:center;
-  padding:1.5rem 0;
-  font-size:0.8rem;
-  letter-spacing:0.1em;
+  margin-top:0;
+  padding:2rem 0;
 }
 
-footer a{
-  color:var(--footer-text);
-  text-decoration:none;
-  margin:0 0.5rem;
-  opacity:0.8;
-  transition:opacity 0.3s ease;
+.footer-content{
+  max-width:720px;
+  margin:0 auto;
+  padding:0 1rem;
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:start;
+  gap:4rem;
 }
 
-footer a:hover{
+.footer-name{
+  font-family:"Noto Serif JP","Yu Mincho","Hiragino Mincho ProN",serif;
+  font-size:1.2rem;
+  font-weight:300;
+  color:var(--text);
+  letter-spacing:0.12em;
+  margin-top:-0.5rem;
+}
+
+.footer-links{
+  display:flex;
+  flex-direction:column;
+  gap:1.5rem;
+  align-items:flex-end;
+}
+
+.social-links{
+  display:flex;
+  gap:2.5rem;
+  align-items:center;
+}
+
+.social-links a{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  width:var(--icon-box);
+  height:var(--icon-box);
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:contain;
+  transition:opacity .4s,transform .4s;
+  opacity:.6;
+  filter:grayscale(100%);
+}
+
+.social-links a.x-icon{
+  background-image:url('x.png');
+  background-size:13px 13px;
+}
+
+.social-links a.insta-icon{
+  background-image:url('insta.png');
+}
+
+.social-links a.note-icon{
+  background-image:url('note.png');
+  background-size:12px 12px;
+}
+
+.social-links a:hover{
   opacity:1;
+  transform:translateY(-2px);
+  filter:grayscale(0%);
+}
+
+.footer-copyright{
+  font-family:"Inter",sans-serif;
+  font-size:0.65rem;
+  color:var(--text-lighter);
+  letter-spacing:0.08em;
+  opacity:0.6;
+  text-align:right;
+}
+
+@media(max-width:768px){
+  footer{
+    margin-top:8rem;
+    padding:3rem 0;
+  }
+  
+  .footer-content{
+    grid-template-columns:1fr;
+    gap:3rem;
+    text-align:center;
+  }
+  
+  .footer-name{
+    font-size:1.1rem;
+  }
+  
+  .footer-links{
+    align-items:center;
+  }
+  
+  .social-links{
+    gap:2rem;
+    justify-content:center;
+  }
+  
+  .social-links a{
+    font-size:0.65rem;
+  }
+  
+  .footer-copyright{
+    text-align:center;
+  }
 }
 
 @media (max-width:768px){
@@ -248,9 +418,160 @@ footer a:hover{
 </main>
 
 <footer>
-  <a href="https://x.com/dame_murahito" target="_blank" rel="noopener">X</a>
-  <a href="https://www.instagram.com/tetsuya.sano123/" target="_blank" rel="noopener">Instagram</a>
-  <a href="https://note.com/sano_tetsuya" target="_blank" rel="noopener">note</a>
+  <div class="footer-content">
+    <div class="footer-name">佐野徹夜</div>
+    
+    <div class="footer-links">
+      <div class="social-links">
+        <a href="https://x.com/dame_murahito" target="_blank" rel="noopener" class="x-icon" title="X"></a>
+        <a href="https://www.instagram.com/tetsuya.sano123/" target="_blank" rel="noopener" class="insta-icon" title="Instagram"></a>
+        <a href="https://note.com/sano_tetsuya" target="_blank" rel="noopener" class="note-icon" title="note"></a>
+      </div>
+      <div class="footer-copyright">© 2025 Tetsuya Sano</div>
+    </div>
+  </div>
 </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Smooth scroll behavior for navigation links
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            if (this.hash !== '') {
+                e.preventDefault();
+                const target = document.querySelector(this.hash);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Apply fade-in animation to sections
+    const sections = document.querySelectorAll('section');
+    sections.forEach((section, index) => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(30px)';
+        section.style.transition = `opacity 0.8s ease ${index * 0.2}s, transform 0.8s ease ${index * 0.2}s`;
+        observer.observe(section);
+    });
+
+    // Enhanced works grid hover effects
+    const workItems = document.querySelectorAll('.works-grid a');
+    workItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            // Add subtle parallax effect to other items
+            workItems.forEach(otherItem => {
+                if (otherItem !== this) {
+                    otherItem.style.transform = 'translateY(2px)';
+                    otherItem.style.opacity = '0.7';
+                }
+            });
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            // Reset all items
+            workItems.forEach(otherItem => {
+                otherItem.style.transform = '';
+                otherItem.style.opacity = '';
+            });
+        });
+    });
+
+    // Progress meter enhancement
+    const progressFill = document.querySelector('.progress-fill');
+    if (progressFill) {
+        // Add click interaction
+        progressFill.parentElement.addEventListener('click', function() {
+            progressFill.style.animation = 'none';
+            setTimeout(() => {
+                progressFill.style.animation = 'progressLoad 2.5s ease-out';
+            }, 50);
+        });
+        
+        // Pulse effect on scroll into view
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    progressFill.style.animation = 'progressLoad 2.5s ease-out';
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        progressObserver.observe(progressFill.parentElement);
+    }
+
+    // Subtle parallax effect for header
+    let ticking = false;
+    function updateParallax() {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * -0.3;
+        const header = document.querySelector('header');
+        if (header) {
+            header.style.transform = `translateY(${rate}px)`;
+        }
+        ticking = false;
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(updateParallax);
+            ticking = true;
+        }
+    }
+
+    window.addEventListener('scroll', requestTick);
+
+    // Add smooth hover transitions to list items (removed - now handled by CSS)
+
+    // Typewriter effect for main title (subtle)
+    const mainTitle = document.querySelector('h1');
+    if (mainTitle) {
+        const text = mainTitle.textContent;
+        mainTitle.style.opacity = '0';
+        
+        setTimeout(() => {
+            mainTitle.style.opacity = '1';
+            mainTitle.style.transition = 'opacity 1s ease';
+        }, 300);
+    }
+
+    // Add floating animation to footer
+    const footer = document.querySelector('footer');
+    if (footer) {
+        const footerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    footer.style.opacity = '1';
+                    footer.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        footer.style.opacity = '0';
+        footer.style.transform = 'translateY(50px)';
+        footer.style.transition = 'opacity 1s ease, transform 1s ease';
+        footerObserver.observe(footer);
+    }
+});
+</script>
 </body>
 </html>

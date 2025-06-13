@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>この世界にiをこめて | 佐野徹夜</title>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#FCFCFC;
+  --text:#1A1A1A;
+  --accent:#1A1A1A;
+  --hover-blue:#0A4DA2;
+  --meter-fill:#4A90A4;
+  --meter-bg:#F0F4F6;
+  --footer-bg:#2C2C2C;
+  --footer-text:#FFF;
+  --border:#E5E5E5;
+  --surface:#FFFFFF;
+  --text-light:#666;
+  --text-lighter:#999;
+  --icon-box:16px;
+}
+
+html{font-size:16px;}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:"Noto Sans JP","Inter",-apple-system,BlinkMacSystemFont,sans-serif;
+  line-height:1.8;font-size:0.96rem;
+  letter-spacing:0.025em;
+}
+
+header,main{max-width:720px;margin:0 auto;}
+header{padding:2rem 1rem 0.5rem;text-align:center;}
+main{padding:0 1rem;}
+
+nav{margin-bottom:2rem;}
+nav a{
+  font-family:"Inter",sans-serif;font-weight:300;
+  text-transform:uppercase;letter-spacing:.15em;font-size:0.75rem;
+  color:var(--text-lighter);text-decoration:none;margin:0 1.5rem;
+  transition:all .4s ease;position:relative;
+}
+nav a::after{
+  content:'';position:absolute;bottom:-6px;left:0;width:0;height:1px;
+  background:var(--hover-blue);transition:width .4s ease;
+}
+nav a:hover::after{width:100%;}
+nav a:hover{color:var(--hover-blue);}
+
+.back-link{
+  display:inline-block;
+  font-family:"Inter",sans-serif;
+  font-size:0.7rem;font-weight:300;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:var(--text-lighter);
+  text-decoration:none;
+  margin-bottom:2rem;
+  transition:color .3s ease;
+}
+.back-link:hover{color:var(--hover-blue);}
+.back-link::before{content:"← ";}
+
+.hero{
+  display:grid;
+  grid-template-columns:200px 1fr;
+  gap:2rem;
+  margin-bottom:2rem;
+  align-items:start;
+}
+
+.book-cover{
+  width:100%;
+  height:auto;
+  border-radius:4px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+
+.book-info h1{
+  font-family:"Noto Serif JP","Yu Mincho","Hiragino Mincho ProN",serif;
+  font-weight:300;
+  font-size:2rem;
+  margin:0 0 1rem;
+  line-height:1.3;
+}
+
+.book-meta{
+  font-size:0.85rem;
+  color:var(--text-light);
+  margin-bottom:1.5rem;
+}
+
+.book-meta div{
+  margin-bottom:0.5rem;
+}
+
+.purchase-links{
+  display:flex;
+  gap:1rem;
+  flex-wrap:wrap;
+}
+
+.purchase-link{
+  display:inline-block;
+  background:var(--accent);
+  color:#fff;
+  padding:0.7rem 1.5rem;
+  text-decoration:none;
+  border-radius:3px;
+  font-size:0.8rem;
+  transition:background .3s ease;
+}
+
+.purchase-link:hover{
+  background:var(--hover-blue);
+}
+
+.section{
+  margin-bottom:2rem;
+}
+
+h2{
+  font-family:"Noto Serif JP","Yu Mincho","Hiragino Mincho ProN",serif;
+  font-weight:400;
+  font-size:1.3rem;
+  margin:0 0 1rem;
+  color:var(--accent);
+  border-bottom:1px solid var(--border);
+  padding-bottom:0.5rem;
+}
+
+h3{
+  font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  font-size:0.9rem;
+  margin:2rem 0 1rem;
+  color:var(--text-light);
+}
+
+.synopsis{
+  font-size:1.05rem;
+  line-height:1.9;
+  margin-bottom:2rem;
+  color:var(--text);
+}
+
+.synopsis p{
+  margin-bottom:1.4rem;
+}
+
+.quote{
+  position:relative;
+  background:linear-gradient(135deg, rgba(26,26,26,0.02), rgba(26,26,26,0.01));
+  padding:1.5rem 2rem;
+  margin:2rem 0;
+  border-radius:12px;
+  text-align:center;
+  font-family:"Noto Serif JP","Yu Mincho","Hiragino Mincho ProN",serif;
+  font-size:1.1rem;
+  line-height:1.8;
+  color:var(--text);
+  letter-spacing:0.05em;
+  border:1px solid rgba(229,229,229,0.3);
+  box-shadow:0 8px 32px rgba(0,0,0,0.04);
+}
+
+
+.character-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:2rem;
+  margin-top:1.5rem;
+}
+
+.character{
+  background:var(--surface);
+  padding:1.5rem;
+  border-radius:6px;
+  border:1px solid var(--border);
+}
+
+.character-name{
+  font-weight:600;
+  margin-bottom:0.5rem;
+  font-size:1rem;
+}
+
+.character-desc{
+  font-size:0.92rem;
+  line-height:1.7;
+  color:var(--text-light);
+}
+
+.theme-cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;
+  margin:1.5rem 0;
+}
+
+.theme-card{
+  background:var(--surface);
+  padding:1.5rem;
+  border-radius:6px;
+  border:1px solid var(--border);
+  text-align:center;
+  font-weight:500;
+  font-size:0.92rem;
+  color:var(--text);
+  line-height:1.5;
+  transition:all 0.3s ease;
+}
+
+.theme-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+.reviews{
+  background:var(--surface);
+  padding:2rem;
+  border-radius:6px;
+  border:1px solid var(--border);
+}
+
+.review{
+  margin-bottom:2rem;
+  padding-bottom:1.5rem;
+  border-bottom:1px solid var(--border);
+}
+
+.review:last-child{
+  margin-bottom:0;
+  padding-bottom:0;
+  border-bottom:none;
+}
+
+.review-text{
+  font-style:italic;
+  margin-bottom:0.75rem;
+  line-height:1.7;
+}
+
+.review-source{
+  font-size:0.8rem;
+  color:var(--text-light);
+  text-align:right;
+}
+
+.publication-info{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:1.5rem;
+  background:var(--surface);
+  padding:1.5rem;
+  border-radius:6px;
+  border:1px solid var(--border);
+}
+
+.info-item{
+  text-align:center;
+}
+
+.info-label{
+  font-size:0.75rem;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:var(--text-light);
+  margin-bottom:0.5rem;
+}
+
+.info-value{
+  font-weight:600;
+  font-size:0.9rem;
+}
+
+/* ── フッター（改良版）────────────────────── */
+footer{
+  margin-top:0;
+  padding:2rem 0;
+}
+
+.footer-content{
+  max-width:720px;
+  margin:0 auto;
+  padding:0 1rem;
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:start;
+  gap:4rem;
+}
+
+.footer-name{
+  font-family:"Noto Serif JP","Yu Mincho","Hiragino Mincho ProN",serif;
+  font-size:1.2rem;
+  font-weight:300;
+  color:var(--text);
+  letter-spacing:0.12em;
+  margin-top:-0.5rem;
+}
+
+.footer-links{
+  display:flex;
+  flex-direction:column;
+  gap:1.5rem;
+  align-items:flex-end;
+}
+
+.social-links{
+  display:flex;
+  gap:2.5rem;
+  align-items:center;
+}
+
+.social-links a{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  width:var(--icon-box);
+  height:var(--icon-box);
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:contain;
+  transition:opacity .4s,transform .4s;
+  opacity:.6;
+  filter:grayscale(100%);
+}
+
+.social-links a.x-icon{
+  background-image:url('x.png');
+  background-size:13px 13px;
+}
+
+.social-links a.insta-icon{
+  background-image:url('insta.png');
+}
+
+.social-links a.note-icon{
+  background-image:url('note.png');
+  background-size:12px 12px;
+}
+
+.social-links a:hover{
+  opacity:1;
+  transform:translateY(-2px);
+  filter:grayscale(0%);
+}
+
+.footer-copyright{
+  font-family:"Inter",sans-serif;
+  font-size:0.65rem;
+  color:var(--text-lighter);
+  letter-spacing:0.08em;
+  opacity:0.6;
+  text-align:right;
+}
+
+@media(max-width:768px){
+  footer{
+    margin-top:8rem;
+    padding:3rem 0;
+  }
+  
+  .footer-content{
+    grid-template-columns:1fr;
+    gap:3rem;
+    text-align:center;
+  }
+  
+  .footer-name{
+    font-size:1.1rem;
+  }
+  
+  .footer-links{
+    align-items:center;
+  }
+  
+  .social-links{
+    gap:2rem;
+    justify-content:center;
+  }
+  
+  .social-links a{
+    font-size:0.65rem;
+  }
+  
+  .footer-copyright{
+    text-align:center;
+  }
+
+  .hero{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+  
+  .book-cover{
+    max-width:200px;
+    margin:0 auto;
+  }
+  
+  .character-grid{
+    grid-template-columns:1fr;
+  }
+  
+  .theme-cards{
+    grid-template-columns:1fr;
+    gap:1rem;
+  }
+  
+  .publication-info{
+    grid-template-columns:repeat(2,1fr);
+  }
+  
+  .purchase-links{
+    justify-content:center;
+  }
+}
+
+@media (max-width:480px){
+  .publication-info{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <header>
+    <nav>
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT</a>
+      <a href="works.html">WORKS</a>
+      <a href="news.html">NEWS</a>
+    </nav>
+  </header>
+
+  <main>
+    <a href="works.html" class="back-link">WORKS</a>
+    
+    <section class="hero">
+      <a href="https://www.amazon.co.jp/dp/4048934147" target="_blank" rel="noopener">
+        <img src="https://images-na.ssl-images-amazon.com/images/P/4048934147.09.LZZZZZZZ.jpg" alt="この世界にiをこめて 書影" class="book-cover">
+      </a>
+      
+      <div class="book-info">
+        <h1>この世界にiをこめて</h1>
+        
+        <div class="book-meta">
+          <div><strong>著者:</strong> 佐野徹夜</div>
+          <div><strong>出版社:</strong> KADOKAWA</div>
+          <div><strong>レーベル:</strong> メディアワークス文庫</div>
+          <div><strong>発売日:</strong> 2017年10月25日</div>
+          <div><strong>ページ数:</strong> 306ページ</div>
+        </div>
+        
+        <div class="purchase-links">
+          <a href="https://www.kadokawa.co.jp/product/321707000186/" target="_blank" rel="noopener" class="purchase-link">KADOKAWA公式</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>あらすじ</h2>
+      <div class="synopsis">
+        <p>半年前に亡くなった友人<strong>吉野紫苑</strong>から、突然メールが届く。</p>
+        
+        <p>読書好きの高校生<strong>染井浩平</strong>は、死んだはずの彼女に返事を書く。やがて始まる、不可思議なメールのやり取り。</p>
+        
+        <p>失ったものを取り戻すことはできないけれど——。</p>
+      </div>
+
+      <div class="quote">
+        「現実に期待なんかしてるから駄目なんだよ」
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>登場人物</h2>
+      
+      <div class="character-grid">
+        <div class="character">
+          <div class="character-name">染井浩平（そめい こうへい）</div>
+          <div class="character-desc">読書好きの高校生。死んだ友人にメールを送り続けている。</div>
+        </div>
+        
+        <div class="character">
+          <div class="character-name">吉野紫苑（よしの しおん）</div>
+          <div class="character-desc">小説を書いていた少女。半年前に逝去。</div>
+        </div>
+        
+        <div class="character">
+          <div class="character-name">真白（ましろ）</div>
+          <div class="character-desc">転校生。吉野の作品の読者。</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>主要テーマ</h2>
+      
+      <div class="theme-cards">
+        <div class="theme-card">喪失と再生</div>
+        <div class="theme-card">創作への憧れ</div>
+        <div class="theme-card">言葉の力</div>
+      </div>
+    </section>
+
+
+    <section class="section">
+      <h2>出版情報</h2>
+      
+      <div class="publication-info">
+        <div class="info-item">
+          <div class="info-label">初版発行</div>
+          <div class="info-value">2017年10月25日</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">ISBN</div>
+          <div class="info-value">978-4-04-893414-5</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">定価</div>
+          <div class="info-value">650円+税</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-name">佐野徹夜</div>
+    
+    <div class="footer-links">
+      <div class="social-links">
+        <a href="https://x.com/dame_murahito" target="_blank" rel="noopener" class="x-icon" title="X"></a>
+        <a href="https://www.instagram.com/tetsuya.sano123/" target="_blank" rel="noopener" class="insta-icon" title="Instagram"></a>
+        <a href="https://note.com/sano_tetsuya" target="_blank" rel="noopener" class="note-icon" title="note"></a>
+      </div>
+      <div class="footer-copyright">© 2025 Tetsuya Sano</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Smooth scroll for back links
+    const backLinks = document.querySelectorAll('.back-link');
+    backLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            if (this.getAttribute('href').includes('#')) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    });
+
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -30px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Apply fade-in animation to sections
+    const sections = document.querySelectorAll('.section');
+    sections.forEach((section, index) => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(20px)';
+        section.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+        observer.observe(section);
+    });
+
+    // Enhanced character cards hover effects
+    const characterCards = document.querySelectorAll('.character');
+    characterCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px)';
+            this.style.boxShadow = '0 6px 20px rgba(0,0,0,0.08)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+            this.style.boxShadow = '';
+        });
+    });
+
+    // Theme cards interactive effects
+    const themeCards = document.querySelectorAll('.theme-card');
+    themeCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            themeCards.forEach(otherCard => {
+                if (otherCard !== this) {
+                    otherCard.style.opacity = '0.7';
+                }
+            });
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            themeCards.forEach(otherCard => {
+                otherCard.style.opacity = '';
+            });
+        });
+    });
+
+    // Progressive text enhancement for better readability
+    const textElements = document.querySelectorAll('.synopsis p, .character-desc');
+    textElements.forEach(element => {
+        element.style.transition = 'all 0.3s ease';
+    });
+
+    // Book cover hover effect - disabled
+
+    // Quote animation
+    const quote = document.querySelector('.quote');
+    if (quote) {
+        const quoteObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    quote.style.animation = 'fadeInUp 0.8s ease-out';
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        quoteObserver.observe(quote);
+    }
+});
+
+// CSS animations for better visual feedback
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .character {
+        transition: all 0.3s ease;
+    }
+    
+    .book-cover {
+        transition: all 0.4s ease;
+    }
+    
+    .synopsis p {
+        transition: color 0.3s ease;
+    }
+    
+    .synopsis p:hover {
+        color: var(--text);
+    }
+`;
+document.head.appendChild(style);
+</script>
+</body>
+</html>
