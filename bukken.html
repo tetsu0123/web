@@ -45,6 +45,50 @@
       return parseInt(value.replace(/円|,/g, ''), 10) || 0;
     };
 
+    // PropertyCard コンポーネント（スマホ向け）
+    const PropertyCard = ({ property }) => (
+      React.createElement('div', {
+        className: 'bg-slate-800 rounded-lg shadow-md overflow-hidden'
+      },
+        React.createElement('a', {
+          href: property.sourceUrl,
+          target: '_blank',
+          rel: 'noopener noreferrer'
+        },
+          React.createElement('img', {
+            src: property.imageUrl,
+            alt: property.name,
+            className: 'w-full h-40 object-cover',
+            onError: (e) => {
+              e.target.src = DEFAULT_IMAGE_URL;
+            }
+          })
+        ),
+        React.createElement('div', { className: 'p-4 space-y-1 text-sm' },
+          React.createElement('a', {
+            href: property.sourceUrl,
+            target: '_blank',
+            rel: 'noopener noreferrer',
+            className: 'block font-semibold text-sky-400 hover:text-sky-300'
+          }, property.name),
+          React.createElement('p', {
+            className: 'text-amber-400 font-semibold'
+          }, `${property.rent.toLocaleString()}円`),
+          React.createElement('p', null, `${property.floorPlan} / ${property.area}㎡`),
+          React.createElement('p', null, property.address),
+          React.createElement('p', { className: 'text-slate-400' }, property.nearestStations.join(', '))
+        )
+      )
+    );
+
+    const PropertyCardList = ({ data }) => (
+      React.createElement('div', { className: 'grid gap-4' },
+        data.map(property =>
+          React.createElement(PropertyCard, { key: property.id, property })
+        )
+      )
+    );
+
     const parseArea = (value) => {
       if (!value) return 0;
       return parseFloat(value.replace(/㎡/g, '')) || 0;
@@ -253,7 +297,14 @@
                 // 物件名
                 React.createElement('td', {
                   className: `${cellClassName} font-medium text-slate-200 min-w-[120px]`
-                }, property.name),
+                },
+                  React.createElement('a', {
+                    href: property.sourceUrl,
+                    target: '_blank',
+                    rel: 'noopener noreferrer',
+                    className: 'text-sky-500 hover:text-sky-400 underline'
+                  }, property.name)
+                ),
                 // 賃料
                 React.createElement('td', {
                   className: `${cellClassName} text-amber-400 font-semibold`
@@ -352,7 +403,12 @@
             React.createElement('h2', {
               className: 'text-2xl sm:text-3xl font-semibold mb-6 pb-2 border-b-2 border-teal-500 text-teal-400'
             }, '物件詳細比較表'),
-            React.createElement(PropertyTable, { data: properties })
+            React.createElement('div', { className: 'hidden sm:block' },
+              React.createElement(PropertyTable, { data: properties })
+            ),
+            React.createElement('div', { className: 'sm:hidden' },
+              React.createElement(PropertyCardList, { data: properties })
+            )
           )
         ),
         // フッター
