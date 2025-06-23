@@ -62,6 +62,8 @@ nav a::after{
 nav a:hover{color:var(--hover-blue);}
 nav a:hover::after{width:100%;}
 
+.mobile-toggle{display:none;}
+
 .spaced{margin-top:3rem;}
 
 h1{
@@ -363,9 +365,18 @@ footer{
 
 @media (max-width:480px){
   nav{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    gap:0.5rem;
+  }
+  nav.mobile-open{display:flex;}
+
+  .mobile-toggle{
+    display:block;
+    position:absolute;
+    top:1rem;
+    right:1rem;
   }
 
   nav a{
@@ -383,6 +394,7 @@ footer{
 <body>
 <header>
   <h1>佐野徹夜</h1>
+  <button class="mobile-toggle" aria-label="メニュー">☰</button>
   <nav>
     <a href="about.html">ABOUT</a>
     <a href="works.html">WORKS</a>
@@ -592,6 +604,16 @@ document.addEventListener('DOMContentLoaded', function() {
         footer.style.transform = 'translateY(50px)';
         footer.style.transition = 'opacity 1s ease, transform 1s ease';
         footerObserver.observe(footer);
+    }
+
+    const mobileToggle = document.querySelector('.mobile-toggle');
+    if (mobileToggle) {
+        mobileToggle.addEventListener('click', () => {
+            const nav = document.querySelector('nav');
+            if (nav) {
+                nav.classList.toggle('mobile-open');
+            }
+        });
     }
 });
 </script>
