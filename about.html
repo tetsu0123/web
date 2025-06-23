@@ -52,6 +52,8 @@ nav a::after{
 nav a:hover{color:var(--hover-blue);}
 nav a:hover::after{width:100%;}
 
+.mobile-toggle{display:none;}
+
 h1{
   font-family:"Inter",sans-serif;
   font-weight:350;
@@ -354,9 +356,18 @@ footer{
 
 @media (max-width:480px){
   nav{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    gap:0.5rem;
+  }
+  nav.mobile-open{display:flex;}
+
+  .mobile-toggle{
+    display:block;
+    position:absolute;
+    top:1rem;
+    right:1rem;
   }
 
   nav a{
@@ -371,6 +382,7 @@ footer{
 <div>
   <header>
     <h1>ABOUT</h1>
+    <button class="mobile-toggle" aria-label="メニュー">☰</button>
     <nav>
       <a href="index.html">HOME</a>
       <a href="works.html">WORKS</a>
@@ -458,5 +470,18 @@ footer{
     </div>
   </div>
 </footer>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileToggle = document.querySelector('.mobile-toggle');
+  if (mobileToggle) {
+    mobileToggle.addEventListener('click', () => {
+      const nav = document.querySelector('nav');
+      if (nav) {
+        nav.classList.toggle('mobile-open');
+      }
+    });
+  }
+});
+</script>
 </body>
 </html>
