@@ -1,0 +1,80 @@
+<!DOCTYPE html><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TV脚本フォーマッタ</title>
+<style>
+*{box-sizing:border-box;} img{max-width:100%;height:auto;}
+body{font:16px/1.6 system-ui,sans-serif;margin:2rem;max-width:46rem}
+textarea{width:100%;min-height:10rem;margin:.8rem 0;padding:.6rem;font:15px/1.6 monospace}
+textarea[readonly]{background:#f7f7f7}
+label{margin-right:1rem}h1{font-size:1.1rem;margin:0 0 .5rem}
+</style>
+
+<h1>ドラマ脚本自動整形</h1>
+<textarea id="src" placeholder="台本テキストを貼り付け／打ち込み"></textarea>
+
+<label>1行文字数 <input id="cols" type="number" value="20" min="5" style="width:4rem"></label>
+<label>セリフ字下げ <input id="indentSpeech" type="number" value="1" min="0" style="width:3rem"></label>
+<label>ト書き字下げ <input id="indentAction" type="number" value="2" min="0" style="width:3rem"></label>
+
+<textarea id="out" placeholder="整形結果" readonly></textarea>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const z = n => '　'.repeat(n);                                // 全角スペース
+
+  /* 20 字固定で切る（字下げも幅に含める） */
+  function wrap(txt, width, firstIndent, restIndent){
+    const cp = [...txt], res = [];
+    let i = 0, first = true;
+    while (i < cp.length){
+      const ind = first ? firstIndent : restIndent;
+      const len = Math.max(1, width - ind);                    // 例：20−1＝19
+      res.push(z(ind) + cp.slice(i, i + len).join(''));
+      i += len;  first = false;
+    }
+    return res;
+  }
+
+  /* 行頭禁則：句読点・閉じカギをぶら下げ、全角スペースだけの行を除去（空行は残す） */
+  function fixKinsoku(lines){
+    for (let i = 1; i < lines.length; i++){
+      const m = lines[i].match(/^(　+)([、。」])(.*)$/);        // 行頭＝字下げ＋禁則文字
+      if (m){
+        lines[i - 1] += m[2];                                   // 1 つ前の行末に吸収
+        lines[i]      = m[1] + m[3];                            // 当行から禁則文字を除く
+      }
+    }
+    return lines.filter(l => !(l.replace(/[ \t\u3000]/g,'') === '' && l !== ''));
+  }
+
+  function convert(){
+    const W  = +$('cols').value,
+          IS = +$('indentSpeech').value,
+          IA = +$('indentAction').value;
+
+    let out = [];
+    $('src').value.replace(/\r\n?/g,'\n').split('\n').forEach(raw=>{
+      const line = raw.trim();
+      if (!line){                                              // 元の空行はそのまま
+        out.push('');
+        return;
+      }
+
+      if (line.startsWith('○') && out[out.length - 1] !== '') // 柱前に空行
+        out.push('');
+
+      if      (line.startsWith('○')) out.push(...wrap(line, W, 0, 0));
+      else if (line.includes('「'))  out.push(...wrap(line, W, 0, IS)); // 役名＋セリフ
+      else                           out.push(...wrap(line, W, IA, IA)); // ト書き
+    });
+
+    $('out').value = fixKinsoku(out).join('\n');
+  }
+
+  ['input','change'].forEach(ev =>
+    ['src','cols','indentSpeech','indentAction'].forEach(id =>
+      $(id).addEventListener(ev, convert)));
+  convert();                                                   // 初期描画
+})();
+</script>
