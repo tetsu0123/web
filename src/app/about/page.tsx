@@ -42,18 +42,18 @@ const ProfileSection = styled(motion.section)`
   display: grid;
   grid-template-columns: 2fr 3fr;
   gap: 3rem;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   align-items: stretch;
 
   ${mediaQuery.tablet} {
     grid-template-columns: 1fr;
     gap: 2rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
   }
   
   ${mediaQuery.mobile} {
     gap: 1.5rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.2rem;
   }
 `
 
@@ -110,14 +110,14 @@ const ProfileText = styled.p`
 `
 
 const TimelineSection = styled(motion.section)`
-  margin-top: 2.4rem;
+  margin-top: 0;
   
   ${mediaQuery.tablet} {
-    margin-top: 1.8rem;
+    margin-top: 0;
   }
   
   ${mediaQuery.mobile} {
-    margin-top: 1.5rem;
+    margin-top: 0;
   }
 `
 
