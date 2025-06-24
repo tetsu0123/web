@@ -40,10 +40,10 @@ const Title = styled(motion.h1)`
 
 const ProfileSection = styled(motion.section)`
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 2fr 3fr;
   gap: 3rem;
   margin-bottom: 4rem;
-  align-items: start;
+  align-items: stretch;
 
   ${mediaQuery.tablet} {
     grid-template-columns: 1fr;
@@ -59,10 +59,11 @@ const ProfileSection = styled(motion.section)`
 
 const ProfileImageWrapper = styled.div`
   position: relative;
-  aspect-ratio: 3/4;
+  aspect-ratio: 3/4.2;
   overflow: hidden;
   border-radius: 8px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-height: 450px;
   
   ${mediaQuery.tablet} {
     max-width: 400px;
@@ -84,9 +85,9 @@ const ProfileContent = styled.div`
 
 const ProfileName = styled.h2`
   font-family: ${theme.fonts.serifJp};
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 400;
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
   color: ${theme.colors.light.text};
   
   ${mediaQuery.mobile} {
@@ -96,9 +97,9 @@ const ProfileName = styled.h2`
 `
 
 const ProfileText = styled.p`
-  font-size: 0.85rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  margin-bottom: 1.2rem;
   color: ${theme.colors.light.text};
   
   ${mediaQuery.mobile} {
