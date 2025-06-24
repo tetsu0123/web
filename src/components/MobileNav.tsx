@@ -93,6 +93,7 @@ const CloseArea = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: -1;
 `
 
 export const MobileNav: React.FC = () => {
@@ -141,7 +142,7 @@ export const MobileNav: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <MobileNavLink href={item.href}>
+                <MobileNavLink href={item.href} onClick={() => setIsOpen(false)}>
                   {item.label}
                 </MobileNavLink>
               </motion.div>
