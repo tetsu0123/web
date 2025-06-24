@@ -369,6 +369,8 @@ footer{
     flex-direction:column;
     align-items:center;
     gap:0.5rem;
+    position:relative;
+    z-index:2;
   }
   nav.mobile-open{display:flex;}
 
@@ -377,6 +379,7 @@ footer{
     position:absolute;
     top:1rem;
     right:1rem;
+    z-index:3;
   }
 
   nav a{
@@ -468,6 +471,7 @@ footer{
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    const nav = document.querySelector('nav');
     // Smooth scroll behavior for navigation links
     const navLinks = document.querySelectorAll('nav a');
     navLinks.forEach(link => {
@@ -480,6 +484,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         behavior: 'smooth'
                     });
                 }
+            }
+            if (nav) {
+                nav.classList.remove('mobile-open');
             }
         });
     });
@@ -607,12 +614,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     const mobileToggle = document.querySelector('.mobile-toggle');
-    if (mobileToggle) {
+    if (mobileToggle && nav) {
         mobileToggle.addEventListener('click', () => {
-            const nav = document.querySelector('nav');
-            if (nav) {
-                nav.classList.toggle('mobile-open');
-            }
+            nav.classList.toggle('mobile-open');
         });
     }
 });
