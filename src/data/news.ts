@@ -34,12 +34,6 @@ export const newsItems: NewsItem[] = [
     url: 'https://www.kadokawa.co.jp/product/322310000067/',
   },
   {
-    id: '6',
-    date: '2024-03-18',
-    title: '漫画『一年に一度しか会えない君の話。』1巻刊行',
-    url: 'https://ichijin-plus.com/comics/98388282229054',
-  },
-  {
     id: '7',
     date: '2024-02-20',
     title: '「別冊文藝春秋」3月号インタビュー掲載',
@@ -69,5 +63,11 @@ export const newsItems: NewsItem[] = [
     date: '2023-11-08',
     title: '長編小説『透明になれなかった僕たちのために』刊行',
     url: 'https://www.kawade.co.jp/np/isbn/9784309031293/',
+  },
+  {
+    id: '6',
+    date: '2023-06-20',
+    title: '漫画『一年に一度しか会えない君の話。』連載開始',
+    url: 'https://ichijin-plus.com/comics/98388282229054',
   },
 ]
