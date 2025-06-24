@@ -4,8 +4,12 @@ import { motion, HTMLMotionProps } from 'framer-motion'
 import styled from '@emotion/styled'
 import { theme } from '@/styles/theme'
 
-const StyledSection = styled(motion.section)<{ spacing?: 'normal' | 'large' }>`
-  margin-top: ${props => props.spacing === 'large' ? '4rem' : '3rem'};
+const StyledSection = styled(motion.section)<{ spacing?: 'normal' | 'large' | 'small' }>`
+  margin-top: ${props => {
+    if (props.spacing === 'large') return '4rem';
+    if (props.spacing === 'small') return '1rem';
+    return '3rem';
+  }};
 
   &:first-of-type {
     margin-top: 0;
@@ -14,7 +18,7 @@ const StyledSection = styled(motion.section)<{ spacing?: 'normal' | 'large' }>`
 
 interface SectionProps extends HTMLMotionProps<'section'> {
   children: React.ReactNode
-  spacing?: 'normal' | 'large'
+  spacing?: 'normal' | 'large' | 'small'
 }
 
 const defaultVariants = {
