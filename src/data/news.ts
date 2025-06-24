@@ -43,7 +43,7 @@ export const newsItems: NewsItem[] = [
     id: '7',
     date: '2024-02-20',
     title: '「別冊文藝春秋」3月号インタビュー掲載',
-    url: 'https://books.bunshun.jp/ud/book/num/1692146500000000000S',
+    url: 'https://bessatsu-bunshun.com/n/na882f357409a',
   },
   // 2023
   {
