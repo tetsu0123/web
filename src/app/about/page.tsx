@@ -110,14 +110,14 @@ const ProfileText = styled.p`
 `
 
 const TimelineSection = styled(motion.section)`
-  margin-top: 4rem;
+  margin-top: 2.4rem;
   
   ${mediaQuery.tablet} {
-    margin-top: 3rem;
+    margin-top: 1.8rem;
   }
   
   ${mediaQuery.mobile} {
-    margin-top: 2.5rem;
+    margin-top: 1.5rem;
   }
 `
 
