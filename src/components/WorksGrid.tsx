@@ -53,31 +53,23 @@ const WorkItem = styled(motion.a)`
   }
 
   &:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   }
 
   &:hover::before {
-    opacity: 1;
+    opacity: 0.5;
   }
   
   /* Touch device optimization */
   @media (hover: none) and (pointer: coarse) {
     &:active {
-      transform: scale(0.98);
+      transform: translateY(1px);
     }
     
     &:active::before {
-      opacity: 1;
+      opacity: 0.5;
     }
-  }
-
-  img {
-    transition: transform 0.4s ease;
-  }
-
-  &:hover img {
-    transform: scale(1.02);
   }
 `
 
@@ -99,8 +91,8 @@ export const WorksGrid: React.FC<WorksGridProps> = ({ works }) => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: index * 0.1 }}
-          whileHover={!isTouch ? { y: -6 } : {}}
-          whileTap={isTouch ? { scale: 0.98 } : {}}
+          whileHover={!isTouch ? { y: -2 } : {}}
+          whileTap={isTouch ? { y: 1 } : {}}
         >
           <Image
             src={work.coverUrl}
