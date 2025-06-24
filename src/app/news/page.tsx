@@ -43,7 +43,7 @@ const SectionTitle = styled.h2`
   font-size: 1.5rem;
   font-weight: 300;
   color: ${theme.colors.light.textLight};
-  margin: 0 0 2rem;
+  margin: 0 0 1rem;
   letter-spacing: 0.08em;
   text-align: center;
 `
