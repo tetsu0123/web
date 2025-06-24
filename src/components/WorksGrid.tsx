@@ -53,8 +53,8 @@ const WorkItem = styled(motion.a)`
   }
 
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   }
 
   &:hover::before {
@@ -91,7 +91,7 @@ export const WorksGrid: React.FC<WorksGridProps> = ({ works }) => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: index * 0.1 }}
-          whileHover={!isTouch ? { y: -2 } : {}}
+          whileHover={!isTouch ? { y: -4 } : {}}
           whileTap={isTouch ? { y: 1 } : {}}
         >
           <Image

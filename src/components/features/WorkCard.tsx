@@ -17,8 +17,8 @@ const WorkItem = styled(motion.a)`
   cursor: pointer;
 
   &:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   }
 `
 
