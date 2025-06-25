@@ -53,12 +53,12 @@ const StyledCard = styled(Card)`
     height: 100%;
     background: ${theme.colors.light.hoverBlue};
     transform: translateX(-100%);
-    transition: transform 0.3s ease;
+    transition: transform 0.6s ease;
   }
 
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
   }
 
   &:hover::before {
@@ -79,10 +79,10 @@ export const NewsCard: React.FC<NewsCardProps> = ({
 }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ 
-        duration: 0.6, 
+        duration: 1.2, 
         delay: animationDelay + index * 0.1 
       }}
     >

@@ -35,8 +35,8 @@ const StyledCard = styled(motion.div)<{
     cursor: pointer;
     
     &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
     }
   `}
 `

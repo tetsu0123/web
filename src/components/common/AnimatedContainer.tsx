@@ -16,9 +16,9 @@ interface AnimatedContainerProps extends HTMLMotionProps<'div'> {
 export const AnimatedContainer: React.FC<AnimatedContainerProps> = ({ 
   children,
   maxWidth,
-  initial = { opacity: 0, y: 30 },
+  initial = { opacity: 0, y: 10 },
   animate = { opacity: 1, y: 0 },
-  transition = { duration: 0.8 },
+  transition = { duration: 1.2 },
   ...props
 }) => {
   return (

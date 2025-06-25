@@ -42,9 +42,9 @@ export const theme = {
     wide: '1200px',
   },
   transitions: {
-    default: 'all 0.3s ease',
-    hover: 'all 0.4s ease',
-    slow: 'all 0.8s ease',
+    default: 'all 0.6s ease',
+    hover: 'all 0.6s ease',
+    slow: 'all 1.2s ease',
   },
   spacing: {
     xs: '0.5rem',

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>物件情報まとめ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <style>
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'メイリオ', Meiryo, Osaka, 'ＭＳ Ｐゴシック', sans-serif;
+    }
+    /* カスタムスタイル */
+    .table-container {
+      max-width: 100%;
+      overflow-x: auto;
+    }
+    @media (max-width: 640px) {
+      .responsive-text-xs {
+        font-size: 0.65rem;
+        line-height: 0.9rem;
+      }
+    }
+    @media (min-width: 641px) and (max-width: 768px) {
+      .responsive-text-sm {
+        font-size: 0.75rem;
+        line-height: 1rem;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-100">
+  <div id="root"></div>
+
+  <script>
+    const { useState, useEffect } = React;
+    const { createRoot } = ReactDOM;
+
+    // ユーティリティ関数
+    const DEFAULT_IMAGE_URL = 'https://via.placeholder.com/600x400.png?text=No+Image';
+
+    const parseCurrency = (value) => {
+      if (!value) return 0;
+      return parseInt(value.replace(/円|,/g, ''), 10) || 0;
+    };
+
+    // PropertyCard コンポーネント（スマホ向け）
+    const PropertyCard = ({ property }) => (
+      React.createElement('div', {
+        className: 'bg-slate-800 rounded-lg shadow-md overflow-hidden'
+      },
+        React.createElement('a', {
+          href: property.sourceUrl,
+          target: '_blank',
+          rel: 'noopener noreferrer'
+        },
+          React.createElement('img', {
+            src: property.imageUrl,
+            alt: property.name,
+            className: 'w-full h-40 object-cover',
+            onError: (e) => {
+              e.target.src = DEFAULT_IMAGE_URL;
+            }
+          })
+        ),
+        React.createElement('div', { className: 'p-4 space-y-1 text-sm' },
+          React.createElement('a', {
+            href: property.sourceUrl,
+            target: '_blank',
+            rel: 'noopener noreferrer',
+            className: 'block font-semibold text-sky-400 hover:text-sky-300'
+          }, property.name),
+          React.createElement('p', {
+            className: 'text-amber-400 font-semibold'
+          }, `${property.rent.toLocaleString()}円`),
+          React.createElement('p', null, `${property.floorPlan} / ${property.area}㎡`),
+          React.createElement('p', null, property.address),
+          React.createElement('p', { className: 'text-slate-400' }, property.nearestStations.join(', '))
+        )
+      )
+    );
+
+    const PropertyCardList = ({ data }) => (
+      React.createElement('div', { className: 'grid gap-4' },
+        data.map(property =>
+          React.createElement(PropertyCard, { key: property.id, property })
+        )
+      )
+    );
+
+    const parseArea = (value) => {
+      if (!value) return 0;
+      return parseFloat(value.replace(/㎡/g, '')) || 0;
+    };
+
+    const formatYear = (year) => {
+      if (!year || year === '—') return '不明';
+      if (year.includes('/')) {
+        const [prefix, month] = year.split('/');
+        return `${prefix}年${parseInt(month, 10)}月`;
+      }
+      if (year.includes('-')) {
+        const [start, end] = year.split('-');
+        return `${start}年～${start.slice(0, 2)}${end}年`;
+      }
+      if (year.endsWith('頃')) {
+        return `${year.replace('頃', '')}年頃`;
+      }
+      return `${year}年`;
+    };
+
+    const formatFloor = (floor) => {
+      if (!floor || floor === '—') return '不明';
+      return floor.replace('F', '階建').replace(' / ', '階 / ');
+    };
+
+    const formatTerm = (term) => {
+      if (!term) return '不明';
+      return term === '0' ? 'なし' : term;
+    };
+
+    const formatStation = (station) => {
+      if (!station) return ['不明'];
+      return [`${station.split(' ')[0]}駅 徒歩${station.split(' ')[1]}分`];
+    };
+
+    // 元データ
+    const rawData = [
+      {
+        name: 'ライトテラス蔵前',
+        rent: '251,000円',
+        fee: '10,000円',
+        plan: '1SLDK',
+        area: '54.55㎡',
+        year: '2019/09',
+        floor: '9 / 15F',
+        dep: '1ヶ月',
+        key: '1ヶ月',
+        addr: '台東区蔵前2-14-10',
+        station: '蔵前 2分',
+        url: 'https://www.start-line.co.jp/build-4253097/room-31851356.html',
+        imageUrl: 'https://www.creavision.co.jp/images/estate/7106/0/7106-1.jpg'
+      },
+      {
+        name: 'デュオフラッツ浅草蔵前',
+        rent: '250,000円',
+        fee: '15,000円',
+        plan: '2LDK',
+        area: '45.40㎡',
+        year: '2025/08',
+        floor: '13 / 13F',
+        dep: '1ヶ月',
+        key: '0',
+        addr: '台東区蔵前4-31-xx',
+        station: '蔵前 4分',
+        url: 'https://www.start-line.co.jp/build-8067529/room-31833290.html',
+        imageUrl: 'https://image.reblo.net/img_thumb.php?x=640&y=640&f=./cl_img/build_photo_img/build_3930_8067529.jpg'
+      },
+      {
+        name: 'パークアクシス蔵前',
+        rent: '207,000円',
+        fee: '18,000円',
+        plan: '2LDK',
+        area: '54.22㎡',
+        year: '2015頃',
+        floor: '14 / 14F',
+        dep: '1ヶ月',
+        key: '1ヶ月',
+        addr: '台東区寿3-xx-xx',
+        station: '蔵前 5分',
+        url: 'https://www.homes.co.jp/chintai/room/57644a5f0fa975338cf9603b4798d2df87631ede/?bid=55970167710',
+        imageUrl: 'https://image4.homes.jp/smallimg/image.php?file=http%3A%2F%2Fimg.homes.jp%2F5597%2Frent%2F167710%2F2%2F12%2Fcbwo.jpg&height=480&width=640'
+      },
+      {
+        name: 'ブレス蔵前',
+        rent: '215,000円',
+        fee: '20,000円',
+        plan: '2LDK',
+        area: '50.69㎡',
+        year: '2017/11',
+        floor: '8 / 14F',
+        dep: '1ヶ月',
+        key: '1ヶ月',
+        addr: '台東区蔵前1-3-33',
+        station: '蔵前 4分',
+        url: 'https://excerent.jp/rent/8151/169855/',
+        imageUrl: 'https://excerent.jp/upload/image/article_1_8151_1721283586.jpg'
+      },
+      {
+        name: 'パレステージ浅草橋',
+        rent: '250,000円',
+        fee: '0',
+        plan: '3LDK',
+        area: '63.41㎡',
+        year: '2012-13',
+        floor: '—',
+        dep: '1ヶ月',
+        key: '1ヶ月',
+        addr: '台東区鳥越2-xx-xx',
+        station: '蔵前 7分',
+        url: 'https://suumo.jp/chintai/bc_100444169140/',
+        imageUrl: 'https://img01.suumo.com/front/gazo/fr/bukken/140/100444169140/100444169140_go.jpg'
+      },
+      {
+        name: 'ミリアレジデンス浅草駒形',
+        rent: '260,000円',
+        fee: '20,000円',
+        plan: '2LDK＋WIC',
+        area: '50.95㎡',
+        year: '2023',
+        floor: '11 / 11F',
+        dep: '0',
+        key: '0',
+        addr: '台東区駒形2-xx-xx',
+        station: '蔵前 6–7分',
+        url: 'https://rf12.jp/building/4680/108031/',
+        imageUrl: 'https://rf12.jp/images/estate/4680/1/4680-1.jpg'
+      }
+    ];
+
+    // データ整形
+    const properties = rawData.map((property, index) => ({
+      id: `property-${index}`,
+      name: property.name,
+      address: property.addr,
+      rent: parseCurrency(property.rent),
+      managementFee: parseCurrency(property.fee),
+      deposit: formatTerm(property.dep),
+      keyMoney: formatTerm(property.key),
+      floorPlan: property.plan,
+      area: parseArea(property.area),
+      yearBuilt: formatYear(property.year),
+      floorInfo: formatFloor(property.floor),
+      nearestStations: formatStation(property.station),
+      imageUrl: property.imageUrl || DEFAULT_IMAGE_URL,
+      sourceUrl: property.url
+    }));
+
+    // PropertyTable コンポーネント
+    const PropertyTable = ({ data }) => {
+      if (!data || data.length === 0) {
+        return React.createElement('p', {
+          className: 'text-slate-400 text-center py-8'
+        }, '比較する物件がありません。');
+      }
+
+      const headerClassName = 'px-2 py-3 text-left text-xs sm:text-sm font-semibold text-sky-400 bg-slate-700/50';
+      const cellClassName = 'px-2 py-2 text-xs sm:text-sm border-b border-slate-700';
+
+      const headers = [
+        '画像', '物件名', '賃料', '管理費', '間取り', '面積', 
+        '築年月', '階数', '敷金', '礼金', '住所', '最寄駅', 'リンク'
+      ];
+
+      return React.createElement('div', {
+        className: 'table-container bg-slate-800 shadow-2xl rounded-lg overflow-hidden'
+      },
+        React.createElement('table', {
+          className: 'min-w-full divide-y divide-slate-700'
+        },
+          React.createElement('thead', null,
+            React.createElement('tr', null,
+              headers.map(header =>
+                React.createElement('th', {
+                  key: header,
+                  className: headerClassName
+                }, header)
+              )
+            )
+          ),
+          React.createElement('tbody', {
+            className: 'divide-y divide-slate-700'
+          },
+            data.map(property =>
+              React.createElement('tr', {
+                key: property.id,
+                className: 'hover:bg-slate-700/30 transition-colors duration-200'
+              },
+                // 画像
+                React.createElement('td', { className: cellClassName },
+                  React.createElement('a', {
+                    href: property.sourceUrl,
+                    target: '_blank',
+                    rel: 'noopener noreferrer'
+                  },
+                    React.createElement('img', {
+                      src: property.imageUrl,
+                      alt: property.name,
+                      className: 'w-24 h-16 sm:w-28 sm:h-20 object-cover rounded shadow-sm',
+                      onError: (e) => {
+                        e.target.src = DEFAULT_IMAGE_URL;
+                      }
+                    })
+                  )
+                ),
+                // 物件名
+                React.createElement('td', {
+                  className: `${cellClassName} font-medium text-slate-200 min-w-[120px]`
+                },
+                  React.createElement('a', {
+                    href: property.sourceUrl,
+                    target: '_blank',
+                    rel: 'noopener noreferrer',
+                    className: 'text-sky-500 hover:text-sky-400 underline'
+                  }, property.name)
+                ),
+                // 賃料
+                React.createElement('td', {
+                  className: `${cellClassName} text-amber-400 font-semibold`
+                }, `${property.rent.toLocaleString()}円`),
+                // 管理費
+                React.createElement('td', {
+                  className: `${cellClassName} text-amber-400`
+                }, property.managementFee ? `${property.managementFee.toLocaleString()}円` : 'なし'),
+                // 間取り
+                React.createElement('td', {
+                  className: `${cellClassName} text-slate-300`
+                }, property.floorPlan),
+                // 面積
+                React.createElement('td', {
+                  className: `${cellClassName} text-slate-300`
+                }, `${property.area}㎡`),
+                // 築年月
+                React.createElement('td', {
+                  className: `${cellClassName} text-slate-300`
+                }, property.yearBuilt),
+                // 階数
+                React.createElement('td', {
+                  className: `${cellClassName} text-slate-300`
+                }, property.floorInfo),
+                // 敷金
+                React.createElement('td', {
+                  className: `${cellClassName} text-slate-300`
+                }, property.deposit),
+                // 礼金
+                React.createElement('td', {
+                  className: `${cellClassName} text-slate-300`
+                }, property.keyMoney),
+                // 住所
+                React.createElement('td', {
+                  className: `${cellClassName} text-slate-300 min-w-[180px] max-w-[200px] break-words`
+                }, property.address),
+                // 最寄駅
+                React.createElement('td', {
+                  className: `${cellClassName} text-slate-400 min-w-[120px] break-words`
+                }, property.nearestStations.join(', ')),
+                // リンク
+                React.createElement('td', { className: cellClassName },
+                  React.createElement('a', {
+                    href: property.sourceUrl,
+                    target: '_blank',
+                    rel: 'noopener noreferrer',
+                    className: 'text-sky-500 hover:text-sky-400 underline transition-colors duration-200'
+                  }, '詳細')
+                )
+              )
+            )
+          )
+        )
+      );
+    };
+
+    // メインアプリケーション
+    const App = () => {
+      const [loading, setLoading] = useState(true);
+
+      useEffect(() => {
+        // ローディング状態を解除
+        const timer = setTimeout(() => setLoading(false), 100);
+        return () => clearTimeout(timer);
+      }, []);
+
+      if (loading) {
+        return React.createElement('div', {
+          className: 'min-h-screen bg-gradient-to-br from-slate-900 to-slate-700 flex items-center justify-center'
+        },
+          React.createElement('div', {
+            className: 'text-white text-xl'
+          }, '読み込み中...')
+        );
+      }
+
+      return React.createElement('div', {
+        className: 'min-h-screen bg-gradient-to-br from-slate-900 to-slate-700 text-slate-100'
+      },
+        // ヘッダー
+        React.createElement('header', {
+          className: 'text-center py-8 px-4'
+        },
+          React.createElement('h1', {
+            className: 'text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-sky-400 to-blue-500 bg-clip-text text-transparent mb-4'
+          }, '物件情報まとめ'),
+          React.createElement('p', {
+            className: 'text-slate-400 text-base sm:text-lg max-w-2xl mx-auto'
+          }, '賃貸物件の詳細情報を一覧で比較できます。画像をクリックすると詳細ページに移動します。')
+        ),
+        // メインコンテンツ
+        React.createElement('main', {
+          className: 'px-4 sm:px-6 lg:px-8 pb-12'
+        },
+          React.createElement('section', null,
+            React.createElement('h2', {
+              className: 'text-2xl sm:text-3xl font-semibold mb-6 pb-2 border-b-2 border-teal-500 text-teal-400'
+            }, '物件詳細比較表'),
+            React.createElement('div', { className: 'hidden sm:block' },
+              React.createElement(PropertyTable, { data: properties })
+            ),
+            React.createElement('div', { className: 'sm:hidden' },
+              React.createElement(PropertyCardList, { data: properties })
+            )
+          )
+        ),
+        // フッター
+        React.createElement('footer', {
+          className: 'text-center py-6 px-4 border-t border-slate-700 bg-slate-800/50'
+        },
+          React.createElement('p', {
+            className: 'text-slate-500 text-sm'
+          }, `© ${new Date().getFullYear()} 物件情報まとめ. All rights reserved.`),
+          React.createElement('p', {
+            className: 'text-slate-600 text-xs mt-1'
+          }, '物件情報は各掲載元サイトの内容に基づいています。')
+        )
+      );
+    };
+
+    // アプリケーション初期化
+    try {
+      const rootElement = document.getElementById('root');
+      if (rootElement) {
+        const root = createRoot(rootElement);
+        root.render(React.createElement(App));
+      } else {
+        console.error('Root element not found');
+      }
+    } catch (error) {
+      console.error('Error initializing app:', error);
+      document.getElementById('root').innerHTML = '<div class="p-8 text-center text-red-500">アプリケーションの初期化に失敗しました。</div>';
+    }
+  </script>
+</body>
+</html>

@@ -1,11 +1,31 @@
 'use client'
 
+import Link from 'next/link'
 import styled from '@emotion/styled'
 import { motion } from 'framer-motion'
 import { Layout } from '@/components/Layout'
 import { theme } from '@/styles/theme'
 import { mediaQuery } from '@/styles/responsive'
 import { newsItems } from '@/data/news'
+
+const BackLink = styled(Link)`
+  display: inline-block;
+  font-family: ${theme.fonts.sansJp};
+  font-size: 0.9rem;
+  color: ${theme.colors.light.textLight};
+  text-decoration: none;
+  margin-bottom: 2rem;
+  transition: color 0.3s ease;
+  
+  &:hover {
+    color: ${theme.colors.light.hoverBlue};
+  }
+  
+  ${mediaQuery.mobile} {
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+`
 
 const Container = styled.div`
   max-width: 720px;
@@ -180,6 +200,7 @@ export default function NewsPage() {
   return (
     <Layout>
       <Container>
+        <BackLink href="/">←戻る</BackLink>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

@@ -11,15 +11,15 @@ const StyledButton = styled.button<{ variant?: 'primary' | 'secondary' }>`
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: ${theme.transitions.default};
+  transition: all 0.6s ease;
   
   ${props => props.variant === 'primary' ? `
     background: linear-gradient(135deg, ${theme.colors.light.hoverBlue}, ${theme.colors.light.meterFill});
     color: white;
     
     &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(10, 77, 162, 0.3);
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(10, 77, 162, 0.2);
     }
     
     &:active {

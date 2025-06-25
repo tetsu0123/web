@@ -69,8 +69,8 @@ const SocialLinkItem = styled.a`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  transition: ${theme.transitions.hover};
-  opacity: 0.6;
+  transition: all 0.6s ease;
+  opacity: 0.85;
   filter: grayscale(100%);
   position: relative;
   padding: 4px;
@@ -81,7 +81,7 @@ const SocialLinkItem = styled.a`
 
   &:hover {
     opacity: 1;
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     filter: grayscale(0%);
   }
   

@@ -9,16 +9,18 @@ import { Work } from '@/types'
 
 const WorkItem = styled(motion.a)`
   display: block;
-  transition: all 0.3s ease;
+  transition: all 0.6s ease;
   border-radius: 4px;
   overflow: hidden;
   background: ${theme.colors.light.surface};
   position: relative;
   cursor: pointer;
+  border: 1px solid transparent;
 
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    border-color: rgba(10, 77, 162, 0.1);
   }
 `
 
@@ -33,9 +35,9 @@ export const WorkCard: React.FC<WorkCardProps> = ({ work, index = 0 }) => {
       href={work.amazonUrl}
       target="_blank"
       rel="noopener noreferrer"
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
+      transition={{ duration: 1.2, delay: index * 0.1 }}
     >
       <Image
         src={work.coverUrl}

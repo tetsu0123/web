@@ -1,11 +1,31 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import styled from '@emotion/styled'
 import { motion } from 'framer-motion'
 import { Layout } from '@/components/Layout'
 import { theme } from '@/styles/theme'
 import { mediaQuery } from '@/styles/responsive'
+
+const BackLink = styled(Link)`
+  display: inline-block;
+  font-family: ${theme.fonts.sansJp};
+  font-size: 0.9rem;
+  color: ${theme.colors.light.textLight};
+  text-decoration: none;
+  margin-bottom: 2rem;
+  transition: color 0.3s ease;
+  
+  &:hover {
+    color: ${theme.colors.light.hoverBlue};
+  }
+  
+  ${mediaQuery.mobile} {
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+`
 
 const Container = styled.div`
   max-width: 800px;
@@ -209,6 +229,7 @@ export default function AboutPage() {
   return (
     <Layout showHeaderTitle={false} footerLayout="homepage">
       <Container>
+        <BackLink href="/">←戻る</BackLink>
         <motion.div
           variants={fadeInUp}
           initial="hidden"

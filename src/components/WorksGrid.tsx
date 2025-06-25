@@ -28,13 +28,14 @@ const Grid = styled.div`
 
 const WorkItem = styled(motion.a)`
   display: block;
-  transition: ${theme.transitions.hover};
+  transition: all 0.6s ease;
   border-radius: 4px;
   overflow: hidden;
   background: ${theme.colors.light.surface};
   position: relative;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  border: 1px solid transparent;
   
   ${mediaQuery.mobile} {
     border-radius: 6px;
@@ -53,8 +54,13 @@ const WorkItem = styled(motion.a)`
   }
 
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    border-color: rgba(10, 77, 162, 0.1);
+  }
+  
+  &:hover img {
+    transform: scale(1.01);
   }
 
   &:hover::before {
@@ -88,10 +94,10 @@ export const WorksGrid: React.FC<WorksGridProps> = ({ works }) => {
           href={work.amazonUrl}
           target="_blank"
           rel="noopener noreferrer"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: index * 0.1 }}
-          whileHover={!isTouch ? { y: -4 } : {}}
+          transition={{ duration: 1.2, delay: index * 0.1 }}
+          whileHover={!isTouch ? { y: -2 } : {}}
           whileTap={isTouch ? { y: 1 } : {}}
         >
           <Image
@@ -99,7 +105,7 @@ export const WorksGrid: React.FC<WorksGridProps> = ({ works }) => {
             alt={work.title}
             width={200}
             height={283}
-            style={{ width: '100%', height: 'auto' }}
+            style={{ width: '100%', height: 'auto', transition: 'transform 0.6s ease' }}
             sizes="(max-width: 480px) 50vw, (max-width: 768px) 33vw, 200px"
             loading={index < 3 ? 'eager' : 'lazy'}
           />

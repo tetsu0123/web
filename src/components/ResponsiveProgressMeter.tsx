@@ -14,6 +14,12 @@ const Container = styled.div`
   position: relative;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  animation: breathe 6s ease-in-out infinite;
+  
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.005); }
+  }
   
   ${mediaQuery.tablet} {
     padding: 1rem;
@@ -70,13 +76,15 @@ const ProgressFill = styled(motion.div)<{ progress: number }>`
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    animation: progressShine 3s ease-in-out infinite;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: progressShine 6s ease-in-out infinite;
+    opacity: 0.6;
   }
 
   @keyframes progressShine {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(400%); }
+    0% { transform: translateX(-100%); opacity: 0; }
+    50% { opacity: 0.6; }
+    100% { transform: translateX(200%); opacity: 0; }
   }
 `
 
@@ -124,9 +132,9 @@ export const ResponsiveProgressMeter: React.FC<ResponsiveProgressMeterProps> = (
 }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
+      initial={{ opacity: 0.3, scale: 0.98 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.6, delay: 0.8 }}
+      transition={{ duration: 1.2, delay: 0.8 }}
     >
       <Container>
       <Label>新作メーター</Label>
@@ -135,7 +143,7 @@ export const ResponsiveProgressMeter: React.FC<ResponsiveProgressMeterProps> = (
           progress={progress}
           initial={{ width: 0 }}
           animate={{ width: `${progress}%` }}
-          transition={{ duration: 2.5, ease: 'easeOut' }}
+          transition={{ duration: 4, ease: 'easeOut' }}
         />
       </ProgressBar>
       <ProgressInfo>

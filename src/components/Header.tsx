@@ -44,7 +44,7 @@ const NavLink = styled(Link)<{ isActive: boolean }>`
   color: ${props => props.isActive ? theme.colors.light.hoverBlue : theme.colors.light.textLighter};
   text-decoration: none;
   position: relative;
-  transition: ${theme.transitions.hover};
+  transition: color 0.6s ease, opacity 0.6s ease;
 
   &::after {
     content: '';
@@ -54,11 +54,12 @@ const NavLink = styled(Link)<{ isActive: boolean }>`
     width: ${props => props.isActive ? '100%' : '0'};
     height: 1px;
     background: ${theme.colors.light.hoverBlue};
-    transition: width 0.4s ease;
+    transition: width 0.6s ease;
   }
 
   &:hover {
     color: ${theme.colors.light.hoverBlue};
+    opacity: 0.9;
   }
 
   &:hover::after {

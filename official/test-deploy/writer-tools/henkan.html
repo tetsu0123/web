@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<title>Writerʼs Toolkit – 総合変換先頭版</title>
+<style>
+:root{
+  --bg:#fafafa;--fg:#1a1a1a;--accent:#0069c2;
+  --mono:13px/1.6 "SFMono-Regular",Consolas,Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font:15px/1.7 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",
+     "Noto Sans JP",sans-serif;background:var(--bg);color:var(--fg);
+     padding:2rem;max-width:960px;margin:auto}
+h1{font-size:1.2rem;margin-bottom:1rem}
+.tablinks{border:none;background:none;font:inherit;padding:.6rem 1.1rem;
+          cursor:pointer;border-bottom:.15rem solid transparent;transition:.2s}
+.tablinks:hover{color:var(--accent)}
+.tablinks.active{border-color:var(--accent);font-weight:600}
+.tabcontent{display:none;margin-top:1.2rem}
+textarea{width:100%;min-height:9rem;padding:.6rem;border:1px solid #ddd;
+         font:var(--mono);border-radius:4px;margin:.6rem 0}
+textarea[readonly]{background:#f5f5f5}
+.counter{font-size:.9rem;color:#666;margin:.15rem 0}
+@media (prefers-color-scheme: dark){
+  :root{--bg:#202124;--fg:#e8eaed;--accent:#8ab4f8}
+  textarea{background:#303134;color:var(--fg);border-color:#555}
+  textarea[readonly]{background:#2b2b2b}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== タブリンク（総合を先頭・アクティブ） ===== -->
+<div id="tabs">
+  <button class="tablinks active" data-tab="total">総合変換ツール</button>
+  <button class="tablinks"        data-tab="clean">無駄な改行削除</button>
+  <button class="tablinks"        data-tab="indent">字下げツール</button>
+  <button class="tablinks"        data-tab="count">文字数カウンタ</button>
+  <button class="tablinks"        data-tab="zenkaku">半角→全角</button>
+</div>
+
+<!-- ===== ① 総合変換ツール ===== -->
+<div id="total" class="tabcontent" style="display:block">
+  <h1>総合変換ツール</h1>
+  <textarea id="total_in"  placeholder="ここに文章を貼り付け"></textarea>
+  <textarea id="total_out" placeholder="変換後の完成形テキスト" readonly></textarea>
+  <p class="counter" id="total_chars">改行・空白除く文字数: 0</p>
+  <p class="counter" id="total_pages">原稿用紙(400字)換算: 0.0 枚</p>
+</div>
+
+<!-- ===== 以下、従来の個別 4 タブ（変更なし） ===== -->
+<div id="clean"   class="tabcontent"><h1>無駄な改行削除</h1>
+  <textarea id="clean_in"></textarea><textarea id="clean_out" readonly></textarea></div>
+
+<div id="indent"  class="tabcontent"><h1>字下げツール</h1>
+  <textarea id="indent_in"></textarea><textarea id="indent_out" readonly></textarea></div>
+
+<div id="count"   class="tabcontent"><h1>文字数 &amp; 原稿用紙カウンタ</h1>
+  <textarea id="count_src"></textarea>
+  <p class="counter" id="cnt_chars"></p><p class="counter" id="cnt_pages"></p></div>
+
+<div id="zenkaku" class="tabcontent"><h1>半角→全角コンバータ</h1>
+  <textarea id="zen_src"></textarea><textarea id="zen_dst" readonly></textarea></div>
+
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+
+/* ---------- タブ切り替え ---------- */
+document.querySelectorAll('.tablinks').forEach(btn=>{
+  btn.addEventListener('click',e=>{
+    const t=e.currentTarget.dataset.tab;
+    document.querySelectorAll('.tablinks').forEach(b=>b.classList.toggle('active',b===e.currentTarget));
+    document.querySelectorAll('.tabcontent').forEach(c=>c.style.display=(c.id===t?'block':'none'));
+  });
+});
+
+/* ---------- ユーティリティ ---------- */
+const normHTML=raw=>{
+  const doc=new DOMParser().parseFromString(raw,'text/html');
+  const walk=node=>{
+    let t=''; node.childNodes.forEach(n=>{
+      if(n.nodeType===3)        t+=n.textContent;
+      else if(n.nodeName==='BR')t+='\n';
+      else if(n.nodeName==='P') t+=walk(n)+'\n';
+      else                      t+=walk(n);
+    }); return t;
+  };
+  return walk(doc.body).replace(/[ \t]+\n/g,'\n')
+                      .replace(/\r?\n{2,}/g,'\n').trim();
+};
+const indentText=t=>t.split(/\r?\n/).map(l=>{
+  if(l.trim()==='')return l;
+  if(/^[「『（(〖\\[]/.test(l))return l;
+  return l.startsWith('　')?l:'　'+l;
+}).join('\n').replace(/ /g,'　').replace(/([！？])\s/g,'$1　');
+const ascii2fw=c=>c===' '?'　':String.fromCharCode(c.charCodeAt(0)+0xFEE0);
+const toZenkaku=t=>t.replace(/[\u0020-\u007E]/g,ascii2fw)
+                    .replace(/[\uFF61-\uFF9F]/g,s=>s.normalize('NFKC'));
+const charCount=t=>[...t.replace(/\r?\n/g,'').replace(/\s|\u3000/g,'')].length;
+
+/* ---------- 総合変換 ---------- */
+const tin=document.getElementById('total_in'),
+      tout=document.getElementById('total_out'),
+      tch=document.getElementById('total_chars'),
+      tpg=document.getElementById('total_pages');
+tin.addEventListener('input',()=>{
+  const cleaned = normHTML(tin.value);
+  const indented= indentText(cleaned);
+  const zen      = toZenkaku(indented);   // ★ 半角→全角は最後に
+  tout.value=zen;
+  const n=charCount(zen);
+  tch.textContent=`改行・空白除く文字数: ${n}`;
+  tpg.textContent=`原稿用紙(400字)換算: ${(Math.ceil(n/400*10)/10).toFixed(1)} 枚`;
+});
+
+/* ---------- 個別タブも従来どおり動かす（省略可） ---------- */
+document.getElementById('clean_in') .addEventListener('input',e=>
+  document.getElementById('clean_out').value=normHTML(e.target.value));
+document.getElementById('indent_in').addEventListener('input',e=>
+  document.getElementById('indent_out').value=indentText(e.target.value));
+const cs=document.getElementById('count_src');
+if(cs){const f=()=>{const n=charCount(cs.value);
+  document.getElementById('cnt_chars').textContent=`改行・空白除く文字数: ${n}`;
+  document.getElementById('cnt_pages').textContent=`原稿用紙(400字)換算: ${(Math.ceil(n/400*10)/10).toFixed(1)} 枚`;};
+  cs.addEventListener('input',f); f();}
+document.getElementById('zen_src').addEventListener('input',e=>
+  document.getElementById('zen_dst').value=toZenkaku(e.target.value));
+
+});
+</script>
+</body>
+</html>
