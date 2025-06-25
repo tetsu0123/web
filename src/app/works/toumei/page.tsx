@@ -227,8 +227,6 @@ export default function ToumeiPage() {
   return (
     <Layout>
       <Container>
-        <BackLink href="/works">Back to Works</BackLink>
-        
         <Title
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -348,6 +346,8 @@ export default function ToumeiPage() {
             </ThemeCard>
           </ThemeGrid>
         </Section>
+        
+        <BackLink href="/works">Back to Works</BackLink>
       </Container>
     </Layout>
   )

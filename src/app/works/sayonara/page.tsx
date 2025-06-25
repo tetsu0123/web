@@ -227,8 +227,6 @@ export default function SayonaraPage() {
   return (
     <Layout>
       <Container>
-        <BackLink href="/works">Back to Works</BackLink>
-        
         <Title
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -347,6 +345,8 @@ export default function SayonaraPage() {
             </ThemeCard>
           </ThemeGrid>
         </Section>
+        
+        <BackLink href="/works">Back to Works</BackLink>
       </Container>
     </Layout>
   )
