@@ -403,7 +403,12 @@ footer{
     }
     
     nav {
-        display: none;
+        display: flex;
+        gap: 1.5rem;
+    }
+    
+    nav a {
+        font-size: 0.85rem;
     }
     
     main {
@@ -476,15 +481,22 @@ footer{
 }
 
 @media (max-width:480px){
+  .header-content {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+  }
+  
   nav{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
+    gap: 1rem;
   }
 
   nav a{
-    margin:0 0.75rem;
-    font-size:0.7rem;
+    font-size:0.75rem;
   }
 
   .publication-info{
