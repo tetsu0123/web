@@ -324,3 +324,5 @@ To use the dark theme from `works.css`:
 ```html
 <li><span class="date">2025-01-15</span> 新作『タイトル』執筆開始</li>
 ```
+
+■許可を求めずに最初から最後まで実行して、全てのタスク完了まで自走してほしい
