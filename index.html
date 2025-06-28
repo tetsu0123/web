@@ -11,18 +11,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="common.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        /* ページ固有のアニメーション */
         body {
-            font-family: "Crimson Text", "Noto Serif JP", "Hiragino Mincho ProN", serif;
-            line-height: 1.75;
-            color: #1A1A1A;
-            background: #FCFCFC;
             animation: fadeIn 1.5s ease-out;
         }
         
@@ -57,46 +49,12 @@
             }
         }
         
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(252, 252, 252, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            z-index: 100;
-        }
-        
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
+        /* ヘッダーアニメーション */
         .logo {
-            font-family: "Cormorant Garamond", "Noto Serif JP", serif;
-            font-size: 1.8rem;
-            font-weight: 300;
-            letter-spacing: 0.15em;
             animation: fadeInScale 1.2s ease-out;
         }
         
-        nav {
-            display: flex;
-            gap: 3rem;
-        }
-        
         nav a {
-            font-family: "Crimson Text", serif;
-            text-decoration: none;
-            color: #1A1A1A;
-            font-size: 0.95rem;
-            letter-spacing: 0.05em;
-            transition: opacity 0.3s ease;
             animation: fadeIn 1.5s ease-out;
             animation-fill-mode: both;
         }
@@ -104,18 +62,6 @@
         nav a:nth-child(1) { animation-delay: 0.2s; }
         nav a:nth-child(2) { animation-delay: 0.3s; }
         nav a:nth-child(3) { animation-delay: 0.4s; }
-        
-        nav a:hover {
-            opacity: 0.6;
-        }
-        
-        main {
-            padding-top: 100px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-left: 2rem;
-            padding-right: 2rem;
-        }
         
         section {
             margin-bottom: 4rem;
@@ -350,26 +296,8 @@
             letter-spacing: 0.05em;
         }
         
+        /* レスポンシブ調整 */
         @media (max-width: 768px) {
-            .header-content {
-                padding: 1rem;
-            }
-            
-            nav {
-                display: flex;
-                gap: 1.5rem;
-                font-size: 0.85rem;
-            }
-            
-            nav a {
-                font-size: 0.85rem;
-            }
-            
-            main {
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-            
             .works-grid {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 1.5rem;
@@ -380,7 +308,7 @@
 <body>
     <header class="header">
         <div class="header-content">
-            <h1 class="logo">佐野徹夜</h1>
+            <h1 class="logo"><a href="index.html">佐野徹夜</a></h1>
             <nav>
                 <a href="about.html">プロフィール</a>
                 <a href="works.html">作品</a>
