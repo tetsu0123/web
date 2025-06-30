@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Text Merger</title>
+<style>
+*{box-sizing:border-box;} img{max-width:100%;height:auto;}
+  body{font-family:system-ui;margin:2rem}
+  #log{white-space:pre;max-height:8rem;overflow:auto;background:#f6f6f6;padding:.5rem}
+</style>
+
+<h2>テキスト統合ツール</h2>
+<input id="files" type="file" multiple accept=".txt">
+<button id="mergeBtn">統合してダウンロード</button>
+<p id="log"></p>
+
+<script>
+const filesInput = document.getElementById('files');
+const log        = document.getElementById('log');
+
+function readFileAsText(file){
+  return new Promise((res, rej)=>{
+    const fr = new FileReader();
+    fr.onload  = () => res({name:file.name, text:fr.result});
+    fr.onerror = () => rej(fr.error);
+    fr.readAsText(file);
+  });
+}
+
+document.getElementById('mergeBtn').addEventListener('click', async ()=>{
+  if(!filesInput.files.length){
+    alert('ファイルを選択してください');
+    return;
+  }
+
+  /* ★★ ここで前回のログをクリア ★★ */
+  log.textContent = '';   // ← 重要!
+
+  // 名前順にソート
+  const files = Array.from(filesInput.files)
+                .sort((a,b)=>a.name.localeCompare(b.name,'ja'));
+
+  try{
+    const contents = [];
+    for(const file of files){
+      const {text} = await readFileAsText(file);
+      contents.push(text);
+      log.textContent += `${file.name} 読込完了\n`;
+    }
+    const mergedText = contents.join('\n');
+    const blob = new Blob([mergedText], {type:'text/plain'});
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href = url;
+    a.download = 'merged.txt';
+    a.click();
+    URL.revokeObjectURL(url);
+    log.textContent += 'ダウンロードを開始しました';
+  }catch(err){
+    console.error(err);
+    alert('エラー: '+err.message);
+  }
+});
+</script>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>字下げツール（リアルタイム版）</title>
+<style>
+*{box-sizing:border-box;} img{max-width:100%;height:auto;}
+body{font:16px/1.6 system-ui,sans-serif;margin:2rem}
+textarea{width:100%;height:8rem;margin:.6rem 0;font:14px/1.5 monospace}
+.counter{font-size:.9rem;color:#666}
+</style>
+
+<h1>字下げツール</h1>
+<p class="counter" id="cnt">文字数: 0</p>
+
+<!-- 入力欄 -->
+<textarea id="in"  placeholder="ここに文章を貼ってください"></textarea>
+
+<!-- 出力欄 -->
+<textarea id="out" placeholder="結果がここに出ます"></textarea>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const $      = id => document.getElementById(id);
+  const inBox  = $('in');
+  const outBox = $('out');
+  const cnt    = $('cnt');
+
+  function convert(){
+    // 行単位で処理
+    const lines = inBox.value.split(/\r?\n/).map(line=>{
+      if(line.trim()==='')                       return line;          // 空行はそのまま
+      if(/^[「『（(〖\[]/.test(line))            return line;          // 会話行は字下げしない
+      return line.startsWith('　') ? line : '　'+line;                 // 行頭インデント
+    });
+
+    // 全文整形
+    outBox.value = lines.join('\n')
+                  .replace(/ /g,'　')            // 半角→全角置換
+                  .replace(/([！？])\s/g,'$1　'); // ！？後の空白→全角
+
+    // 文字数更新（改行除外）
+    cnt.textContent=`文字数: ${inBox.value.replace(/\n/g,'').length}`;
+  }
+
+  // 入力・削除・ドラッグ&ドロップ
+  inBox.addEventListener('input', convert);
+
+  // 貼り付け直後に値が入ってから変換
+  inBox.addEventListener('paste',()=>setTimeout(convert,0));
+
+  convert(); // ページ読み込み時も一応実行
+});
+</script>

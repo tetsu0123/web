@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>佐野徹夜 | Official Site</title>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;} img{max-width:100%;height:auto;}
+:root{
+  --bg:#FCFCFC;
+  --text:#1A1A1A;
+  --accent:#1A1A1A;
+  --hover-blue:#0A4DA2;
+  --meter-fill:#4A90A4;
+  --meter-bg:#F0F4F6;
+  --footer-bg:#2C2C2C;
+  --footer-text:#FFF;
+  --border:#E5E5E5;
+  --surface:#FFFFFF;
+  --text-light:#666;
+  --text-lighter:#999;
+  --icon-box:16px;
+}
+
+html{font-size:16px;}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:"Noto Sans JP","Inter",-apple-system,BlinkMacSystemFont,sans-serif;
+  line-height:1.75;font-size:0.95rem;
+  letter-spacing:0.02em;
+}
+
+/* 英文に対してInterフォントを適用 */
+body:lang(en), p:lang(en), li:lang(en),
+[lang="en"], .english {
+  font-family:"Inter","Noto Sans JP",-apple-system,BlinkMacSystemFont,sans-serif;
+}
+
+header,main{max-width:720px;margin:0 auto;}
+header{padding:3rem 1rem 1rem;text-align:center;}
+main{padding:2rem 1rem 0;}
+
+nav{margin-top:2rem;}
+nav a{
+  font-family:"Inter",sans-serif;font-weight:300;
+  text-transform:uppercase;letter-spacing:.15em;font-size:0.75rem;
+  color:var(--text-lighter);text-decoration:none;margin:0 1.5rem;
+  transition:all .4s ease;position:relative;
+}
+nav a::after{
+  content:'';position:absolute;bottom:-6px;left:0;width:0;height:1px;
+  background:var(--hover-blue);transition:width .4s ease;
+}
+nav a:hover{color:var(--hover-blue);}
+nav a:hover::after{width:100%;}
+
+.mobile-toggle{display:none;}
+
+.spaced{margin-top:3rem;}
+
+h1{
+  font-family:"Noto Serif JP","Yu Mincho","Hiragino Mincho ProN",serif;
+  font-weight:200;letter-spacing:0.08em;font-size:2.5rem;
+  margin:0 0 2rem;line-height:1.3;
+}
+h2{
+  font-family:"Noto Serif JP","Yu Mincho","Hiragino Mincho ProN",serif;
+  font-weight:300;letter-spacing:.08em;font-size:1.3rem;
+  margin:3rem 0 1.5rem;color:var(--text-light);
+}
+
+#works h2{
+  margin-bottom:0.2rem;
+}
+h2:first-of-type{margin-top:0;}
+h2 a{color:inherit;text-decoration:none;transition:color .3s ease;
+  font-family:"Inter",sans-serif;
+  font-weight:350;
+  text-transform:uppercase;
+  letter-spacing:0.15em;
+  font-size:1.2rem;
+}
+h2 a:hover{color:var(--hover-blue);}
+
+.works-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2rem;
+  margin-top:2rem;
+}
+
+.works-grid a{
+  display:block;
+  transition:all 0.4s ease;
+  border-radius:4px;
+  overflow:hidden;
+  background:var(--surface);
+  position:relative;
+}
+
+.works-grid a::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;bottom:0;
+  background:linear-gradient(135deg, rgba(10,77,162,0.1), rgba(74,144,164,0.1));
+  opacity:0;
+  transition:opacity 0.4s ease;
+}
+
+.works-grid a:hover{
+  transform:translateY(-6px);
+  box-shadow:0 12px 30px rgba(0,0,0,0.08);
+}
+
+.works-grid a:hover::before{
+  opacity:1;
+}
+
+.works-grid img{
+  width:100%;height:auto;display:block;
+  transition:transform 0.4s ease;
+}
+
+.works-grid a:hover img{
+  transform:scale(1.02);
+}
+
+ul{
+  list-style:none;padding:0;margin:0;
+  line-height:1.8;
+} 
+li+li{margin-top:1rem;}
+li{
+  font-size:0.9rem;
+  color:var(--text);
+  transition:all 0.6s ease;
+}
+li:hover{
+  color:var(--hover-blue);
+  transform:translateX(3px);
+}
+
+/* Style news links within the list */
+#news li a{
+  color:inherit;
+  text-decoration:none;
+  font:inherit;
+  transition:color .3s ease;
+}
+#news li a:hover{
+  color:var(--hover-blue);
+}
+
+/* ── 新作メーター（改良版）─────────────────── */
+.progress-container{
+  background:var(--surface);
+  border:1px solid rgba(229,229,229,0.4);
+  border-radius:8px;
+  padding:0.4rem;
+  margin:1.33rem 0 0.25rem;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 4px 20px rgba(0,0,0,0.02);
+}
+
+.progress-container::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:1px;
+  background:transparent;
+  opacity:0.6;
+}
+
+.progress-label{
+  font-family:"Inter",sans-serif;
+  font-size:0.7rem;
+  color:var(--text-lighter);
+  margin-bottom:0.5rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  text-align:center;
+}
+
+.progress-bar{
+  width:85%;
+  height:3px;
+  background:var(--meter-bg);
+  border-radius:2px;
+  overflow:hidden;
+  position:relative;
+  margin:0.3rem auto;
+}
+
+.progress-fill{
+  width:65%;
+  height:100%;
+  background:linear-gradient(90deg,var(--meter-fill),#6BA6CD);
+  border-radius:2px;
+  position:relative;
+  animation:progressLoad 2.5s ease-out;
+}
+
+.progress-fill::after{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;bottom:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent);
+  animation:progressShine 3s ease-in-out infinite;
+}
+
+.progress-text{
+  font-family:"Noto Sans JP",sans-serif;
+  font-size:0.8rem;
+  color:var(--text-light);
+  margin-top:0.5rem;
+  text-align:center;
+  letter-spacing:0.03em;
+}
+
+
+@keyframes progressLoad{
+  from{width:0}
+  to{width:65%}
+}
+
+@keyframes progressShine{
+  0%{transform:translateX(-100%)}
+  100%{transform:translateX(400%)}
+}
+
+/* ── フッター（改良版）────────────────────── */
+footer{
+  margin-top:0;
+  padding:2rem 0;
+}
+
+.footer-content{
+  max-width:720px;
+  margin:0 auto;
+  padding:0 1rem;
+  display:grid;
+  grid-template-columns:1fr;
+  align-items:center;
+  text-align:center;
+  gap:4rem;
+}
+
+.footer-name{
+  font-family:"Noto Serif JP","Yu Mincho","Hiragino Mincho ProN",serif;
+  font-size:1.2rem;
+  font-weight:300;
+  color:var(--text);
+  letter-spacing:0.12em;
+  margin-top:-0.5rem;
+}
+
+.footer-links{
+  display:flex;
+  flex-direction:column;
+  gap:1.5rem;
+  align-items:center;
+}
+
+.social-links{
+  display:flex;
+  gap:2.5rem;
+  align-items:center;
+}
+
+.social-links a{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  width:var(--icon-box);
+  height:var(--icon-box);
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:contain;
+  transition:opacity .4s,transform .4s;
+  opacity:.6;
+  filter:grayscale(100%);
+}
+
+.social-links a.x-icon{
+  background-image:url('x.png');
+  background-size:13px 13px;
+}
+
+.social-links a.insta-icon{
+  background-image:url('insta.png');
+}
+
+.social-links a.note-icon{
+  background-image:url('note.png');
+  background-size:12px 12px;
+}
+
+.social-links a:hover{
+  opacity:1;
+  transform:translateY(-2px);
+  filter:grayscale(0%);
+}
+
+.footer-copyright{
+  font-family:"Inter",sans-serif;
+  font-size:0.65rem;
+  color:var(--text-lighter);
+  letter-spacing:0.08em;
+  opacity:0.6;
+  text-align:right;
+}
+
+@media(max-width:768px){
+  footer{
+    margin-top:0;
+    padding:3rem 0;
+  }
+  
+  .footer-content{
+    grid-template-columns:1fr;
+    gap:3rem;
+    text-align:center;
+  }
+  
+  .footer-name{
+    font-size:1.1rem;
+  }
+  
+  .footer-links{
+    align-items:center;
+  }
+  
+  .social-links{
+    gap:2rem;
+    justify-content:center;
+  }
+  
+  .social-links a{
+    font-size:0.65rem;
+  }
+  
+  .footer-copyright{
+    text-align:center;
+  }
+}
+
+@media (max-width:768px){
+  .progress-container{
+    padding:1.5rem;
+  }
+  .works-grid{
+    grid-template-columns:repeat(3,1fr);
+    gap:1rem;
+  }
+}
+
+@media (max-width:480px){
+  nav{
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    gap:0.5rem;
+    position:relative;
+    z-index:2;
+  }
+  nav.mobile-open{display:flex;}
+
+  .mobile-toggle{
+    display:block;
+    position:absolute;
+    top:1rem;
+    right:1rem;
+    z-index:3;
+  }
+
+  nav a{
+    margin:0 0.75rem;
+    font-size:0.7rem;
+  }
+
+  .works-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <h1>佐野徹夜</h1>
+  <button class="mobile-toggle" aria-label="メニュー">☰</button>
+  <nav>
+    <a href="about.html">ABOUT</a>
+    <a href="works.html">WORKS</a>
+    <a href="news.html">NEWS</a>
+  </nav>
+</header>
+
+<main>
+  <section id="about">
+    <h2><a href="about.html">ABOUT</a></h2>
+    <p>1987年1月23日、京都府生まれ。</p>
+    <p>『君は月夜に光り輝く』でデビュー。同作は映画化された。</p>
+    <p>現在は新作長編小説を準備中。</p>
+  </section>
+
+  <section id="works" class="spaced">
+    <h2><a href="works.html">WORKS</a></h2>
+    <div class="works-grid">
+      <a href="https://www.amazon.co.jp/dp/4309031293" target="_blank" rel="noopener">
+        <img src="https://images-na.ssl-images-amazon.com/images/P/4309031293.09.LZZZZZZZ.jpg" alt="透明になれなかった僕たちのために">
+      </a>
+      <a href="https://www.amazon.co.jp/dp/4101801908" target="_blank" rel="noopener">
+        <img src="https://images-na.ssl-images-amazon.com/images/P/4101801908.09.LZZZZZZZ.jpg" alt="さよなら世界の終わり">
+      </a>
+      <a href="https://www.amazon.co.jp/dp/4049123398" target="_blank" rel="noopener">
+        <img src="https://images-na.ssl-images-amazon.com/images/P/4049123398.09.LZZZZZZZ.jpg" alt="君は月夜に光り輝く +Fragments">
+      </a>
+      <a href="https://www.amazon.co.jp/dp/4049120372" target="_blank" rel="noopener">
+        <img src="https://images-na.ssl-images-amazon.com/images/P/4049120372.09.LZZZZZZZ.jpg" alt="アオハル・ポイント">
+      </a>
+      <a href="https://www.amazon.co.jp/dp/4048934147" target="_blank" rel="noopener">
+        <img src="https://images-na.ssl-images-amazon.com/images/P/4048934147.09.LZZZZZZZ.jpg" alt="この世界に i をこめて">
+      </a>
+      <a href="https://www.amazon.co.jp/dp/4048926756" target="_blank" rel="noopener">
+        <img src="https://images-na.ssl-images-amazon.com/images/P/4048926756.09.LZZZZZZZ.jpg" alt="君は月夜に光り輝く">
+      </a>
+    </div>
+  </section>
+
+  <section id="news" class="spaced">
+    <h2><a href="news.html">NEWS</a></h2>
+    <ul>
+      <li>2025-06-13　<a href="https://www.bookbang.jp/yomyom/content/essay/dm/13746" target="_blank" rel="noopener">エッセイ〈母へ〉第16回公開「充電ができなくて」</a></li>
+      <li>2024-12-25　<a href="https://www.kadokawa.co.jp/product/322407000894/" target="_blank" rel="noopener">短編アンソロジー『君に贈る15ページ』発売、書き下ろし「わたしたちの教室」収録</a></li>
+      <li>2023-11-09　<a href="https://www.kawade.co.jp/np/isbn/9784309031293/" target="_blank" rel="noopener">長篇『透明になれなかった僕たちのために』刊行（河出書房新社）</a></li>
+    </ul>
+  </section>
+
+  <div class="progress-container">
+    <div class="progress-label">新作メーター</div>
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
+    <div class="progress-text">65% (初稿完成)</div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-content">
+    
+    <div class="footer-links">
+      <div class="social-links">
+        <a href="https://x.com/dame_murahito" target="_blank" rel="noopener" class="x-icon" title="X"></a>
+        <a href="https://www.instagram.com/tetsuya.sano123/" target="_blank" rel="noopener" class="insta-icon" title="Instagram"></a>
+        <a href="https://note.com/sano_tetsuya" target="_blank" rel="noopener" class="note-icon" title="note"></a>
+      </div>
+      <div class="footer-copyright">© 2025 Tetsuya Sano</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const nav = document.querySelector('nav');
+    // Smooth scroll behavior for navigation links
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            if (this.hash !== '') {
+                e.preventDefault();
+                const target = document.querySelector(this.hash);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            }
+            if (nav) {
+                nav.classList.remove('mobile-open');
+            }
+        });
+    });
+
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Apply fade-in animation to sections
+    const sections = document.querySelectorAll('section');
+    sections.forEach((section, index) => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(30px)';
+        section.style.transition = `opacity 0.8s ease ${index * 0.2}s, transform 0.8s ease ${index * 0.2}s`;
+        observer.observe(section);
+    });
+
+    // Enhanced works grid hover effects
+    const workItems = document.querySelectorAll('.works-grid a');
+    workItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            // Add subtle parallax effect to other items
+            workItems.forEach(otherItem => {
+                if (otherItem !== this) {
+                    otherItem.style.transform = 'translateY(2px)';
+                    otherItem.style.opacity = '0.7';
+                }
+            });
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            // Reset all items
+            workItems.forEach(otherItem => {
+                otherItem.style.transform = '';
+                otherItem.style.opacity = '';
+            });
+        });
+    });
+
+    // Progress meter enhancement
+    const progressFill = document.querySelector('.progress-fill');
+    if (progressFill) {
+        // Add click interaction
+        progressFill.parentElement.addEventListener('click', function() {
+            progressFill.style.animation = 'none';
+            setTimeout(() => {
+                progressFill.style.animation = 'progressLoad 2.5s ease-out';
+            }, 50);
+        });
+        
+        // Pulse effect on scroll into view
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    progressFill.style.animation = 'progressLoad 2.5s ease-out';
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        progressObserver.observe(progressFill.parentElement);
+    }
+
+    // Subtle parallax effect for header
+    let ticking = false;
+    function updateParallax() {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * -0.3;
+        const header = document.querySelector('header');
+        if (header) {
+            header.style.transform = `translateY(${rate}px)`;
+        }
+        ticking = false;
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(updateParallax);
+            ticking = true;
+        }
+    }
+
+    window.addEventListener('scroll', requestTick);
+
+    // Add smooth hover transitions to list items (removed - now handled by CSS)
+
+    // Typewriter effect for main title (subtle)
+    const mainTitle = document.querySelector('h1');
+    if (mainTitle) {
+        const text = mainTitle.textContent;
+        mainTitle.style.opacity = '0';
+        
+        setTimeout(() => {
+            mainTitle.style.opacity = '1';
+            mainTitle.style.transition = 'opacity 1s ease';
+        }, 300);
+    }
+
+    // Add floating animation to footer
+    const footer = document.querySelector('footer');
+    if (footer) {
+        const footerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    footer.style.opacity = '1';
+                    footer.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        footer.style.opacity = '0';
+        footer.style.transform = 'translateY(50px)';
+        footer.style.transition = 'opacity 1s ease, transform 1s ease';
+        footerObserver.observe(footer);
+    }
+
+    const mobileToggle = document.querySelector('.mobile-toggle');
+    if (mobileToggle && nav) {
+        mobileToggle.addEventListener('click', () => {
+            nav.classList.toggle('mobile-open');
+        });
+    }
+});
+</script>
+</body>
+</html>

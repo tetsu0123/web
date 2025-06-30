@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Clean-Paste Live</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{box-sizing:border-box;} img{max-width:100%;height:auto;}
+body{font:16px/1.6 system-ui,sans-serif;margin:2rem;max-width:44rem}
+textarea{width:100%;min-height:10rem;margin:.8rem 0;padding:.6rem;font:15px/1.6 monospace}
+textarea[readonly]{background:#f7f7f7}
+h1{font-size:1.1rem;margin:0 0 .5rem}
+</style>
+</head>
+<body>
+
+<h1>無駄な改行削除</h1>
+<textarea id="in"  placeholder="文章入力"></textarea>
+<textarea id="out" placeholder="変換結果がリアルタイムに出ます" readonly></textarea>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const input  = $('in');
+  const output = $('out');
+
+  // --- HTML ➜ プレーンテキスト 変換ロジック ----------------------------
+  const normalize = raw => {
+    const doc = new DOMParser().parseFromString(raw, 'text/html'); // :contentReference[oaicite:0]{index=0}
+    const walk = node => {
+      let t = '';
+      node.childNodes.forEach(n => {
+        if (n.nodeType === 3)              t += n.textContent;       // TEXT_NODE
+        else if (n.nodeName === 'BR')      t += '\n';
+        else if (n.nodeName === 'P')       t += walk(n) + '\n';
+        else                               t += walk(n);             // span,strong,li,... 
+      });
+      return t;
+    };
+    return walk(doc.body)
+           .replace(/[ \t]+\n/g, '\n')     // 行末空白カット :contentReference[oaicite:1]{index=1}
+           .replace(/\r?\n{2,}/g, '\n')    // 連続改行→１本  :contentReference[oaicite:2]{index=2}
+           .trim();
+  };
+
+  // --- 入力があったら即変換 ---------------------------------------------
+  const convert = () => { output.value = normalize(input.value); };
+  input.addEventListener('input', convert);           // :contentReference[oaicite:3]{index=3}
+
+  // ページを開いた瞬間に１回だけ走らせ、貼り付け前の挙動も保証
+  convert();
+})();
+</script>
+</body>
+</html>
