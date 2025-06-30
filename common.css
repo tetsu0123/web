@@ -1,5 +1,15 @@
 /* 共通スタイル - 全ページで使用 */
 
+/* CSS変数 */
+:root {
+    --bg: #FCFCFC;
+    --text: #1A1A1A;
+    --accent: #1A1A1A;
+    --hover-blue: #0A4DA2;
+    --text-light: #666;
+    --text-lighter: #999;
+}
+
 /* リセットCSS */
 * {
     margin: 0;
