@@ -599,6 +599,22 @@
                     </div>
                 </a>
                 
+                <a href="article8_microfasting.html" class="article-card">
+                    <div class="article-image" style="background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);">
+                        <span class="article-category" style="color: #8e44ad;">マイクロファスティング</span>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-date">2025年1月3日更新</div>
+                        <h3 class="article-title">マイクロファスティングの科学</h3>
+                        <p class="article-excerpt">
+                            2024年最新研究で解明された「3時間ルール」による効率的脂肪燃焼法。
+                            従来の長時間断食と同等効果を短時間で実現し、
+                            代謝率を最大18%向上させる革新的手法。
+                        </p>
+                        <span class="article-link">続きを読む →</span>
+                    </div>
+                </a>
+                
                 <a href="bmi-calculator.html" class="article-card">
                     <div class="article-image" style="background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);">
                         <span class="article-category" style="color: #9b59b6;">計算ツール</span>
