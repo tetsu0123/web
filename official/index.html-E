@@ -550,6 +550,70 @@
                         <span class="article-link">続きを読む →</span>
                     </div>
                 </a>
+                
+                <a href="article5_ketogenic_science.html" class="article-card">
+                    <div class="article-image" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);">
+                        <span class="article-category" style="color: #e74c3c;">ケトジェニック</span>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-date">2024年12月28日更新</div>
+                        <h3 class="article-title">ケトジェニックダイエットの科学</h3>
+                        <p class="article-excerpt">
+                            2024年最新研究で解明された「超効率」脂肪燃焼メカニズム。
+                            ケトン体はグルコースより21%高効率で、従来ダイエットの
+                            2.2倍の減量効果を実現。
+                        </p>
+                        <span class="article-link">続きを読む →</span>
+                    </div>
+                </a>
+                
+                <a href="article6_protein_timing.html" class="article-card">
+                    <div class="article-image" style="background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);">
+                        <span class="article-category" style="color: #3498db;">プロテイン</span>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-date">2024年12月28日更新</div>
+                        <h3 class="article-title">プロテインタイミング最適化</h3>
+                        <p class="article-excerpt">
+                            2024年最新研究で解明された筋肉合成を最大化する科学的摂取法。
+                            適切なタイミングで摂取することで、筋肉合成効率が
+                            最大25%向上することが判明。
+                        </p>
+                        <span class="article-link">続きを読む →</span>
+                    </div>
+                </a>
+                
+                <a href="article7_glp1_diet.html" class="article-card">
+                    <div class="article-image" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);">
+                        <span class="article-category" style="color: #e74c3c;">GLP-1</span>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-date">2024年12月28日更新</div>
+                        <h3 class="article-title">GLP-1ダイエットの科学</h3>
+                        <p class="article-excerpt">
+                            2024年ラスカー賞受賞の革命的減量治療法を徹底解説。
+                            患者は平均20%以上の体重減少を達成し、従来のダイエット法では
+                            不可能だった持続的な減量が実現。
+                        </p>
+                        <span class="article-link">続きを読む →</span>
+                    </div>
+                </a>
+                
+                <a href="bmi-calculator.html" class="article-card">
+                    <div class="article-image" style="background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);">
+                        <span class="article-category" style="color: #9b59b6;">計算ツール</span>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-date">2024年12月28日更新</div>
+                        <h3 class="article-title">BMI・TDEE・体脂肪率計算ツール</h3>
+                        <p class="article-excerpt">
+                            科学的に正確なBMI、TDEE、体脂肪率を算出し、
+                            あなたの健康状態と最適なダイエット計画を
+                            サポートします。
+                        </p>
+                        <span class="article-link">計算ツールを使う →</span>
+                    </div>
+                </a>
             </div>
         </section>
         
