@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中世 | 世界史重要用語集</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: white;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-5px);
+            color: white;
+            text-decoration: none;
+        }
+        
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .page-subtitle {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+        
+        .theme-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .theme-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .theme-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #a29bfe;
+            padding-bottom: 0.5rem;
+        }
+        
+        .theme-period {
+            background: #a29bfe;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        .theme-description {
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        
+        .term-card {
+            background: linear-gradient(135deg, #fff, #f8f9fa);
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .term-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border-color: #a29bfe;
+        }
+        
+        .term-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .term-reading {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .term-period {
+            background: #fd79a8;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 0.8rem;
+        }
+        
+        .term-description {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .term-importance {
+            background: #00cec9;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+        
+        .stats-bar {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #a29bfe;
+        }
+        
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+                flex-direction: column;
+            }
+            
+            .theme-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .terms-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="world-history.html" class="back-link">← 世界史用語集に戻る</a>
+        
+        <header>
+            <h1 class="page-title">
+                🏰 中世
+            </h1>
+            <p class="page-subtitle">5世紀 - 15世紀 | 封建制とイスラム世界の発展</p>
+        </header>
+        
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number">35</div>
+                <div class="stat-label">重要用語</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">3</div>
+                <div class="stat-label">主要文明圏</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1000</div>
+                <div class="stat-label">年の歴史</div>
+            </div>
+        </div>
+        
+        <div class="theme-grid">
+            <!-- ヨーロッパ中世 -->
+            <div class="theme-card">
+                <h2 class="theme-title">ヨーロッパ中世</h2>
+                <span class="theme-period">5世紀 - 15世紀</span>
+                <p class="theme-description">
+                    ゲルマン人の移住後、カロリング朝の成立から封建制度の発達まで。
+                    騎士道、十字軍、ゴシック建築など中世ヨーロッパ独特の文化が花開いた。
+                </p>
+                
+                <div class="terms-grid">
+                    <div class="term-card">
+                        <div class="term-name">封建制</div>
+                        <div class="term-reading">Feudalism</div>
+                        <span class="term-period">9-15世紀</span>
+                        <p class="term-description">
+                            土地を媒介とした主従関係に基づく社会制度。国王-諸侯-騎士の階層的な関係が特徴。
+                        </p>
+                        <span class="term-importance">最重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">カール大帝</div>
+                        <div class="term-reading">Charlemagne</div>
+                        <span class="term-period">742-814年</span>
+                        <p class="term-description">
+                            フランク王国カロリング朝の王。西ローマ皇帝として戴冠され、カロリング・ルネサンスを推進。
+                        </p>
+                        <span class="term-importance">最重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">十字軍</div>
+                        <div class="term-reading">Crusades</div>
+                        <span class="term-period">1096-1270年</span>
+                        <p class="term-description">
+                            聖地エルサレム奪回を目指したキリスト教徒の軍事遠征。8回にわたって行われた。
+                        </p>
+                        <span class="term-importance">最重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">教皇権</div>
+                        <div class="term-reading">Papal Authority</div>
+                        <span class="term-period">11-13世紀</span>
+                        <p class="term-description">
+                            ローマ教皇の権威。叙任権闘争やカノッサの屈辱で世俗権力と対立しながらも中世最高権威となった。
+                        </p>
+                        <span class="term-importance">重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">神聖ローマ帝国</div>
+                        <div class="term-reading">Holy Roman Empire</div>
+                        <span class="term-period">962-1806年</span>
+                        <p class="term-description">
+                            オットー1世が東フランク王国を基盤に成立。「神聖でもローマでも帝国でもない」と評された。
+                        </p>
+                        <span class="term-importance">重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">騎士道</div>
+                        <div class="term-reading">Chivalry</div>
+                        <span class="term-period">11-15世紀</span>
+                        <p class="term-description">
+                            騎士階級の理想的行動規範。勇気、誠実、保護精神、女性への敬意などが重視された。
+                        </p>
+                        <span class="term-importance">重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">大学</div>
+                        <div class="term-reading">University</div>
+                        <span class="term-period">11-12世紀成立</span>
+                        <p class="term-description">
+                            ボローニャ大学（1088年）、パリ大学（1150年頃）などが最初期。自由七科の教育機関。
+                        </p>
+                        <span class="term-importance">重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">スコラ哲学</div>
+                        <div class="term-reading">Scholasticism</div>
+                        <span class="term-period">11-14世紀</span>
+                        <p class="term-description">
+                            キリスト教神学とアリストテレス哲学の融合を図った学問。トマス・アクィナスが代表。
+                        </p>
+                        <span class="term-importance">重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">ゴシック建築</div>
+                        <div class="term-reading">Gothic Architecture</div>
+                        <span class="term-period">12-15世紀</span>
+                        <p class="term-description">
+                            尖頭アーチと飛び梁が特徴の建築様式。ノートルダム大聖堂、シャルトル大聖堂が代表。
+                        </p>
+                        <span class="term-importance">重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">英仏百年戦争</div>
+                        <div class="term-reading">Hundred Years' War</div>
+                        <span class="term-period">1337-1453年</span>
+                        <p class="term-description">
+                            イングランドとフランスの王位継承をめぐる戦争。ジャンヌ・ダルクの活躍で有名。
+                        </p>
+                        <span class="term-importance">重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">ペスト（黒死病）</div>
+                        <div class="term-reading">Black Death</div>
+                        <span class="term-period">1347-1351年</span>
+                        <p class="term-description">
+                            ヨーロッパ人口の3分の1を死亡させた大疫病。社会構造に大きな変化をもたらした。
+                        </p>
+                        <span class="term-importance">重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">ジャンヌ・ダルク</div>
+                        <div class="term-reading">Joan of Arc</div>
+                        <span class="term-period">1412-1431年</span>
+                        <p class="term-description">
+                            百年戦争でフランスを勝利に導いた農民出身の少女。「オルレアンの乙女」として知られる。
+                        </p>
+                        <span class="term-importance">重要</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- イスラム世界 -->
+            <div class="theme-card">
+                <h2 class="theme-title">イスラム世界</h2>
+                <span class="theme-period">7世紀 - 15世紀</span>
+                <p class="theme-description">
+                    ムハンマドによるイスラム教の成立から、ウマイヤ朝、アッバース朝の発展まで。
+                    バグダード、コルドバ、カイロなどで高度な文明が発達し、東西文化の橋渡し役を果たした。
+                </p>
+                
+                <div class="terms-grid">
+                    <div class="term-card">
+                        <div class="term-name">イスラム教</div>
+                        <div class="term-reading">Islam</div>
+                        <span class="term-period">7世紀成立</span>
+                        <p class="term-description">
+                            ムハンマドが開いた一神教。アッラーを唯一神とし、コーランを聖典とする世界宗教。
+                        </p>
+                        <span class="term-importance">最重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">ムハンマド</div>
+                        <div class="term-reading">Muhammad</div>
+                        <span class="term-period">570頃-632年</span>
+                        <p class="term-description">
+                            イスラム教の開祖。メッカで生まれ、610年頃から神の啓示を受け、新しい宗教を広めた。
+                        </p>
+                        <span class="term-importance">最重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">ウマイヤ朝</div>
+                        <div class="term-reading">Umayyad Caliphate</div>
+                        <span class="term-period">661-750年</span>
+                        <p class="term-description">
+                            ダマスカスを首都とした最初のイスラム王朝。イベリア半島からインドまで支配した。
+                        </p>
+                        <span class="term-importance">最重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">アッバース朝</div>
+                        <div class="term-reading">Abbasid Caliphate</div>
+                        <span class="term-period">750-1258年</span>
+                        <p class="term-description">
+                            バグダードを首都としたイスラム王朝。ハールーン・アッ＝ラシードの時代に最盛期を迎えた。
+                        </p>
+                        <span class="term-importance">最重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">バグダード</div>
+                        <div class="term-reading">Baghdad</div>
+                        <span class="term-period">762年建設</span>
+                        <p class="term-description">
+                            アッバース朝の首都。「知恵の館」が設けられ、古代ギリシアやインドの学問が翻訳・保存された。
+                        </p>
+                        <span class="term-importance">重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">イスラム文化</div>
+                        <div class="term-reading">Islamic Culture</div>
+                        <span class="term-period">8-13世紀</span>
+                        <p class="term-description">
+                            数学、医学、哲学、天文学が発達。アルゴリズム、錬金術、アラビア数字など多くの発明。
+                        </p>
+                        <span class="term-importance">重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">コルドバ</div>
+                        <div class="term-reading">Córdoba</div>
+                        <span class="term-period">8-11世紀</span>
+                        <p class="term-description">
+                            イベリア半島のウマイヤ朝の首都。後ウマイヤ朝時代にヨーロッパ最大の都市となった。
+                        </p>
+                        <span class="term-importance">重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">レコンキスタ</div>
+                        <div class="term-reading">Reconquista</div>
+                        <span class="term-period">718-1492年</span>
+                        <p class="term-description">
+                            キリスト教勢力によるイベリア半島の「国土回復運動」。グラナダ陥落で完了。
+                        </p>
+                        <span class="term-importance">重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">サラディン</div>
+                        <div class="term-reading">Saladin</div>
+                        <span class="term-period">1137-1193年</span>
+                        <p class="term-description">
+                            アイユーブ朝の君主。第3回十字軍でリチャード1世と戦い、エルサレムを奪回した英雄。
+                        </p>
+                        <span class="term-importance">重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">イブン・バットゥータ</div>
+                        <div class="term-reading">Ibn Battuta</div>
+                        <span class="term-period">1304-1368年</span>
+                        <p class="term-description">
+                            モロッコ出身の大旅行家。約30年かけてアフリカ、アジア、ヨーロッパを旅した。
+                        </p>
+                        <span class="term-importance">やや重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">マムルーク朝</div>
+                        <div class="term-reading">Mamluk Sultanate</div>
+                        <span class="term-period">1250-1517年</span>
+                        <p class="term-description">
+                            エジプト・シリアを支配した軍人奴隷政権。モンゴル軍や十字軍を撃退した強国。
+                        </p>
+                        <span class="term-importance">重要</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- その他の地域 -->
+            <div class="theme-card">
+                <h2 class="theme-title">その他の重要地域</h2>
+                <span class="theme-period">5世紀 - 15世紀</span>
+                <p class="theme-description">
+                    モンゴル帝国の拡大、ビザンツ帝国の継続、アジア・アフリカ諸国の発展など、
+                    ユーラシア全体で多様な文明が展開した中世世界。
+                </p>
+                
+                <div class="terms-grid">
+                    <div class="term-card">
+                        <div class="term-name">モンゴル帝国</div>
+                        <div class="term-reading">Mongol Empire</div>
+                        <span class="term-period">1206-1368年</span>
+                        <p class="term-description">
+                            チンギス・ハンが建国した史上最大の陸上帝国。ユーラシア大陸の大部分を支配した。
+                        </p>
+                        <span class="term-importance">最重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">チンギス・ハン</div>
+                        <div class="term-reading">Genghis Khan</div>
+                        <span class="term-period">1162-1227年</span>
+                        <p class="term-description">
+                            モンゴル帝国の建国者。本名テムジン。優れた軍事戦術で中国から東ヨーロッパまで征服。
+                        </p>
+                        <span class="term-importance">最重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">フビライ・ハン</div>
+                        <div class="term-reading">Kublai Khan</div>
+                        <span class="term-period">1215-1294年</span>
+                        <p class="term-description">
+                            元朝（モンゴル帝国の中国支配）の初代皇帝。マルコ・ポーロが仕えたことで有名。
+                        </p>
+                        <span class="term-importance">重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">ビザンツ帝国</div>
+                        <div class="term-reading">Byzantine Empire</div>
+                        <span class="term-period">330-1453年</span>
+                        <p class="term-description">
+                            東ローマ帝国の後継国家。コンスタンティノープルを首都とし、1000年以上続いた。
+                        </p>
+                        <span class="term-importance">重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">東西教会分裂</div>
+                        <div class="term-reading">Great Schism</div>
+                        <span class="term-period">1054年</span>
+                        <p class="term-description">
+                            キリスト教会がローマ・カトリック教会と東方正教会に決定的に分裂した事件。
+                        </p>
+                        <span class="term-importance">重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">ユスティニアヌス大帝</div>
+                        <div class="term-reading">Justinian I</div>
+                        <span class="term-period">482-565年</span>
+                        <p class="term-description">
+                            ビザンツ帝国皇帝。ローマ法大全を編纂し、ハギア・ソフィア聖堂を建設した。
+                        </p>
+                        <span class="term-importance">重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">マルコ・ポーロ</div>
+                        <div class="term-reading">Marco Polo</div>
+                        <span class="term-period">1254-1324年</span>
+                        <p class="term-description">
+                            ヴェネツィアの商人。『東方見聞録』を著し、ヨーロッパにアジアの情報を伝えた。
+                        </p>
+                        <span class="term-importance">重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">パクス・モンゴリカ</div>
+                        <div class="term-reading">Pax Mongolica</div>
+                        <span class="term-period">13-14世紀</span>
+                        <p class="term-description">
+                            モンゴル帝国による「モンゴルの平和」。シルクロード貿易が活発化し、東西交流が促進。
+                        </p>
+                        <span class="term-importance">重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">イスラム商人</div>
+                        <div class="term-reading">Muslim Merchants</div>
+                        <span class="term-period">8-15世紀</span>
+                        <p class="term-description">
+                            インド洋貿易を支配したムスリム商人たち。東南アジア、東アフリカにイスラム教を伝播。
+                        </p>
+                        <span class="term-importance">やや重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">西アフリカ金王国</div>
+                        <div class="term-reading">West African Gold Kingdoms</div>
+                        <span class="term-period">8-16世紀</span>
+                        <p class="term-description">
+                            ガーナ王国、マリ王国、ソンガイ王国など。金と塩の貿易で繁栄し、イスラム教が浸透。
+                        </p>
+                        <span class="term-importance">やや重要</span>
+                    </div>
+                    
+                    <div class="term-card">
+                        <div class="term-name">アンコール朝</div>
+                        <div class="term-reading">Angkor</div>
+                        <span class="term-period">802-1431年</span>
+                        <p class="term-description">
+                            カンボジアの王朝。アンコール・ワットとアンコール・トムの壮大な寺院群を建設。
+                        </p>
+                        <span class="term-importance">やや重要</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // カードアニメーション
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // 初期アニメーション設定
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.term-card, .theme-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+                observer.observe(card);
+            });
+        });
+        
+        // 用語カードクリック機能
+        document.querySelectorAll('.term-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const termName = this.querySelector('.term-name').textContent;
+                // TODO: 詳細ページへのリダイレクト実装
+                alert(`${termName}の詳細情報を表示します（開発中）`);
+            });
+        });
+    </script>
+</body>
+</html>
