@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Writer's Tools - 執筆支援ツール集</title>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;} img{max-width:100%;height:auto;}
+:root{
+  --bg:#FCFCFC;
+  --text:#1A1A1A;
+  --accent:#1A1A1A;
+  --hover-blue:#0A4DA2;
+  --border:#E5E5E5;
+  --surface:#FFFFFF;
+  --text-light:#666;
+  --text-lighter:#999;
+}
+
+html{font-size:16px;}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:"Noto Sans JP","Inter",-apple-system,BlinkMacSystemFont,sans-serif;
+  line-height:1.8;font-size:0.96rem;
+  letter-spacing:0.025em;
+}
+
+.container{
+  max-width:960px;
+  margin:0 auto;
+  padding:3rem 1rem;
+}
+
+h1{
+  font-family:"Inter",sans-serif;
+  font-weight:350;
+  font-size:2.5rem;
+  margin:0 0 1rem;
+  text-align:center;
+  letter-spacing:0.08em;
+  line-height:1.3;
+  text-transform:uppercase;
+}
+
+.subtitle{
+  text-align:center;
+  color:var(--text-light);
+  margin-bottom:3rem;
+  font-size:1.1rem;
+}
+
+.tools-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:2rem;
+  margin-bottom:3rem;
+}
+
+.tool-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:2rem;
+  text-decoration:none;
+  color:var(--text);
+  transition:all 0.3s ease;
+  display:block;
+}
+
+.tool-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 8px 24px rgba(0,0,0,0.1);
+  border-color:var(--hover-blue);
+}
+
+.tool-title{
+  font-family:"Noto Serif JP",serif;
+  font-size:1.2rem;
+  font-weight:400;
+  margin:0 0 0.5rem;
+  color:var(--text);
+}
+
+.tool-description{
+  font-size:0.9rem;
+  color:var(--text-light);
+  line-height:1.6;
+}
+
+.tool-category{
+  display:inline-block;
+  font-size:0.75rem;
+  text-transform:uppercase;
+  letter-spacing:0.1em;
+  color:var(--hover-blue);
+  margin-top:1rem;
+  font-weight:500;
+}
+
+.section{
+  margin:3rem 0;
+}
+
+.section-title{
+  font-family:"Noto Serif JP",serif;
+  font-size:1.5rem;
+  font-weight:400;
+  margin:0 0 2rem;
+  text-align:center;
+  position:relative;
+  padding-bottom:1rem;
+}
+
+.section-title::after{
+  content:'';
+  position:absolute;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:60px;
+  height:2px;
+  background:var(--hover-blue);
+}
+
+.back-home{
+  display:inline-block;
+  font-family:"Inter",sans-serif;
+  font-size:0.7rem;
+  font-weight:300;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:var(--text-lighter);
+  text-decoration:none;
+  margin-bottom:2rem;
+  transition:color .3s ease;
+}
+
+.back-home:hover{
+  color:var(--hover-blue);
+}
+
+.back-home::before{
+  content:"← ";
+}
+
+@media(max-width:768px){
+  .tools-grid{
+    grid-template-columns:1fr;
+    gap:1.5rem;
+  }
+  
+  h1{
+    font-size:2rem;
+  }
+  
+  .container{
+    padding:2rem 1rem;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <a href="/sano-site-modern" class="back-home">Back to Home</a>
+  
+  <h1>Writer's Tools</h1>
+  <p class="subtitle">執筆活動を支援する各種変換・整形ツール</p>
+  
+  <section class="section">
+    <div class="tools-grid">
+      <a href="henkan.html" class="tool-card">
+        <h3 class="tool-title">総合変換ツール</h3>
+        <p class="tool-description">複数の変換機能を統合した万能ツール。改行削除、字下げ、文字数カウント、全角変換を一箇所で実行。</p>
+        <span class="tool-category">Main Tool</span>
+      </a>
+      
+      <a href="mojisuu.html" class="tool-card">
+        <h3 class="tool-title">文字数カウンタ</h3>
+        <p class="tool-description">原稿の文字数をリアルタイムでカウント。空白・改行を除いた純粋な文字数と原稿用紙換算を表示。</p>
+        <span class="tool-category">Counting</span>
+      </a>
+      
+      <a href="jisage.html" class="tool-card">
+        <h3 class="tool-title">字下げツール</h3>
+        <p class="tool-description">段落の先頭に全角スペースを自動挿入。日本語文章の正しい体裁を整えます。</p>
+        <span class="tool-category">Formatting</span>
+      </a>
+      
+      <a href="kaigyousakujo.html" class="tool-card">
+        <h3 class="tool-title">改行削除ツール</h3>
+        <p class="tool-description">不要な改行を削除して文章を整形。段落の区切りは保持しながら無駄な改行を除去。</p>
+        <span class="tool-category">Cleaning</span>
+      </a>
+      
+      <a href="zenkaku.html" class="tool-card">
+        <h3 class="tool-title">半角→全角変換</h3>
+        <p class="tool-description">半角英数字を全角に変換。日本語文章における統一感のある表記を実現。</p>
+        <span class="tool-category">Conversion</span>
+      </a>
+      
+      <a href="texttohtml.html" class="tool-card">
+        <h3 class="tool-title">テキスト→HTML変換</h3>
+        <p class="tool-description">プレーンテキストをHTMLに変換。改行をbrタグに、段落をpタグに自動変換。</p>
+        <span class="tool-category">HTML</span>
+      </a>
+      <a href="txttougou.html" class="tool-card">
+        <h3 class="tool-title">テキスト統合</h3>
+        <p class="tool-description">複数のテキストファイルを一つに統合。章ごとに分かれた原稿をまとめる際に便利。</p>
+        <span class="tool-category">File Operation</span>
+      </a>
+      
+      <a href="pdfketugou.html" class="tool-card">
+        <h3 class="tool-title">PDF結合</h3>
+        <p class="tool-description">複数のPDFファイルを一つのファイルに結合。原稿の提出や配布に便利。</p>
+        <span class="tool-category">PDF</span>
+      </a>
+      
+      <a href="hozon.html" class="tool-card">
+        <h3 class="tool-title">データ保存</h3>
+        <p class="tool-description">作業中のテキストを一時保存。ブラウザのローカルストレージを利用した簡易保存機能。</p>
+        <span class="tool-category">Storage</span>
+      </a>
+      <a href="scenario.html" class="tool-card">
+        <h3 class="tool-title">シナリオフォーマット</h3>
+        <p class="tool-description">脚本・シナリオ執筆のための専用フォーマットツール。ト書きや台詞の整形に対応。</p>
+        <span class="tool-category">Screenplay</span>
+      </a>
+      
+    </div>
+  </section>
+</div>
+</body>
+</html>
