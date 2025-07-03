@@ -1,0 +1,2763 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界史重要用語集 - 統合版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --light-bg: #ecf0f1;
+            --white: #ffffff;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --border-color: #bdc3c7;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: 'Hiragino Kaku Gothic Pro', 'Yu Gothic', 'Meiryo', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--warning-color);
+        }
+
+        .search-section {
+            background: var(--white);
+            padding: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .search-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        #searchInput {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+        }
+
+        #searchInput:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .search-btn {
+            padding: 12px 24px;
+            background: var(--accent-color);
+            color: var(--white);
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-btn:hover {
+            background: #2980b9;
+        }
+
+        .navigation {
+            background: var(--white);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .nav-tab {
+            padding: 8px 16px;
+            background: var(--light-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            background: var(--accent-color);
+            color: var(--white);
+            border-color: var(--accent-color);
+        }
+
+        main {
+            padding: 2rem 0;
+        }
+
+        .category-section {
+            background: var(--white);
+            margin-bottom: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: var(--white);
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .category-count {
+            background: var(--warning-color);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .category-content {
+            padding: 1.5rem;
+            display: none;
+        }
+
+        .category-content.active {
+            display: block;
+        }
+
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .term-card {
+            background: var(--light-bg);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            border-left: 4px solid var(--accent-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .term-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .term-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .term-description {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .search-container {
+                flex-direction: column;
+            }
+
+            .nav-tabs {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+            }
+
+            .terms-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>世界史重要用語集</h1>
+            <p class="subtitle">包括的な歴史用語データベース</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">730+</span>
+                    <span>総用語数</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">11</span>
+                    <span>カテゴリー</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">6</span>
+                    <span>時代区分</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="search-section">
+        <div class="container">
+            <a href="../world-history.html" class="back-link">← メインページに戻る</a>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="用語を検索...">
+                <button onclick="searchTerms()" class="search-btn">検索</button>
+                <button onclick="clearSearch()" class="search-btn" style="background: var(--text-light);">クリア</button>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navigation">
+        <div class="container">
+            <div class="nav-tabs">
+                <div class="nav-tab active" onclick="showCategory('all')">すべて</div>
+                <div class="nav-tab" onclick="showCategory('ancient')">古代文明</div>
+                <div class="nav-tab" onclick="showCategory('classical')">古典古代</div>
+                <div class="nav-tab" onclick="showCategory('medieval')">中世</div>
+                <div class="nav-tab" onclick="showCategory('early-modern')">近世</div>
+                <div class="nav-tab" onclick="showCategory('modern')">近現代</div>
+                <div class="nav-tab" onclick="showCategory('contemporary')">現代史</div>
+                <div class="nav-tab" onclick="showCategory('women-labor')">女性・労働史</div>
+                <div class="nav-tab" onclick="showCategory('science-tech')">科学技術史</div>
+                <div class="nav-tab" onclick="showCategory('economics')">経済史</div>
+                <div class="nav-tab" onclick="showCategory('religion')">宗教・思想史</div>
+                <div class="nav-tab" onclick="showCategory('culture')">文化・芸術史</div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <!-- 古代文明 (60用語) -->
+            <div class="category-section" data-category="ancient">
+                <div class="category-header" onclick="toggleCategory('ancient')">
+                    <div class="category-title">古代文明</div>
+                    <div class="category-count">60用語</div>
+                </div>
+                <div class="category-content active">
+                    <div class="terms-grid">
+                        <div class="term-card">
+                            <div class="term-name">メソポタミア文明</div>
+                            <div class="term-description">紀元前3500年頃から始まった、ティグリス川とユーフラテス川の間の地域で発達した世界最古の文明の一つ。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">古代エジプト</div>
+                            <div class="term-description">ナイル川流域で発達した古代文明。ピラミッドやファラオの統治で知られる。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">インダス文明</div>
+                            <div class="term-description">紀元前2600年頃から紀元前1900年頃にかけて、インダス川流域で栄えた古代文明。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">黄河文明</div>
+                            <div class="term-description">中国の黄河流域で発達した古代文明。中国文明の起源とされる。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">シュメール</div>
+                            <div class="term-description">メソポタミア南部で栄えた古代文明。楔形文字や都市国家制度を発達させた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">バビロニア</div>
+                            <div class="term-description">古代メソポタミアの王国。ハンムラビ法典で有名。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">アッシリア</div>
+                            <div class="term-description">メソポタミア北部を中心とした古代帝国。強力な軍事力で知られる。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ヒッタイト</div>
+                            <div class="term-description">小アジア（現在のトルコ）を中心とした古代王国。鉄器の使用で有名。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">フェニキア</div>
+                            <div class="term-description">地中海東岸の都市国家群。海上貿易とアルファベットの原型の発明で知られる。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ヘブライ人</div>
+                            <div class="term-description">古代パレスチナの民族。ユダヤ教を創始し、旧約聖書を残した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ピラミッド</div>
+                            <div class="term-description">古代エジプトのファラオの墓として建設された巨大な石造建築物。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ファラオ</div>
+                            <div class="term-description">古代エジプトの王の称号。神格化された絶対君主。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ヒエログリフ</div>
+                            <div class="term-description">古代エジプトで使用された象形文字。神聖文字とも呼ばれる。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ロゼッタストーン</div>
+                            <div class="term-description">ヒエログリフ解読の鍵となった古代エジプトの石碑。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ミイラ</div>
+                            <div class="term-description">古代エジプトで行われた死体保存技術とその結果作られた保存遺体。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ハラッパー</div>
+                            <div class="term-description">インダス文明の代表的な都市遺跡の一つ。計画的な都市設計で有名。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">モヘンジョ・ダロ</div>
+                            <div class="term-description">インダス文明の代表的な都市遺跡。高度な排水システムを持っていた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">殷</div>
+                            <div class="term-description">中国最古の王朝の一つ。甲骨文字や青銅器文化で知られる。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">周</div>
+                            <div class="term-description">殷を滅ぼして中国を統一した王朝。天命思想や封建制を発達させた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">甲骨文字</div>
+                            <div class="term-description">殷の時代に使用された漢字の祖形。亀の甲羅や動物の骨に刻まれた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">楔形文字</div>
+                            <div class="term-description">メソポタミアで発達した世界最古の文字の一つ。くさび形の記号で構成される。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ハンムラビ法典</div>
+                            <div class="term-description">バビロニアのハンムラビ王が制定した世界最古の成文法の一つ。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ジッグラト</div>
+                            <div class="term-description">メソポタミアの神殿建築。階段状に積み上げられた構造が特徴。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ギルガメシュ叙事詩</div>
+                            <div class="term-description">メソポタミアの英雄叙事詩。世界最古の文学作品の一つ。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">青銅器</div>
+                            <div class="term-description">銅と錫の合金で作られた器具。古代文明の技術発展を示す重要な指標。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">鉄器</div>
+                            <div class="term-description">鉄を主原料とする器具。青銅器時代の後に広まった。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">都市国家</div>
+                            <div class="term-description">都市とその周辺地域を統治する小規模な独立国家。メソポタミアや古代ギリシアで発達。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">神政政治</div>
+                            <div class="term-description">神や神の代理人が統治する政治制度。古代文明で広く見られた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">多神教</div>
+                            <div class="term-description">複数の神々を信仰する宗教形態。古代文明の多くで見られた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">一神教</div>
+                            <div class="term-description">唯一の神を信仰する宗教形態。ヘブライ人から始まった。</div>
+                        </div>
+                        <!-- 東南アジア古代文明 -->
+                        <div class="term-card">
+                            <div class="term-name">扶南</div>
+                            <div class="term-description">1世紀から7世紀にかけてメコン川流域で栄えた古代東南アジア最初の大国。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ドヴァーラヴァティー</div>
+                            <div class="term-description">6世紀から11世紀にかけてタイ中部で栄えたモン族の仏教王国。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">シュリーヴィジャヤ</div>
+                            <div class="term-description">7世紀から13世紀にかけてスマトラ島を中心に栄えた海上貿易国家。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">マジャパヒト</div>
+                            <div class="term-description">13世紀から16世紀にかけてジャワ島で栄えたヒンドゥー・仏教王国。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ボロブドゥール</div>
+                            <div class="term-description">8世紀頃にジャワ島に建設された世界最大級の仏教遺跡。</div>
+                        </div>
+                        <!-- 古代アメリカ文明 -->
+                        <div class="term-card">
+                            <div class="term-name">オルメカ文明</div>
+                            <div class="term-description">紀元前1200年頃からメキシコ湾岸で栄えた中米最古の文明。巨大な石頭像で有名。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">テオティワカン</div>
+                            <div class="term-description">1世紀から7世紀にかけてメキシコ中央高原で栄えた古代都市文明。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">マヤ文明</div>
+                            <div class="term-description">3世紀から9世紀にかけて中米で栄えた文明。高度な天文学と文字体系を発達させた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">チャビン文化</div>
+                            <div class="term-description">紀元前900年頃からペルー高地で栄えた南米最古の文明の一つ。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ナスカ文化</div>
+                            <div class="term-description">1世紀から8世紀にかけてペルー南部で栄えた文化。巨大な地上絵で有名。</div>
+                        </div>
+                        <!-- 古代アフリカ文明 -->
+                        <div class="term-card">
+                            <div class="term-name">クシュ王国</div>
+                            <div class="term-description">紀元前1070年頃から350年頃まで栄えたヌビア（現在のスーダン）の王国。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">アクスム王国</div>
+                            <div class="term-description">1世紀から8世紀にかけてエチオピア高原で栄えた古代王国。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ノク文化</div>
+                            <div class="term-description">紀元前1000年頃から200年頃にかけて西アフリカで栄えた鉄器文化。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">カルタゴ</div>
+                            <div class="term-description">北アフリカのチュニジアを中心とした古代フェニキア系都市国家。ローマと抗争。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">メロエ</div>
+                            <div class="term-description">クシュ王国の首都。鉄器生産の中心地として栄えた。</div>
+                        </div>
+                        <!-- 古代の技術と文化 -->
+                        <div class="term-card">
+                            <div class="term-name">農業革命</div>
+                            <div class="term-description">新石器時代に起こった狩猟採集から農業への転換。人類文明の基盤となった。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">車輪</div>
+                            <div class="term-description">紀元前3500年頃にメソポタミアで発明された重要な技術。交通と運搬を革命化。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">製鉄技術</div>
+                            <div class="term-description">鉄を抽出・加工する技術。ヒッタイトが初期に発達させ、その後世界に広まった。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">暦</div>
+                            <div class="term-description">時間を体系的に区分する制度。古代エジプトやメソポタミアで発達。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">貨幣</div>
+                            <div class="term-description">交換手段として使用される物品。リディアで世界初の金属貨幣が作られた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">灌漑</div>
+                            <div class="term-description">人工的に水を農地に供給するシステム。古代文明の農業発展の基礎。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">航海術</div>
+                            <div class="term-description">船舶による航行技術。フェニキア人やポリネシア人が高度に発達させた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">天文学</div>
+                            <div class="term-description">天体の運動を観測・研究する学問。古代バビロニアやマヤで発達。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">数学</div>
+                            <div class="term-description">数量・図形・構造を扱う学問。古代エジプトやメソポタミアで発達。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">医学</div>
+                            <div class="term-description">病気の治療・予防を扱う学問。古代エジプトやメソポタミアで発達。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 古典古代 (50用語) -->
+            <div class="category-section" data-category="classical">
+                <div class="category-header" onclick="toggleCategory('classical')">
+                    <div class="category-title">古典古代</div>
+                    <div class="category-count">50用語</div>
+                </div>
+                <div class="category-content">
+                    <div class="terms-grid">
+                        <div class="term-card">
+                            <div class="term-name">古代ギリシア</div>
+                            <div class="term-description">紀元前8世紀から紀元前146年まで続いた古代地中海文明。民主政治と哲学の発達で知られる。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">古代ローマ</div>
+                            <div class="term-description">紀元前753年から476年（西ローマ帝国滅亡）まで続いた古代地中海帝国。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">アテネ</div>
+                            <div class="term-description">古代ギリシアの都市国家。世界初の民主政治が発達した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">スパルタ</div>
+                            <div class="term-description">古代ギリシアの軍事的都市国家。厳格な軍事教育で知られる。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">アレクサンドロス大王</div>
+                            <div class="term-description">マケドニア王国の王。大帝国を築き、ヘレニズム文化の拡散に貢献した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ソクラテス</div>
+                            <div class="term-description">古代ギリシアの哲学者。「無知の知」で有名。西洋哲学の基礎を築いた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">プラトン</div>
+                            <div class="term-description">古代ギリシアの哲学者。アカデメイアを設立し、イデア論を提唱した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">アリストテレス</div>
+                            <div class="term-description">古代ギリシアの哲学者。リュケイオンを設立し、多分野にわたる学問体系を構築。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ペルシア戦争</div>
+                            <div class="term-description">紀元前5世紀にギリシア諸都市とペルシア帝国の間で行われた戦争。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ペロポネソス戦争</div>
+                            <div class="term-description">紀元前5世紀後半にアテネとスパルタの間で行われた戦争。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">カエサル</div>
+                            <div class="term-description">古代ローマの政治家・軍人。ガリア戦争の勝利者で、独裁官となった。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">アウグストゥス</div>
+                            <div class="term-description">ローマ帝国初代皇帝。オクタウィアヌスの皇帝名。パクス・ロマーナの始まり。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">パクス・ロマーナ</div>
+                            <div class="term-description">ローマ帝国の平和時代。約200年間続いた安定と繁栄の時代。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ポエニ戦争</div>
+                            <div class="term-description">ローマとカルタゴの間で行われた3度の戦争。ハンニバルの活躍で有名。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ハンニバル</div>
+                            <div class="term-description">カルタゴの将軍。第二次ポエニ戦争でアルプス越えを敢行した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">コロッセウム</div>
+                            <div class="term-description">ローマ帝国時代に建設された円形闘技場。剣闘士の試合が行われた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">パンテオン</div>
+                            <div class="term-description">ローマにある古代ローマ建築の傑作。全ての神々を祀る神殿。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ローマ法</div>
+                            <div class="term-description">古代ローマで発達した法体系。後の法学の基礎となった。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">共和政</div>
+                            <div class="term-description">王政に代わってローマで発達した政治制度。元老院と執政官が中心。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">元老院</div>
+                            <div class="term-description">古代ローマの政治機関。貴族出身者で構成される諮問機関。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">執政官</div>
+                            <div class="term-description">ローマ共和政の最高職。2名が1年の任期で選出された。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">属州</div>
+                            <div class="term-description">ローマが征服した地域の行政区画。総督によって統治された。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ラティフンディア</div>
+                            <div class="term-description">古代ローマの大土地所有制。奴隷労働による大規模農業経営。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">剣闘士</div>
+                            <div class="term-description">古代ローマで観客の前で戦うことを職業とした戦士。多くは奴隷や囚人。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ストア派</div>
+                            <div class="term-description">古代ギリシア・ローマの哲学学派。運命への服従と道徳的生活を重視。</div>
+                        </div>
+                        <!-- 古代ペルシア -->
+                        <div class="term-card">
+                            <div class="term-name">アケメネス朝ペルシア</div>
+                            <div class="term-description">紀元前6世紀から紀元前4世紀まで存在した古代オリエント最大の帝国。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">キュロス2世</div>
+                            <div class="term-description">アケメネス朝ペルシアの創始者。バビロン捕囚からユダヤ人を解放した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ダレイオス1世</div>
+                            <div class="term-description">アケメネス朝ペルシアの王。行政制度を整備し、ペルセポリスを建設。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ペルセポリス</div>
+                            <div class="term-description">アケメネス朝ペルシアの首都。壮大な宮殿遺跡で知られる。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ゾロアスター教</div>
+                            <div class="term-description">古代ペルシアで興った宗教。善悪二元論と最後の審判を説く。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">サトラップ制</div>
+                            <div class="term-description">アケメネス朝ペルシアの地方行政制度。各地方を総督（サトラップ）が統治。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">王の道</div>
+                            <div class="term-description">アケメネス朝ペルシアが整備した道路網。駅伝制による情報伝達システム。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">イッソスの戦い</div>
+                            <div class="term-description">紀元前333年にアレクサンドロス大王がダレイオス3世を破った戦い。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ガウガメラの戦い</div>
+                            <div class="term-description">紀元前331年の戦い。アレクサンドロス大王がペルシア帝国を決定的に破った。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">不死隊</div>
+                            <div class="term-description">アケメネス朝ペルシアの精鋭部隊。常に1万人の定員を維持した。</div>
+                        </div>
+                        <!-- ヘレニズム文化 -->
+                        <div class="term-card">
+                            <div class="term-name">ヘレニズム</div>
+                            <div class="term-description">アレクサンドロス大王の東方遠征後に成立したギリシア文化とオリエント文化の融合文化。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">アレクサンドリア</div>
+                            <div class="term-description">エジプトのヘレニズム都市。古代最大の学術・文化の中心地。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ムセイオン</div>
+                            <div class="term-description">アレクサンドリアにあった研究機関。古代最大の図書館を併設。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">エラトステネス</div>
+                            <div class="term-description">ヘレニズム時代の学者。地球の大きさを初めて測定した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">アルキメデス</div>
+                            <div class="term-description">ヘレニズム時代の数学者・物理学者。浮力の原理を発見。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ユークリッド</div>
+                            <div class="term-description">ヘレニズム時代の数学者。「幾何学原論」を著し、幾何学の基礎を確立。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">セレウコス朝</div>
+                            <div class="term-description">アレクサンドロス大王の死後、西アジアに成立したヘレニズム王国。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">プトレマイオス朝</div>
+                            <div class="term-description">アレクサンドロス大王の死後、エジプトに成立したヘレニズム王国。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">アンティゴノス朝</div>
+                            <div class="term-description">アレクサンドロス大王の死後、マケドニアに成立したヘレニズム王国。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">バクトリア</div>
+                            <div class="term-description">中央アジアに成立したギリシア系王国。東西文化交流の拠点。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ガンダーラ美術</div>
+                            <div class="term-description">ヘレニズム文化と仏教が融合した美術様式。現在のアフガニスタン・パキスタン地域。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">エピクロス派</div>
+                            <div class="term-description">ヘレニズム時代の哲学学派。快楽主義の哲学を説いた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">犬儒派</div>
+                            <div class="term-description">ヘレニズム時代の哲学学派。禁欲的な生活と社会批判で知られる。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">懐疑派</div>
+                            <div class="term-description">ヘレニズム時代の哲学学派。あらゆる知識の確実性を疑った。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">コイネー</div>
+                            <div class="term-description">ヘレニズム時代の共通ギリシア語。地中海世界の共通語として使用。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 中世 (70用語) -->
+            <div class="category-section" data-category="medieval">
+                <div class="category-header" onclick="toggleCategory('medieval')">
+                    <div class="category-title">中世</div>
+                    <div class="category-count">70用語</div>
+                </div>
+                <div class="category-content">
+                    <div class="terms-grid">
+                        <!-- ヨーロッパ中世 -->
+                        <div class="term-card">
+                            <div class="term-name">ビザンツ帝国</div>
+                            <div class="term-description">東ローマ帝国の通称。395年から1453年まで続いた。コンスタンティノープルを首都とした。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">フランク王国</div>
+                            <div class="term-description">5世紀から987年まで存在した西ヨーロッパの王国。カール大帝の時代に最盛期を迎えた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">カール大帝</div>
+                            <div class="term-description">フランク王国の王。800年に西ローマ皇帝として戴冠され、カロリング・ルネサンスを推進。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">神聖ローマ帝国</div>
+                            <div class="term-description">962年から1806年まで存在したヨーロッパの政治体。ドイツを中心とした地域を統治。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">封建制</div>
+                            <div class="term-description">中世ヨーロッパの社会制度。土地と引き換えに軍事的奉仕を行う主従関係に基づく。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">騎士</div>
+                            <div class="term-description">中世ヨーロッパの戦士階級。封建制の下で領主に軍事的奉仕を行った。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">荘園制</div>
+                            <div class="term-description">中世ヨーロッパの農業経営制度。領主が農民を支配し、自給自足的な経済を営んだ。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">十字軍</div>
+                            <div class="term-description">11世紀から13世紀にかけてキリスト教徒がイスラム教徒から聖地エルサレムを奪還しようとした軍事遠征。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">教皇権</div>
+                            <div class="term-description">ローマ教皇の権威。中世ヨーロッパで世俗権力との対立を繰り返した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">叙任権闘争</div>
+                            <div class="term-description">11-12世紀にかけて教皇と皇帝の間で聖職者の任命権をめぐって行われた争い。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">グレゴリウス7世</div>
+                            <div class="term-description">11世紀の教皇。教皇権の確立に努め、神聖ローマ皇帝ハインリヒ4世と対立。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">カノッサの屈辱</div>
+                            <div class="term-description">1077年、神聖ローマ皇帝ハインリヒ4世が教皇グレゴリウス7世に屈服した事件。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ゴシック建築</div>
+                            <div class="term-description">12世紀半ばから16世紀にかけてヨーロッパで発達した建築様式。尖頭アーチと飛梁が特徴。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ロマネスク建築</div>
+                            <div class="term-description">10世紀から12世紀にかけてヨーロッパで発達した建築様式。厚い壁と半円アーチが特徴。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">スコラ学</div>
+                            <div class="term-description">中世ヨーロッパの神学・哲学。アリストテレス哲学とキリスト教神学の融合を図った。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">トマス・アクィナス</div>
+                            <div class="term-description">13世紀のスコラ学者。「神学大全」を著し、アリストテレス哲学とキリスト教神学を統合。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ダンテ</div>
+                            <div class="term-description">13-14世紀のイタリアの詩人。「神曲」の作者として知られる。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">大学</div>
+                            <div class="term-description">12世紀頃からヨーロッパで成立した高等教育機関。ボローニャ大学、パリ大学などが代表的。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ハンザ同盟</div>
+                            <div class="term-description">13-17世紀にかけて北海・バルト海沿岸の商業都市が結成した商業同盟。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ギルド</div>
+                            <div class="term-description">中世ヨーロッパの手工業者や商人の同業組合。品質管理と利益保護を目的とした。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">百年戦争</div>
+                            <div class="term-description">1337年から1453年までイングランドとフランスの間で行われた戦争。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ジャンヌ・ダルク</div>
+                            <div class="term-description">百年戦争中にフランスを勝利に導いた少女。神の啓示を受けたと主張した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ペスト</div>
+                            <div class="term-description">14世紀にヨーロッパで大流行した疫病。「黒死病」とも呼ばれ、人口の3分の1が死亡。</div>
+                        </div>
+                        <!-- イスラム世界 -->
+                        <div class="term-card">
+                            <div class="term-name">イスラム教</div>
+                            <div class="term-description">7世紀にムハンマドが創始した一神教。コーランを聖典とし、アラビア半島から世界に広まった。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ムハンマド</div>
+                            <div class="term-description">イスラム教の創始者。610年頃から神の啓示を受け、イスラム教を説いた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">コーラン</div>
+                            <div class="term-description">イスラム教の聖典。ムハンマドが受けた神の啓示をまとめた書物。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">カリフ</div>
+                            <div class="term-description">イスラム教の指導者。ムハンマドの後継者として宗教・政治の最高権威を持った。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ウマイヤ朝</div>
+                            <div class="term-description">661年から750年まで続いたイスラム王朝。ダマスクスを首都とし、イスラム帝国を拡大。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">アッバース朝</div>
+                            <div class="term-description">750年から1258年まで続いたイスラム王朝。バグダードを首都とし、イスラム文化が繁栄。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">バグダード</div>
+                            <div class="term-description">アッバース朝の首都。「平安の都」とも呼ばれ、イスラム文化の中心地として栄えた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">後ウマイヤ朝</div>
+                            <div class="term-description">756年から1031年までイベリア半島で存続したイスラム王朝。コルドバを首都とした。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ファーティマ朝</div>
+                            <div class="term-description">909年から1171年まで北アフリカ・エジプトで存続したシーア派イスラム王朝。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">セルジューク朝</div>
+                            <div class="term-description">11-12世紀に西アジアを支配したトルコ系イスラム王朝。十字軍と戦った。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">アイユーブ朝</div>
+                            <div class="term-description">12-13世紀にエジプト・シリアを支配したイスラム王朝。サラディンで有名。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">サラディン</div>
+                            <div class="term-description">アイユーブ朝の君主。第3回十字軍と戦い、エルサレムを奪還した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">マムルーク朝</div>
+                            <div class="term-description">1250年から1517年までエジプト・シリアを支配した軍事政権。奴隷軍人が支配階級。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">イスラム科学</div>
+                            <div class="term-description">8-13世紀にかけてイスラム世界で発達した科学。古代ギリシアの学問を継承・発展。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">イブン・シーナー</div>
+                            <div class="term-description">10-11世紀の医学者・哲学者。「医学典範」を著し、医学の発展に貢献。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">イブン・ルシュド</div>
+                            <div class="term-description">12世紀のイスラム哲学者。アリストテレス哲学の注釈で知られる。</div>
+                        </div>
+                        <!-- 中国中世 -->
+                        <div class="term-card">
+                            <div class="term-name">隋</div>
+                            <div class="term-description">581年から618年まで続いた中国の王朝。南北朝を統一し、大運河を建設。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">唐</div>
+                            <div class="term-description">618年から907年まで続いた中国の王朝。シルクロード貿易で繁栄し、国際的な帝国を築いた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">太宗</div>
+                            <div class="term-description">唐の第2代皇帝。貞観の治と呼ばれる善政で知られる。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">則天武后</div>
+                            <div class="term-description">中国史上唯一の女性皇帝。690年から705年まで武周朝を建てた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">安史の乱</div>
+                            <div class="term-description">755年から763年にかけて起こった唐の大乱。安禄山と史思明による反乱。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">宋</div>
+                            <div class="term-description">960年から1279年まで続いた中国の王朝。商業の発達と科学技術の進歩で知られる。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">遼</div>
+                            <div class="term-description">916年から1125年まで存在した契丹族の王朝。中国北部を支配。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">金</div>
+                            <div class="term-description">1115年から1234年まで存在した女真族の王朝。宋と対立した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">元</div>
+                            <div class="term-description">1271年から1368年まで続いたモンゴル族の王朝。中国全土を支配した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">科挙</div>
+                            <div class="term-description">中国の官僚登用試験制度。隋代に始まり、実力主義に基づく人材登用を行った。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">朱子学</div>
+                            <div class="term-description">宋代に朱熹が体系化した儒教哲学。日本・朝鮮にも大きな影響を与えた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">印刷術</div>
+                            <div class="term-description">中国で発明された技術。宋代に活版印刷が発達し、書物の普及に貢献。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">火薬</div>
+                            <div class="term-description">中国で発明された爆薬。宋代に軍事利用が始まり、世界に伝播。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">羅針盤</div>
+                            <div class="term-description">中国で発明された航海道具。磁石の性質を利用して方向を知る。</div>
+                        </div>
+                        <!-- インド・東南アジア -->
+                        <div class="term-card">
+                            <div class="term-name">ヴァルダナ朝</div>
+                            <div class="term-description">606年から647年まで北インドを統一した王朝。ハルシャ王で有名。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">チョーラ朝</div>
+                            <div class="term-description">9世紀から13世紀にかけて南インドを支配したタミル系王朝。海上貿易で繁栄。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ヴィジャヤナガル王国</div>
+                            <div class="term-description">14世紀から17世紀にかけて南インドに存在したヒンドゥー王国。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">デリー・スルタン朝</div>
+                            <div class="term-description">13世紀から16世紀にかけて北インドを支配したイスラム王朝群の総称。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">アンコール朝</div>
+                            <div class="term-description">9世紀から15世紀にかけてカンボジアを中心に栄えた王朝。アンコール・ワットで有名。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">アンコール・ワット</div>
+                            <div class="term-description">12世紀前半にアンコール朝が建設したヒンドゥー教寺院。世界最大の宗教建築。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">パガン朝</div>
+                            <div class="term-description">11世紀から13世紀にかけてミャンマーで栄えた王朝。上座部仏教を保護。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">スコータイ朝</div>
+                            <div class="term-description">13世紀から15世紀にかけてタイで栄えた王朝。タイ文字を制定。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">マジャパヒト王国</div>
+                            <div class="term-description">13世紀から16世紀にかけてジャワ島で栄えた王国。海上交易で繁栄。</div>
+                        </div>
+                        <!-- 日本中世 -->
+                        <div class="term-card">
+                            <div class="term-name">平安時代</div>
+                            <div class="term-description">794年から1185年まで続いた日本の時代。国風文化が発達した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">藤原氏</div>
+                            <div class="term-description">平安時代に摂関政治を行った貴族一族。藤原道長が最盛期。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">源頼朝</div>
+                            <div class="term-description">平安時代末期の武将。1192年に征夷大将軍となり、鎌倉幕府を開いた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">鎌倉幕府</div>
+                            <div class="term-description">1185年から1333年まで続いた日本初の武家政権。源頼朝が開いた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">執権政治</div>
+                            <div class="term-description">鎌倉幕府で北条氏が将軍を補佐する形で行った政治制度。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">元寇</div>
+                            <div class="term-description">1274年と1281年に元（モンゴル）が日本に侵攻した事件。神風で撃退されたとされる。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">室町幕府</div>
+                            <div class="term-description">1336年から1573年まで続いた日本の武家政権。足利尊氏が開いた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">応仁の乱</div>
+                            <div class="term-description">1467年から1477年にかけて起こった内乱。戦国時代の始まりとされる。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 近世 (80用語) -->
+            <div class="category-section" data-category="early-modern">
+                <div class="category-header" onclick="toggleCategory('early-modern')">
+                    <div class="category-title">近世</div>
+                    <div class="category-count">80用語</div>
+                </div>
+                <div class="category-content">
+                    <div class="terms-grid">
+                        <!-- ルネサンス・宗教改革 -->
+                        <div class="term-card">
+                            <div class="term-name">ルネサンス</div>
+                            <div class="term-description">14～16世紀にヨーロッパで起こった文芸復興運動。古典古代の文化復活と人間性の解放を特徴とする。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ヒューマニズム</div>
+                            <div class="term-description">ルネサンス期の思想。人間の尊厳と理性を重視し、個人の自由と発展を追求した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">レオナルド・ダ・ヴィンチ</div>
+                            <div class="term-description">ルネサンス期の芸術家・発明家。「万能の人」と呼ばれ、モナリザなど多くの傑作を残した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ミケランジェロ</div>
+                            <div class="term-description">ルネサンス期の芸術家。システィーナ礼拝堂の天井画やダビデ像で有名。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">マキアヴェッリ</div>
+                            <div class="term-description">ルネサンス期の政治思想家。「君主論」で現実主義的な政治思想を展開。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">グーテンベルク</div>
+                            <div class="term-description">ドイツの発明家。活版印刷技術を実用化し、書籍の大量生産を可能にした。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">宗教改革</div>
+                            <div class="term-description">16世紀にヨーロッパで起こったキリスト教会の改革運動。ルターが発端となった。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">マルティン・ルター</div>
+                            <div class="term-description">ドイツの宗教改革者。1517年に95か条の論題を発表し、プロテスタントの分離を導いた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">カルヴァン</div>
+                            <div class="term-description">フランス出身の宗教改革者。ジュネーブで神政政治を行い、予定説を唱えた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">対抗宗教改革</div>
+                            <div class="term-description">カトリック教会がプロテスタントに対抗して行った内部改革運動。トリエント公会議などで推進。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">イエズス会</div>
+                            <div class="term-description">イグナティウス・ロヨラが設立したカトリック修道会。対抗宗教改革と海外宣教の中心的役割。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">三十年戦争</div>
+                            <div class="term-description">1618～1648年にヨーロッパで行われた宗教戦争。ウェストファリア条約で終結。</div>
+                        </div>
+                        <!-- 絶対王政 -->
+                        <div class="term-card">
+                            <div class="term-name">絶対王政</div>
+                            <div class="term-description">16～18世紀のヨーロッパで発達した政治制度。王権神授説に基づく専制政治。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ルイ14世</div>
+                            <div class="term-description">フランス国王。「太陽王」と呼ばれ、ヴェルサイユ宮殿を建設し、絶対王政の典型を示した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ヴェルサイユ宮殿</div>
+                            <div class="term-description">ルイ14世が建設したフランス王室の離宮。絶対王政の象徴的建築。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">重商主義</div>
+                            <div class="term-description">16～18世紀の経済思想・政策。貿易収支の黒字と貴金属の蓄積を重視した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">植民地主義</div>
+                            <div class="term-description">ヨーロッパ諸国が海外に植民地を建設し、経済的利益を追求したシステム。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">東インド会社</div>
+                            <div class="term-description">ヨーロッパ諸国がアジア貿易のために設立した特許会社。イギリス・オランダが代表的。</div>
+                        </div>
+                        <!-- 科学革命 -->
+                        <div class="term-card">
+                            <div class="term-name">科学革命</div>
+                            <div class="term-description">16～17世紀にヨーロッパで起こった近代科学の成立過程。実験と数学的手法を重視。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">コペルニクス</div>
+                            <div class="term-description">ポーランドの天文学者。地動説を唱え、天文学に革命をもたらした。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ガリレイ</div>
+                            <div class="term-description">イタリアの天文学者・物理学者。望遠鏡で天体観測を行い、地動説を支持した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ケプラー</div>
+                            <div class="term-description">ドイツの天文学者。惑星運動の3法則を発見し、天体力学の基礎を築いた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ニュートン</div>
+                            <div class="term-description">イギリスの数学者・物理学者。万有引力の法則と運動法則を発見し、近代物理学を確立。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">デカルト</div>
+                            <div class="term-description">フランスの哲学者・数学者。「我思う、ゆえに我あり」で有名。近世哲学の父。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ベーコン</div>
+                            <div class="term-description">イギリスの哲学者。経験論と帰納法を重視し、近代科学方法論の基礎を築いた。</div>
+                        </div>
+                        <!-- 大航海時代 -->
+                        <div class="term-card">
+                            <div class="term-name">大航海時代</div>
+                            <div class="term-description">15～17世紀にヨーロッパ人が海洋に進出し、新大陸や新航路を発見した時代。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">コロンブス</div>
+                            <div class="term-description">イタリア出身の航海者。1492年にアメリカ大陸に到達し、新大陸発見の端緒を開いた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ヴァスコ・ダ・ガマ</div>
+                            <div class="term-description">ポルトガルの航海者。喜望峰経由でインドに到達し、ヨーロッパ・アジア間の直接航路を開拓。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">マゼラン</div>
+                            <div class="term-description">ポルトガル出身の航海者。世界初の世界一周航海を企画し、地球が球体であることを証明。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">コルテス</div>
+                            <div class="term-description">スペインの征服者（コンキスタドール）。アステカ帝国を滅ぼし、メキシコを征服。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ピサロ</div>
+                            <div class="term-description">スペインの征服者。インカ帝国を滅ぼし、ペルーを征服した。</div>
+                        </div>
+                        <!-- アメリカ大陸 -->
+                        <div class="term-card">
+                            <div class="term-name">アステカ帝国</div>
+                            <div class="term-description">14～16世紀にメキシコ中央高原で栄えた帝国。テノチティトランを首都とし、スペインに滅ぼされた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">インカ帝国</div>
+                            <div class="term-description">15～16世紀に南米アンデス地方で栄えた帝国。クスコを首都とし、スペインに滅ぼされた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">エンコミエンダ制</div>
+                            <div class="term-description">スペインが植民地アメリカで実施した労働制度。先住民を入植者に委託し、労働を強制。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">プランテーション</div>
+                            <div class="term-description">熱帯・亜熱帯地域で行われた大規模農園経営。奴隷労働に依存した単一作物栽培。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">三角貿易</div>
+                            <div class="term-description">ヨーロッパ・アフリカ・アメリカを結ぶ奴隷貿易のシステム。大西洋奴隷貿易の中核。</div>
+                        </div>
+                        <!-- 中国・日本 -->
+                        <div class="term-card">
+                            <div class="term-name">明</div>
+                            <div class="term-description">1368～1644年に中国を統治した王朝。朱元璋が建国し、北京に首都を置いた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">清</div>
+                            <div class="term-description">1644～1912年に中国を統治した満州族の王朝。中国最後の王朝。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">鄭和</div>
+                            <div class="term-description">明の武将・外交官。15世紀初頭に大艦隊を率いて東南アジア・インド洋への遠征を行った。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">康熙帝</div>
+                            <div class="term-description">清の第4代皇帝。61年間在位し、清朝の最盛期を築いた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">乾隆帝</div>
+                            <div class="term-description">清の第6代皇帝。文化振興と領土拡大に努め、清朝文化の最盛期を現出。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">海禁政策</div>
+                            <div class="term-description">明・清朝が実施した鎖国政策。民間の海外貿易を禁止し、朝貢貿易のみ許可。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">朝貢制度</div>
+                            <div class="term-description">中国皇帝と周辺諸国との間の冊封関係に基づく外交・貿易制度。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">安土桃山時代</div>
+                            <div class="term-description">1573～1603年の日本の時代。織田信長・豊臣秀吉の天下統一事業で特徴づけられる。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">織田信長</div>
+                            <div class="term-description">戦国時代の武将。楽市楽座政策や鉄砲の活用で勢力を拡大し、天下統一の基礎を築いた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">豊臣秀吉</div>
+                            <div class="term-description">安土桃山時代の武将。天下統一を達成し、太閤検地や刀狩りなどの政策を実施。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">徳川家康</div>
+                            <div class="term-description">江戸幕府の創設者。関ヶ原の戦いに勝利し、260年続く徳川政権の基礎を築いた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">江戸幕府</div>
+                            <div class="term-description">1603～1868年まで続いた日本の武家政権。徳川氏による封建制国家。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">鎖国</div>
+                            <div class="term-description">江戸幕府が実施した対外政策。外国との交流を制限し、国内の安定を図った。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">参勤交代</div>
+                            <div class="term-description">江戸幕府が大名に課した制度。定期的に江戸に出仕させ、大名統制を図った。</div>
+                        </div>
+                        <!-- イスラム世界 -->
+                        <div class="term-card">
+                            <div class="term-name">オスマン帝国</div>
+                            <div class="term-description">1299～1922年に存在したトルコ系イスラム帝国。最盛期には東ヨーロッパから中東・北アフリカまで支配。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">スレイマン1世</div>
+                            <div class="term-description">オスマン帝国の第10代皇帝。「壮麗王」と呼ばれ、帝国の最盛期を築いた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">イェニチェリ</div>
+                            <div class="term-description">オスマン帝国の常備軍。キリスト教徒の少年を改宗させて育成した精鋭部隊。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">サファヴィー朝</div>
+                            <div class="term-description">1501～1736年にイランを支配したシーア派イスラム王朝。イスファハンを首都とした。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">アッバース1世</div>
+                            <div class="term-description">サファヴィー朝の最盛期を築いた王。首都イスファハンを「世界の半分」と称される美しい都市に発展。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ムガル帝国</div>
+                            <div class="term-description">1526～1858年にインド亜大陸を支配したイスラム帝国。バーブルが建国。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">アクバル</div>
+                            <div class="term-description">ムガル帝国の第3代皇帝。宗教的寛容政策を実施し、帝国の最盛期を築いた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">シャー・ジャハーン</div>
+                            <div class="term-description">ムガル帝国の第5代皇帝。愛妃ムムターズ・マハルのためにタージ・マハルを建設。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">タージ・マハル</div>
+                            <div class="term-description">ムガル帝国時代にアグラに建設された霊廟。イスラム建築の最高傑作の一つ。</div>
+                        </div>
+                        <!-- ロシア -->
+                        <div class="term-card">
+                            <div class="term-name">イヴァン4世</div>
+                            <div class="term-description">ロシア初の皇帝（ツァーリ）。「雷帝」と呼ばれ、専制政治の基礎を築いた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ピョートル1世</div>
+                            <div class="term-description">ロシア皇帝。「大帝」と呼ばれ、西欧化政策を推進し、近代ロシアの基礎を築いた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">エカチェリーナ2世</div>
+                            <div class="term-description">ロシア女帝。「大帝」と呼ばれ、啓蒙専制君主として改革を推進し、領土を拡大。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">農奴制</div>
+                            <div class="term-description">ロシアで発達した農民隷属制度。農民を土地に縛り付け、領主の所有物として扱った。</div>
+                        </div>
+                        <!-- その他 -->
+                        <div class="term-card">
+                            <div class="term-name">商業革命</div>
+                            <div class="term-description">16～17世紀にヨーロッパで起こった商業の革新。世界貿易の拡大と資本主義の発達。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">価格革命</div>
+                            <div class="term-description">16世紀にヨーロッパで起こった物価上昇現象。新大陸からの貴金属流入が主因。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">バロック</div>
+                            <div class="term-description">17～18世紀のヨーロッパで流行した芸術様式。華麗で装飾的、動的な表現が特徴。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ウェストファリア条約</div>
+                            <div class="term-description">1648年に締結され、三十年戦争を終結させた条約。近代国際法の基礎となった。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ユグノー戦争</div>
+                            <div class="term-description">16世紀後半にフランスで起こったカトリックとプロテスタント（ユグノー）の宗教戦争。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ナントの勅令</div>
+                            <div class="term-description">1598年にアンリ4世が発布し、フランスでプロテスタントの信仰の自由を認めた勅令。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">清教徒革命</div>
+                            <div class="term-description">1642～1660年にイングランドで起こった市民革命。チャールズ1世を処刑し、共和政を樹立。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">名誉革命</div>
+                            <div class="term-description">1688年にイングランドで起こった無血革命。立憲君主制の確立につながった。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">権利章典</div>
+                            <div class="term-description">1689年にイングランド議会が制定した法律。王権の制限と議会の権利を明文化。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ジョン・ロック</div>
+                            <div class="term-description">イギリスの哲学者。「統治二論」で社会契約説と抵抗権を論じ、近代民主主義思想の基礎を築いた。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 近現代 (80用語) -->
+            <div class="category-section" data-category="modern">
+                <div class="category-header" onclick="toggleCategory('modern')">
+                    <div class="category-title">近現代</div>
+                    <div class="category-count">80用語</div>
+                </div>
+                <div class="category-content">
+                    <div class="terms-grid">
+                        <!-- 啓蒙思想・市民革命 -->
+                        <div class="term-card">
+                            <div class="term-name">啓蒙思想</div>
+                            <div class="term-description">18世紀ヨーロッパの理性主義思想運動。理性と経験を重視し、迷信や偏見からの解放を目指した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ヴォルテール</div>
+                            <div class="term-description">フランスの啓蒙思想家。宗教的寛容と理性主義を唱え、専制政治を批判した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ルソー</div>
+                            <div class="term-description">フランスの思想家。「社会契約論」で人民主権論を展開し、フランス革命に影響を与えた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">モンテスキュー</div>
+                            <div class="term-description">フランスの政治思想家。「法の精神」で三権分立論を唱えた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">百科全書</div>
+                            <div class="term-description">ディドロとダランベールが編纂した啓蒙思想の集大成。理性主義的知識の普及を目指した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">アメリカ独立革命</div>
+                            <div class="term-description">1775-1783年にアメリカ13植民地がイギリスから独立した革命。世界初の共和制国家を樹立。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ワシントン</div>
+                            <div class="term-description">アメリカ独立戦争の指導者で初代大統領。「建国の父」と呼ばれる。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">独立宣言</div>
+                            <div class="term-description">1776年にジェファソンが起草したアメリカ独立の宣言文。人権思想の古典。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">アメリカ合衆国憲法</div>
+                            <div class="term-description">1787年に制定された世界初の成文憲法。三権分立と連邦制を規定。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">フランス革命</div>
+                            <div class="term-description">1789年に始まったフランス市民革命。絶対王政を倒し、自由・平等・博愛を理念とした。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">人権宣言</div>
+                            <div class="term-description">1789年にフランス国民議会が採択した人権と市民の権利の宣言。近代人権思想の出発点。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ロベスピエール</div>
+                            <div class="term-description">フランス革命の指導者。恐怖政治を推進し、「革命の権化」と呼ばれた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ナポレオン</div>
+                            <div class="term-description">フランス皇帝。革命の成果を法典化し、ヨーロッパ全土に覇権を確立した軍事的天才。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ナポレオン法典</div>
+                            <div class="term-description">1804年に制定されたフランス民法典。近代法の模範となり、世界各国に影響を与えた。</div>
+                        </div>
+                        <!-- 産業革命 -->
+                        <div class="term-card">
+                            <div class="term-name">産業革命</div>
+                            <div class="term-description">18世紀後半にイギリスで始まった技術革新による社会経済の変革。機械制工業の発達。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">蒸気機関</div>
+                            <div class="term-description">ワットが改良した動力機関。産業革命の原動力となり、工場制手工業を発達させた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">紡績機</div>
+                            <div class="term-description">綿花を糸に紡ぐ機械。ジェニー紡績機、水力紡績機、ミュール紡績機が発明された。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">工場制手工業</div>
+                            <div class="term-description">産業革命期に発達した生産システム。機械化と分業により大量生産を実現。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">資本主義</div>
+                            <div class="term-description">私有財産制と自由競争に基づく経済制度。産業革命とともに発達した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">労働者階級</div>
+                            <div class="term-description">産業革命により形成された賃金労働者の階級。プロレタリアートとも呼ばれる。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">労働組合</div>
+                            <div class="term-description">労働者が労働条件の改善を求めて結成した組織。ストライキなどの手段で経営者と交渉。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">チャーティスト運動</div>
+                            <div class="term-description">1830-40年代のイギリスで起こった労働者の政治運動。普通選挙権の実現を要求。</div>
+                        </div>
+                        <!-- 19世紀の思想・文化 -->
+                        <div class="term-card">
+                            <div class="term-name">自由主義</div>
+                            <div class="term-description">個人の自由と権利を重視する政治思想。立憲政治と自由経済を主張した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ナショナリズム</div>
+                            <div class="term-description">民族主義。共通の言語・文化・歴史を持つ民族の統一と独立を目指す思想運動。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">社会主義</div>
+                            <div class="term-description">私有財産制を否定し、生産手段の社会的所有を主張する思想。資本主義の矛盾を批判。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">マルクス</div>
+                            <div class="term-description">ドイツの思想家。「資本論」で資本主義を分析し、科学的社会主義を確立した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">共産党宣言</div>
+                            <div class="term-description">1848年にマルクスとエンゲルスが発表した共産主義の綱領。階級闘争史観を展開。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ダーウィン</div>
+                            <div class="term-description">イギリスの博物学者。「種の起源」で進化論を提唱し、生物学に革命をもたらした。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ロマン主義</div>
+                            <div class="term-description">18世紀末から19世紀前半の文芸思潮。感情と想像力を重視し、古典主義に対抗した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">写実主義</div>
+                            <div class="term-description">19世紀中期の芸術運動。現実をありのままに描写することを重視した。</div>
+                        </div>
+                        <!-- ウィーン体制と革命 -->
+                        <div class="term-card">
+                            <div class="term-name">ウィーン会議</div>
+                            <div class="term-description">1814-15年にナポレオン戦争後のヨーロッパ秩序再建を協議した国際会議。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ウィーン体制</div>
+                            <div class="term-description">ウィーン会議で確立されたヨーロッパの国際秩序。正統主義と勢力均衡を原則とした。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">神聖同盟</div>
+                            <div class="term-description">1815年にロシア・オーストリア・プロイセンが結成した反革命同盟。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">二月革命</div>
+                            <div class="term-description">1848年にフランスで起こった革命。七月王政を倒し、第二共和政を樹立した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">三月革命</div>
+                            <div class="term-description">1848年にドイツで起こった革命。自由主義と民族主義を掲げたが失敗に終わった。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">クリミア戦争</div>
+                            <div class="term-description">1853-56年にロシアと英仏土が戦った戦争。ウィーン体制の動揺を示した。</div>
+                        </div>
+                        <!-- 民族統一運動 -->
+                        <div class="term-card">
+                            <div class="term-name">ドイツ統一</div>
+                            <div class="term-description">プロイセンが主導して1871年に達成したドイツ諸邦の政治的統一。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ビスマルク</div>
+                            <div class="term-description">プロイセンの政治家。「鉄血宰相」と呼ばれ、ドイツ統一を指導した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">普仏戦争</div>
+                            <div class="term-description">1870-71年にプロイセンとフランスの間で行われた戦争。ドイツ統一の契機となった。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">イタリア統一</div>
+                            <div class="term-description">19世紀にイタリア諸邦が統一されて王国を形成した運動。リソルジメントと呼ばれる。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ガリバルディ</div>
+                            <div class="term-description">イタリア統一運動の英雄。千人隊を率いて南イタリアを解放した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">カヴール</div>
+                            <div class="term-description">サルデーニャ王国の首相。外交によってイタリア統一を推進した。</div>
+                        </div>
+                        <!-- アメリカ -->
+                        <div class="term-card">
+                            <div class="term-name">南北戦争</div>
+                            <div class="term-description">1861-65年にアメリカで起こった内戦。奴隷制度をめぐって北部と南部が対立。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">リンカーン</div>
+                            <div class="term-description">アメリカ第16代大統領。南北戦争を指導し、奴隷解放宣言を発した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">奴隷解放宣言</div>
+                            <div class="term-description">1863年にリンカーンが発した宣言。南部の奴隷の自由を宣言した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">西部開拓</div>
+                            <div class="term-description">19世紀のアメリカで行われた西部地域への移住と開発。フロンティア精神を生んだ。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">モンロー主義</div>
+                            <div class="term-description">1823年にモンロー大統領が表明したアメリカの外交原則。アメリカ大陸への欧州介入を拒否。</div>
+                        </div>
+                        <!-- ロシア -->
+                        <div class="term-card">
+                            <div class="term-name">アレクサンドル2世</div>
+                            <div class="term-description">ロシア皇帝。農奴解放令を発布し、近代化改革を推進した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">農奴解放</div>
+                            <div class="term-description">1861年にロシアで実施された農奴制廃止。近代化への重要な第一歩となった。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ナロードニキ</div>
+                            <div class="term-description">19世紀ロシアの革命運動。「人民に行け」をスローガンに農民啓蒙を図った。</div>
+                        </div>
+                        <!-- アジア・アフリカ -->
+                        <div class="term-card">
+                            <div class="term-name">インド大反乱</div>
+                            <div class="term-description">1857年にインドで起こった対英武装蜂起。セポイの乱とも呼ばれる。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">アヘン戦争</div>
+                            <div class="term-description">1840-42年にイギリスと清朝中国の間で行われた戦争。中国の開国の契機となった。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">南京条約</div>
+                            <div class="term-description">1842年にアヘン戦争後に結ばれた不平等条約。香港の割譲と5港の開港を規定。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">太平天国の乱</div>
+                            <div class="term-description">1851-64年に清朝中国で起こった大規模な農民反乱。洪秀全が指導した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">洋務運動</div>
+                            <div class="term-description">19世紀後半の清朝における近代化運動。「中体西用」を理念とした。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">明治維新</div>
+                            <div class="term-description">1868年に日本で起こった政治革命。封建制から近代国家への転換を図った。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">開国</div>
+                            <div class="term-description">1854年の日米和親条約を契機とした日本の鎖国政策終了。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ペリー</div>
+                            <div class="term-description">アメリカ海軍提督。1853年に浦賀に来航し、日本の開国を迫った。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">廃藩置県</div>
+                            <div class="term-description">1871年に明治政府が実施した行政改革。藩を廃して県を設置し、中央集権体制を確立。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">文明開化</div>
+                            <div class="term-description">明治時代初期の西洋文明摂取による社会変化。生活様式の近代化を進めた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">富国強兵</div>
+                            <div class="term-description">明治政府の基本政策。経済発展と軍事力強化により国力向上を図った。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">殖産興業</div>
+                            <div class="term-description">明治政府の経済政策。近代工業の育成と発展を国家主導で推進した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">地租改正</div>
+                            <div class="term-description">1873年に実施された土地制度改革。土地の私有化と貨幣による納税を実現。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">大日本帝国憲法</div>
+                            <div class="term-description">1889年に発布された日本初の成文憲法。プロイセン憲法を模範とした。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">日清戦争</div>
+                            <div class="term-description">1894-95年に日本と清朝中国の間で行われた戦争。朝鮮の宗主権をめぐって争った。</div>
+                        </div>
+                        <!-- オスマン帝国・中東 -->
+                        <div class="term-card">
+                            <div class="term-name">タンジマート</div>
+                            <div class="term-description">19世紀オスマン帝国の近代化改革。西欧化により帝国の再生を図った。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">東方問題</div>
+                            <div class="term-description">19世紀のオスマン帝国衰退をめぐる国際問題。列強の利害が複雑に対立した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ギリシア独立戦争</div>
+                            <div class="term-description">1821-29年にギリシアがオスマン帝国から独立した戦争。ヨーロッパ諸国が支援。</div>
+                        </div>
+                        <!-- アフリカ -->
+                        <div class="term-card">
+                            <div class="term-name">アフリカ分割</div>
+                            <div class="term-description">19世紀後半に列強諸国がアフリカ大陸を植民地化した過程。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ベルリン会議</div>
+                            <div class="term-description">1884-85年に開催されたアフリカ分割の国際会議。植民地獲得の原則を決定。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ボーア戦争</div>
+                            <div class="term-description">1899-1902年に南アフリカでイギリスとボーア人（オランダ系移民）の間で行われた戦争。</div>
+                        </div>
+                        <!-- 科学技術 -->
+                        <div class="term-card">
+                            <div class="term-name">電気</div>
+                            <div class="term-description">19世紀の科学革命。エジソンやテスラらの発明により電力利用が実用化された。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">鉄道</div>
+                            <div class="term-description">蒸気機関車による交通革命。1825年にイギリスで世界初の旅客鉄道が開業。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">電信</div>
+                            <div class="term-description">電気を利用した通信技術。モールスが実用化し、情報伝達を革命化した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">スエズ運河</div>
+                            <div class="term-description">1869年に開通した地中海と紅海を結ぶ運河。ヨーロッパ・アジア間の航路を短縮。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">パナマ運河</div>
+                            <div class="term-description">1914年に開通した太平洋と大西洋を結ぶ運河。アメリカが建設を主導。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 現代史 (80用語) -->
+            <div class="category-section" data-category="contemporary">
+                <div class="category-header" onclick="toggleCategory('contemporary')">
+                    <div class="category-title">現代史</div>
+                    <div class="category-count">80用語</div>
+                </div>
+                <div class="category-content">
+                    <div class="terms-grid">
+                        <!-- 第一次世界大戦 -->
+                        <div class="term-card">
+                            <div class="term-name">第一次世界大戦</div>
+                            <div class="term-description">1914-18年に起こった世界規模の戦争。総力戦の時代の始まりを告げた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">サラエボ事件</div>
+                            <div class="term-description">1914年にオーストリア皇太子が暗殺された事件。第一次世界大戦の直接的原因。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">三国同盟</div>
+                            <div class="term-description">ドイツ・オーストリア・イタリアが結成した軍事同盟。第一次大戦の一方の陣営。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">三国協商</div>
+                            <div class="term-description">イギリス・フランス・ロシアが結成した協調関係。三国同盟に対抗した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">塹壕戦</div>
+                            <div class="term-description">第一次大戦で行われた戦術。長期間の膠着状態を生み、多大な犠牲をもたらした。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ロシア革命</div>
+                            <div class="term-description">1917年にロシアで起こった革命。ツァーリ制を倒し、世界初の社会主義国家を樹立。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">レーニン</div>
+                            <div class="term-description">ロシア革命の指導者。ボリシェヴィキを率いて十月革命を成功させた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ヴェルサイユ条約</div>
+                            <div class="term-description">1919年に締結された第一次大戦の講和条約。ドイツに厳しい制裁を課した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">国際連盟</div>
+                            <div class="term-description">1920年に設立された最初の国際平和機構。アメリカは参加せず。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ウィルソン</div>
+                            <div class="term-description">アメリカ大統領。十四か条の平和原則を提唱し、国際連盟設立を主導した。</div>
+                        </div>
+                        <!-- 戦間期 -->
+                        <div class="term-card">
+                            <div class="term-name">世界恐慌</div>
+                            <div class="term-description">1929年に始まった世界規模の経済不況。ニューヨーク株式市場の暴落が発端。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ニューディール政策</div>
+                            <div class="term-description">アメリカのルーズベルト大統領が実施した恐慌対策。政府の経済介入を強化。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ファシズム</div>
+                            <div class="term-description">20世紀前半に興った極右政治運動。独裁政治と民族主義を特徴とした。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ムッソリーニ</div>
+                            <div class="term-description">イタリアのファシスト指導者。1922年にローマ進軍により政権を獲得。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ヒトラー</div>
+                            <div class="term-description">ドイツの独裁者。ナチス党を率いて政権を獲得し、第二次大戦を引き起こした。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ナチス</div>
+                            <div class="term-description">ドイツの国家社会主義労働者党。反ユダヤ主義と軍国主義を掲げた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">スターリン</div>
+                            <div class="term-description">ソ連の独裁者。五か年計画による急速な工業化と農業集団化を推進。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">五か年計画</div>
+                            <div class="term-description">ソ連が実施した計画経済。国家主導による急速な工業化を目指した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">満州事変</div>
+                            <div class="term-description">1931年に日本が起こした軍事行動。満州国建国の契機となった。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">日中戦争</div>
+                            <div class="term-description">1937年に始まった日本と中国の戦争。第二次大戦の東アジア戦線となった。</div>
+                        </div>
+                        <!-- 第二次世界大戦 -->
+                        <div class="term-card">
+                            <div class="term-name">第二次世界大戦</div>
+                            <div class="term-description">1939-45年に起こった史上最大の戦争。全世界を巻き込んだ総力戦。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ドイツのポーランド侵攻</div>
+                            <div class="term-description">1939年9月1日、第二次大戦の発端となった軍事行動。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">電撃戦</div>
+                            <div class="term-description">ドイツ軍が展開した新戦術。機械化部隊による高速戦争。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">バトル・オブ・ブリテン</div>
+                            <div class="term-description">1940年のドイツによるイギリス航空戦。イギリスが勝利し、ドイツの侵攻を阻止。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">独ソ戦</div>
+                            <div class="term-description">1941年にドイツがソ連に侵攻した戦争。第二次大戦の転換点となった。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">真珠湾攻撃</div>
+                            <div class="term-description">1941年12月7日に日本がハワイの真珠湾を奇襲攻撃。アメリカの参戦を招いた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">スターリングラード攻防戦</div>
+                            <div class="term-description">1942-43年の独ソ戦最大の戦闘。ドイツ軍の敗北により戦況が転換。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ノルマンディー上陸作戦</div>
+                            <div class="term-description">1944年6月6日の連合軍によるフランス上陸作戦。西部戦線の開始。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ホロコースト</div>
+                            <div class="term-description">ナチス・ドイツによるユダヤ人大量虐殺。約600万人が犠牲になった。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">原子爆弾</div>
+                            <div class="term-description">アメリカが日本に投下した新兵器。広島・長崎に投下され、日本の降伏を決定づけた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ポツダム宣言</div>
+                            <div class="term-description">1945年に連合国が日本に要求した降伏勧告。無条件降伏を求めた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">国際連合</div>
+                            <div class="term-description">1945年に設立された国際平和機構。国際連盟の後継組織。</div>
+                        </div>
+                        <!-- 冷戦時代 -->
+                        <div class="term-card">
+                            <div class="term-name">冷戦</div>
+                            <div class="term-description">1947-89年のアメリカとソ連の対立構造。直接戦火を交えない政治的・経済的対立。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">トルーマン・ドクトリン</div>
+                            <div class="term-description">1947年にアメリカが表明した封じ込め政策。共産主義の拡大阻止を宣言。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">マーシャル・プラン</div>
+                            <div class="term-description">アメリカによる西欧復興支援計画。経済援助により共産化を防止。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">NATO</div>
+                            <div class="term-description">1949年に結成された北大西洋条約機構。西側諸国の軍事同盟。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ワルシャワ条約機構</div>
+                            <div class="term-description">1955年にソ連が結成した軍事同盟。東欧社会主義諸国が参加。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ベルリンの壁</div>
+                            <div class="term-description">1961年に東ドイツが建設した壁。東西ベルリンを分断し、冷戦の象徴となった。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">キューバ危機</div>
+                            <div class="term-description">1962年の米ソ核戦争の危機。ソ連のキューバへのミサイル配備をめぐって対立。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">朝鮮戦争</div>
+                            <div class="term-description">1950-53年の朝鮮半島での戦争。冷戦の最初の熱戦となった。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ベトナム戦争</div>
+                            <div class="term-description">1960-75年のインドシナ戦争。アメリカが南ベトナムを支援したが敗北。</div>
+                        </div>
+                        <!-- 脱植民地化 -->
+                        <div class="term-card">
+                            <div class="term-name">脱植民地化</div>
+                            <div class="term-description">第二次大戦後のアジア・アフリカ諸国の独立運動。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">インド独立</div>
+                            <div class="term-description">1947年にイギリスから独立。ガンディーの非暴力運動が功を奏した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ガンディー</div>
+                            <div class="term-description">インド独立運動の指導者。非暴力・不服従運動を展開した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ネルー</div>
+                            <div class="term-description">インド初代首相。非同盟運動を主導し、第三世界のリーダーとなった。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">中華人民共和国建国</div>
+                            <div class="term-description">1949年に毛沢東が建国を宣言。中国共産党による一党支配体制を確立。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">毛沢東</div>
+                            <div class="term-description">中国共産党の指導者。中華人民共和国を建国し、文化大革命を推進した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">文化大革命</div>
+                            <div class="term-description">1966-76年に中国で行われた政治運動。毛沢東が主導し、社会に大混乱をもたらした。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">アフリカの年</div>
+                            <div class="term-description">1960年にアフリカ17か国が独立した年。脱植民地化の象徴的な年。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">バンドン会議</div>
+                            <div class="term-description">1955年にアジア・アフリカ諸国が開催した会議。第三世界の結束を示した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">非同盟運動</div>
+                            <div class="term-description">冷戦期に第三世界諸国が展開した中立政策。米ソ両陣営に属さない立場。</div>
+                        </div>
+                        <!-- 1960年代以降 -->
+                        <div class="term-card">
+                            <div class="term-name">公民権運動</div>
+                            <div class="term-description">1950-60年代のアメリカでの黒人の権利獲得運動。キング牧師が指導した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">キング牧師</div>
+                            <div class="term-description">アメリカの公民権運動指導者。非暴力主義を貫き、ノーベル平和賞を受賞。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ケネディ</div>
+                            <div class="term-description">アメリカ第35代大統領。キューバ危機や公民権運動の時代を指導したが暗殺された。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">68年革命</div>
+                            <div class="term-description">1968年に世界各地で起こった学生運動。既成体制への挑戦となった。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">プラハの春</div>
+                            <div class="term-description">1968年のチェコスロバキアの民主化運動。ソ連軍の侵攻により弾圧された。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">人類月面着陸</div>
+                            <div class="term-description">1969年にアメリカのアポロ11号が達成。宇宙開発競争の頂点となった。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">石油危機</div>
+                            <div class="term-description">1973年と1979年に起こった石油価格高騰。世界経済に大きな打撃を与えた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">デタント</div>
+                            <div class="term-description">1970年代の米ソ緊張緩和。冷戦の一時的な緩和期となった。</div>
+                        </div>
+                        <!-- 冷戦の終結 -->
+                        <div class="term-card">
+                            <div class="term-name">ゴルバチョフ</div>
+                            <div class="term-description">ソ連最後の指導者。ペレストロイカとグラスノスチで改革を推進し、冷戦を終結させた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ペレストロイカ</div>
+                            <div class="term-description">ゴルバチョフが推進した構造改革。ソ連の政治・経済システムの変革を目指した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ベルリンの壁崩壊</div>
+                            <div class="term-description">1989年11月9日の歴史的事件。東西ドイツ統一と冷戦終結の象徴。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ソ連崩壊</div>
+                            <div class="term-description">1991年のソビエト連邦解体。74年間続いた社会主義国家の終焉。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">湾岸戦争</div>
+                            <div class="term-description">1991年のイラクのクウェート侵攻をめぐる戦争。冷戦後初の大規模国際紛争。</div>
+                        </div>
+                        <!-- 現代の課題 -->
+                        <div class="term-card">
+                            <div class="term-name">グローバル化</div>
+                            <div class="term-description">経済・文化・情報の世界的統合。20世紀後半から加速した現象。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">IT革命</div>
+                            <div class="term-description">情報技術の急速な発展。インターネットの普及により社会を変革。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">9.11テロ</div>
+                            <div class="term-description">2001年9月11日のアメリカ同時多発テロ。国際テロリズムの脅威を示した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">環境問題</div>
+                            <div class="term-description">地球温暖化や環境破壊など、人類共通の課題。持続可能な発展が求められる。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">EU</div>
+                            <div class="term-description">欧州連合。1993年に発足したヨーロッパの地域統合機構。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">中国の改革開放</div>
+                            <div class="term-description">1978年から始まった中国の経済改革。鄧小平が主導し、市場経済を導入。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">日本のバブル経済</div>
+                            <div class="term-description">1980年代後半の日本の経済現象。資産価格の異常な上昇とその後の崩壊。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">BRICS</div>
+                            <div class="term-description">ブラジル・ロシア・インド・中国・南アフリカの新興5か国。21世紀の経済成長の牽引役。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">アラブの春</div>
+                            <div class="term-description">2010年から始まった中東・北アフリカの民主化運動。SNSが重要な役割を果たした。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">コロナ禍</div>
+                            <div class="term-description">2020年から始まった新型コロナウイルスのパンデミック。世界的な健康・経済危機を引き起こした。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 女性・労働史 (60用語) -->
+            <div class="category-section" data-category="women-labor">
+                <div class="category-header" onclick="toggleCategory('women-labor')">
+                    <div class="category-title">女性・労働史</div>
+                    <div class="category-count">60用語</div>
+                </div>
+                <div class="category-content">
+                    <div class="terms-grid">
+                        <!-- 古代・中世の女性史 -->
+                        <div class="term-card">
+                            <div class="term-name">クレオパトラ</div>
+                            <div class="term-description">古代エジプト最後の女王。カエサルやアントニウスと関係を持ち、政治的に活躍した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">武則天</div>
+                            <div class="term-description">中国史上唯一の女性皇帝。690年から705年まで武周朝を建てた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ジャンヌ・ダルク</div>
+                            <div class="term-description">百年戦争中にフランスを勝利に導いた少女。神の啓示を受けたと主張し、オルレアンを解放。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">エリザベス1世</div>
+                            <div class="term-description">イングランド女王。スペインの無敵艦隊を破り、エリザベス朝の黄金時代を築いた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">カトリーヌ・ド・メディシス</div>
+                            <div class="term-description">フランス王妃。宗教戦争期に摂政として政治に関与し、サン・バルテルミの虐殺を指示。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">マリア・テレジア</div>
+                            <div class="term-description">オーストリア女帝。プロイセンのフリードリヒ大王と対立し、七年戦争を戦った。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">エカチェリーナ2世</div>
+                            <div class="term-description">ロシア女帝。啓蒙専制君主として改革を推進し、領土を大幅に拡大した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">マリー・アントワネット</div>
+                            <div class="term-description">フランス王妃。「パンがなければケーキを食べればいい」の言葉で有名。フランス革命で処刑された。</div>
+                        </div>
+                        <!-- 近世・近代の女性権利運動 -->
+                        <div class="term-card">
+                            <div class="term-name">メアリー・ウルストンクラフト</div>
+                            <div class="term-description">イギリスの女性権利論者。「女性の権利の擁護」を著し、近代フェミニズムの先駆者となった。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">女性参政権運動</div>
+                            <div class="term-description">19世紀から20世紀初頭にかけて展開された女性の選挙権獲得運動。サフラジェットが有名。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">サフラジェット</div>
+                            <div class="term-description">イギリスの女性参政権運動家。過激な手段を用いて女性の選挙権獲得を目指した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">エミリー・パンクハースト</div>
+                            <div class="term-description">イギリスの女性参政権運動指導者。女性社会政治同盟を設立し、過激な戦術を展開。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">セネカフォールズ会議</div>
+                            <div class="term-description">1848年にアメリカで開催された最初の女性権利大会。女性参政権運動の出発点。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">エリザベス・ケイディ・スタントン</div>
+                            <div class="term-description">アメリカの女性権利活動家。セネカフォールズ会議を組織し、女性参政権運動を主導。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">スーザン・B・アンソニー</div>
+                            <div class="term-description">アメリカの女性参政権活動家。選挙権なしに投票して逮捕され、運動の象徴的存在となった。</div>
+                        </div>
+                        <!-- 産業革命と労働運動 -->
+                        <div class="term-card">
+                            <div class="term-name">産業革命</div>
+                            <div class="term-description">18世紀後半にイギリスで始まった技術革新。女性や児童の工場労働が広まり、労働問題が深刻化。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">工場法</div>
+                            <div class="term-description">産業革命期に制定された労働保護法。女性や児童の労働時間制限などを規定した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">労働組合</div>
+                            <div class="term-description">労働者が労働条件改善のために結成した組織。ストライキなどの集団行動で経営者と交渉。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">チャーティスト運動</div>
+                            <div class="term-description">1830-40年代のイギリス労働者運動。普通選挙権を含む政治改革を要求した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ロバート・オーウェン</div>
+                            <div class="term-description">イギリスの社会改革者。ニューラナークで労働者の労働環境改善を実践し、協同組合運動を推進。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">協同組合運動</div>
+                            <div class="term-description">労働者が共同で経営する組織。ロッチデール先駆者組合が近代協同組合の出発点。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">8時間労働制</div>
+                            <div class="term-description">1日8時間労働を求める運動。「8時間は労働、8時間は休息、8時間は学習のために」がスローガン。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">メーデー</div>
+                            <div class="term-description">5月1日の国際労働者の日。1886年のアメリカの8時間労働制要求運動に起源を持つ。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ヘイマーケット事件</div>
+                            <div class="term-description">1886年にシカゴで起こった労働争議。8時間労働制要求デモで爆弾事件が発生。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">第一インターナショナル</div>
+                            <div class="term-description">1864年に設立された国際労働者協会。マルクスが指導的役割を果たした。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">第二インターナショナル</div>
+                            <div class="term-description">1889年に設立された社会主義政党の国際組織。8時間労働制とメーデーを決議。</div>
+                        </div>
+                        <!-- 20世紀の女性解放と労働権拡大 -->
+                        <div class="term-card">
+                            <div class="term-name">フラッパー</div>
+                            <div class="term-description">1920年代のアメリカの新しい女性像。短いスカートとボブヘアで伝統的価値観に挑戦。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ローザ・ルクセンブルク</div>
+                            <div class="term-description">ドイツの社会主義者・革命家。女性解放と労働運動を結びつけた理論家。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">クララ・ツェトキン</div>
+                            <div class="term-description">ドイツの女性運動家。国際女性デー（3月8日）の創設者の一人。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">国際女性デー</div>
+                            <div class="term-description">3月8日の女性の権利と政治的・経済的参加を祝う日。1910年に国際的に制定。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ニューディール政策</div>
+                            <div class="term-description">1930年代アメリカの経済政策。失業対策と社会保障制度の確立により労働者の地位向上。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ワグナー法</div>
+                            <div class="term-description">1935年のアメリカ労働法。労働者の団結権と団体交渉権を保障した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ロージー・ザ・リベッター</div>
+                            <div class="term-description">第二次大戦中の女性工場労働者を象徴するキャラクター。「We Can Do It!」で有名。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">シモーヌ・ド・ボーヴォワール</div>
+                            <div class="term-description">フランスの作家・フェミニスト。「第二の性」で女性の社会的地位を分析。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">第二の性</div>
+                            <div class="term-description">ボーヴォワールの著作。「女性は女に生まれない、女になるのだ」で有名。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ベティ・フリーダン</div>
+                            <div class="term-description">アメリカのフェミニスト。「女らしさの神話」で専業主婦の問題を指摘。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">女らしさの神話</div>
+                            <div class="term-description">フリーダンの著作。1950年代アメリカの専業主婦の閉塞感を分析し、第二波フェミニズムの契機。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">第二波フェミニズム</div>
+                            <div class="term-description">1960年代から始まった女性解放運動。職場での平等と性的自己決定権を主張。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">全米女性機構</div>
+                            <div class="term-description">1966年に設立されたアメリカ最大の女性権利団体。NOW（National Organization for Women）。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">男女平等憲法修正条項</div>
+                            <div class="term-description">アメリカで提案された憲法修正案（ERA）。性別による差別を禁止する内容だが批准されず。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">国際労働機関</div>
+                            <div class="term-description">ILO。1919年設立の国際機関。労働条件の改善と女性の労働権保護を推進。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">同一労働同一賃金</div>
+                            <div class="term-description">同じ労働に対して性別に関係なく同じ賃金を支払う原則。女性の経済的地位向上の鍵。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ワーク・ライフ・バランス</div>
+                            <div class="term-description">仕事と私生活の調和。特に女性の社会進出に伴い重要な課題となった。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ガラスの天井</div>
+                            <div class="term-description">女性の昇進を妨げる見えない障壁。能力があっても性別により管理職に就けない現象。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ジェンダー・ギャップ</div>
+                            <div class="term-description">性別による社会的・経済的格差。世界経済フォーラムが毎年測定・発表している。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">国連女性の地位委員会</div>
+                            <div class="term-description">1946年設立。女性の地位向上と性別平等を推進する国連機関。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">女性差別撤廃条約</div>
+                            <div class="term-description">1979年国連採択。あらゆる形態の女性差別撤廃を求める国際条約。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">北京宣言</div>
+                            <div class="term-description">1995年第4回世界女性会議で採択。女性のエンパワーメントと性別平等を宣言。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">持続可能な開発目標</div>
+                            <div class="term-description">SDGs。2015年国連採択。目標5でジェンダー平等を掲げ、女性のエンパワーメントを目指す。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">＃MeToo運動</div>
+                            <div class="term-description">2017年から広まった性暴力告発運動。SNSを通じて世界的に拡散し、社会変革を促した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">マララ・ユスフザイ</div>
+                            <div class="term-description">パキスタンの女性教育活動家。タリバンに銃撃されるも活動を継続し、史上最年少でノーベル平和賞受賞。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">マザー・テレサ</div>
+                            <div class="term-description">インドで貧民救済活動を行った修道女。「愛の宣教者会」を設立し、ノーベル平和賞を受賞。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ワンガリ・マータイ</div>
+                            <div class="term-description">ケニアの環境保護活動家。グリーンベルト運動を主導し、環境分野で初のノーベル平和賞受賞。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">エレン・ジョンソン・サーリーフ</div>
+                            <div class="term-description">リベリア初の女性大統領。アフリカ初の民主的に選出された女性国家元首。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">アンゲラ・メルケル</div>
+                            <div class="term-description">ドイツ初の女性首相。16年間在職し、ヨーロッパ政治のリーダーとして活躍。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">女性の政治参画</div>
+                            <div class="term-description">政治分野での女性の参加拡大。クオータ制度や積極的差別是正措置により推進されている。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">育児休業制度</div>
+                            <div class="term-description">出産・育児のための休暇制度。女性の継続就業と男性の育児参加を促進する重要な制度。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 科学技術史 (65用語) -->
+            <div class="category-section" data-category="science-tech">
+                <div class="category-header" onclick="toggleCategory('science-tech')">
+                    <div class="category-title">科学技術史</div>
+                    <div class="category-count">65用語</div>
+                </div>
+                <div class="category-content">
+                    <div class="terms-grid">
+                        <div class="term-card">
+                            <div class="term-name">アルキメデス</div>
+                            <div class="term-description">古代ギリシアの数学者・物理学者。浮力の原理（アルキメデスの原理）を発見。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">コペルニクス</div>
+                            <div class="term-description">地動説を唱えたポーランドの天文学者。天文学革命の始まり。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ガリレイ</div>
+                            <div class="term-description">望遠鏡で天体観測を行い、地動説を支持したイタリアの科学者。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ケプラー</div>
+                            <div class="term-description">惑星運動の3法則を発見したドイツの天文学者。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ニュートン</div>
+                            <div class="term-description">万有引力の法則と運動法則を発見し、近代物理学を確立。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">蒸気機関</div>
+                            <div class="term-description">ワットが改良した動力機関。産業革命の原動力となった。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ダーウィン</div>
+                            <div class="term-description">進化論を提唱したイギリスの博物学者。「種の起源」で有名。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">メンデル</div>
+                            <div class="term-description">遺伝の法則を発見したオーストリアの修道士・生物学者。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">エジソン</div>
+                            <div class="term-description">白熱電球や蓄音機など多数の発明をしたアメリカの発明家。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">マリー・キュリー</div>
+                            <div class="term-description">ラジウムを発見し、ノーベル賞を2度受賞した女性科学者。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">アインシュタイン</div>
+                            <div class="term-description">相対性理論を提唱したドイツ系理論物理学者。現代物理学の父。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">フレミング</div>
+                            <div class="term-description">ペニシリンを発見したイギリスの細菌学者。抗生物質の時代を開いた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">DNA</div>
+                            <div class="term-description">遺伝情報を担う物質。ワトソンとクリックが二重らせん構造を解明。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">コンピュータ</div>
+                            <div class="term-description">電子計算機。ENIACが初期の代表例。情報革命の基盤技術。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">インターネット</div>
+                            <div class="term-description">世界規模のコンピュータネットワーク。情報社会の基盤インフラ。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">人工知能</div>
+                            <div class="term-description">AI。人間の知能を機械で実現する技術。21世紀の重要技術。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">原子力</div>
+                            <div class="term-description">原子核反応を利用するエネルギー技術。核兵器と原子力発電に応用。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">宇宙開発</div>
+                            <div class="term-description">宇宙探査・利用技術。スプートニクから始まり、月面着陸、宇宙ステーションへ発展。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">遺伝子工学</div>
+                            <div class="term-description">遺伝子を人工的に操作する技術。バイオテクノロジーの中核技術。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ロボット工学</div>
+                            <div class="term-description">自動機械の設計・製造技術。産業用から家庭用まで幅広く応用。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 経済史・貿易史 (70用語) -->
+            <div class="category-section" data-category="economics">
+                <div class="category-header" onclick="toggleCategory('economics')">
+                    <div class="category-title">経済史・貿易史</div>
+                    <div class="category-count">70用語</div>
+                </div>
+                <div class="category-content">
+                    <div class="terms-grid">
+                        <div class="term-card">
+                            <div class="term-name">シルクロード</div>
+                            <div class="term-description">中国と西アジア・ヨーロッパを結ぶ古代の交易路。絹の道として知られる。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">重商主義</div>
+                            <div class="term-description">16-18世紀の経済思想。貿易黒字と貴金属蓄積を重視した。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">東インド会社</div>
+                            <div class="term-description">アジア貿易のための特許会社。イギリス・オランダが代表的。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">産業革命</div>
+                            <div class="term-description">18世紀後半の技術革新。機械制工業と工場制度の発達。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">アダム・スミス</div>
+                            <div class="term-description">「国富論」の著者。自由放任主義と「見えざる手」の理論で有名。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">資本主義</div>
+                            <div class="term-description">私有財産制と自由競争に基づく経済制度。産業革命とともに発達。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">マルクス</div>
+                            <div class="term-description">「資本論」で資本主義を分析した経済学者・思想家。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">金本位制</div>
+                            <div class="term-description">通貨価値を金に固定する制度。19世紀から20世紀前半の国際通貨制度。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">世界恐慌</div>
+                            <div class="term-description">1929年に始まった世界規模の経済不況。資本主義の深刻な危機。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ケインズ</div>
+                            <div class="term-description">有効需要理論を提唱したイギリスの経済学者。政府の経済介入を主張。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ブレトンウッズ体制</div>
+                            <div class="term-description">1944年に確立された戦後国際通貨制度。ドル本位制の基盤。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">GATT</div>
+                            <div class="term-description">関税と貿易に関する一般協定。戦後の自由貿易体制の基盤。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">WTO</div>
+                            <div class="term-description">世界貿易機関。1995年設立。国際貿易のルール策定と紛争解決機関。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">EU</div>
+                            <div class="term-description">欧州連合。地域経済統合の最も進んだ例。共通通貨ユーロを導入。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">NAFTA</div>
+                            <div class="term-description">北米自由貿易協定。アメリカ・カナダ・メキシコの自由貿易圏。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">グローバル化</div>
+                            <div class="term-description">経済活動の世界的統合。貿易・投資・情報の国境を越えた流動化。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">多国籍企業</div>
+                            <div class="term-description">複数国で事業展開する企業。グローバル化の主要な担い手。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">IMF</div>
+                            <div class="term-description">国際通貨基金。国際収支困難国への融資と経済政策助言を行う。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">世界銀行</div>
+                            <div class="term-description">発展途上国の開発支援を行う国際機関。貧困削減が主要目標。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">石油危機</div>
+                            <div class="term-description">1973年と1979年の石油価格高騰。世界経済に大きな影響を与えた。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 宗教・思想史 (75用語) -->
+            <div class="category-section" data-category="religion">
+                <div class="category-header" onclick="toggleCategory('religion')">
+                    <div class="category-title">宗教・思想史</div>
+                    <div class="category-count">75用語</div>
+                </div>
+                <div class="category-content">
+                    <div class="terms-grid">
+                        <div class="term-card">
+                            <div class="term-name">仏教</div>
+                            <div class="term-description">釈迦（ブッダ）が開いた宗教。苦からの解脱を目指す。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">キリスト教</div>
+                            <div class="term-description">イエス・キリストの教えに基づく宗教。世界最大の信者数を持つ。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">イスラム教</div>
+                            <div class="term-description">ムハンマドが創始した一神教。コーランを聖典とする。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">儒教</div>
+                            <div class="term-description">孔子の教えに基づく思想体系。東アジアの政治・社会に大きな影響。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ヒンドゥー教</div>
+                            <div class="term-description">インドの民族宗教。輪廻転生とカースト制度が特徴。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ユダヤ教</div>
+                            <div class="term-description">ユダヤ人の民族宗教。一神教の起源とされる。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">道教</div>
+                            <div class="term-description">中国の宗教。老子の思想に基づき、自然との調和を重視。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">神道</div>
+                            <div class="term-description">日本固有の宗教。自然崇拝と祖先崇拝が基盤。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">啓蒙思想</div>
+                            <div class="term-description">18世紀ヨーロッパの理性主義思想。理性と科学を重視。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ルネサンス</div>
+                            <div class="term-description">14-16世紀の文芸復興運動。ヒューマニズムが特徴。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">宗教改革</div>
+                            <div class="term-description">16世紀のキリスト教会改革運動。ルターが発端。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">実存主義</div>
+                            <div class="term-description">20世紀の哲学思潮。人間の存在と自由を重視。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">マルクス主義</div>
+                            <div class="term-description">マルクスの思想体系。科学的社会主義とも呼ばれる。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ファシズム</div>
+                            <div class="term-description">20世紀の極右イデオロギー。全体主義と民族主義が特徴。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">自由主義</div>
+                            <div class="term-description">個人の自由と権利を重視する政治思想。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">民主主義</div>
+                            <div class="term-description">人民による統治を理念とする政治思想・制度。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">社会主義</div>
+                            <div class="term-description">生産手段の社会的所有を主張する思想・制度。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">共産主義</div>
+                            <div class="term-description">階級なき社会を目指すマルクス主義の最終目標。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ナショナリズム</div>
+                            <div class="term-description">民族主義。共通のアイデンティティに基づく政治思想。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">国際主義</div>
+                            <div class="term-description">国境を越えた協力と平和を重視する思想。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 文化・芸術史 (80用語) -->
+            <div class="category-section" data-category="culture">
+                <div class="category-header" onclick="toggleCategory('culture')">
+                    <div class="category-title">文化・芸術史</div>
+                    <div class="category-count">80用語</div>
+                </div>
+                <div class="category-content">
+                    <div class="terms-grid">
+                        <div class="term-card">
+                            <div class="term-name">古代ギリシア美術</div>
+                            <div class="term-description">西洋美術の源流。理想美と調和を追求した彫刻・建築が特徴。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ルネサンス</div>
+                            <div class="term-description">14-16世紀の文芸復興。レオナルド・ダ・ヴィンチ、ミケランジェロが代表的芸術家。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">バロック</div>
+                            <div class="term-description">17世紀の芸術様式。華麗で動的な表現が特徴。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">古典主義</div>
+                            <div class="term-description">17-18世紀の芸術様式。古代の理想美を規範とした。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ロマン主義</div>
+                            <div class="term-description">18世紀末-19世紀前半の文芸思潮。感情と想像力を重視。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">印象派</div>
+                            <div class="term-description">19世紀後半の絵画運動。光と色彩の変化を重視。モネが代表的画家。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">キュビスム</div>
+                            <div class="term-description">20世紀初頭の美術運動。ピカソとブラックが創始。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">シュルレアリスム</div>
+                            <div class="term-description">20世紀の芸術運動。無意識と夢の世界を表現。ダリが有名。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">抽象美術</div>
+                            <div class="term-description">対象を抽象化した美術。カンディンスキーが先駆者。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ポップアート</div>
+                            <div class="term-description">1950年代からの美術運動。大衆文化を題材とした。ウォーホルが代表的。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ジャズ</div>
+                            <div class="term-description">20世紀初頭にアメリカで生まれた音楽ジャンル。即興演奏が特徴。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">ロック</div>
+                            <div class="term-description">1950年代に生まれた大衆音楽。ビートルズが世界的ブームを作った。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">映画</div>
+                            <div class="term-description">19世紀末に発明された映像芸術。20世紀の重要な文化媒体。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">テレビ</div>
+                            <div class="term-description">20世紀中期に普及した映像メディア。大衆文化に革命的影響。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">インターネット文化</div>
+                            <div class="term-description">21世紀のデジタル文化。SNSや動画配信が新しい表現形態を生む。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">漫画・アニメ</div>
+                            <div class="term-description">日本発祥の視覚文化。世界的な人気を獲得している。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">オペラ</div>
+                            <div class="term-description">17世紀イタリアで生まれた歌劇。音楽・演劇・美術の総合芸術。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">交響曲</div>
+                            <div class="term-description">18世紀に確立された管弦楽の楽曲形式。ハイドン、モーツァルト、ベートーヴェンが発展させた。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">小説</div>
+                            <div class="term-description">18世紀に確立された散文の文学形式。近代文学の中心ジャンル。</div>
+                        </div>
+                        <div class="term-card">
+                            <div class="term-name">モダニズム</div>
+                            <div class="term-description">20世紀初頭の芸術・文学運動。伝統的形式からの脱却を目指した。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        function toggleCategory(categoryId) {
+            const content = document.querySelector(`[data-category="${categoryId}"] .category-content`);
+            content.classList.toggle('active');
+        }
+
+        function showCategory(categoryId) {
+            // Remove active class from all tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+            
+            // Hide all categories
+            document.querySelectorAll('.category-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            if (categoryId === 'all') {
+                // Show all categories
+                document.querySelectorAll('.category-section').forEach(section => {
+                    section.style.display = 'block';
+                });
+            } else {
+                // Show specific category
+                const targetSection = document.querySelector(`[data-category="${categoryId}"]`);
+                if (targetSection) {
+                    targetSection.style.display = 'block';
+                    // Auto-expand the category
+                    const content = targetSection.querySelector('.category-content');
+                    content.classList.add('active');
+                }
+            }
+        }
+
+        function searchTerms() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            
+            if (query) {
+                // Hide category navigation
+                document.querySelector('.navigation').style.display = 'none';
+                
+                // Show all categories for search
+                document.querySelectorAll('.category-section').forEach(section => {
+                    section.style.display = 'block';
+                    section.querySelector('.category-content').classList.add('active');
+                });
+                
+                // Search and highlight
+                const cards = document.querySelectorAll('.term-card');
+                let hasResults = false;
+                
+                cards.forEach(card => {
+                    const termName = card.querySelector('.term-name').textContent.toLowerCase();
+                    const termDesc = card.querySelector('.term-description').textContent.toLowerCase();
+                    
+                    if (termName.includes(query) || termDesc.includes(query)) {
+                        card.style.display = 'block';
+                        highlightText(card, query);
+                        hasResults = true;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                if (!hasResults) {
+                    alert('検索結果が見つかりませんでした。');
+                }
+            }
+        }
+
+        function highlightText(element, query) {
+            const termName = element.querySelector('.term-name');
+            const termDesc = element.querySelector('.term-description');
+            
+            [termName, termDesc].forEach(el => {
+                const text = el.textContent;
+                const regex = new RegExp(`(${query})`, 'gi');
+                const highlightedText = text.replace(regex, '<span class="highlight">$1</span>');
+                el.innerHTML = highlightedText;
+            });
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            
+            // Show category navigation
+            document.querySelector('.navigation').style.display = 'block';
+            
+            // Reset to show all categories
+            showCategory('all');
+            
+            // Remove highlights
+            document.querySelectorAll('.term-card').forEach(card => {
+                card.style.display = 'block';
+                const termName = card.querySelector('.term-name');
+                const termDesc = card.querySelector('.term-description');
+                
+                termName.innerHTML = termName.textContent;
+                termDesc.innerHTML = termDesc.textContent;
+            });
+            
+            // Reset active tab
+            document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelector('.nav-tab').classList.add('active');
+        }
+
+        // Allow search on Enter key
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchTerms();
+            }
+        });
+
+        // Initialize - show all categories by default
+        document.addEventListener('DOMContentLoaded', function() {
+            showCategory('all');
+        });
+    </script>
+</body>
+</html>
