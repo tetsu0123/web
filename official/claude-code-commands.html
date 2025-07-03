@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code 便利コマンド完全ガイド - 2025年版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .hero {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 25px;
+            padding: 60px 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            color: #555;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .content {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 25px;
+            padding: 45px;
+            margin-bottom: 30px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .content h2 {
+            font-size: 2.4rem;
+            color: #667eea;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 4px solid #764ba2;
+        }
+        
+        .content h3 {
+            font-size: 1.9rem;
+            color: #764ba2;
+            margin: 35px 0 25px 0;
+        }
+        
+        .content p {
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+            color: #444;
+            line-height: 1.9;
+        }
+        
+        .command-card {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 25px 0;
+            box-shadow: 0 15px 35px rgba(79, 172, 254, 0.3);
+        }
+        
+        .command-card h4 {
+            font-size: 1.7rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .command-syntax {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 15px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 1rem;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        
+        .warning {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border-left: 6px solid #ff4757;
+        }
+        
+        .warning h3 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, #56ab2f, #a8e6cf);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+        }
+        
+        .highlight h3 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .mode-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .mode-card {
+            background: white;
+            border: 3px solid #667eea;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.1);
+        }
+        
+        .mode-card h4 {
+            color: #667eea;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+        
+        .shortcut-key {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-weight: bold;
+            display: inline-block;
+            margin: 0 5px;
+        }
+        
+        .automation-section {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+            padding: 35px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        
+        .automation-section h3 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .config-example {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .config-example h4 {
+            color: #495057;
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .hero, .content {
+                padding: 30px 25px;
+            }
+            
+            .mode-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>Claude Code 便利コマンド完全ガイド</h1>
+            <p>2025年版 - 全自動・バックグラウンド実行で生産性を爆速化</p>
+        </div>
+        
+        <div class="content">
+            <h2>🚀 基本コマンド＆オプション</h2>
+            
+            <div class="command-card">
+                <h4>📝 基本的な使用方法</h4>
+                <div class="command-syntax">
+# 対話モードで起動
+claude
+
+# ヘッドレスモード（非対話）でプロンプト実行
+claude -p "プロンプトをここに入力"
+
+# 出力形式を指定（text, json, stream-json）
+claude -p "バグを修正して" --output-format json
+
+# 詳細ログ表示（デバッグ用）
+claude -p "テストを実行" --verbose
+
+# 権限チェックを無効化（危険）
+claude --dangerously-skip-permissions
+
+# 許可するツールを指定
+claude --allowedTools Bash,Edit,Read,Write
+                </div>
+            </div>
+            
+            <h2>⚡ 実行モード切り替え</h2>
+            
+            <div class="mode-grid">
+                <div class="mode-card">
+                    <h4>🔄 ノーマルモード</h4>
+                    <p>デフォルト状態。各操作で確認プロンプトが表示されます。</p>
+                    <p><strong>切り替え:</strong> 対話モード中に <span class="shortcut-key">Shift + Tab</span></p>
+                </div>
+                
+                <div class="mode-card">
+                    <h4>🔥 自動実行モード</h4>
+                    <p>権限プロンプトをスキップして実行します。</p>
+                    <p><strong>起動時指定:</strong> <span class="shortcut-key">--dangerously-skip-permissions</span></p>
+                </div>
+                
+                <div class="mode-card">
+                    <h4>📋 プランモード</h4>
+                    <p>実行前に詳細な計画を表示。戦略的な作業に最適。</p>
+                    <p><strong>切り替え:</strong> <span class="shortcut-key">Shift + Tab</span> でモード切り替え</p>
+                </div>
+            </div>
+            
+            <div class="warning">
+                <h3>⚠️ --dangerously-skip-permissions 使用時の注意</h3>
+                <p>このフラグは<strong>すべての権限チェックを無効化</strong>し、Claudeがファイル編集、コマンド実行、システム操作を確認なしで実行します。Anthropic公式では「インターネット接続のないDockerコンテナ内でのみ使用」を推奨していますが、十分注意して使用してください。</p>
+            </div>
+            
+            <div class="command-card">
+                <h4>⚡ --dangerously-skip-permissions の具体的使用例</h4>
+                <div class="command-syntax">
+# 基本的な使用方法
+claude --dangerously-skip-permissions
+
+# プロンプト指定での非対話実行
+claude --dangerously-skip-permissions -p "リントエラーを全て修正して"
+
+# プロジェクト全体の自動セットアップ
+claude --dangerously-skip-permissions -p "Next.js + TypeScript + Tailwindでプロジェクト作成"
+
+# 大量ファイルの一括変換
+claude --dangerously-skip-permissions -p "srcフォルダ内の全.jsファイルを.tsに変換"
+
+# 自動テスト修正
+claude --dangerously-skip-permissions -p "失敗しているテストを全て修正"
+
+# エイリアス作成（よく使う場合）
+alias cc="claude --dangerously-skip-permissions"
+cc -p "バグを修正してコミット"
+                </div>
+            </div>
+            
+            <h2>🔧 全自動化コマンド特集</h2>
+            
+            <div class="automation-section">
+                <h3>🚀 全自動プロジェクト作成</h3>
+                <div class="command-syntax">
+# 権限チェックを無効化して自動実行
+claude --dangerously-skip-permissions -p "Next.jsプロジェクトを作成し、TypeScript、Tailwind CSS、ESLintを設定"
+
+# 許可ツールを指定して安全に自動化
+claude --allowedTools Bash,Edit,Create,Read,Write -p "Django REST APIを作成"
+
+# ヘッドレスモードでCI/CD統合
+claude -p "React アプリを作成" --output-format stream-json --max-turns 10
+                </div>
+            </div>
+            
+            <div class="command-card">
+                <h4>🔄 ヘッドレスモード（CI/CD向け）</h4>
+                <div class="command-syntax">
+# パイプライン統合パターン
+claude -p "コードを分析してレポート作成" --output-format json | your_command
+
+# バッチ処理での大規模操作
+claude -p "migrate foo.py from React to Vue" --allowedTools Edit,Bash
+
+# エイリアス作成で簡略化
+alias cc="claude --dangerously-skip-permissions"
+cc -p "テストを実行し、失敗があれば自動修正"
+
+# GitHub Actions での自動実行例
+claude -p "lint errors を修正" --output-format json --verbose
+                </div>
+            </div>
+            
+            <h2>⚙️ 設定ファイルによる自動化</h2>
+            
+            <div class="config-example">
+                <h4>📁 .claude/settings.json （プロジェクト設定）</h4>
+                <div class="command-syntax">
+{
+  "model": "claude-3-5-sonnet-20241022",
+  "allowedTools": ["Bash", "Edit", "Create", "Read", "Write"],
+  "disallowedTools": ["Computer"],
+  "maxTurns": 50,
+  "verboseMode": false
+}
+                </div>
+            </div>
+            
+            <div class="config-example">
+                <h4>📁 .claude/commands/deploy.md （カスタムコマンド）</h4>
+                <div class="command-syntax">
+# デプロイメント自動化
+
+以下の手順を実行してください：
+
+1. テストを実行
+2. ビルドを作成  
+3. 変更をコミット
+4. ブランチをプッシュ
+5. GitHub Actions でデプロイ実行
+
+すべて自動で実行してください。
+                </div>
+            </div>
+            
+            <h2>📋 カスタムコマンド作成</h2>
+            
+            <div class="highlight">
+                <h3>🛠️ .claude/commands/ でワークフロー自動化</h3>
+                <p>よく使うプロンプトをMarkdownファイルで保存し、<span class="shortcut-key">/</span>コマンドで呼び出し可能にします。</p>
+            </div>
+            
+            <div class="config-example">
+                <h4>📁 .claude/commands/fix-lint.md</h4>
+                <div class="command-syntax">
+# リント修正コマンド
+
+プロジェクトのリントエラーを修正してください：
+
+1. ESLint を実行してエラーを特定
+2. 自動修正可能なエラーを修正  
+3. 手動修正が必要なエラーを修正
+4. 修正内容をコミット
+
+使用例: `/fix-lint`
+                </div>
+            </div>
+            
+            <div class="config-example">
+                <h4>📁 .claude/commands/batch-migrate.md</h4>
+                <div class="command-syntax">
+# バッチ移行コマンド
+
+複数ファイルの一括移行を実行：
+
+1. 移行対象ファイルをリストアップ
+2. 各ファイルを新しいフレームワークに移行
+3. 依存関係を更新
+4. テストを実行して動作確認
+5. 移行レポートを作成
+
+使用例: `/batch-migrate`
+                </div>
+            </div>
+            
+            <h2>🔋 パワーユーザー向けワークフロー</h2>
+            
+            <div class="automation-section">
+                <h3>🎯 バッチ処理とパイプライン統合</h3>
+                <div class="command-syntax">
+# 大規模移行処理（ファンアウトパターン）
+claude -p "数百のファイルをフレームワークAからBに移行するタスクリストを生成" --output-format json
+
+# パイプライン統合（結果を次の処理に渡す）
+claude -p "コード分析を実行" --output-format json | next_process_command
+
+# 並列処理での複雑な問題解決
+claude --allowedTools BatchTool,Edit,Bash -p "複数のマイクロサービスを同時にアップデート"
+
+# CI/CD統合での自動修正
+claude -p "migrate foo.py from React to Vue" --allowedTools Edit,Bash --max-turns 5
+                </div>
+            </div>
+            
+            <div class="command-card">
+                <h4>🌙 バックグラウンド実行とデーモン化</h4>
+                <div class="command-syntax">
+# バックグラウンドで継続実行（ログ出力あり）
+nohup claude --dangerously-skip-permissions -p "プロジェクトを監視し、変更があったらテストを実行" > claude.log 2>&1 &
+
+# screen/tmuxセッション内でClaudeを常駐
+screen -S claude-daemon
+claude --dangerously-skip-permissions
+
+# systemdサービスとして登録（Linux）
+# /etc/systemd/system/claude-monitor.service
+[Unit]
+Description=Claude Code Background Monitor
+After=network.target
+
+[Service]
+Type=simple
+User=your-user
+WorkingDirectory=/path/to/project
+ExecStart=/usr/local/bin/claude --dangerously-skip-permissions -p "継続的にプロジェクトを監視"
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+
+# サービス開始・停止
+sudo systemctl start claude-monitor
+sudo systemctl enable claude-monitor
+
+# macOS用 - LaunchDaemonとして登録
+# ~/Library/LaunchAgents/com.claude.monitor.plist
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.claude.monitor</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/local/bin/claude</string>
+        <string>--dangerously-skip-permissions</string>
+        <string>-p</string>
+        <string>プロジェクトを継続監視</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>WorkingDirectory</key>
+    <string>/path/to/project</string>
+    <key>StandardOutPath</key>
+    <string>/tmp/claude.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/claude.error.log</string>
+</dict>
+</plist>
+
+# LaunchDaemon登録・開始
+launchctl load ~/Library/LaunchAgents/com.claude.monitor.plist
+launchctl start com.claude.monitor
+                </div>
+            </div>
+            
+            <h2>📊 実行結果の自動処理</h2>
+            
+            <div class="command-card">
+                <h4>🔄 パイプラインでの結果処理</h4>
+                <div class="command-syntax">
+# 実行結果を次の処理に渡す
+claude -p "バグ修正を実行" --output-format json | jq '.result' | your_next_step
+
+# ヘッドレスモードでの自動処理チェーン
+claude -p "コードレビューを実行" --output-format stream-json --max-turns 3
+
+# GitHub Actions での実用例
+claude -p "lint errors を修正し、結果を返して" --allowedTools Edit,Bash --output-format json
+
+# 成功/失敗を判定する例
+claude -p "タスクを実行し、成功時はOK、失敗時はFAILを返して" --allowedTools Edit,Bash
+                </div>
+            </div>
+            
+            <h2>🎛️ 高度な自動化設定</h2>
+            
+            <div class="config-example">
+                <h4>🔧 エイリアスとショートカット</h4>
+                <div class="command-syntax">
+# 危険モード用エイリアス（慎重に使用）
+alias cc="claude --dangerously-skip-permissions"
+
+# 安全な自動化用エイリアス
+alias cs="claude --allowedTools Bash,Edit,Read,Write"
+
+# ヘッドレスモード用
+alias ch="claude -p"
+
+# 使用例
+cc "プロジェクトを完全に自動セットアップ"
+cs "安全にコードを修正"
+ch "レポートを生成" --output-format json
+                </div>
+            </div>
+            
+            <div class="config-example">
+                <h4>🚀 実践的な --dangerously-skip-permissions 活用法</h4>
+                <div class="command-syntax">
+# 1. 大規模リファクタリング
+claude --dangerously-skip-permissions -p "プロジェクト全体でReact Class ComponentsをFunctional Componentsに変換"
+
+# 2. 依存関係の一括更新
+claude --dangerously-skip-permissions -p "package.jsonの全依存関係を最新版に更新し、破綻を修正"
+
+# 3. コードスタイル統一
+claude --dangerously-skip-permissions -p "プロジェクト全体でESLint、Prettierルールに従ってコードを修正"
+
+# 4. テストカバレッジ向上
+claude --dangerously-skip-permissions -p "カバレッジが不足しているファイルにユニットテストを追加"
+
+# 5. ドキュメント自動生成
+claude --dangerously-skip-permissions -p "全ての関数とクラスにJSDocコメントを追加"
+
+# 6. セキュリティ脆弱性修正
+claude --dangerously-skip-permissions -p "npm auditで検出された脆弱性を全て修正"
+                </div>
+            </div>
+            
+            <div class="config-example">
+                <h4>🌙 バックグラウンド実行コマンド</h4>
+                <div class="command-syntax">
+# 1. nohup を使用したバックグラウンド実行
+nohup claude --dangerously-skip-permissions -p "継続的にコードを監視し、変更があったらテストを実行" > claude.log 2>&1 &
+
+# 2. screen セッション内での実行
+screen -S claude-bg
+claude --dangerously-skip-permissions -p "夜間にプロジェクト全体の最適化を実行"
+# Ctrl+A, D でデタッチ
+
+# 3. tmux セッション内での実行
+tmux new-session -d -s claude-session
+tmux send-keys -t claude-session "claude --dangerously-skip-permissions -p 'バックグラウンドタスクを実行'" Enter
+
+# 4. 定時実行（cron）
+# crontab -e で以下を追加
+# 0 2 * * * cd /path/to/project && claude --dangerously-skip-permissions -p "夜間メンテナンス実行" >> /tmp/claude-cron.log 2>&1
+
+# 5. プロセスの状態確認
+ps aux | grep claude
+jobs -l
+
+# 6. バックグラウンドプロセス終了
+kill %1  # ジョブ番号指定
+pkill -f "claude --dangerously-skip-permissions"
+                </div>
+            </div>
+            
+            <div class="warning">
+                <h3>🛡️ セキュリティ考慮事項</h3>
+                <ul>
+                    <li><strong>--dangerously-skip-permissions は慎重に使用</strong>（公式推奨：Dockerコンテナ内のみ）</li>
+                    <li><strong>allowedTools設定</strong>で実行可能な操作を制限</li>
+                    <li><strong>重要なファイルのバックアップ</strong>を事前に作成</li>
+                    <li><strong>git worktree</strong>を使って並列Claude セッションを安全に実行</li>
+                    <li><strong>--max-turns</strong>で実行回数を制限</li>
+                    <li><strong>--verbose</strong>でデバッグ時の動作を詳細に記録</li>
+                </ul>
+            </div>
+            
+            <h2>🚀 2025年の活用トレンド</h2>
+            
+            <div class="highlight">
+                <h3>🎯 2025年の実際の活用事例</h3>
+                <p>実際の開発現場では、<strong>ヘッドレスモードでのCI/CD統合</strong>、<strong>バッチ処理による大規模移行</strong>、<strong>sub-agent システムでの並列タスク実行</strong>、<strong>GitHub Actions での自動コードレビュー</strong>などが活用されています。特に--allowedTools によるきめ細かい権限制御が重視されています。</p>
+            </div>
+            
+            <p style="margin-top: 40px; text-align: center; font-size: 1.2rem; color: #667eea;"><strong>Claude Code で開発を完全自動化し、創造的な作業に集中しましょう！</strong></p>
+        </div>
+    </div>
+</body>
+</html>
