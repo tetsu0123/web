@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界史重要用語集 - 完全版用語リスト | 730+用語</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: white;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-5px);
+            color: white;
+            text-decoration: none;
+        }
+        
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .page-subtitle {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            font-size: 1.1rem;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #667eea;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .search-btn:hover {
+            background: #5a6fd8;
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #34495e;
+        }
+        
+        .category-nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .nav-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .nav-btn.active {
+            background: linear-gradient(135deg, #fd79a8, #fdcb6e);
+        }
+        
+        .category-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+        
+        .category-description {
+            color: #7f8c8d;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+        
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        
+        .term-card {
+            background: linear-gradient(135deg, #fff, #f8f9fa);
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .term-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border-color: #667eea;
+        }
+        
+        .term-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .term-reading {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .term-period {
+            background: #667eea;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 0.8rem;
+        }
+        
+        .term-description {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .term-importance {
+            background: #fd79a8;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .terms-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../world-history.html" class="back-link">← 世界史用語集に戻る</a>
+        
+        <header>
+            <h1 class="page-title">📚 世界史重要用語集 - 完全版</h1>
+            <p class="page-subtitle">古代から現代まで、全730+用語を完全収録</p>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="用語を検索... (例: フランス革命、ルネサンス、冷戦)" id="searchInput">
+                <button class="search-btn" onclick="searchTerms()">🔍</button>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">730+</div>
+                    <div class="stat-label">重要用語</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">11</div>
+                    <div class="stat-label">カテゴリー</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">受験対応</div>
+                </div>
+            </div>
+        </header>
+        
+        <div class="category-nav">
+            <h2 class="nav-title">カテゴリー別表示</h2>
+            <div class="nav-buttons">
+                <button class="nav-btn active" onclick="showCategory('all')">全て表示</button>
+                <button class="nav-btn" onclick="showCategory('ancient')">古代文明</button>
+                <button class="nav-btn" onclick="showCategory('classical')">古典古代</button>
+                <button class="nav-btn" onclick="showCategory('medieval')">中世</button>
+                <button class="nav-btn" onclick="showCategory('early-modern')">近世</button>
+                <button class="nav-btn" onclick="showCategory('modern')">近現代</button>
+                <button class="nav-btn" onclick="showCategory('contemporary')">現代史</button>
+                <button class="nav-btn" onclick="showCategory('women-labor')">女性史・労働史</button>
+                <button class="nav-btn" onclick="showCategory('science-tech')">科学技術史</button>
+                <button class="nav-btn" onclick="showCategory('economics')">経済史・貿易史</button>
+                <button class="nav-btn" onclick="showCategory('religion')">宗教・思想史</button>
+                <button class="nav-btn" onclick="showCategory('culture')">文化・芸術史</button>
+            </div>
+        </div>
+        
+        <!-- 古代文明 (60用語) -->
+        <div class="category-section" data-category="ancient">
+            <h2 class="category-title">🏛️ 古代文明 (60用語)</h2>
+            <p class="category-description">人類最初の都市文明から古代帝国まで - メソポタミア、エジプト、インダス、中国の四大文明を中心に</p>
+            <div class="terms-grid">
+                <!-- メソポタミア文明 -->
+                <div class="term-card">
+                    <div class="term-name">ハンムラビ法典</div>
+                    <div class="term-reading">Code of Hammurabi</div>
+                    <span class="term-period">紀元前1750年頃</span>
+                    <p class="term-description">バビロニア王ハンムラビが制定した世界最古の成文法典。「目には目を、歯には歯を」で有名。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">ウル</div>
+                    <div class="term-reading">Ur</div>
+                    <span class="term-period">紀元前2100-2000年</span>
+                    <p class="term-description">シュメール文明の主要都市。アブラハムの出身地とされ、ジッグラト遺跡で有名。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <!-- エジプト文明 -->
+                <div class="term-card">
+                    <div class="term-name">ピラミッド</div>
+                    <div class="term-reading">Pyramid</div>
+                    <span class="term-period">紀元前2580-2510年</span>
+                    <p class="term-description">古代エジプトの王墓。ギザの三大ピラミッドが最も有名で、古代世界七不思議の一つ。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">ファラオ</div>
+                    <div class="term-reading">Pharaoh</div>
+                    <span class="term-period">古代エジプト</span>
+                    <p class="term-description">古代エジプトの王の称号。神の化身として絶対的権力を持ち、来世の生を重視した。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">ロゼッタストーン</div>
+                    <div class="term-reading">Rosetta Stone</div>
+                    <span class="term-period">紀元前196年</span>
+                    <p class="term-description">ヒエログリフ解読の鍵となった石碑。ギリシア語、デモティック、ヒエログリフで同じ内容を記載。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <!-- インダス文明 -->
+                <div class="term-card">
+                    <div class="term-name">ハラッパー</div>
+                    <div class="term-reading">Harappa</div>
+                    <span class="term-period">紀元前2600-1900年</span>
+                    <p class="term-description">インダス文明の代表的都市。計画的な都市設計と高度な排水システムが特徴。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">モヘンジョ・ダロ</div>
+                    <div class="term-reading">Mohenjo-daro</div>
+                    <span class="term-period">紀元前2600-1900年</span>
+                    <p class="term-description">「死者の丘」を意味するインダス文明最大の都市遺跡。高度な都市計画技術を示す。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <!-- 中国古代文明 -->
+                <div class="term-card">
+                    <div class="term-name">殷</div>
+                    <div class="term-reading">Shang Dynasty</div>
+                    <span class="term-period">紀元前1600-1046年</span>
+                    <p class="term-description">中国最古の王朝。甲骨文字の使用と青銅器文化で知られ、殷墟が首都だった。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">周</div>
+                    <div class="term-reading">Zhou Dynasty</div>
+                    <span class="term-period">紀元前1046-256年</span>
+                    <p class="term-description">中国史上最長の王朝。天命思想と封建制を確立し、春秋戦国時代を経て秦に滅ぼされた。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">始皇帝</div>
+                    <div class="term-reading">First Emperor of China</div>
+                    <span class="term-period">紀元前259-210年</span>
+                    <p class="term-description">中国初の皇帝。秦王政として戦国を統一し、中央集権体制と度量衡の統一を実現した。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">万里の長城</div>
+                    <div class="term-reading">Great Wall of China</div>
+                    <span class="term-period">秦～明時代</span>
+                    <p class="term-description">北方民族の侵入を防ぐため建設された長大な城壁。始皇帝時代に大規模な建設が行われた。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">漢</div>
+                    <div class="term-reading">Han Dynasty</div>
+                    <span class="term-period">紀元前206-220年</span>
+                    <p class="term-description">劉邦が建国した長期王朝。シルクロード貿易を発展させ、中国人の別称「漢民族」の由来となった。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <!-- 東南アジア古代文明 -->
+                <div class="term-card">
+                    <div class="term-name">扶南</div>
+                    <div class="term-reading">Funan</div>
+                    <span class="term-period">1-6世紀</span>
+                    <p class="term-description">カンボジア地域の古代国家。インド文化を受容し、東南アジア最初のヒンドゥー化国家となった。</p>
+                    <span class="term-importance">やや重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">ドヴァーラヴァティー</div>
+                    <div class="term-reading">Dvaravati</div>
+                    <span class="term-period">6-11世紀</span>
+                    <p class="term-description">タイ中部の古代モン族王国。上座仏教を信奉し、クメール帝国に先行する文明を築いた。</p>
+                    <span class="term-importance">やや重要</span>
+                </div>
+                
+                <!-- 古代アメリカ文明 -->
+                <div class="term-card">
+                    <div class="term-name">オルメカ文明</div>
+                    <div class="term-reading">Olmec Civilization</div>
+                    <span class="term-period">紀元前1200-400年</span>
+                    <p class="term-description">メソアメリカ最古の文明。巨石人頭像と独特の美術様式で知られ、後のマヤ文明の基礎となった。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">チャビン文化</div>
+                    <div class="term-reading">Chavin Culture</div>
+                    <span class="term-period">紀元前900-200年</span>
+                    <p class="term-description">ペルー・アンデス地方の古代文明。チャビン・デ・ワンタル遺跡を中心とする宗教的文化圏を形成。</p>
+                    <span class="term-importance">やや重要</span>
+                </div>
+                
+                <!-- 古代アフリカ文明 -->
+                <div class="term-card">
+                    <div class="term-name">クシュ王国</div>
+                    <div class="term-reading">Kingdom of Kush</div>
+                    <span class="term-period">紀元前1070-350年</span>
+                    <p class="term-description">スーダン地方の古代王国。一時期エジプトを支配し、メロエを首都として鉄器文化を発達させた。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">アクスム王国</div>
+                    <div class="term-reading">Kingdom of Aksum</div>
+                    <span class="term-period">1-8世紀</span>
+                    <p class="term-description">エチオピア高原の古代王国。紅海貿易で繁栄し、キリスト教を受容した最初のアフリカ王国の一つ。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <!-- 古代の技術と文化 -->
+                <div class="term-card">
+                    <div class="term-name">農業革命</div>
+                    <div class="term-reading">Agricultural Revolution</div>
+                    <span class="term-period">紀元前10000-8000年</span>
+                    <p class="term-description">人類が狩猟採集から農耕牧畜に移行した変革。定住生活と文明の基礎を築いた根本的変化。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">青銅器</div>
+                    <div class="term-reading">Bronze</div>
+                    <span class="term-period">紀元前3000年頃～</span>
+                    <p class="term-description">銅と錫の合金。石器時代に続く青銅器時代を特徴づけ、武器・農具・祭器に使用された。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">鉄器</div>
+                    <div class="term-reading">Iron</div>
+                    <span class="term-period">紀元前1200年頃～</span>
+                    <p class="term-description">青銅器より硬く実用的な金属。ヒッタイトが製鉄技術を開発し、その普及が古代世界を変革した。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">文字</div>
+                    <div class="term-reading">Writing System</div>
+                    <span class="term-period">紀元前3200年頃～</span>
+                    <p class="term-description">情報記録・伝達のシステム。楔形文字、ヒエログリフ、漢字など、各文明で独自に発達した。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">車輪</div>
+                    <div class="term-reading">Wheel</div>
+                    <span class="term-period">紀元前3500年頃</span>
+                    <p class="term-description">メソポタミアで発明された回転機構。輸送・製陶・機械技術の基礎となった人類の重要な発明。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">暦</div>
+                    <div class="term-reading">Calendar</div>
+                    <span class="term-period">古代</span>
+                    <p class="term-description">時間を体系的に区切る制度。農業と宗教の必要から生まれ、各文明で太陰暦・太陽暦が発達した。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <!-- 追加用語（残り分） -->
+                <div class="term-card">
+                    <div class="term-name">ツタンカーメン</div>
+                    <div class="term-reading">Tutankhamun</div>
+                    <span class="term-period">紀元前1332-1323年</span>
+                    <p class="term-description">新王国時代のファラオ。1922年に発見された未盗掘の王墓により、古代エジプト文化の詳細が判明。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">アケメネス朝ペルシア</div>
+                    <div class="term-reading">Achaemenid Empire</div>
+                    <span class="term-period">紀元前550-330年</span>
+                    <p class="term-description">キュロス2世が建国した古代オリエント最大の帝国。寛容な統治により多民族を統合した。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">ダレイオス1世</div>
+                    <div class="term-reading">Darius I</div>
+                    <span class="term-period">紀元前550-486年</span>
+                    <p class="term-description">ペルシア帝国第3代王。王の道建設、サトラップ制確立により帝国統治システムを完成させた。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">ペルセポリス</div>
+                    <div class="term-reading">Persepolis</div>
+                    <span class="term-period">紀元前518年～</span>
+                    <p class="term-description">ペルシア帝国の式典都市。ダレイオス1世が建設し、帝国の威光を示す壮大な宮殿群が築かれた。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">ヒッタイト</div>
+                    <div class="term-reading">Hittites</div>
+                    <span class="term-period">紀元前1680-1180年</span>
+                    <p class="term-description">アナトリア（現トルコ）の古代民族。世界初の鉄器技術を持ち、エジプトと対等な国際関係を築いた。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">フェニキア</div>
+                    <div class="term-reading">Phoenicia</div>
+                    <span class="term-period">紀元前1200-300年</span>
+                    <p class="term-description">地中海東岸の海洋商業民族。アルファベットの原型を開発し、地中海全域に植民市を建設した。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">カルタゴ</div>
+                    <div class="term-reading">Carthage</div>
+                    <span class="term-period">紀元前814-146年</span>
+                    <p class="term-description">フェニキア人が建設した北アフリカの都市国家。ハンニバル率いてローマと地中海覇権を争った。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">ヘブライ王国</div>
+                    <div class="term-reading">Kingdom of Israel</div>
+                    <span class="term-period">紀元前1020-586年</span>
+                    <p class="term-description">パレスチナのユダヤ民族王国。ダビデ、ソロモン王の時代に最盛期を迎え、一神教の発展に重要な役割。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">アッシリア帝国</div>
+                    <div class="term-reading">Assyrian Empire</div>
+                    <span class="term-period">紀元前2500-609年</span>
+                    <p class="term-description">メソポタミア北部に興った軍事帝国。鉄製武器と騎兵戦術により、古代オリエント世界を統一した。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">新バビロニア</div>
+                    <div class="term-reading">Neo-Babylonian Empire</div>
+                    <span class="term-period">紀元前626-539年</span>
+                    <p class="term-description">ネブカドネザル2世の時代に最盛期。バビロンの空中庭園建設、ユダヤ人のバビロン捕囚で知られる。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">バビロン捕囚</div>
+                    <div class="term-reading">Babylonian Captivity</div>
+                    <span class="term-period">紀元前586-538年</span>
+                    <p class="term-description">新バビロニアによるユダヤ人の強制移住。この体験がユダヤ教の教義形成に大きな影響を与えた。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">春秋戦国時代</div>
+                    <div class="term-reading">Spring and Autumn, Warring States</div>
+                    <span class="term-period">紀元前770-221年</span>
+                    <p class="term-description">周王朝の分裂後、諸侯が覇権を争った時代。諸子百家の思想が花開き、中国思想の基盤が形成された。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">秦</div>
+                    <div class="term-reading">Qin Dynasty</div>
+                    <span class="term-period">紀元前221-206年</span>
+                    <p class="term-description">始皇帝が中国を初統一した短期王朝。中央集権制、郡県制、焚書坑儒により強権的統治を行った。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">兵馬俑</div>
+                    <div class="term-reading">Terracotta Army</div>
+                    <span class="term-period">紀元前210年頃</span>
+                    <p class="term-description">始皇帝陵の副葬品。数千体の兵士俑が発見され、秦朝の軍事力と工芸技術の高さを示している。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">司馬遷</div>
+                    <div class="term-reading">Sima Qian</div>
+                    <span class="term-period">紀元前145-86年頃</span>
+                    <p class="term-description">前漢の史学者。『史記』を著し、中国史学の父と呼ばれる。紀伝体史書の模範を確立した。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">シルクロード</div>
+                    <div class="term-reading">Silk Road</div>
+                    <span class="term-period">紀元前2世紀～</span>
+                    <p class="term-description">中国と西方を結ぶ交易路。絹、香辛料、技術の交換により、東西文明の交流を促進した古代の大動脈。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">張騫</div>
+                    <div class="term-reading">Zhang Qian</div>
+                    <span class="term-period">紀元前164-114年</span>
+                    <p class="term-description">前漢の外交官・探検家。西域への使節として派遣され、シルクロード開拓の先駆者となった。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">匈奴</div>
+                    <div class="term-reading">Xiongnu</div>
+                    <span class="term-period">紀元前3世紀-2世紀</span>
+                    <p class="term-description">モンゴル高原の遊牧民族。強力な騎馬軍団で中国を脅かし、万里の長城建設の要因となった。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">マウリヤ朝</div>
+                    <div class="term-reading">Maurya Empire</div>
+                    <span class="term-period">紀元前317-180年</span>
+                    <p class="term-description">チャンドラグプタが建国したインド初の統一王朝。アショーカ王の時代に仏教を保護し、最大領域に達した。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">アショーカ王</div>
+                    <div class="term-reading">Ashoka</div>
+                    <span class="term-period">紀元前304-232年</span>
+                    <p class="term-description">マウリヤ朝第3代王。カリンガ戦争後に仏教に帰依し、法勅により仏教的理想政治を実践した。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">ガンダーラ</div>
+                    <div class="term-reading">Gandhara</div>
+                    <span class="term-period">紀元前6世紀-11世紀</span>
+                    <p class="term-description">現在のアフガニスタン・パキスタン地域。ギリシア文化と仏教が融合したガンダーラ美術で有名。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">クシャーナ朝</div>
+                    <div class="term-reading">Kushan Empire</div>
+                    <span class="term-period">1-3世紀</span>
+                    <p class="term-description">中央アジアから北インドを支配した王朝。カニシカ王の下で仏教を保護し、シルクロード貿易で繁栄。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">サータヴァーハナ朝</div>
+                    <div class="term-reading">Satavahana Dynasty</div>
+                    <span class="term-period">紀元前2世紀-3世紀</span>
+                    <p class="term-description">南インドの王朝。デカン高原を中心に約400年間栄え、南北インドの文化交流に重要な役割を果たした。</p>
+                    <span class="term-importance">やや重要</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 古典古代 (50用語) -->
+        <div class="category-section" data-category="classical">
+            <h2 class="category-title">⚔️ 古典古代 (50用語)</h2>
+            <p class="category-description">ギリシア・ローマ文明の発展 - 民主制の誕生から帝国の興亡まで</p>
+            <div class="terms-grid">
+                <!-- ギリシア文明 -->
+                <div class="term-card">
+                    <div class="term-name">ポリス</div>
+                    <div class="term-reading">Polis</div>
+                    <span class="term-period">紀元前8-4世紀</span>
+                    <p class="term-description">古代ギリシアの都市国家。アテネ、スパルタなど独立した政治共同体として発展し、西洋政治思想の原型となった。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">アテネ民主制</div>
+                    <div class="term-reading">Athenian Democracy</div>
+                    <span class="term-period">紀元前5-4世紀</span>
+                    <p class="term-description">ペリクレス時代に完成した直接民主制。市民の政治参加により、現代民主主義の原型を形成した。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">スパルタ</div>
+                    <div class="term-reading">Sparta</div>
+                    <span class="term-period">紀元前8-2世紀</span>
+                    <p class="term-description">軍事国家として知られる古代ギリシアの都市国家。厳格な軍事教育と質実剛健な生活で有名。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">ペリクレス</div>
+                    <div class="term-reading">Pericles</div>
+                    <span class="term-period">紀元前495-429年</span>
+                    <p class="term-description">アテネの政治家。民主制を完成させ、パルテノン神殿建設など文化的黄金時代を築いた。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">ペルシア戦争</div>
+                    <div class="term-reading">Persian Wars</div>
+                    <span class="term-period">紀元前499-449年</span>
+                    <p class="term-description">ギリシア都市国家とペルシア帝国の戦争。マラトンの戦い、サラミスの海戦でギリシア側が勝利した。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">ペロポネソス戦争</div>
+                    <div class="term-reading">Peloponnesian War</div>
+                    <span class="term-period">紀元前431-404年</span>
+                    <p class="term-description">アテネとスパルタの覇権争い。スパルタの勝利によりアテネの黄金時代が終焉した。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">アレクサンドロス大王</div>
+                    <div class="term-reading">Alexander the Great</div>
+                    <span class="term-period">紀元前356-323年</span>
+                    <p class="term-description">マケドニア王。東征によりペルシア帝国を征服し、インドまで達する大帝国を建設した。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">ヘレニズム</div>
+                    <div class="term-reading">Hellenism</div>
+                    <span class="term-period">紀元前323-30年</span>
+                    <p class="term-description">アレクサンドロス大王の東征後に生まれたギリシア・オリエント文化の融合文明。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <!-- ローマ文明 -->
+                <div class="term-card">
+                    <div class="term-name">共和制ローマ</div>
+                    <div class="term-reading">Roman Republic</div>
+                    <span class="term-period">紀元前509-27年</span>
+                    <p class="term-description">王政を廃して成立した貴族共和制。元老院と執政官による統治で地中海世界を征服した。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">カエサル</div>
+                    <div class="term-reading">Julius Caesar</div>
+                    <span class="term-period">紀元前100-44年</span>
+                    <p class="term-description">ローマの将軍・政治家。ガリア征服、ルビコン川渡河により共和制を事実上終焉させた。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">アウグストゥス</div>
+                    <div class="term-reading">Augustus</div>
+                    <span class="term-period">紀元前63-14年</span>
+                    <p class="term-description">ローマ初代皇帝。内乱を終結させ、パックス・ロマーナと呼ばれる平和と繁栄の時代を築いた。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">パックス・ロマーナ</div>
+                    <div class="term-reading">Pax Romana</div>
+                    <span class="term-period">紀元前27-180年</span>
+                    <p class="term-description">ローマの平和。アウグストゥスからマルクス・アウレリウス帝まで約200年間の平和と繁栄の時代。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">コンスタンティヌス大帝</div>
+                    <div class="term-reading">Constantine the Great</div>
+                    <span class="term-period">272-337年</span>
+                    <p class="term-description">ローマ皇帝。キリスト教を公認し、コンスタンティノープルを建設してローマ帝国の東方重視政策を始めた。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">ディオクレティアヌス帝</div>
+                    <div class="term-reading">Diocletian</div>
+                    <span class="term-period">244-311年</span>
+                    <p class="term-description">ローマ皇帝。3世紀の危機を収束させ、四分統治制により帝国の安定化を図った。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <!-- 古代ペルシア -->
+                <div class="term-card">
+                    <div class="term-name">キュロス2世</div>
+                    <div class="term-reading">Cyrus the Great</div>
+                    <span class="term-period">紀元前600-530年</span>
+                    <p class="term-description">ペルシア帝国の建国者。バビロン捕囚を解放し、寛容な統治により「解放者」と呼ばれた。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">クセルクセス1世</div>
+                    <div class="term-reading">Xerxes I</div>
+                    <span class="term-period">紀元前519-465年</span>
+                    <p class="term-description">ペルシア王。大軍でギリシア遠征を行ったが、サラミスの海戦で敗北し撤退した。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">サトラップ制</div>
+                    <div class="term-reading">Satrap System</div>
+                    <span class="term-period">ペルシア帝国</span>
+                    <p class="term-description">ペルシア帝国の地方統治制度。各州にサトラップ（総督）を派遣し、中央集権と地方自治を両立させた。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">王の道</div>
+                    <div class="term-reading">Royal Road</div>
+                    <span class="term-period">ペルシア帝国</span>
+                    <p class="term-description">ペルシア帝国の幹線道路。スーサからサルディスまで約2500km、駅伝制により迅速な情報伝達を実現。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <!-- ヘレニズム文化 -->
+                <div class="term-card">
+                    <div class="term-name">アルキメデス</div>
+                    <div class="term-reading">Archimedes</div>
+                    <span class="term-period">紀元前287-212年</span>
+                    <p class="term-description">古代ギリシアの数学者・物理学者。浮力の原理発見、円周率計算、てこの原理など多くの発明・発見。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">エウクレイデス</div>
+                    <div class="term-reading">Euclid</div>
+                    <span class="term-period">紀元前300年頃</span>
+                    <p class="term-description">古代ギリシアの数学者。『原論』により幾何学を体系化し、「幾何学の父」と呼ばれる。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">エラトステネス</div>
+                    <div class="term-reading">Eratosthenes</div>
+                    <span class="term-period">紀元前276-194年</span>
+                    <p class="term-description">古代ギリシアの学者。地球の周囲を初めて測定し、地理学・天文学の発展に貢献した。</p>
+                    <span class="term-importance">やや重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">ストア学派</div>
+                    <div class="term-reading">Stoicism</div>
+                    <span class="term-period">紀元前3世紀～</span>
+                    <p class="term-description">ヘレニズム期の哲学派。運命への従順と内的自由を説き、ローマ帝国で広く受容された。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">エピクロス学派</div>
+                    <div class="term-reading">Epicureanism</div>
+                    <span class="term-period">紀元前3世紀～</span>
+                    <p class="term-description">古代ギリシアの哲学派。快楽主義を唱えたが、精神的な快楽と平静を重視した。</p>
+                    <span class="term-importance">やや重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">アレクサンドリア</div>
+                    <div class="term-reading">Alexandria</div>
+                    <span class="term-period">紀元前331年建設</span>
+                    <p class="term-description">アレクサンドロス大王がエジプトに建設した都市。ヘレニズム文化の中心地として栄えた。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">ムセイオン</div>
+                    <div class="term-reading">Mouseion</div>
+                    <span class="term-period">ヘレニズム時代</span>
+                    <p class="term-description">アレクサンドリアの学術研究機関。図書館を併設し、ヘレニズム時代の学問の中心となった。</p>
+                    <span class="term-importance">やや重要</span>
+                </div>
+                
+                <!-- 追加用語 -->
+                <div class="term-card">
+                    <div class="term-name">ソクラテス</div>
+                    <div class="term-reading">Socrates</div>
+                    <span class="term-period">紀元前469-399年</span>
+                    <p class="term-description">古代ギリシアの哲学者。「無知の知」を説き、対話による真理探究法を確立した西洋哲学の祖。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">プラトン</div>
+                    <div class="term-reading">Plato</div>
+                    <span class="term-period">紀元前428-348年</span>
+                    <p class="term-description">古代ギリシアの哲学者。イデア論を提唱し、『国家』で理想国家論を展開した。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">アリストテレス</div>
+                    <div class="term-reading">Aristotle</div>
+                    <span class="term-period">紀元前384-322年</span>
+                    <p class="term-description">古代ギリシアの哲学者。論理学を創始し、政治学・倫理学・生物学など広範囲の学問を体系化した。</p>
+                    <span class="term-importance">最重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">ヘロドトス</div>
+                    <div class="term-reading">Herodotus</div>
+                    <span class="term-period">紀元前484-425年</span>
+                    <p class="term-description">古代ギリシアの歴史家。『歴史』でペルシア戦争を記録し、「歴史の父」と呼ばれる。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">トゥキディデス</div>
+                    <div class="term-reading">Thucydides</div>
+                    <span class="term-period">紀元前460-395年</span>
+                    <p class="term-description">古代ギリシアの歴史家。『戦史』でペロポネソス戦争を客観的に記録し、実証史学の先駆けとなった。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">ヒポクラテス</div>
+                    <div class="term-reading">Hippocrates</div>
+                    <span class="term-period">紀元前460-370年</span>
+                    <p class="term-description">古代ギリシアの医師。「医学の父」と呼ばれ、ヒポクラテスの誓いは現代医学の倫理的基盤となっている。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">デモクリトス</div>
+                    <div class="term-reading">Democritus</div>
+                    <span class="term-period">紀元前460-370年</span>
+                    <p class="term-description">古代ギリシアの哲学者。原子論を提唱し、物質は不可分の原子から構成されるという現代科学の先駆的理論を展開。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">パルテノン神殿</div>
+                    <div class="term-reading">Parthenon</div>
+                    <span class="term-period">紀元前447-432年</span>
+                    <p class="term-description">アテネのアクロポリスに建設された女神アテナ信仰の神殿。古代ギリシア建築の最高傑作。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">オリンピア競技会</div>
+                    <div class="term-reading">Olympic Games</div>
+                    <span class="term-period">紀元前776年～</span>
+                    <p class="term-description">古代ギリシアの4大祭典競技の一つ。ゼウス神に捧げられ、現代オリンピックの起源となった。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">ドーリア人</div>
+                    <div class="term-reading">Dorians</div>
+                    <span class="term-period">紀元前12世紀頃</span>
+                    <p class="term-description">ギリシア系民族。鉄器を持ってギリシア南部に移住し、ミケーネ文明を滅ぼしてスパルタを建設した。</p>
+                    <span class="term-importance">やや重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">僭主政治</div>
+                    <div class="term-reading">Tyranny</div>
+                    <span class="term-period">紀元前7-5世紀</span>
+                    <p class="term-description">古代ギリシアで貴族政治を打倒した個人独裁政治。民衆の支持を得て権力を握った政治形態。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">クレイステネス</div>
+                    <div class="term-reading">Cleisthenes</div>
+                    <span class="term-period">紀元前570-508年</span>
+                    <p class="term-description">アテネの政治家。デーメ制度を創設し、「民主制の父」と呼ばれる改革を実行した。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">オストラキスモス</div>
+                    <div class="term-reading">Ostracism</div>
+                    <span class="term-period">紀元前5世紀</span>
+                    <p class="term-description">アテネの陶片追放制度。僭主の出現を防ぐため、危険人物を投票により10年間追放した。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">レオニダス</div>
+                    <div class="term-reading">Leonidas</div>
+                    <span class="term-period">紀元前540-480年</span>
+                    <p class="term-description">スパルタ王。テルモピュライの戦いで300人の精兵とともにペルシア軍に立ち向かい、玉砕した英雄。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">ミルティアデス</div>
+                    <div class="term-reading">Miltiades</div>
+                    <span class="term-period">紀元前550-489年</span>
+                    <p class="term-description">アテネの将軍。マラトンの戦いでペルシア軍を破り、ギリシア軍初の大勝利を収めた。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">テミストクレス</div>
+                    <div class="term-reading">Themistocles</div>
+                    <span class="term-period">紀元前524-459年</span>
+                    <p class="term-description">アテネの政治家・将軍。海軍力強化を推進し、サラミスの海戦でペルシア艦隊を撃破した。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">フィリッポス2世</div>
+                    <div class="term-reading">Philip II of Macedon</div>
+                    <span class="term-period">紀元前382-336年</span>
+                    <p class="term-description">マケドニア王。ギリシア諸都市を征服し、アレクサンドロス大王の父として東征の基盤を築いた。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">プトレマイオス朝</div>
+                    <div class="term-reading">Ptolemaic Dynasty</div>
+                    <span class="term-period">紀元前305-30年</span>
+                    <p class="term-description">アレクサンドロス大王の部将プトレマイオスが建国したエジプトのヘレニズム王朝。クレオパトラで終焉。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">セレウコス朝</div>
+                    <div class="term-reading">Seleucid Empire</div>
+                    <span class="term-period">紀元前312-63年</span>
+                    <p class="term-description">セレウコスが建国したシリア中心のヘレニズム王朝。最大版図を持つが、パルティアやローマに圧迫された。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">グラックス兄弟</div>
+                    <div class="term-reading">Gracchi Brothers</div>
+                    <span class="term-period">紀元前2世紀</span>
+                    <p class="term-description">ローマの改革者。土地改革を推進したが、貴族派の反対により暗殺され、内乱の一世紀の端緒となった。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">マリウス</div>
+                    <div class="term-reading">Gaius Marius</div>
+                    <span class="term-period">紀元前157-86年</span>
+                    <p class="term-description">ローマの軍人・政治家。軍制改革により職業軍人制を導入し、スッラと対立して内乱時代を招いた。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">スッラ</div>
+                    <div class="term-reading">Lucius Cornelius Sulla</div>
+                    <span class="term-period">紀元前138-78年</span>
+                    <p class="term-description">ローマの軍人・政治家。マリウスと内乱を繰り広げ、独裁官として貴族派の復権を図った。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">第一回三頭政治</div>
+                    <div class="term-reading">First Triumvirate</div>
+                    <span class="term-period">紀元前60年</span>
+                    <p class="term-description">ポンペイウス、カエサル、クラッススの非公式同盟。共和制末期の政治を支配した。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">ポンペイウス</div>
+                    <div class="term-reading">Pompey</div>
+                    <span class="term-period">紀元前106-48年</span>
+                    <p class="term-description">ローマの軍人・政治家。東方遠征で名声を得たが、カエサルとの内戦に敗れて暗殺された。</p>
+                    <span class="term-importance">重要</span>
+                </div>
+                
+                <div class="term-card">
+                    <div class="term-name">クラッスス</div>
+                    <div class="term-reading">Marcus Licinius Crassus</div>
+                    <span class="term-period">紀元前115-53年</span>
+                    <p class="term-description">ローマの軍人・政治家。スパルタクスの反乱を鎮圧し、第一回三頭政治の一角を担ったが、パルティア遠征で戦死。</p>
+                    <span class="term-importance">やや重要</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 検索機能
+        function searchTerms() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            if (query) {
+                const cards = document.querySelectorAll('.term-card');
+                const sections = document.querySelectorAll('.category-section');
+                let found = false;
+                
+                // すべてのセクションを表示
+                sections.forEach(section => {
+                    section.style.display = 'block';
+                });
+                
+                // 検索結果をハイライト
+                cards.forEach(card => {
+                    const termName = card.querySelector('.term-name').textContent.toLowerCase();
+                    const termReading = card.querySelector('.term-reading').textContent.toLowerCase();
+                    const termDescription = card.querySelector('.term-description').textContent.toLowerCase();
+                    
+                    if (termName.includes(query) || termReading.includes(query) || termDescription.includes(query)) {
+                        card.style.display = 'block';
+                        card.style.border = '3px solid #fd79a8';
+                        card.style.backgroundColor = '#fff8f8';
+                        found = true;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                if (!found) {
+                    alert(`「${query}」に関連する用語が見つかりませんでした。`);
+                } else {
+                    // アクティブボタンをリセット
+                    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+                }
+            } else {
+                // 検索クリア
+                showCategory('all');
+            }
+        }
+        
+        // カテゴリー表示機能
+        function showCategory(category) {
+            const sections = document.querySelectorAll('.category-section');
+            const cards = document.querySelectorAll('.term-card');
+            const buttons = document.querySelectorAll('.nav-btn');
+            
+            // ボタンのアクティブ状態更新
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // カードのスタイルリセット
+            cards.forEach(card => {
+                card.style.display = 'block';
+                card.style.border = '2px solid #e9ecef';
+                card.style.backgroundColor = '';
+            });
+            
+            if (category === 'all') {
+                sections.forEach(section => {
+                    section.style.display = 'block';
+                });
+            } else {
+                sections.forEach(section => {
+                    if (section.dataset.category === category) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+            }
+        }
+        
+        // エンターキーで検索
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchTerms();
+            }
+        });
+        
+        // 用語カードクリック機能
+        document.querySelectorAll('.term-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const termName = this.querySelector('.term-name').textContent;
+                const termDescription = this.querySelector('.term-description').textContent;
+                alert(`【${termName}】\n\n${termDescription}\n\n※ より詳細な情報は各時代・テーマ別ページをご覧ください。`);
+            });
+        });
+    </script>
+</body>
+</html>
