@@ -198,20 +198,44 @@
         
         .social-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
             justify-content: center;
             margin-bottom: 1.5rem;
+            align-items: center;
         }
         
         .social-links a {
-            color: #666666;
-            text-decoration: none;
-            opacity: 0.6;
-            transition: opacity 0.3s ease;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 16px;
+            height: 16px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            transition: opacity .4s, transform .4s;
+            opacity: .6;
+            filter: grayscale(100%);
+        }
+        
+        .social-links a.x-icon {
+            background-image: url('x.png');
+            background-size: 13px 13px;
+        }
+        
+        .social-links a.insta-icon {
+            background-image: url('insta.png');
+        }
+        
+        .social-links a.note-icon {
+            background-image: url('note.png');
+            background-size: 12px 12px;
         }
         
         .social-links a:hover {
             opacity: 1;
+            transform: translateY(-2px);
+            filter: grayscale(0%);
         }
         
         .copyright {
@@ -318,9 +342,9 @@
     
     <footer>
         <div class="social-links">
-            <a href="https://x.com/dame_murahito" target="_blank">X</a>
-            <a href="https://www.instagram.com/tetsuya.sano123/" target="_blank">Instagram</a>
-            <a href="https://note.com/sano_tetsuya" target="_blank">note</a>
+            <a href="https://x.com/dame_murahito" target="_blank" rel="noopener" class="x-icon" title="X"></a>
+            <a href="https://www.instagram.com/tetsuya.sano123/" target="_blank" rel="noopener" class="insta-icon" title="Instagram"></a>
+            <a href="https://note.com/sano_tetsuya" target="_blank" rel="noopener" class="note-icon" title="note"></a>
         </div>
         <div class="copyright">© 2025 Tetsuya Sano</div>
     </footer>
