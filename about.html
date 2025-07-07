@@ -1,56 +1,83 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>About | 佐野徹夜</title>
-
-<!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>プロフィール | 佐野徹夜 公式サイト</title>
 <style>
-*{box-sizing:border-box;} img{max-width:100%;height:auto;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  line-height:1.75;color:#1A1A1A;background:#FCFCFC;
+}
 :root{
   --bg:#FCFCFC;
   --text:#1A1A1A;
-  --accent:#1A1A1A;
+  --text-lighter:#666;
+  --surface:#FFFFFF;
   --hover-blue:#0A4DA2;
+  --meter-fill:#4A90A4;
+  --meter-bg:#F0F4F6;
   --footer-bg:#2C2C2C;
   --footer-text:#FFF;
-  --border:#E5E5E5;
-  --surface:#FFFFFF;
-  --text-light:#666;
-  --text-lighter:#999;
 }
 
-html{font-size:16px;}
-body{
-  margin:0;background:var(--bg);color:var(--text);
-  font-family:"Noto Sans JP","Inter",-apple-system,BlinkMacSystemFont,sans-serif;
-  line-height:1.7;font-size:0.9rem;
-  letter-spacing:0.01em;
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(252, 252, 252, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  z-index: 100;
 }
 
-header,main{max-width:720px;margin:0 auto;}
-header{padding:3rem 1rem 1rem;text-align:center;}
-main{padding:2rem 1rem 0;}
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-nav{margin-top:2rem;}
+.logo {
+  font-family: "Noto Serif JP", serif;
+  font-size: 1.65rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  color: #1A1A1A;
+}
+
+nav{
+  display: flex;
+  gap: 3rem;
+}
+
 nav a{
-  font-family:"Inter",sans-serif;font-weight:300;
-  text-transform:uppercase;letter-spacing:.15em;font-size:0.75rem;
-  color:var(--text-lighter);text-decoration:none;margin:0 1.5rem;
-  transition:all .4s ease;position:relative;
+  text-decoration: none;
+  color: #1A1A1A;
+  font-size: 0.9rem;
+  transition: opacity 0.3s ease;
 }
-nav a::after{
-  content:'';position:absolute;bottom:-6px;left:0;width:0;height:1px;
-  background:var(--hover-blue);transition:width .4s ease;
+
+nav a:hover {
+  opacity: 0.6;
 }
-nav a:hover{color:var(--hover-blue);}
-nav a:hover::after{width:100%;}
+
+.page-header {
+  padding-top: 100px;
+  max-width: 720px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+main{max-width:720px;margin:0 auto;padding:0 1rem;}
 
 h1{
   font-family:"Inter",sans-serif;
@@ -107,16 +134,6 @@ h1{
   text-transform:uppercase;
 }
 
-.profile-text{
-  font-size:0.75rem;
-  line-height:1.7;
-  color:#444;
-}
-
-.profile-text p{
-  margin-bottom:1rem;
-}
-
 .profile-info h1{
   font-family:"Noto Serif JP","Yu Mincho","Hiragino Mincho ProN",serif;
   font-weight:200;
@@ -124,54 +141,12 @@ h1{
   margin:0 0 1rem;
   line-height:1.2;
   letter-spacing:0.03em;
+  text-transform:none;
 }
 
-
-.social-links{
-  display:flex;
-  gap:1rem;
-  flex-wrap:wrap;
-}
-
-.social-link{
-  display:inline-block;
-  color:var(--accent);
-  text-decoration:none;
-  padding:0.5rem 1rem;
-  border:1px solid var(--border);
-  border-radius:3px;
-  font-size:0.8rem;
-  transition:all .3s ease;
-}
-
-.social-link:hover{
-  background:var(--accent);
-  color:#fff;
-}
-
-.section{
-  margin-bottom:4rem;
-}
-.section:last-of-type{
-  margin-bottom:1rem;
-}
-
-h2{
-  font-family:"Inter",sans-serif;
-  font-weight:400;
-  font-size:1rem;
-  margin:3rem 0 1.5rem;
-  color:#666;
-  letter-spacing:0.1em;
-  text-transform:uppercase;
-}
-h2:first-of-type{margin-top:2rem;}
-
-.bio{
-  font-size:0.85rem;
-  line-height:1.8;
-  margin-bottom:3rem;
-  max-width:500px;
+.profile-text{
+  font-size:0.88rem;
+  line-height:1.7;
   color:#444;
 }
 
@@ -218,10 +193,11 @@ h2:first-of-type{margin-top:2rem;}
   font-weight:400;
 }
 
-
 footer{
-  margin-top:0;
-  padding:1rem 0;
+  margin-top:6rem;
+  padding:3rem 0 2rem;
+  background:#2C2C2C;
+  color:#FFF;
 }
 
 .footer-content{
@@ -229,9 +205,8 @@ footer{
   margin:0 auto;
   padding:0 1rem;
   display:grid;
-  grid-template-columns:1fr;
-  align-items:center;
-  text-align:center;
+  grid-template-columns:1fr auto;
+  align-items:start;
   gap:4rem;
 }
 
@@ -239,63 +214,22 @@ footer{
   font-family:"Noto Serif JP","Yu Mincho","Hiragino Mincho ProN",serif;
   font-size:1.2rem;
   font-weight:300;
-  color:var(--text);
+  color:#FFF;
   letter-spacing:0.12em;
-  margin-top:0.2rem;
+  margin-top:-0.5rem;
 }
 
 .footer-links{
   display:flex;
   flex-direction:column;
   gap:1.5rem;
-  align-items:center;
+  align-items:flex-end;
 }
 
 .social-links{
   display:flex;
   gap:2.5rem;
   align-items:center;
-}
-
-.social-links a{
-  font-family:"Inter",sans-serif;
-  font-size:0.7rem;
-  font-weight:300;
-  color:var(--text-lighter);
-  text-decoration:none;
-  text-transform:uppercase;
-  letter-spacing:0.12em;
-  transition:all 0.4s ease;
-  position:relative;
-  padding:0.5rem 0;
-}
-
-.social-links a::after{
-  content:'';
-  position:absolute;
-  bottom:0;
-  left:0;
-  width:0;
-  height:1px;
-  background:var(--hover-blue);
-  transition:width 0.4s ease;
-}
-
-.social-links a:hover{
-  color:var(--hover-blue);
-}
-
-.social-links a:hover::after{
-  width:100%;
-}
-
-.footer-copyright{
-  font-family:"Inter",sans-serif;
-  font-size:0.65rem;
-  color:var(--text-lighter);
-  letter-spacing:0.08em;
-  opacity:0.6;
-  text-align:right;
 }
 
 .social-links a{
@@ -332,6 +266,14 @@ footer{
   filter:grayscale(0%);
 }
 @media (max-width:768px){
+  .header-content {
+    padding: 1rem;
+  }
+  
+  nav {
+    display: none;
+  }
+  
   .hero{
     flex-direction:column;
     text-align:left;
@@ -343,40 +285,45 @@ footer{
     margin:0 auto 1rem;
   }
   
-  .timeline-grid{
+  .timeline-card{
     grid-template-columns:1fr;
+    gap:0.5rem;
   }
   
-  .social-links{
-    justify-content:center;
+  .timeline-year{
+    text-align:left;
+    padding-right:0;
+    border-right:none;
+    margin-bottom:0.5rem;
   }
-}
-
-@media (max-width:480px){
-  nav{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
+  
+  .footer-content{
+    grid-template-columns:1fr;
+    gap:2rem;
+    text-align:center;
   }
-
-  nav a{
-    margin:0 0.75rem;
-    font-size:0.7rem;
+  
+  .footer-links{
+    align-items:center;
   }
 }
 </style>
 </head>
-
 <body>
-<div>
-  <header>
+<header class="header">
+    <div class="header-content">
+        <a href="index.html" class="logo">佐野徹夜</a>
+        <nav>
+            <a href="about.html">プロフィール</a>
+            <a href="works.html">作品</a>
+            <a href="news.html">最新情報</a>
+        </nav>
+    </div>
+</header>
+
+<div class="page-header">
     <h1>ABOUT</h1>
-    <nav>
-      <a href="index.html">HOME</a>
-      <a href="works.html">作品</a>
-      <a href="news.html">最新情報</a>
-    </nav>
-  </header>
+</div>
 
   <main>
     
@@ -396,9 +343,8 @@ footer{
     </section>
 
 
-
-    <section class="section">
-      <h2>年譜</h2>
+    <section>
+      <h2 style="font-family:'Inter',sans-serif;font-weight:400;font-size:1rem;margin:3rem 0 1.5rem;color:#666;letter-spacing:0.1em;text-transform:uppercase;">年譜</h2>
       
       <div class="timeline-grid">
         <div class="timeline-card">
@@ -442,21 +388,27 @@ footer{
         </div>
       </div>
     </section>
-
+    
   </main>
 
-<footer>
-  <div class="footer-content">
-    
-    <div class="footer-links">
-      <div class="social-links">
-        <a href="https://x.com/dame_murahito" target="_blank" rel="noopener" class="x-icon" title="X"></a>
-        <a href="https://www.instagram.com/tetsuya.sano123/" target="_blank" rel="noopener" class="insta-icon" title="Instagram"></a>
-        <a href="https://note.com/sano_tetsuya" target="_blank" rel="noopener" class="note-icon" title="note"></a>
+  <footer>
+    <div class="footer-content">
+      <div>
+        <h2 class="footer-name">佐野徹夜</h2>
       </div>
-      <div class="footer-copyright">© 2025 Tetsuya Sano</div>
+      
+      <div class="footer-links">
+        <div class="social-links">
+          <a href="https://x.com/dame_murahito" target="_blank" rel="noopener" class="x-icon" title="X"></a>
+          <a href="https://www.instagram.com/tetsuya.sano123/" target="_blank" rel="noopener" class="insta-icon" title="Instagram"></a>
+          <a href="https://note.com/sano_tetsuya" target="_blank" rel="noopener" class="note-icon" title="note"></a>
+        </div>
+        
+        <div style="font-family:'Inter',sans-serif;font-size:0.65rem;color:#999;letter-spacing:0.08em;opacity:0.6;text-align:right;">
+          © 2025 Tetsuya Sano
+        </div>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 </body>
 </html>

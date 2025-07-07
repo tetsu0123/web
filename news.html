@@ -36,24 +36,58 @@ body{
   letter-spacing:0.02em;
 }
 
-header,main{max-width:720px;margin:0 auto;}
-header{padding:3rem 1rem 1rem;text-align:center;}
-main{padding:2rem 1rem 0;}
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(252, 252, 252, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  z-index: 100;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: "Noto Serif JP", serif;
+  font-size: 1.65rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  color: #1A1A1A;
+}
+
+.page-header {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 3rem 1rem 1rem;
+  text-align: center;
+}
+
+main{max-width:720px;margin:0 auto;padding:2rem 1rem 0;}
 
 
-nav{margin-top:2rem;}
+nav{
+  display: flex;
+  gap: 3rem;
+}
 nav a{
-  font-family:"Inter",sans-serif;font-weight:300;
-  text-transform:uppercase;letter-spacing:.15em;font-size:0.75rem;
-  color:var(--text-lighter);text-decoration:none;margin:0 1.5rem;
-  transition:all .4s ease;position:relative;
+  text-decoration: none;
+  color: #1A1A1A;
+  font-size: 0.9rem;
+  transition: opacity 0.3s ease;
 }
-nav a::after{
-  content:'';position:absolute;bottom:-6px;left:0;width:0;height:1px;
-  background:var(--hover-blue);transition:width .4s ease;
+nav a:hover {
+  opacity: 0.6;
 }
-nav a:hover{color:var(--hover-blue);}
-nav a:hover::after{width:100%;}
 nav a:hover{color:var(--hover-blue);}
 
 .back-link{
@@ -325,6 +359,14 @@ footer a
 
 
 @media(max-width:768px){
+  .header-content {
+    padding: 1rem;
+  }
+  
+  nav {
+    display: none;
+  }
+  
   .container{
     padding:0 1rem;
   }
@@ -370,15 +412,20 @@ footer a
 </head>
 
 <body>
-<div>
-  <header>
+<header class="header">
+    <div class="header-content">
+        <a href="index.html" class="logo">佐野徹夜</a>
+        <nav>
+            <a href="about.html">プロフィール</a>
+            <a href="works.html">作品</a>
+            <a href="news.html">最新情報</a>
+        </nav>
+    </div>
+</header>
+<div style="padding-top: 80px;">
+  <div class="page-header">
     <h1>NEWS</h1>
-    <nav>
-      <a href="index.html">HOME</a>
-      <a href="about.html">プロフィール</a>
-      <a href="works.html">作品</a>
-    </nav>
-  </header>
+  </div>
 
   <main>
 
