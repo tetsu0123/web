@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>佐野徹夜 | 作家・小説家 - 公式サイト</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+            line-height: 1.75;
+            color: #1A1A1A;
+            background: #FCFCFC;
+        }
+        
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(252, 252, 252, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: "Noto Serif JP", serif;
+            font-size: 1.65rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+        }
+        
+        nav {
+            display: flex;
+            gap: 3rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #1A1A1A;
+            font-size: 0.9rem;
+            transition: opacity 0.3s ease;
+        }
+        
+        nav a:hover {
+            opacity: 0.6;
+        }
+        
+        main {
+            padding-top: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+        
+        section {
+            margin-bottom: 4rem;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #E5E5E5;
+            padding-bottom: 0.5rem;
+        }
+        
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+        
+        .section-link {
+            font-size: 0.85rem;
+            color: #666666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .section-link:hover {
+            color: #0A4DA2;
+        }
+        
+        .profile-content {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .profile-content p {
+            margin: 0.375rem 0;
+        }
+        
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .work-item {
+            aspect-ratio: 0.7;
+            background: #f0f0f0;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            text-align: center;
+            padding: 0.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .work-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .news-list {
+            list-style: none;
+        }
+        
+        .news-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid #E5E5E5;
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        
+        .news-date {
+            color: #666666;
+            min-width: 100px;
+        }
+        
+        .progress-section {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 1rem;
+            background: #FFFFFF;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .progress-label {
+            font-size: 0.8rem;
+            color: #666666;
+            margin-bottom: 0.5rem;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #F0F4F6;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            width: 70%;
+            height: 100%;
+            background: #4A90A4;
+        }
+        
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+        }
+        
+        footer {
+            margin-top: 4rem;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links a {
+            color: #666666;
+            text-decoration: none;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            opacity: 1;
+        }
+        
+        .copyright {
+            font-size: 0.65rem;
+            color: #999999;
+            opacity: 0.6;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 1rem;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            main {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .works-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1 class="logo">佐野徹夜</h1>
+            <nav>
+                <a href="#profile">プロフィール</a>
+                <a href="#works">作品</a>
+                <a href="#news">最新情報</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <section id="profile" style="padding-top: 2rem;">
+            <div class="section-header">
+                <h3>プロフィール</h3>
+                <a href="/about" class="section-link">詳しく →</a>
+            </div>
+            <div class="profile-content">
+                <p>1987年1月23日、京都府生まれ。</p>
+                <p>『君は月夜に光り輝く』でデビュー。同作は映画化された。</p>
+                <p>現在は新作長編小説を準備中。</p>
+            </div>
+        </section>
+        
+        <section id="works">
+            <div class="section-header">
+                <h3>作品</h3>
+                <a href="/works" class="section-link">すべて →</a>
+            </div>
+            <div class="works-grid">
+                <div class="work-item">透明になれなかった僕たちのために</div>
+                <div class="work-item">さよなら世界の終わり</div>
+                <div class="work-item">君は月夜に光り輝く +Fragments</div>
+                <div class="work-item">アオハル・ポイント</div>
+                <div class="work-item">この世界にiをこめて</div>
+                <div class="work-item">君は月夜に光り輝く</div>
+            </div>
+        </section>
+        
+        <section id="news">
+            <div class="section-header">
+                <h3>最新情報</h3>
+                <a href="/news" class="section-link">さらに →</a>
+            </div>
+            <ul class="news-list">
+                <li class="news-item">
+                    <span class="news-date">2025-06-13</span>
+                    <span>エッセイ〈母へ〉第16回公開「充電ができなくて」</span>
+                </li>
+                <li class="news-item">
+                    <span class="news-date">2025-04-26</span>
+                    <span>ジャ・ジャンクー監督『新世紀ロマンティクス』推薦コメント</span>
+                </li>
+                <li class="news-item">
+                    <span class="news-date">2024-12-25</span>
+                    <span>短編アンソロジー『君に贈る15ページ』発売、書き下ろし「わたしたちの教室」収録</span>
+                </li>
+            </ul>
+        </section>
+        
+        <section>
+            <div class="progress-section">
+                <div class="progress-label">新作執筆進捗</div>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="progress-info">
+                    <span>第二稿完成</span>
+                    <span>70%</span>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="social-links">
+            <a href="https://x.com/dame_murahito" target="_blank">X</a>
+            <a href="https://www.instagram.com/tetsuya.sano123/" target="_blank">Instagram</a>
+            <a href="https://note.com/sano_tetsuya" target="_blank">note</a>
+        </div>
+        <div class="copyright">© 2025 Tetsuya Sano</div>
+    </footer>
+</body>
+</html>
