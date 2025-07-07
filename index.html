@@ -123,15 +123,10 @@
         }
         
         .work-item {
+            position: relative;
             aspect-ratio: 0.7;
-            background: #f0f0f0;
+            overflow: hidden;
             border-radius: 2px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            text-align: center;
-            padding: 0.5rem;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
@@ -139,6 +134,19 @@
         .work-item:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .work-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .work-item a {
+            display: block;
+            width: 100%;
+            height: 100%;
         }
         
         .news-list {
@@ -304,12 +312,36 @@
                 <a href="works.html" class="section-link">すべて →</a>
             </div>
             <div class="works-grid">
-                <div class="work-item">透明になれなかった僕たちのために</div>
-                <div class="work-item">さよなら世界の終わり</div>
-                <div class="work-item">君は月夜に光り輝く +Fragments</div>
-                <div class="work-item">アオハル・ポイント</div>
-                <div class="work-item">この世界にiをこめて</div>
-                <div class="work-item">君は月夜に光り輝く</div>
+                <div class="work-item">
+                    <a href="toumei.html">
+                        <img src="https://images-na.ssl-images-amazon.com/images/P/4309031293.09.LZZZZZZZ.jpg" alt="透明になれなかった僕たちのために">
+                    </a>
+                </div>
+                <div class="work-item">
+                    <a href="sayonara.html">
+                        <img src="https://images-na.ssl-images-amazon.com/images/P/4101801908.09.LZZZZZZZ.jpg" alt="さよなら世界の終わり">
+                    </a>
+                </div>
+                <div class="work-item">
+                    <a href="fragments.html">
+                        <img src="https://images-na.ssl-images-amazon.com/images/P/4049123398.09.LZZZZZZZ.jpg" alt="君は月夜に光り輝く +Fragments">
+                    </a>
+                </div>
+                <div class="work-item">
+                    <a href="aohal.html">
+                        <img src="https://images-na.ssl-images-amazon.com/images/P/4049120372.09.LZZZZZZZ.jpg" alt="アオハル・ポイント">
+                    </a>
+                </div>
+                <div class="work-item">
+                    <a href="konosekainii.html">
+                        <img src="https://images-na.ssl-images-amazon.com/images/P/4048934147.09.LZZZZZZZ.jpg" alt="この世界にiをこめて">
+                    </a>
+                </div>
+                <div class="work-item">
+                    <a href="kimitsuki.html">
+                        <img src="https://images-na.ssl-images-amazon.com/images/P/4048926756.09.LZZZZZZZ.jpg" alt="君は月夜に光り輝く">
+                    </a>
+                </div>
             </div>
         </section>
         
