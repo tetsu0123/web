@@ -33,7 +33,7 @@
             --paper-texture: #fafafa;
             
             /* Typography - Precise hierarchy */
-            --text-display: 2.125rem;
+            --text-display: 1.875rem;
             --text-title: 1.1875rem;
             --text-body: 0.9375rem;
             --text-small: 0.8125rem;
@@ -108,19 +108,30 @@
             padding: var(--ma-xxl) var(--ma-m) var(--ma-xl);
         }
         
-        /* Author name - Dignified presence */
+        /* Author name - Intellectual presence */
         .author-name {
             font-family: "Noto Serif JP", serif;
-            font-size: var(--text-display);
-            font-weight: 300;
+            font-size: 1.875rem;
+            font-weight: 400;
             text-align: center;
-            letter-spacing: 0.3em;
             margin: 0 0 var(--ma-xxl) 0;
             color: var(--ink);
-            /* Fine-tune spacing */
-            text-indent: 0.15em;
-            /* Prevent orphan character */
-            word-break: keep-all;
+            /* Refined letter spacing */
+            letter-spacing: 0.4em;
+            /* Optical adjustment */
+            font-feature-settings: "palt" 1;
+            /* Subtle tracking */
+            line-height: 1.2;
+        }
+        
+        /* Name parts with different weight */
+        .family-name {
+            font-weight: 400;
+        }
+        
+        .given-name {
+            font-weight: 300;
+            margin-left: 0.2em;
         }
         
         /* Sections - Clear hierarchy */
@@ -134,12 +145,18 @@
         
         /* Subtle entrance */
         @keyframes gentleReveal {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { 
+                opacity: 0;
+                letter-spacing: 0.5em;
+            }
+            to { 
+                opacity: 1;
+                letter-spacing: 0.4em;
+            }
         }
         
         .author-name {
-            animation: gentleReveal 1.5s ease-out;
+            animation: gentleReveal 1.2s ease-out;
         }
         
         /* Remove unnecessary decorations */
@@ -292,8 +309,13 @@
             }
             
             .author-name {
+                font-size: 1.5rem;
                 margin-bottom: var(--ma-xl);
-                letter-spacing: 0.15em;
+                letter-spacing: 0.3em;
+            }
+            
+            .given-name {
+                margin-left: 0.15em;
             }
             
             .works {
@@ -345,7 +367,7 @@
 <body>
     <div class="container">
         <main>
-            <h1 class="author-name">佐野<span style="margin-left: 0.1em;">徹夜</span></h1>
+            <h1 class="author-name"><span class="family-name">佐野</span><span class="given-name">徹夜</span></h1>
             
             <section id="profile">
                 <h2>略歴</h2>
