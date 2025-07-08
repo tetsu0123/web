@@ -250,12 +250,18 @@
             transition: opacity 0.3s ease;
         }
         
-        .news-item:hover .date {
-            color: var(--ink);
+        .news-text a {
+            color: inherit;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
         }
         
-        .news-item:hover .news-text {
-            opacity: 0.8;
+        .news-text a:hover {
+            opacity: 0.7;
+        }
+        
+        .news-item:hover .date {
+            color: var(--ink);
         }
         
         /* Contact section - Bottom content */
@@ -392,15 +398,27 @@
                 <div class="news">
                     <div class="news-item">
                         <span class="date">2025-06-13</span>
-                        <span class="news-text">エッセイ〈母へ〉第16回公開「充電ができなくて」</span>
+                        <span class="news-text">
+                            <a href="https://www.bookbang.jp/yomyom/content/essay/dm/13746" target="_blank" rel="noopener">
+                                エッセイ〈母へ〉第16回公開「充電ができなくて」
+                            </a>
+                        </span>
                     </div>
                     <div class="news-item">
                         <span class="date">2025-04-26</span>
-                        <span class="news-text">ジャ・ジャンクー監督『新世紀ロマンティクス』推薦コメント</span>
+                        <span class="news-text">
+                            <a href="https://lp.p.pia.jp/article/news/417505/index.html" target="_blank" rel="noopener">
+                                ジャ・ジャンクー監督『新世紀ロマンティクス』推薦コメント
+                            </a>
+                        </span>
                     </div>
                     <div class="news-item">
                         <span class="date">2024-12-25</span>
-                        <span class="news-text">短編アンソロジー『君に贈る15ページ』発売、書き下ろし「わたしたちの教室」収録</span>
+                        <span class="news-text">
+                            <a href="https://www.kadokawa.co.jp/product/322407000894/" target="_blank" rel="noopener">
+                                短編アンソロジー『君に贈る15ページ』発売、書き下ろし「わたしたちの教室」収録
+                            </a>
+                        </span>
                     </div>
                 </div>
             </section>
