@@ -3,112 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="佐野徹夜の公式サイト。『君は月夜に光り輝く』などの作品情報、最新ニュース、プロフィールを掲載。">
     <title>佐野徹夜 | 作家・小説家 - 公式サイト</title>
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=BIZ+UDMincho:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="css/common.css">
+    
+    <!-- Page Specific Styles -->
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
-            line-height: 1.75;
-            color: #1A1A1A;
-            background: #FCFCFC;
-            font-weight: 300;
-        }
-        
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(252, 252, 252, 0.85);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            z-index: 100;
-        }
-        
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-family: "Zen Kaku Gothic New", "Zen Kaku Gothic Antique", sans-serif;
-            font-size: 2rem;
-            font-weight: 300;
-            letter-spacing: 0.1em;
-            text-decoration: none;
-            color: #1A1A1A;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 22px;
-            cursor: pointer;
-            z-index: 101;
-        }
-        
-        .hamburger span {
-            width: 100%;
-            height: 2px;
-            background-color: #1A1A1A;
-            transition: all 0.3s ease;
-        }
-        
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(7px, 7px);
-        }
-        
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-        
-        nav {
-            display: flex;
-            gap: 3rem;
-        }
-        
-        nav a {
-            text-decoration: none;
-            color: #1A1A1A;
-            font-size: 0.9rem;
-            transition: opacity 0.3s ease;
-        }
-        
-        nav a:hover {
-            opacity: 0.6;
-        }
-        
-        main {
-            padding-top: 80px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-left: 2rem;
-            padding-right: 2rem;
-        }
-        
+        /* Section Styles */
         section {
             margin-bottom: 4rem;
         }
@@ -152,6 +61,7 @@
             color: #0A4DA2;
         }
         
+        /* Profile Section */
         .profile-content {
             font-size: 0.9rem;
             line-height: 1.6;
@@ -161,6 +71,7 @@
             margin: 0.375rem 0;
         }
         
+        /* Works Grid */
         .works-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -194,6 +105,7 @@
             height: 100%;
         }
         
+        /* News List */
         .news-list {
             list-style: none;
         }
@@ -215,6 +127,7 @@
             min-width: 100px;
         }
         
+        /* Progress Section */
         .progress-section {
             max-width: 400px;
             margin: 0 auto;
@@ -251,60 +164,7 @@
             font-size: 0.85rem;
         }
         
-        footer {
-            margin-top: 0;
-            padding: 2rem 0;
-            text-align: center;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 2.5rem;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            align-items: center;
-        }
-        
-        .social-links a {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 16px;
-            height: 16px;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: contain;
-            transition: opacity .4s, transform .4s;
-            opacity: .6;
-            filter: grayscale(100%);
-        }
-        
-        .social-links a.x-icon {
-            background-image: url('x.png');
-            background-size: 13px 13px;
-        }
-        
-        .social-links a.insta-icon {
-            background-image: url('insta.png');
-        }
-        
-        .social-links a.note-icon {
-            background-image: url('note.png');
-            background-size: 12px 12px;
-        }
-        
-        .social-links a:hover {
-            opacity: 1;
-            transform: translateY(-2px);
-            filter: grayscale(0%);
-        }
-        
-        .copyright {
-            font-size: 0.65rem;
-            color: #999999;
-            opacity: 0.6;
-        }
-        
+        /* Mobile Styles */
         @media (hover: none) {
             .work-item:hover {
                 transform: none;
@@ -313,43 +173,6 @@
         }
         
         @media (max-width: 768px) {
-            .header-content {
-                padding: 1rem;
-            }
-            
-            .hamburger {
-                display: flex;
-            }
-            
-            nav {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 250px;
-                height: 100vh;
-                background: #FCFCFC;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 2rem;
-                box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-                transition: right 0.3s ease;
-                z-index: 99;
-            }
-            
-            nav.active {
-                right: 0;
-            }
-            
-            nav a {
-                font-size: 1.1rem;
-            }
-            
-            main {
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-            
             .works-grid {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 1rem;
@@ -357,11 +180,6 @@
             
             .progress-section {
                 padding: 1rem 0.8rem;
-            }
-            
-            .copyright {
-                font-size: 0.75rem;
-                opacity: 0.8;
             }
         }
         
@@ -411,32 +229,32 @@
             <div class="works-grid">
                 <div class="work-item">
                     <a href="toumei.html">
-                        <img src="https://images-na.ssl-images-amazon.com/images/P/4309031293.09.LZZZZZZZ.jpg" alt="透明になれなかった僕たちのために">
+                        <img src="https://images-na.ssl-images-amazon.com/images/P/4309031293.09.LZZZZZZZ.jpg" alt="透明になれなかった僕たちのために" loading="lazy">
                     </a>
                 </div>
                 <div class="work-item">
                     <a href="sayonara.html">
-                        <img src="https://images-na.ssl-images-amazon.com/images/P/4101801908.09.LZZZZZZZ.jpg" alt="さよなら世界の終わり">
+                        <img src="https://images-na.ssl-images-amazon.com/images/P/4101801908.09.LZZZZZZZ.jpg" alt="さよなら世界の終わり" loading="lazy">
                     </a>
                 </div>
                 <div class="work-item">
                     <a href="fragments.html">
-                        <img src="https://images-na.ssl-images-amazon.com/images/P/4049123398.09.LZZZZZZZ.jpg" alt="君は月夜に光り輝く +Fragments">
+                        <img src="https://images-na.ssl-images-amazon.com/images/P/4049123398.09.LZZZZZZZ.jpg" alt="君は月夜に光り輝く +Fragments" loading="lazy">
                     </a>
                 </div>
                 <div class="work-item">
                     <a href="aohal.html">
-                        <img src="https://images-na.ssl-images-amazon.com/images/P/4049120372.09.LZZZZZZZ.jpg" alt="アオハル・ポイント">
+                        <img src="https://images-na.ssl-images-amazon.com/images/P/4049120372.09.LZZZZZZZ.jpg" alt="アオハル・ポイント" loading="lazy">
                     </a>
                 </div>
                 <div class="work-item">
                     <a href="konosekainii.html">
-                        <img src="https://images-na.ssl-images-amazon.com/images/P/4048934147.09.LZZZZZZZ.jpg" alt="この世界にiをこめて">
+                        <img src="https://images-na.ssl-images-amazon.com/images/P/4048934147.09.LZZZZZZZ.jpg" alt="この世界にiをこめて" loading="lazy">
                     </a>
                 </div>
                 <div class="work-item">
                     <a href="kimitsuki.html">
-                        <img src="https://images-na.ssl-images-amazon.com/images/P/4048926756.09.LZZZZZZZ.jpg" alt="君は月夜に光り輝く">
+                        <img src="https://images-na.ssl-images-amazon.com/images/P/4048926756.09.LZZZZZZZ.jpg" alt="君は月夜に光り輝く" loading="lazy">
                     </a>
                 </div>
             </div>
@@ -486,32 +304,7 @@
         <div class="copyright">© 2025 Tetsuya Sano</div>
     </footer>
     
-    <script>
-        // ハンバーガーメニューの動作
-        const hamburger = document.getElementById('hamburger');
-        const nav = document.getElementById('nav');
-        
-        hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
-            nav.classList.toggle('active');
-        });
-        
-        // メニューリンクをクリックしたときにメニューを閉じる
-        const navLinks = nav.querySelectorAll('a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                hamburger.classList.remove('active');
-                nav.classList.remove('active');
-            });
-        });
-        
-        // 画面外をクリックしたときにメニューを閉じる
-        document.addEventListener('click', function(event) {
-            if (!hamburger.contains(event.target) && !nav.contains(event.target)) {
-                hamburger.classList.remove('active');
-                nav.classList.remove('active');
-            }
-        });
-    </script>
+    <!-- Common JavaScript -->
+    <script src="js/main.js"></script>
 </body>
 </html>
