@@ -29,8 +29,8 @@
             --ink: #1a1a1a;
             --ink-light: #666666;
             --ink-pale: #999999;
-            --paper: #ffffff;
-            --paper-texture: #fafafa;
+            --paper: #f8f8f8;
+            --paper-texture: #f3f3f3;
             
             /* Typography - Precise hierarchy */
             --text-display: 1.875rem;
@@ -161,7 +161,7 @@
             color: var(--ink);
             /* Subtle emphasis */
             padding-bottom: 0.5rem;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
         }
         
         /* Text blocks - Natural flow */
@@ -189,15 +189,15 @@
             position: relative;
             aspect-ratio: 0.7;
             overflow: hidden;
-            background: var(--paper-texture);
+            background: #ffffff;
             transition: all 0.3s ease;
             /* Subtle shadow for depth */
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
         }
         
         .work:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
         }
         
         .work img {
@@ -222,7 +222,7 @@
             display: flex;
             gap: var(--ma-m);
             padding: 0.875rem 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
         }
         
         .news-item:first-child {
