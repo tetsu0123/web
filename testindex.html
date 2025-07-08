@@ -77,72 +77,72 @@
             padding: calc(var(--space-silence) * 1.5) var(--space-pause) var(--space-silence);
         }
         
-        /* Header - Ethereal presence */
+        /* New Header - Clean approach */
         header {
-            margin-bottom: var(--space-silence);
             text-align: center;
+            margin-bottom: var(--space-silence);
         }
         
-        .logo {
+        .site-title {
+            margin-bottom: calc(var(--space-pause) * 1.2);
+        }
+        
+        .site-title a {
             font-family: "Noto Serif JP", serif;
             font-size: 1.8rem;
             font-weight: 200;
-            text-decoration: none;
             color: var(--ink);
-            display: inline-block;
-            margin-bottom: calc(var(--space-pause) * 1.5);
+            text-decoration: none;
             opacity: 0.85;
             transition: opacity 0.8s ease;
-            padding: 0.5rem 0;
+            letter-spacing: 0.5em;
+            display: inline-block;
+            padding-right: 0.5em; /* Cancel out last letter-spacing */
         }
         
-        /* Apply letter-spacing to a span to control it better */
-        .logo-text {
-            letter-spacing: 0.6em;
-            /* Compensate for last character */
-            margin-right: -0.6em;
+        .site-title a:hover {
+            opacity: 0.65;
         }
         
-        .logo:hover {
-            opacity: 0.7;
-        }
-        
-        nav {
+        .main-nav {
             display: flex;
-            gap: var(--space-pause);
             justify-content: center;
+            align-items: center;
+            gap: 2rem;
         }
         
-        nav a {
+        .main-nav a {
             font-size: 0.8rem;
-            text-decoration: none;
-            color: var(--ink);
-            opacity: 0.45;
-            transition: opacity 0.8s ease;
-            letter-spacing: 0.12em;
             font-weight: 300;
+            color: var(--ink);
+            text-decoration: none;
+            opacity: 0.5;
+            letter-spacing: 0.1em;
+            transition: all 0.6s ease;
             position: relative;
+            padding: 0.25rem 0;
         }
         
-        /* Subtle hover indicator */
-        nav a::after {
+        .main-nav a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Simple underline on hover */
+        .main-nav a::after {
             content: '';
             position: absolute;
-            bottom: -4px;
-            left: 0;
-            right: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
             height: 1px;
             background: var(--ink);
-            opacity: 0;
-            transition: opacity 0.8s ease;
+            opacity: 0.2;
+            transition: width 0.6s ease;
         }
         
-        nav a:hover::after {
-            opacity: 0.15;
-        }
-        
-        nav a:hover {
-            opacity: 0.8;
+        .main-nav a:hover::after {
+            width: 100%;
         }
         
         /* Sections - Breathing rhythm */
@@ -415,19 +415,18 @@
                 padding: var(--space-silence) var(--space-breath) var(--space-pause);
             }
             
-            .logo {
+            .site-title a {
                 font-size: 1.4rem;
-                margin-bottom: var(--space-pause);
-            }
-            
-            .logo-text {
                 letter-spacing: 0.4em;
-                margin-right: -0.4em;
+                padding-right: 0.4em;
             }
             
-            nav {
-                gap: 1.25rem;
-                font-size: 0.8rem;
+            .main-nav {
+                gap: 1.5rem;
+            }
+            
+            .main-nav a {
+                font-size: 0.75rem;
             }
             
             .works {
@@ -476,8 +475,10 @@
 <body>
     <div class="container">
         <header>
-            <a href="/" class="logo"><span class="logo-text">佐野徹夜</span></a>
-            <nav>
+            <h1 class="site-title">
+                <a href="/">佐野徹夜</a>
+            </h1>
+            <nav class="main-nav">
                 <a href="about.html">プロフィール</a>
                 <a href="works.html">作品</a>
                 <a href="news.html">最新情報</a>
