@@ -26,6 +26,18 @@
     
     <!-- Page Specific Styles -->
     <style>
+        /* Animation keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(2px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
         /* Page specific main styles */
         main {
             max-width: 720px;
@@ -156,10 +168,27 @@
         /* Section styles */
         section {
             margin-bottom: 4rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
         }
         
         section:last-child {
             margin-bottom: 2rem;
+        }
+        
+        /* Staggered animation delays */
+        .hero {
+            animation-delay: 0.1s;
+        }
+        
+        section:nth-of-type(2) {
+            animation-delay: 0.3s;
+        }
+        
+        /* Parallax section */
+        .parallax-section {
+            transition: transform 0.6s ease-out;
+            will-change: transform;
         }
         
         /* Mobile specific */
@@ -213,7 +242,7 @@
     </header>
     
     <main style="padding-top: 80px;">
-        <section class="hero">
+        <section class="hero parallax-section">
             <img src="profile.jpg" alt="佐野徹夜" class="profile-image" loading="lazy">
             
             <div class="profile-info">
@@ -227,7 +256,7 @@
             </div>
         </section>
         
-        <section>
+        <section class="parallax-section">
             <h2>年譜</h2>
             
             <div class="timeline-grid">
@@ -285,5 +314,44 @@
     
     <!-- Common JavaScript -->
     <script src="js/main.js"></script>
+    
+    <!-- Parallax effect -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const parallaxElements = document.querySelectorAll('.parallax-section');
+            
+            function handleScroll() {
+                const scrolled = window.pageYOffset;
+                const windowHeight = window.innerHeight;
+                
+                parallaxElements.forEach((element) => {
+                    const elementTop = element.offsetTop;
+                    const elementHeight = element.offsetHeight;
+                    const elementBottom = elementTop + elementHeight;
+                    
+                    // Check if element is in viewport
+                    if (elementBottom >= scrolled && elementTop <= scrolled + windowHeight) {
+                        const scrollPercent = (scrolled - elementTop + windowHeight) / (windowHeight + elementHeight);
+                        const translateY = (scrollPercent - 0.5) * 1; // 1px movement
+                        element.style.transform = `translateY(${translateY}px)`;
+                    }
+                });
+            }
+            
+            // Throttle scroll events
+            let ticking = false;
+            function requestTick() {
+                if (!ticking) {
+                    window.requestAnimationFrame(handleScroll);
+                    ticking = true;
+                    setTimeout(() => { ticking = false; }, 16);
+                }
+            }
+            
+            window.addEventListener('scroll', requestTick);
+            window.addEventListener('resize', handleScroll);
+            handleScroll(); // Initial call
+        });
+    </script>
 </body>
 </html>

@@ -25,6 +25,18 @@
     
     <!-- Page Specific Styles -->
     <style>
+        /* Animation keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(2px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
         /* Override body for news page */
         body {
             font-family: "Noto Sans JP","Inter",-apple-system,BlinkMacSystemFont,sans-serif;
@@ -73,10 +85,31 @@
         /* Year sections */
         .year-section {
             margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
         }
         
         .year-section:last-child {
             margin-bottom: 0;
+        }
+        
+        /* Staggered animation delays */
+        .year-section:nth-of-type(1) {
+            animation-delay: 0.1s;
+        }
+        
+        .year-section:nth-of-type(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .year-section:nth-of-type(3) {
+            animation-delay: 0.3s;
+        }
+        
+        /* Parallax section */
+        .parallax-section {
+            transition: transform 0.6s ease-out;
+            will-change: transform;
         }
         
         .year-header {
@@ -216,7 +249,7 @@
     
     <main style="padding-top: 80px;">
         <div class="main-content">
-            <section class="year-section">
+            <section class="year-section parallax-section">
                 <div class="year-header">
                     <h2 class="year-title">2025</h2>
                 </div>
@@ -246,7 +279,7 @@
                 </ul>
             </section>
             
-            <section class="year-section">
+            <section class="year-section parallax-section">
                 <div class="year-header">
                     <h2 class="year-title">2024</h2>
                 </div>
@@ -309,7 +342,7 @@
                 </ul>
             </section>
             
-            <section class="year-section">
+            <section class="year-section parallax-section">
                 <div class="year-header">
                     <h2 class="year-title">2023</h2>
                 </div>
@@ -374,5 +407,44 @@
     
     <!-- Common JavaScript -->
     <script src="js/main.js"></script>
+    
+    <!-- Parallax effect -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const parallaxElements = document.querySelectorAll('.parallax-section');
+            
+            function handleScroll() {
+                const scrolled = window.pageYOffset;
+                const windowHeight = window.innerHeight;
+                
+                parallaxElements.forEach((element) => {
+                    const elementTop = element.offsetTop;
+                    const elementHeight = element.offsetHeight;
+                    const elementBottom = elementTop + elementHeight;
+                    
+                    // Check if element is in viewport
+                    if (elementBottom >= scrolled && elementTop <= scrolled + windowHeight) {
+                        const scrollPercent = (scrolled - elementTop + windowHeight) / (windowHeight + elementHeight);
+                        const translateY = (scrollPercent - 0.5) * 1; // 1px movement
+                        element.style.transform = `translateY(${translateY}px)`;
+                    }
+                });
+            }
+            
+            // Throttle scroll events
+            let ticking = false;
+            function requestTick() {
+                if (!ticking) {
+                    window.requestAnimationFrame(handleScroll);
+                    ticking = true;
+                    setTimeout(() => { ticking = false; }, 16);
+                }
+            }
+            
+            window.addEventListener('scroll', requestTick);
+            window.addEventListener('resize', handleScroll);
+            handleScroll(); // Initial call
+        });
+    </script>
 </body>
 </html>
