@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /api/
 
-Sitemap: https://sanotetsuyaofficial.com/sitemap.xml
+Sitemap: https://tetsu0123.github.io/web/sitemap.xml
