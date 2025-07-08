@@ -12,6 +12,18 @@
     --surface: #FFFFFF;
     --text-light: #666;
     --text-lighter: #999;
+    
+    /* Font families */
+    --font-serif-jp: "Noto Serif JP", "YuMincho", "Hiragino Mincho ProN", serif;
+    --font-sans-jp: "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+    --font-display: "Zen Kaku Gothic New", "Zen Kaku Gothic Antique", var(--font-sans-jp);
+    --font-ui: "Inter", -apple-system, BlinkMacSystemFont, var(--font-sans-jp);
+    
+    /* Font weights */
+    --font-light: 300;
+    --font-regular: 400;
+    --font-medium: 500;
+    --font-bold: 700;
 }
 
 * {
@@ -21,11 +33,11 @@
 }
 
 body {
-    font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-family: var(--font-sans-jp);
     line-height: 1.75;
     color: var(--text);
     background: var(--bg);
-    font-weight: 300;
+    font-weight: var(--font-light);
     font-size: 0.95rem;
     letter-spacing: 0.02em;
 }
@@ -53,9 +65,9 @@ body {
 }
 
 .logo {
-    font-family: "Zen Kaku Gothic New", "Zen Kaku Gothic Antique", sans-serif;
+    font-family: var(--font-display);
     font-size: 2rem;
-    font-weight: 300;
+    font-weight: var(--font-light);
     letter-spacing: 0.1em;
     text-decoration: none;
     color: var(--text);
@@ -100,9 +112,11 @@ nav {
 }
 
 nav a {
+    font-family: var(--font-ui);
     text-decoration: none;
     color: var(--text);
     font-size: 0.9rem;
+    font-weight: var(--font-regular);
     transition: opacity 0.3s ease;
 }
 
