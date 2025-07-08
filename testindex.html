@@ -33,11 +33,11 @@
             --paper-texture: #fafafa;
             
             /* Typography - Precise hierarchy */
-            --text-display: 2.25rem;
-            --text-title: 1.25rem;
+            --text-display: 2.125rem;
+            --text-title: 1.1875rem;
             --text-body: 0.9375rem;
             --text-small: 0.8125rem;
-            --text-tiny: 0.75rem;
+            --text-tiny: 0.6875rem;
             
             /* Spacing - Ma (間) */
             --ma-xs: 0.5rem;
@@ -68,6 +68,8 @@
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
             font-feature-settings: "palt" 1;
+            /* Prevent text size adjustment on iOS */
+            -webkit-text-size-adjust: 100%;
         }
         
         /* Main content area */
@@ -78,18 +80,25 @@
         /* Profile section refinement */
         #profile p {
             font-size: var(--text-body);
-            line-height: 1.9;
-            margin-bottom: 0.5em;
+            line-height: 2;
+            margin-bottom: 0;
+            /* Better readability */
+            letter-spacing: 0.02em;
         }
         
-        /* Works section title */
+        /* Section-specific adjustments */
+        #profile h2 {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: var(--ma-s);
+        }
+        
         #works h2 {
-            margin-bottom: var(--ma-l);
+            margin-bottom: var(--ma-m);
         }
         
-        /* News section styling */
         #news h2 {
-            margin-bottom: var(--ma-m);
+            margin-bottom: var(--ma-s);
         }
         
         /* Container - Optimal reading width */
@@ -105,9 +114,13 @@
             font-size: var(--text-display);
             font-weight: 300;
             text-align: center;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.3em;
             margin: 0 0 var(--ma-xxl) 0;
             color: var(--ink);
+            /* Fine-tune spacing */
+            text-indent: 0.15em;
+            /* Prevent orphan character */
+            word-break: keep-all;
         }
         
         /* Sections - Clear hierarchy */
@@ -136,8 +149,11 @@
             font-size: var(--text-title);
             font-weight: 400;
             margin-bottom: var(--ma-m);
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
             color: var(--ink);
+            /* Subtle emphasis */
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
         }
         
         /* Text blocks - Natural flow */
@@ -155,8 +171,10 @@
         .works {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: var(--ma-s);
+            gap: 0.75rem;
             margin: var(--ma-m) 0 0;
+            /* Subtle inset */
+            padding: 0 0.5rem;
         }
         
         .work {
@@ -164,31 +182,44 @@
             aspect-ratio: 0.7;
             overflow: hidden;
             background: var(--paper-texture);
-            transition: transform 0.4s ease;
+            transition: all 0.3s ease;
+            /* Subtle shadow for depth */
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
         }
         
         .work:hover {
-            transform: scale(0.98);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
         }
         
         .work img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.95);
-            transition: filter 0.4s ease;
+            filter: brightness(0.97) contrast(0.98);
+            transition: filter 0.3s ease;
         }
         
         .work:hover img {
-            filter: brightness(1);
+            filter: brightness(1) contrast(1);
         }
         
         /* News - Information hierarchy */
+        .news {
+            /* Align with content */
+            padding: 0 0.5rem;
+        }
+        
         .news-item {
             display: flex;
             gap: var(--ma-m);
-            padding: var(--ma-s) 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            padding: 0.875rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: padding 0.3s ease;
+        }
+        
+        .news-item:hover {
+            padding-left: 0.5rem;
         }
         
         .news-item:first-child {
@@ -203,8 +234,10 @@
         .date {
             font-size: var(--text-small);
             color: var(--ink-light);
-            min-width: 80px;
+            min-width: 85px;
             font-variant-numeric: tabular-nums;
+            /* Align with baseline */
+            padding-top: 0.05em;
         }
         
         .news-text {
@@ -214,9 +247,11 @@
         
         /* Footer - Subtle closure */
         footer {
-            margin-top: var(--ma-xxl);
+            margin-top: calc(var(--ma-xxl) * 1.2);
             padding: var(--ma-l) 0 var(--ma-m);
             text-align: center;
+            /* Gentle separation */
+            border-top: 1px solid rgba(0, 0, 0, 0.03);
         }
         
         .social {
@@ -231,6 +266,9 @@
             text-decoration: none;
             color: var(--ink-pale);
             transition: color 0.3s ease;
+            /* Better touch target */
+            padding: 0.25rem 0.5rem;
+            margin: 0 -0.5rem;
         }
         
         .social a:hover {
@@ -277,9 +315,9 @@
             }
             
             .works {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 1.25rem;
-                padding: 0 1rem;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+                padding: 0;
             }
             
             .news-item {
@@ -297,8 +335,11 @@
         @media (max-width: 480px) {
             .works {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-                padding: 0;
+                gap: 0.375rem;
+            }
+            
+            .work {
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
             }
         }
         
@@ -322,13 +363,13 @@
 <body>
     <div class="container">
         <main>
-            <h1 class="author-name">佐野徹夜</h1>
+            <h1 class="author-name">佐野<span style="margin-left: 0.1em;">徹夜</span></h1>
             
             <section id="profile">
                 <h2>略歴</h2>
                 <p>1987年1月23日、京都府生まれ。<br>
-                『君は月夜に光り輝く』でデビュー。<br>
-                現在は新作長編小説を準備中。</p>
+                2017年、『君は月夜に光り輝く』でデビュー。<br>
+                現在、新作長編小説を執筆中。</p>
             </section>
             
             <section id="works">
