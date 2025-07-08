@@ -108,30 +108,21 @@
             padding: var(--ma-xxl) var(--ma-m) var(--ma-xl);
         }
         
-        /* Author name - Intellectual presence */
+        /* Author name - Refined presence */
         .author-name {
             font-family: "Noto Serif JP", serif;
-            font-size: 1.875rem;
-            font-weight: 400;
+            font-size: 1.75rem;
+            font-weight: 350;
             text-align: center;
             margin: 0 0 var(--ma-xxl) 0;
             color: var(--ink);
-            /* Refined letter spacing */
-            letter-spacing: 0.4em;
-            /* Optical adjustment */
+            /* Elegant spacing */
+            letter-spacing: 0.35em;
+            /* Typography optimization */
             font-feature-settings: "palt" 1;
-            /* Subtle tracking */
-            line-height: 1.2;
-        }
-        
-        /* Name parts with different weight */
-        .family-name {
-            font-weight: 400;
-        }
-        
-        .given-name {
-            font-weight: 300;
-            margin-left: 0.2em;
+            line-height: 1;
+            /* Subtle depth */
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
         }
         
         /* Sections - Clear hierarchy */
@@ -143,20 +134,20 @@
             margin-bottom: 0;
         }
         
-        /* Subtle entrance */
-        @keyframes gentleReveal {
+        /* Refined entrance */
+        @keyframes breathIn {
             from { 
                 opacity: 0;
-                letter-spacing: 0.5em;
+                transform: translateY(8px);
             }
             to { 
                 opacity: 1;
-                letter-spacing: 0.4em;
+                transform: translateY(0);
             }
         }
         
         .author-name {
-            animation: gentleReveal 1.2s ease-out;
+            animation: breathIn 1.8s cubic-bezier(0.22, 1, 0.36, 1);
         }
         
         /* Remove unnecessary decorations */
@@ -309,13 +300,9 @@
             }
             
             .author-name {
-                font-size: 1.5rem;
+                font-size: 1.375rem;
                 margin-bottom: var(--ma-xl);
-                letter-spacing: 0.3em;
-            }
-            
-            .given-name {
-                margin-left: 0.15em;
+                letter-spacing: 0.25em;
             }
             
             .works {
@@ -367,7 +354,7 @@
 <body>
     <div class="container">
         <main>
-            <h1 class="author-name"><span class="family-name">佐野</span><span class="given-name">徹夜</span></h1>
+            <h1 class="author-name">佐野徹夜</h1>
             
             <section id="profile">
                 <h2>略歴</h2>
