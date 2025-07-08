@@ -95,6 +95,9 @@
             opacity: 0.85;
             transition: opacity 0.8s ease;
             padding: 0.5rem 0;
+            /* Center compensation for letter-spacing */
+            position: relative;
+            left: -0.3em;
         }
         
         .logo:hover {
@@ -105,6 +108,9 @@
             display: flex;
             gap: var(--space-pause);
             justify-content: center;
+            /* Center alignment adjustment */
+            position: relative;
+            left: -0.3em;
         }
         
         nav a {
@@ -413,11 +419,13 @@
                 font-size: 1.4rem;
                 letter-spacing: 0.4em;
                 margin-bottom: var(--space-pause);
+                left: -0.2em;
             }
             
             nav {
                 gap: 1.25rem;
                 font-size: 0.8rem;
+                left: -0.2em;
             }
             
             .works {
