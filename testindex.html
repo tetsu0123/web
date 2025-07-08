@@ -245,25 +245,23 @@
             color: var(--ink);
         }
         
-        /* Footer - Minimal presence */
-        footer {
-            margin-top: var(--ma-xxl);
-            padding: var(--ma-l) 0 var(--ma-m);
-        }
-        
-        .footer-content {
+        /* Contact section - Bottom content */
+        #contact {
             text-align: center;
+            margin-top: var(--ma-xxl);
         }
         
         .social-links {
             margin-bottom: var(--ma-s);
+            display: flex;
+            justify-content: center;
+            gap: var(--ma-m);
         }
         
         .social-links a {
             font-size: var(--text-small);
             color: var(--ink-light);
             text-decoration: none;
-            margin: 0 var(--ma-s);
             transition: color 0.3s ease;
         }
         
@@ -411,18 +409,16 @@
                 </div>
             </section>
             
-        </main>
-        
-        <footer>
-            <div class="footer-content">
+            <section id="contact">
                 <div class="social-links">
                     <a href="https://x.com/dame_murahito" target="_blank" rel="noopener">X</a>
                     <a href="https://www.instagram.com/tetsuya.sano123/" target="_blank" rel="noopener">Instagram</a>
                     <a href="https://note.com/sano_tetsuya" target="_blank" rel="noopener">note</a>
                 </div>
                 <div class="copyright">© 2025 Tetsuya Sano</div>
-            </div>
-        </footer>
+            </section>
+            
+        </main>
         
     </div>
 </body>
