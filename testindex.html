@@ -215,11 +215,6 @@
             gap: var(--ma-m);
             padding: 0.875rem 0;
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            transition: padding 0.3s ease;
-        }
-        
-        .news-item:hover {
-            padding-left: 0.5rem;
         }
         
         .news-item:first-child {
@@ -238,11 +233,21 @@
             font-variant-numeric: tabular-nums;
             /* Align with baseline */
             padding-top: 0.05em;
+            transition: color 0.3s ease;
         }
         
         .news-text {
             flex: 1;
             color: var(--ink);
+            transition: opacity 0.3s ease;
+        }
+        
+        .news-item:hover .date {
+            color: var(--ink);
+        }
+        
+        .news-item:hover .news-text {
+            opacity: 0.8;
         }
         
         /* Contact section - Bottom content */
