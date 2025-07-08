@@ -215,6 +215,35 @@
                 gap: 0.8rem;
             }
         }
+        /* Subtle animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(2px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Apply fade-in animation to all sections */
+        section {
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+        
+        /* Stagger the animations */
+        section:nth-child(1) { animation-delay: 0.1s; }
+        section:nth-child(2) { animation-delay: 0.2s; }
+        section:nth-child(3) { animation-delay: 0.3s; }
+        section:nth-child(4) { animation-delay: 0.4s; }
+        
+        /* Parallax scroll effect */
+        .parallax-section {
+            transition: transform 0.3s ease-out;
+            will-change: transform;
+        }
     </style>
 </head>
 <body>
@@ -332,5 +361,42 @@
     
     <!-- Common JavaScript -->
     <script src="js/main.js"></script>
+    
+    <!-- Subtle parallax scroll effect -->
+    <script>
+        // Add parallax class to sections
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('parallax-section');
+        });
+        
+        // Subtle parallax on scroll
+        let ticking = false;
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            const sections = document.querySelectorAll('.parallax-section');
+            
+            sections.forEach((section, index) => {
+                const rect = section.getBoundingClientRect();
+                const speed = 0.5; // Very subtle movement
+                const yPos = -(scrolled * speed) / 10;
+                
+                // Only apply effect when section is in viewport
+                if (rect.bottom >= 0 && rect.top <= window.innerHeight) {
+                    section.style.transform = `translateY(${yPos}px)`;
+                }
+            });
+            
+            ticking = false;
+        }
+        
+        function requestTick() {
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }
+        
+        window.addEventListener('scroll', requestTick);
+    </script>
 </body>
 </html>
