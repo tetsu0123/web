@@ -95,9 +95,16 @@
             text-decoration: none;
             opacity: 0.85;
             transition: opacity 0.8s ease;
-            letter-spacing: 0.5em;
             display: inline-block;
-            padding-right: 0.5em; /* Cancel out last letter-spacing */
+            /* Split letter-spacing approach */
+            letter-spacing: 0.5em;
+        }
+        
+        /* Wrapper to handle centering with letter-spacing */
+        .site-title {
+            position: relative;
+            display: inline-block;
+            left: -0.25em; /* Half of letter-spacing to center */
         }
         
         .site-title a:hover {
@@ -121,6 +128,7 @@
             transition: all 0.6s ease;
             position: relative;
             padding: 0.25rem 0;
+            margin-right: -0.1em; /* Compensate for letter-spacing */
         }
         
         .main-nav a:hover {
@@ -415,10 +423,13 @@
                 padding: var(--space-silence) var(--space-breath) var(--space-pause);
             }
             
+            .site-title {
+                left: -0.2em;
+            }
+            
             .site-title a {
                 font-size: 1.4rem;
                 letter-spacing: 0.4em;
-                padding-right: 0.4em;
             }
             
             .main-nav {
@@ -427,6 +438,7 @@
             
             .main-nav a {
                 font-size: 0.75rem;
+                margin-right: -0.1em;
             }
             
             .works {
@@ -476,7 +488,7 @@
     <div class="container">
         <header>
             <h1 class="site-title">
-                <a href="/">佐野徹夜</a>
+                <a href="/">佐<span style="margin-right: -0.5em;">夜</span></a>
             </h1>
             <nav class="main-nav">
                 <a href="about.html">プロフィール</a>
