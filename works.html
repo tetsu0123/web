@@ -402,6 +402,21 @@ footer {
   filter: grayscale(0%);
 }
 
+@media (hover: none) {
+  .work-item:hover {
+    transform: none;
+  }
+  .other-item:hover {
+    transform: none;
+  }
+}
+
+@media(max-width:768px) and (min-width:481px) {
+  .other-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media(max-width:768px){
   .header-content {
     padding: 1rem;
@@ -466,98 +481,17 @@ footer {
   .footer-copyright{
     text-align:center;
   }
+  
+  .copyright {
+    font-size: 0.75rem;
+    opacity: 0.8;
+  }
+  
+  .other-item-year {
+    font-size: 0.7rem;
+  }
 }
 
-@media(max-width:768px){
-  .header-content {
-    padding: 1rem;
-  }
-  
-  .hamburger {
-    display: flex;
-  }
-  
-  nav {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 250px;
-    height: 100vh;
-    background: #FCFCFC;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-    transition: right 0.3s ease;
-    z-index: 99;
-  }
-  
-  nav.active {
-    right: 0;
-  }
-  
-  nav a {
-    font-size: 1.1rem;
-  }
-  
-  .container{
-    padding:0 1.5rem;
-  }
-  
-  h1{
-    font-size:2.5rem;
-    margin-bottom:4rem;
-  }
-  
-  nav a{
-    margin:0 1rem;
-  }
-  
-  .work-item{
-    grid-template-columns:1fr;
-    gap:1.5rem;
-    padding:2rem 0;
-  }
-  
-  .work-item:hover{
-    transform:none;
-  }
-  
-  .work-number{
-    writing-mode:horizontal-tb;
-    text-orientation:mixed;
-    order:2;
-  }
-  
-  .work-number::before{
-    display:inline;
-    margin-right:0.5rem;
-    margin-bottom:0;
-  }
-  
-  .work-details{
-    order:1;
-  }
-  
-  .work-year{
-    order:3;
-  }
-  
-  .other-works{
-    margin-top:0;
-    padding-top:0;
-  }
-  
-  .other-grid{
-    grid-template-columns:1fr;
-    gap:1rem;
-  }
-  
-  .other-item:hover{
-    transform:none;
-  }
-}
 
 @media(max-width:480px){
   nav{

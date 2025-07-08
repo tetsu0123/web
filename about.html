@@ -140,7 +140,8 @@ h1{
 }
 
 .profile-image{
-  width:240px;
+  width:100%;
+  max-width:240px;
   height:auto;
   border-radius:2px;
   box-shadow:0 2px 8px rgba(0,0,0,0.06);
@@ -282,6 +283,13 @@ footer {
   transform: translateY(-2px);
   filter: grayscale(0%);
 }
+
+@media (hover: none) {
+  .timeline-card:hover {
+    background: transparent;
+  }
+}
+
 @media (max-width:768px){
   .header-content {
     padding: 1rem;
@@ -336,6 +344,11 @@ footer {
     padding-right:0;
     border-right:none;
     margin-bottom:0.5rem;
+  }
+  
+  .copyright {
+    font-size: 0.75rem;
+    opacity: 0.8;
   }
   
 }
