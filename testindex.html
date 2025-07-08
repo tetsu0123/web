@@ -87,7 +87,6 @@
             font-family: "Noto Serif JP", serif;
             font-size: 1.8rem;
             font-weight: 200;
-            letter-spacing: 0.6em;
             text-decoration: none;
             color: var(--ink);
             display: inline-block;
@@ -95,9 +94,13 @@
             opacity: 0.85;
             transition: opacity 0.8s ease;
             padding: 0.5rem 0;
-            /* Center compensation for letter-spacing */
-            position: relative;
-            left: -0.3em;
+        }
+        
+        /* Apply letter-spacing to a span to control it better */
+        .logo-text {
+            letter-spacing: 0.6em;
+            /* Compensate for last character */
+            margin-right: -0.6em;
         }
         
         .logo:hover {
@@ -108,9 +111,6 @@
             display: flex;
             gap: var(--space-pause);
             justify-content: center;
-            /* Center alignment adjustment */
-            position: relative;
-            left: -0.3em;
         }
         
         nav a {
@@ -417,15 +417,17 @@
             
             .logo {
                 font-size: 1.4rem;
-                letter-spacing: 0.4em;
                 margin-bottom: var(--space-pause);
-                left: -0.2em;
+            }
+            
+            .logo-text {
+                letter-spacing: 0.4em;
+                margin-right: -0.4em;
             }
             
             nav {
                 gap: 1.25rem;
                 font-size: 0.8rem;
-                left: -0.2em;
             }
             
             .works {
@@ -474,7 +476,7 @@
 <body>
     <div class="container">
         <header>
-            <a href="/" class="logo">佐野徹夜</a>
+            <a href="/" class="logo"><span class="logo-text">佐野徹夜</span></a>
             <nav>
                 <a href="about.html">プロフィール</a>
                 <a href="works.html">作品</a>
