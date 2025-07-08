@@ -77,7 +77,17 @@
             padding: calc(var(--space-silence) * 1.5) var(--space-pause) var(--space-silence);
         }
         
-        /* Remove header completely */
+        /* Author name at top */
+        .author-name {
+            font-family: "Noto Serif JP", serif;
+            font-size: 1.6rem;
+            font-weight: 200;
+            text-align: center;
+            letter-spacing: 0.08em;
+            margin: 0 0 var(--space-silence) 0;
+            opacity: 0.8;
+            animation: fadeIn 1s ease-out;
+        }
         
         /* Sections - Breathing rhythm */
         section {
@@ -349,7 +359,11 @@
                 padding: var(--space-silence) var(--space-breath) var(--space-pause);
             }
             
-            /* Header removed */
+            /* Mobile adjustments */
+            .author-name {
+                font-size: 1.3rem;
+                margin-bottom: var(--space-pause);
+            }
             
             .works {
                 grid-template-columns: repeat(3, 1fr);
@@ -397,6 +411,8 @@
 <body>
     <div class="container">
         <main>
+            <h1 class="author-name">佐野徹夜</h1>
+            
             <section>
                 <h2>プロフィール</h2>
                 <p>1987年1月23日、京都府生まれ。</p>
