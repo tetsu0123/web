@@ -80,6 +80,13 @@
             background: var(--light-gray);
         }
         
+        /* Tate-chu-yoko (vertical text with horizontal numbers) */
+        .tcy {
+            text-combine-upright: all;
+            -webkit-text-combine: horizontal;
+            -ms-text-combine-horizontal: all;
+        }
+        
         /* Book spine effect */
         .page::before {
             content: '';
@@ -457,7 +464,7 @@
                 </div>
                 <div class="news-item">
                     <div class="news-date">2024.12.25</div>
-                    <div class="news-title">短編アンソロジー『君に贈る15ページ』発売<br>書き下ろし「わたしたちの教室」収録</div>
+                    <div class="news-title">短編アンソロジー『君に贈る<span class="tcy">15</span>ページ』発売<br>書き下ろし「わたしたちの教室」収録</div>
                 </div>
                 <div class="news-item">
                     <div class="news-date">2024.07.25</div>
