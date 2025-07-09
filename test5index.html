@@ -192,23 +192,26 @@
         .works-page {
             background: var(--paper-white);
             padding: 2rem;
+            writing-mode: horizontal-tb;
+            text-orientation: upright;
+        }
+        
+        .works-content {
+            max-width: 80%;
+            margin: 0 auto;
         }
         
         .works-header {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
+            margin-bottom: 2rem;
         }
         
         .works-title {
             font-size: 1rem;
             font-weight: 500;
-            letter-spacing: 0.5em;
+            letter-spacing: 0.3em;
             color: var(--accent-black);
-            padding-right: 0.5em;
-            position: absolute;
-            top: 0;
-            right: 0;
+            text-align: center;
+            margin-bottom: 2rem;
         }
         
         .works-list {
@@ -221,18 +224,19 @@
         
         .work-item {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: baseline;
             padding: 0.75rem 0;
             position: relative;
             transition: all 0.3s ease;
+            gap: 3rem;
         }
         
         .work-item::after {
             content: '';
             position: absolute;
             bottom: 0.5rem;
-            left: 0;
+            left: 5rem;
             right: 0;
             border-bottom: 1px dotted var(--dark-gray);
             opacity: 0.3;
@@ -246,20 +250,19 @@
             opacity: 0.7;
         }
         
+        .work-year {
+            font-size: 0.875rem;
+            color: var(--dark-gray);
+            font-variant-numeric: tabular-nums;
+            min-width: 4em;
+            text-align: left;
+        }
+        
         .work-title {
             font-size: 0.9375rem;
             font-weight: 400;
             color: var(--text-gray);
             flex: 1;
-            padding-right: 1rem;
-        }
-        
-        .work-year {
-            font-size: 0.875rem;
-            color: var(--dark-gray);
-            font-variant-numeric: tabular-nums;
-            min-width: 3em;
-            text-align: right;
         }
         
         /* News Page */
@@ -434,34 +437,36 @@
         
         <!-- Works Gallery -->
         <section class="page works-page">
-            <div class="works-header">
-                <h2 class="works-title">著作一覧</h2>
-            </div>
-            <div class="works-list">
+            <div class="works-content">
+                <div class="works-header">
+                    <h2 class="works-title">著作一覧</h2>
+                </div>
+                <div class="works-list">
                 <div class="work-item">
-                    <div class="work-title">透明になれなかった僕たちのために</div>
                     <div class="work-year">二〇二三</div>
+                    <div class="work-title">透明になれなかった僕たちのために</div>
                 </div>
                 <div class="work-item">
-                    <div class="work-title">さよなら世界の終わり</div>
                     <div class="work-year">二〇二二</div>
+                    <div class="work-title">さよなら世界の終わり</div>
                 </div>
                 <div class="work-item">
-                    <div class="work-title">君は月夜に光り輝く +Fragments</div>
                     <div class="work-year">二〇一九</div>
+                    <div class="work-title">君は月夜に光り輝く +Fragments</div>
                 </div>
                 <div class="work-item">
+                    <div class="work-year">二〇一八</div>
                     <div class="work-title">アオハル・ポイント</div>
-                    <div class="work-year">二〇一八</div>
                 </div>
                 <div class="work-item">
+                    <div class="work-year">二〇一八</div>
                     <div class="work-title">この世界にiをこめて</div>
-                    <div class="work-year">二〇一八</div>
                 </div>
                 <div class="work-item">
-                    <div class="work-title">君は月夜に光り輝く</div>
                     <div class="work-year">二〇一七</div>
+                    <div class="work-title">君は月夜に光り輝く</div>
                 </div>
+            </div>
             </div>
             <span class="page-number">3</span>
         </section>
