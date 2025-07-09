@@ -502,6 +502,14 @@
             currentPage = index;
             container.style.transform = `translateX(${currentPage * 100}vw)`;
             updateDots(currentPage);
+            
+            // Hide swipe hint on last page
+            const swipeHint = document.querySelector('.swipe-hint');
+            if (currentPage === pages.length - 1) {
+                swipeHint.style.display = 'none';
+            } else {
+                swipeHint.style.display = 'block';
+            }
         }
         
         // Touch events
