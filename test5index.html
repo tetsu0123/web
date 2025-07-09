@@ -94,7 +94,7 @@
             justify-content: center;
             writing-mode: vertical-rl;
             text-orientation: mixed;
-            padding: 3rem 2rem;
+            padding: 4rem 3rem;
             background: var(--light-gray);
         }
         
@@ -171,26 +171,38 @@
         }
         
         .profile-content {
-            max-height: 80vh;
+            max-height: 70vh;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
         .profile-title {
-            font-size: 1.125rem;
-            margin-bottom: 2rem;
+            font-size: 1rem;
+            margin-bottom: 3rem;
             color: var(--accent-black);
             font-weight: 500;
-            letter-spacing: 0.3em;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--mid-gray);
+            letter-spacing: 0.5em;
+            padding-right: 0.5em;
         }
         
         .profile-text {
-            font-size: 0.9375rem;
-            line-height: 2.5;
-            letter-spacing: 0.08em;
+            font-size: 1rem;
+            line-height: 3;
+            letter-spacing: 0.15em;
             color: var(--text-gray);
             font-weight: 400;
+            text-align: left;
+        }
+        
+        .profile-text span {
+            display: block;
+            margin-bottom: 1rem;
+        }
+        
+        .profile-text span:last-child {
+            margin-bottom: 0;
         }
         
         /* Works Gallery Page */
@@ -406,16 +418,11 @@
         <section class="page profile-page">
             <div class="profile-content">
                 <h2 class="profile-title">著者略歴</h2>
-                <p class="profile-text">
-                    一九八七年一月二十三日<br>
-                    京都府生まれ<br><br>
-                    二〇一七年<br>
-                    『君は月夜に光り輝く』<br>
-                    でデビュー<br><br>
-                    現在<br>
-                    新作長編小説を<br>
-                    執筆中
-                </p>
+                <div class="profile-text">
+                    <span>一九八七年一月二十三日、京都府生まれ。</span>
+                    <span>二〇一七年、『君は月夜に光り輝く』でデビュー。</span>
+                    <span>現在、新作長編小説を執筆中。</span>
+                </div>
             </div>
             <span class="page-number">01</span>
         </section>
@@ -545,7 +552,7 @@
         container.addEventListener('touchend', (e) => {
             if (!isDragging) return;
             isDragging = false;
-            container.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            container.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
             
             const diff = currentX - startX;
             const threshold = window.innerWidth * 0.05;
@@ -561,11 +568,14 @@
         });
         
         // Mouse events for desktop
+        let mouseStartX = 0;
         container.addEventListener('mousedown', (e) => {
+            mouseStartX = e.clientX;
             startX = e.clientX;
             isDragging = true;
             container.style.transition = 'none';
             container.style.cursor = 'grabbing';
+            e.preventDefault(); // Prevent text selection
         });
         
         container.addEventListener('mousemove', (e) => {
@@ -580,16 +590,16 @@
         container.addEventListener('mouseup', (e) => {
             if (!isDragging) return;
             isDragging = false;
-            container.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            container.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
             container.style.cursor = 'grab';
             
-            const diff = currentX - startX;
+            const actualDiff = e.clientX - startX; // Use actual mouse position difference
             const threshold = window.innerWidth * 0.05;
             
             // Reverse swipe direction for Japanese reading
-            if (diff > threshold && currentPage > 0) {
+            if (actualDiff > threshold && currentPage > 0) {
                 goToPage(currentPage - 1);
-            } else if (diff < -threshold && currentPage < pages.length - 1) {
+            } else if (actualDiff < -threshold && currentPage < pages.length - 1) {
                 goToPage(currentPage + 1);
             } else {
                 goToPage(currentPage);
