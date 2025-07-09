@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>SANO ZINE - 夜を徹する物語</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Shippori+Mincho:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* BRUTUS-style ZINE Design */
+        :root {
+            /* Sophisticated Colors */
+            --base-gray: #F5F5F5;
+            --mid-gray: #E8E8E8;
+            --dark-gray: #333333;
+            --accent-red: #FF0033;
+            --accent-blue: #0066FF;
+            --accent-yellow: #FFD700;
+            
+            /* Typography */
+            --black: #1A1A1A;
+            --white: #FFFFFF;
+            --text-gray: #666666;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+            background: var(--base-gray);
+            color: var(--black);
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            touch-action: pan-y pinch-zoom;
+        }
+        
+        /* Swiper Container */
+        .zine-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        /* Page Styles */
+        .page {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            padding: 3rem 2rem;
+        }
+        
+        /* Cover Page */
+        .cover {
+            background: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cover::after {
+            content: '';
+            position: absolute;
+            bottom: 10%;
+            right: 10%;
+            width: 100px;
+            height: 100px;
+            background: var(--accent-red);
+            border-radius: 50%;
+            filter: blur(50px);
+            opacity: 0.3;
+        }
+        
+        .cover-title {
+            font-size: 2.5rem;
+            font-weight: 400;
+            letter-spacing: 0.8em;
+            position: relative;
+            z-index: 1;
+            color: var(--black);
+            mix-blend-mode: multiply;
+        }
+        
+        .cover-subtitle {
+            font-size: 0.8rem;
+            letter-spacing: 0.3em;
+            margin-top: 2rem;
+            color: var(--text-gray);
+        }
+        
+        .issue-number {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            writing-mode: horizontal-tb;
+            font-size: 0.7rem;
+            color: var(--text-gray);
+            letter-spacing: 0.2em;
+            font-family: "Helvetica Neue", sans-serif;
+        }
+        
+        /* Profile Page */
+        .profile-page {
+            background: var(--base-gray);
+        }
+        
+        .profile-content {
+            max-height: 80vh;
+            position: relative;
+        }
+        
+        .profile-title {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--black);
+            font-weight: 700;
+            padding-right: 1rem;
+            border-right: 3px solid var(--accent-red);
+        }
+        
+        .profile-text {
+            font-size: 0.95rem;
+            line-height: 2.2;
+            letter-spacing: 0.08em;
+            color: var(--dark-gray);
+        }
+        
+        .profile-accent {
+            position: absolute;
+            top: 20%;
+            right: 20%;
+            width: 60px;
+            height: 60px;
+            background: var(--accent-blue);
+            opacity: 0.1;
+            filter: blur(30px);
+        }
+        
+        /* Works Gallery Page */
+        .works-page {
+            background: var(--white);
+            padding: 2rem;
+        }
+        
+        .works-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            letter-spacing: 0.1em;
+            color: var(--black);
+        }
+        
+        .works-grid {
+            display: grid;
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+            writing-mode: horizontal-tb;
+            max-width: 80vh;
+            margin: 0 auto;
+        }
+        
+        .work-item {
+            position: relative;
+            aspect-ratio: 0.7;
+            overflow: hidden;
+            background: var(--base-gray);
+            transition: all 0.4s ease;
+        }
+        
+        .work-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .work-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(0.2) contrast(1.1);
+            transition: filter 0.4s ease;
+        }
+        
+        .work-item:hover img {
+            filter: grayscale(0) contrast(1.2);
+        }
+        
+        /* News Page */
+        .news-page {
+            background: var(--base-gray);
+        }
+        
+        .news-list {
+            max-height: 70vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .news-item {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--mid-gray);
+            transition: all 0.3s ease;
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        
+        .news-item:hover {
+            padding-left: 0.5rem;
+        }
+        
+        .news-date {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            margin-bottom: 0.5rem;
+            font-family: "Helvetica Neue", sans-serif;
+            letter-spacing: 0.05em;
+        }
+        
+        .news-title {
+            font-size: 1rem;
+            line-height: 2;
+            color: var(--dark-gray);
+            font-weight: 400;
+        }
+        
+        .news-accent {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--accent-red);
+            border-radius: 50%;
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+        
+        /* Navigation Dots */
+        .nav-dots {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.8rem;
+            z-index: 100;
+            writing-mode: horizontal-tb;
+        }
+        
+        .nav-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--mid-gray);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .nav-dot.active {
+            background: var(--accent-red);
+            transform: scale(1.5);
+        }
+        
+        /* Swipe Hint */
+        .swipe-hint {
+            position: fixed;
+            bottom: 5rem;
+            left: 2rem;
+            writing-mode: horizontal-tb;
+            font-size: 0.7rem;
+            color: var(--text-gray);
+            font-family: "Helvetica Neue", sans-serif;
+            letter-spacing: 0.1em;
+            animation: swipeHint 2s ease-in-out infinite;
+        }
+        
+        @keyframes swipeHint {
+            0%, 100% { transform: translateX(0); opacity: 0.3; }
+            50% { transform: translateX(10px); opacity: 0.8; }
+        }
+        
+        /* Page Transitions */
+        .page-number {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            writing-mode: horizontal-tb;
+            font-size: 0.6rem;
+            color: var(--text-gray);
+            letter-spacing: 0.1em;
+            font-family: "Helvetica Neue", sans-serif;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .cover-title {
+                font-size: 2.5rem;
+            }
+            
+            .works-grid {
+                grid-template-rows: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-height: 600px) {
+            .page {
+                padding: 2rem 1.5rem;
+            }
+            
+            .cover-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="zine-container" id="zineContainer">
+        <!-- Cover Page -->
+        <section class="page cover">
+            <span class="issue-number">ISSUE 001</span>
+            <h1 class="cover-title">佐野徹夜</h1>
+            <p class="cover-subtitle">夜を徹する物語</p>
+            <span class="page-number">00</span>
+        </section>
+        
+        <!-- Profile Page -->
+        <section class="page profile-page">
+            <div class="profile-content">
+                <h2 class="profile-title">略歴</h2>
+                <p class="profile-text">
+                    一九八七年一月二十三日、<br>
+                    京都府生まれ。<br><br>
+                    二〇一七年、<br>
+                    『君は月夜に光り輝く』<br>
+                    でデビュー。<br><br>
+                    現在、新作長編小説を<br>
+                    執筆中。
+                </p>
+                <div class="profile-accent"></div>
+            </div>
+            <span class="page-number">01</span>
+        </section>
+        
+        <!-- Works Gallery -->
+        <section class="page works-page">
+            <h2 class="works-title">作品</h2>
+            <div class="works-grid">
+                <div class="work-item">
+                    <img src="https://images-na.ssl-images-amazon.com/images/P/4048926756.09.LZZZZZZZ.jpg" alt="君は月夜に光り輝く">
+                </div>
+                <div class="work-item">
+                    <img src="https://images-na.ssl-images-amazon.com/images/P/4048934147.09.LZZZZZZZ.jpg" alt="この世界にiをこめて">
+                </div>
+                <div class="work-item">
+                    <img src="https://images-na.ssl-images-amazon.com/images/P/4049120372.09.LZZZZZZZ.jpg" alt="アオハル・ポイント">
+                </div>
+                <div class="work-item">
+                    <img src="https://images-na.ssl-images-amazon.com/images/P/4049123398.09.LZZZZZZZ.jpg" alt="君は月夜に光り輝く +Fragments">
+                </div>
+                <div class="work-item">
+                    <img src="https://images-na.ssl-images-amazon.com/images/P/4101801908.09.LZZZZZZZ.jpg" alt="さよなら世界の終わり">
+                </div>
+                <div class="work-item">
+                    <img src="https://images-na.ssl-images-amazon.com/images/P/4309031293.09.LZZZZZZZ.jpg" alt="透明になれなかった僕たちのために">
+                </div>
+            </div>
+            <span class="page-number">02</span>
+        </section>
+        
+        <!-- News Page -->
+        <section class="page news-page">
+            <div class="news-list">
+                <div class="news-item">
+                    <div class="news-date">2025.06.13</div>
+                    <div class="news-title">
+                        <span class="news-accent"></span>エッセイ〈母へ〉<br>
+                        第十六回公開<br>
+                        「充電ができなくて」
+                    </div>
+                </div>
+                <div class="news-item">
+                    <div class="news-date">2025.04.26</div>
+                    <div class="news-title">
+                        ジャ・ジャンクー監督<br>
+                        『新世紀ロマンティクス』<br>
+                        推薦コメント
+                    </div>
+                </div>
+                <div class="news-item">
+                    <div class="news-date">2024.12.25</div>
+                    <div class="news-title">
+                        短編アンソロジー<br>
+                        『君に贈る15ページ』発売<br>
+                        書き下ろし<br>
+                        「わたしたちの教室」収録
+                    </div>
+                </div>
+            </div>
+            <span class="page-number">03</span>
+        </section>
+    </div>
+    
+    <!-- Navigation -->
+    <div class="nav-dots">
+        <span class="nav-dot active" data-page="0"></span>
+        <span class="nav-dot" data-page="1"></span>
+        <span class="nav-dot" data-page="2"></span>
+        <span class="nav-dot" data-page="3"></span>
+    </div>
+    
+    <div class="swipe-hint">SWIPE →</div>
+    
+    <script>
+        // ZINE Swipe Navigation
+        const container = document.getElementById('zineContainer');
+        const dots = document.querySelectorAll('.nav-dot');
+        const pages = document.querySelectorAll('.page');
+        let currentPage = 0;
+        let startX = 0;
+        let currentX = 0;
+        let isDragging = false;
+        
+        // Update active dot
+        function updateDots(index) {
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+        
+        // Navigate to page
+        function goToPage(index) {
+            if (index < 0 || index >= pages.length) return;
+            currentPage = index;
+            container.style.transform = `translateX(-${currentPage * 100}vw)`;
+            updateDots(currentPage);
+        }
+        
+        // Touch events
+        container.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+            container.style.transition = 'none';
+        });
+        
+        container.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            currentX = e.touches[0].clientX;
+            const diff = currentX - startX;
+            const translateX = -currentPage * window.innerWidth + diff;
+            container.style.transform = `translateX(${translateX}px)`;
+        });
+        
+        container.addEventListener('touchend', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            container.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            
+            const diff = currentX - startX;
+            const threshold = window.innerWidth * 0.2;
+            
+            // Reverse swipe direction for Japanese reading
+            if (diff < -threshold && currentPage > 0) {
+                goToPage(currentPage - 1);
+            } else if (diff > threshold && currentPage < pages.length - 1) {
+                goToPage(currentPage + 1);
+            } else {
+                goToPage(currentPage);
+            }
+        });
+        
+        // Mouse events for desktop testing
+        container.addEventListener('mousedown', (e) => {
+            startX = e.clientX;
+            isDragging = true;
+            container.style.transition = 'none';
+            container.style.cursor = 'grabbing';
+        });
+        
+        container.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            currentX = e.clientX;
+            const diff = currentX - startX;
+            const translateX = -currentPage * window.innerWidth + diff;
+            container.style.transform = `translateX(${translateX}px)`;
+        });
+        
+        container.addEventListener('mouseup', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            container.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            container.style.cursor = 'grab';
+            
+            const diff = currentX - startX;
+            const threshold = window.innerWidth * 0.2;
+            
+            // Reverse swipe direction for Japanese reading
+            if (diff < -threshold && currentPage > 0) {
+                goToPage(currentPage - 1);
+            } else if (diff > threshold && currentPage < pages.length - 1) {
+                goToPage(currentPage + 1);
+            } else {
+                goToPage(currentPage);
+            }
+        });
+        
+        // Dot navigation
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => goToPage(index));
+        });
+        
+        // Keyboard navigation (reversed for Japanese)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') goToPage(currentPage - 1);
+            if (e.key === 'ArrowLeft') goToPage(currentPage + 1);
+        });
+        
+        // Hide swipe hint after first interaction
+        container.addEventListener('touchstart', () => {
+            document.querySelector('.swipe-hint').style.display = 'none';
+        }, { once: true });
+    </script>
+</body>
+</html>
