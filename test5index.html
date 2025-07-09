@@ -44,25 +44,7 @@
             touch-action: pan-y pinch-zoom;
         }
         
-        /* Book texture overlay */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(0, 0, 0, 0.01) 2px,
-                    rgba(0, 0, 0, 0.01) 4px
-                );
-            pointer-events: none;
-            z-index: 10;
-        }
+        /* Book texture overlay - removed */
         
         /* Cursor style for draggable area */
         .book-container {
