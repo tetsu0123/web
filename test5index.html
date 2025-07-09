@@ -266,8 +266,25 @@
             background: var(--light-gray);
         }
         
+        .news-content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+        
+        .news-title-header {
+            font-size: 1rem;
+            color: var(--accent-black);
+            font-weight: 500;
+            letter-spacing: 0.5em;
+            padding-right: 0.5em;
+            margin-bottom: 0;
+        }
+        
         .news-container {
-            max-height: 80vh;
+            max-height: 70vh;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             padding-right: 1rem;
@@ -457,8 +474,9 @@
         
         <!-- News Page -->
         <section class="page news-page">
-            <h2 class="profile-title">最新情報</h2>
-            <div class="news-container">
+            <div class="news-content">
+                <h2 class="news-title-header">最新情報</h2>
+                <div class="news-container">
                 <div class="news-item">
                     <div class="news-date">2025.06.13</div>
                     <div class="news-title">エッセイ〈母へ〉第十六回公開「充電ができなくて」</div>
@@ -474,6 +492,7 @@
                 <div class="news-item">
                     <div class="news-date">2024.07.25</div>
                     <div class="news-title">帯推薦『ノイズ・キャンセル』持田冥介</div>
+                </div>
                 </div>
             </div>
             <span class="page-number">4</span>
