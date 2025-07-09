@@ -82,9 +82,12 @@
         
         /* Tate-chu-yoko (vertical text with horizontal numbers) */
         .tcy {
-            text-combine-upright: all;
-            -webkit-text-combine: horizontal;
-            -ms-text-combine-horizontal: all;
+            writing-mode: horizontal-tb;
+            text-orientation: upright;
+            display: inline-block;
+            font-size: 0.85em;
+            line-height: 1;
+            vertical-align: middle;
         }
         
         /* Book spine effect */
