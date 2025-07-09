@@ -171,16 +171,19 @@
         }
         
         .profile-content {
-            max-height: 70vh;
-            text-align: center;
+            position: relative;
+            width: 100%;
+            height: 100%;
             display: flex;
-            flex-direction: column;
             align-items: center;
+            justify-content: center;
         }
         
         .profile-title {
+            position: absolute;
+            top: 3rem;
+            right: 3rem;
             font-size: 1rem;
-            margin-bottom: 3rem;
             color: var(--accent-black);
             font-weight: 500;
             letter-spacing: 0.5em;
