@@ -196,39 +196,50 @@
         
         .works-header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
         }
         
         .works-title {
-            font-size: 1.125rem;
+            font-size: 1rem;
             font-weight: 500;
-            letter-spacing: 0.3em;
+            letter-spacing: 0.5em;
             color: var(--accent-black);
-            margin-bottom: 0.5rem;
-        }
-        
-        .works-count {
-            font-size: 0.75rem;
-            color: var(--dark-gray);
-            letter-spacing: 0.1em;
+            padding-right: 0.5em;
+            position: absolute;
+            top: 0;
+            right: 0;
         }
         
         .works-list {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 0;
             max-width: 100%;
             margin: 0 auto;
         }
         
         .work-item {
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--mid-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 0.75rem 0;
+            position: relative;
             transition: all 0.3s ease;
         }
         
-        .work-item:last-child {
-            border-bottom: none;
+        .work-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0.5rem;
+            left: 0;
+            right: 0;
+            border-bottom: 1px dotted var(--dark-gray);
+            opacity: 0.3;
+        }
+        
+        .work-item:last-child::after {
+            display: none;
         }
         
         .work-item:hover {
@@ -236,16 +247,19 @@
         }
         
         .work-title {
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            color: var(--accent-black);
+            font-size: 0.9375rem;
+            font-weight: 400;
+            color: var(--text-gray);
+            flex: 1;
+            padding-right: 1rem;
         }
         
-        .work-meta {
+        .work-year {
             font-size: 0.875rem;
             color: var(--dark-gray);
-            line-height: 1.6;
+            font-variant-numeric: tabular-nums;
+            min-width: 3em;
+            text-align: right;
         }
         
         /* News Page */
@@ -426,27 +440,27 @@
             <div class="works-list">
                 <div class="work-item">
                     <div class="work-title">透明になれなかった僕たちのために</div>
-                    <div class="work-meta">2023年</div>
+                    <div class="work-year">二〇二三</div>
                 </div>
                 <div class="work-item">
                     <div class="work-title">さよなら世界の終わり</div>
-                    <div class="work-meta">2022年</div>
+                    <div class="work-year">二〇二二</div>
                 </div>
                 <div class="work-item">
                     <div class="work-title">君は月夜に光り輝く +Fragments</div>
-                    <div class="work-meta">2019年</div>
+                    <div class="work-year">二〇一九</div>
                 </div>
                 <div class="work-item">
                     <div class="work-title">アオハル・ポイント</div>
-                    <div class="work-meta">2018年</div>
+                    <div class="work-year">二〇一八</div>
                 </div>
                 <div class="work-item">
                     <div class="work-title">この世界にiをこめて</div>
-                    <div class="work-meta">2018年</div>
+                    <div class="work-year">二〇一八</div>
                 </div>
                 <div class="work-item">
                     <div class="work-title">君は月夜に光り輝く</div>
-                    <div class="work-meta">2017年</div>
+                    <div class="work-year">二〇一七</div>
                 </div>
             </div>
             <span class="page-number">3</span>
