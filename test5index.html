@@ -192,26 +192,23 @@
         .works-page {
             background: var(--paper-white);
             padding: 2rem;
-            writing-mode: horizontal-tb;
-            text-orientation: upright;
         }
         
         .works-content {
-            max-width: 80%;
-            margin: 0 auto;
-        }
-        
-        .works-header {
-            margin-bottom: 2rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.5rem;
         }
         
         .works-title {
             font-size: 1rem;
-            font-weight: 500;
-            letter-spacing: 0.3em;
             color: var(--accent-black);
-            text-align: center;
-            margin-bottom: 2rem;
+            font-weight: 500;
+            letter-spacing: 0.5em;
+            padding-right: 0.5em;
+            margin-bottom: 0;
         }
         
         .works-list {
@@ -224,22 +221,23 @@
         
         .work-item {
             display: flex;
-            justify-content: flex-start;
-            align-items: baseline;
-            padding: 0.75rem 0;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 1rem 0;
             position: relative;
             transition: all 0.3s ease;
-            gap: 3rem;
+            gap: 1.5rem;
         }
         
         .work-item::after {
             content: '';
             position: absolute;
             bottom: 0.5rem;
-            left: 5rem;
+            left: 0;
             right: 0;
-            border-bottom: 1px dotted var(--dark-gray);
-            opacity: 0.3;
+            border-bottom: 1px solid var(--mid-gray);
+            opacity: 0.5;
         }
         
         .work-item:last-child::after {
@@ -253,9 +251,8 @@
         .work-year {
             font-size: 0.875rem;
             color: var(--dark-gray);
-            font-variant-numeric: tabular-nums;
             min-width: 4em;
-            text-align: left;
+            margin-right: 1rem;
         }
         
         .work-title {
@@ -438,9 +435,7 @@
         <!-- Works Gallery -->
         <section class="page works-page">
             <div class="works-content">
-                <div class="works-header">
-                    <h2 class="works-title">著作一覧</h2>
-                </div>
+                <h2 class="works-title">著作一覧</h2>
                 <div class="works-list">
                 <div class="work-item">
                     <div class="work-year">二〇二三</div>
