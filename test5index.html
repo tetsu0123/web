@@ -64,6 +64,15 @@
             z-index: 10;
         }
         
+        /* Cursor style for draggable area */
+        .book-container {
+            cursor: grab;
+        }
+        
+        .book-container:active {
+            cursor: grabbing;
+        }
+        
         /* Swiper Container */
         .book-container {
             position: relative;
@@ -71,7 +80,7 @@
             height: 100%;
             display: flex;
             flex-direction: row-reverse;
-            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         
         /* Page Styles */
@@ -135,7 +144,8 @@
             font-weight: 300;
             letter-spacing: 1em;
             color: var(--accent-black);
-            margin-bottom: 2rem;
+            writing-mode: vertical-rl;
+            text-orientation: upright;
         }
         
         .cover-subtitle {
@@ -386,8 +396,7 @@
         <!-- Cover Page -->
         <section class="page cover">
             <div class="cover-content">
-                <h1 class="cover-title">佐野<br>徹夜</h1>
-                <p class="cover-subtitle">作品集</p>
+                <h1 class="cover-title">佐野徹夜</h1>
             </div>
             <div class="publisher-mark">2025</div>
             <span class="page-number">00</span>
@@ -539,7 +548,7 @@
             container.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
             
             const diff = currentX - startX;
-            const threshold = window.innerWidth * 0.2;
+            const threshold = window.innerWidth * 0.05;
             
             // Reverse swipe direction for Japanese reading
             if (diff > threshold && currentPage > 0) {
@@ -563,7 +572,7 @@
             if (!isDragging) return;
             e.preventDefault();
             currentX = e.clientX;
-            const diff = currentX - startX;
+            const diff = (currentX - startX) * 1.5; // Increase sensitivity
             const translateX = currentPage * window.innerWidth + diff;
             container.style.transform = `translateX(${translateX}px)`;
         });
@@ -575,7 +584,7 @@
             container.style.cursor = 'grab';
             
             const diff = currentX - startX;
-            const threshold = window.innerWidth * 0.2;
+            const threshold = window.innerWidth * 0.05;
             
             // Reverse swipe direction for Japanese reading
             if (diff > threshold && currentPage > 0) {
