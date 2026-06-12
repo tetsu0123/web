@@ -19,18 +19,17 @@ This is the **production repository** for Tetsuya Sano's (佐野徹夜) official
 ## Repository Structure
 
 ### Main Website Pages
-- `index.html` — Homepage (profile digest, works grid, news digest, progress meter)
-- `about.html` — Author biography
-- `works.html` — Bibliography/works list
-- `news.html` — News and updates
+- `index.html` — One-page site: full-height hero (name + latest-book feature) → 作品 (works shelf + adaptations) → 経歴 (bio + chronology) → 近況 (news). Nav links are in-page anchors (#works / #profile / #news).
 - Book detail pages: `kimitsuki.html`, `konosekainii.html`, `toumei.html`, `sayonara.html`, `aohal.html`, `fragments.html`
+- `about.html` / `works.html` / `news.html` — meta-refresh redirect stubs to index anchors (kept so old URLs do not break)
 - `404.html` — Custom not-found page (served automatically by Cloudflare Pages)
 
 ### Shared Assets
-- `css/common.css` — Sitewide layout: header, hamburger nav, footer, theme variables
-- `css/book.css` — Shared styles for the six book detail pages
-- `js/main.js` — Hamburger menu (all pages)
-- `js/book.js` — Scroll/fade interactions for book detail pages
+- `css/common.css` — Base layout: header structure, hamburger nav, footer (legacy base)
+- `css/theme.css` — Design system: gray-gallery palette vars, Shippori Mincho/Cormorant fonts, transparent header (logo hidden), scroll-reveal. Change colors/fonts HERE — it cascades to every page.
+- `css/home.css` — One-page index styles (hero, works shelf, profile, news)
+- `css/book.css` — Book detail pages (must match theme.css design system)
+- `js/main.js` — Hamburger menu (all pages); `js/onepage.js` — index reveal/scrollspy/progress; `js/book.js` — book page reveal
 - `profile.jpg`, `body.jpg` — Photos; `x.png`, `insta.png`, `note.png` — social icons (64px)
 - Book cover images are hot-linked from Amazon (`images-na.ssl-images-amazon.com`)
 
@@ -42,7 +41,7 @@ This is the **production repository** for Tetsuya Sano's (佐野徹夜) official
 
 ### Main Website
 1. Edit HTML files directly; shared styles go in `css/common.css` (sitewide) or `css/book.css` (book pages).
-2. Book pages link `common.css` → `book.css` → optional small inline `<style>` for page-specific overrides (e.g. `.award-note` on kimitsuki, `.reviews` on konosekainii). Keep overrides inline only when truly page-specific.
+2. Load order everywhere: `common.css` → `theme.css` → page CSS (`home.css` or `book.css`). No inline styles; page-specific bits (.award-note, .quote) live in book.css.
 3. Maintain the same header/nav/footer markup across pages.
 4. When adding a page: add it to `sitemap.xml` (web-aki.pages.dev URLs) and include a `<link rel="canonical">`.
 5. Test mobile layout (hamburger menu) before pushing — pushing main publishes immediately.
