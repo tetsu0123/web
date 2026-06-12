@@ -1,0 +1,545 @@
+/* home.css — トップ（ワンページ）専用。theme.cssの後に読み込む */
+
+main {
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+section[id] {
+    scroll-margin-top: 48px;
+}
+
+/* ---------- 読み進みバー ---------- */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background: var(--hover-blue);
+    z-index: 200;
+}
+
+/* ---------- HERO ---------- */
+.op-hero {
+    min-height: min(86svh, 760px);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: clamp(84px, 11vh, 120px) 2rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+}
+
+.op-hero-ghost {
+    position: absolute;
+    right: -0.03em;
+    bottom: 0.6rem;
+    font-family: var(--latin);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(5rem, 16vw, 12rem);
+    line-height: 0.85;
+    text-align: right;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(22, 24, 28, 0.10);
+    user-select: none;
+    pointer-events: none;
+}
+
+.op-hero-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: clamp(3rem, 8vw, 8rem);
+    align-items: center;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+/* 最新刊フィーチャー（出版社の作家ページ式: 本が主役） */
+.op-feature {
+    width: clamp(200px, 22vw, 280px);
+    text-decoration: none;
+    justify-self: end;
+    margin-right: clamp(0rem, 4vw, 4rem);
+}
+
+.op-feature img {
+    width: 100%;
+    height: auto;
+    display: block;
+    box-shadow: 0 6px 18px rgba(22, 24, 28, 0.14),
+                0 28px 60px rgba(22, 24, 28, 0.18);
+    transition: transform 0.7s var(--ease), box-shadow 0.7s var(--ease);
+}
+
+.op-feature:hover img {
+    transform: translateY(-8px) rotate(0.4deg);
+    box-shadow: 0 10px 24px rgba(22, 24, 28, 0.16),
+                0 40px 80px rgba(22, 24, 28, 0.22);
+}
+
+.op-feature-label {
+    display: flex;
+    align-items: baseline;
+    gap: 1em;
+    margin-top: 1rem;
+    font-family: var(--serif);
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    color: var(--text-light);
+}
+
+.op-feature-label i {
+    font-family: var(--latin);
+    font-style: italic;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    color: var(--text-lighter);
+}
+
+.op-hero-name {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(3.4rem, 11vw, 8rem);
+    letter-spacing: 0.12em;
+    line-height: 1.1;
+    margin-left: -0.05em;
+    color: var(--text);
+}
+
+.op-hero-lead {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 2.6;
+    letter-spacing: 0.12em;
+    color: var(--text-light);
+    margin-top: 1.8rem;
+    max-width: 100%;
+}
+
+.op-scroll-cue {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 2.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: var(--latin);
+    font-style: italic;
+    font-size: 0.72rem;
+    letter-spacing: 0.4em;
+    color: var(--text-lighter);
+}
+
+.op-scroll-cue span {
+    width: 1px;
+    height: 52px;
+    background: linear-gradient(var(--text-lighter), transparent);
+    animation: op-cue 2.8s var(--ease) infinite;
+}
+
+@keyframes op-cue {
+    0%   { transform: scaleY(0); transform-origin: top; }
+    45%  { transform: scaleY(1); transform-origin: top; }
+    55%  { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ---------- セクション見出し ---------- */
+.op-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem 1rem;
+}
+
+.op-sec-head {
+    display: flex;
+    align-items: flex-end;
+    gap: 1.6rem;
+    margin-bottom: 2.2rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.2rem;
+}
+
+.op-sec-en {
+    display: block;
+    font-family: var(--latin);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 0.85rem;
+    letter-spacing: 0.4em;
+    color: var(--text-lighter);
+    margin-bottom: 0.5rem;
+}
+
+.op-sec-head h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(1.4rem, 2.6vw, 1.8rem);
+    letter-spacing: 0.3em;
+    line-height: 1;
+}
+
+/* ---------- WORKS ---------- */
+.op-shelf {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3.2rem 2.4rem;
+}
+
+.op-book {
+    position: relative;
+}
+
+.op-book-cover {
+    display: block;
+    position: relative;
+    aspect-ratio: 0.7;
+    overflow: hidden;
+    background: var(--surface);
+    box-shadow: 0 2px 10px rgba(22, 24, 28, 0.08),
+                0 12px 32px rgba(22, 24, 28, 0.08);
+    transition: transform 0.7s var(--ease), box-shadow 0.7s var(--ease);
+}
+
+.op-book-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 1.4s var(--ease);
+}
+
+.op-book:hover .op-book-cover {
+    transform: translateY(-8px);
+    box-shadow: 0 4px 14px rgba(22, 24, 28, 0.10),
+                0 24px 48px rgba(22, 24, 28, 0.14);
+}
+
+.op-book:hover .op-book-cover img {
+    transform: scale(1.05);
+}
+
+.op-book-data {
+    margin-top: 1.5rem;
+}
+
+.op-book-data h3 {
+    font-family: var(--serif);
+    font-size: 1.02rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    line-height: 1.9;
+}
+
+.op-book-data h3 a {
+    color: var(--text);
+    text-decoration: none;
+    background-image: linear-gradient(var(--hover-blue), var(--hover-blue));
+    background-size: 0 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.6s var(--ease), color 0.4s ease;
+}
+
+.op-book-data h3 a:hover {
+    color: var(--hover-blue);
+    background-size: 100% 1px;
+}
+
+.op-book-data p {
+    font-family: var(--font-sans-jp);
+    font-weight: 300;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    color: var(--text-light);
+    margin-top: 0.5rem;
+}
+
+.op-book-data p span {
+    margin-left: 1em;
+    font-family: var(--latin);
+    font-style: italic;
+    font-size: 0.85rem;
+}
+
+.op-buy {
+    display: inline-block;
+    margin-top: 0.7rem;
+    font-family: var(--latin);
+    font-style: italic;
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+    color: var(--text-lighter);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.4s ease, border-color 0.4s ease;
+}
+
+.op-buy:hover {
+    color: var(--hover-blue);
+    border-color: var(--hover-blue);
+}
+
+.op-award {
+    display: inline-block;
+    font-style: normal;
+    font-family: var(--serif);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    color: var(--hover-blue);
+    border: 1px solid rgba(39, 64, 107, 0.3);
+    padding: 0.3em 1em;
+    margin-top: 0.9rem;
+}
+
+/* 映像・漫画・エッセイ */
+.op-others {
+    margin-top: 3.5rem;
+}
+
+.op-others-head {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.1rem;
+    letter-spacing: 0.3em;
+    margin-bottom: 2.2rem;
+}
+
+.op-others-head .op-sec-en {
+    margin-bottom: 0.5rem;
+}
+
+.op-others ul {
+    list-style: none;
+}
+
+.op-others li {
+    display: flex;
+    gap: 2.2rem;
+    align-items: baseline;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 0.92rem;
+    letter-spacing: 0.06em;
+    padding: 1rem 0.2rem;
+    border-bottom: 1px solid var(--border);
+    transition: padding-left 0.6s var(--ease), background 0.6s ease;
+}
+
+.op-others li:first-child {
+    border-top: 1px solid var(--border);
+}
+
+.op-others li:hover {
+    padding-left: 1.2rem;
+    background: var(--surface);
+}
+
+.op-others li span {
+    font-family: var(--latin);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--text-lighter);
+    min-width: 4.2em;
+}
+
+.op-others li em {
+    font-style: normal;
+    font-family: var(--font-sans-jp);
+    font-weight: 300;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--text-light);
+    margin-left: auto;
+    text-align: right;
+}
+
+/* ---------- PROFILE ---------- */
+.op-about {
+    display: grid;
+    grid-template-columns: minmax(200px, 300px) 1fr;
+    gap: 2.5rem 4rem;
+    align-items: start;
+}
+
+.op-portrait {
+    position: relative;
+}
+
+.op-portrait img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: saturate(0.85);
+    box-shadow: 0 2px 10px rgba(22, 24, 28, 0.08),
+                0 12px 32px rgba(22, 24, 28, 0.08);
+}
+
+.op-portrait figcaption {
+    margin-top: 0.8rem;
+    font-family: var(--latin);
+    font-style: italic;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: var(--text-lighter);
+    text-align: right;
+}
+
+.op-bio p {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 2.5;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.6rem;
+    max-width: 38em;
+}
+
+.op-chrono {
+    list-style: none;
+    margin-top: 2.5rem;
+    columns: 2;
+    column-gap: 5rem;
+}
+
+.op-chrono li {
+    break-inside: avoid;
+    display: flex;
+    gap: 1.8rem;
+    align-items: baseline;
+    font-family: var(--font-sans-jp);
+    font-weight: 300;
+    font-size: 0.84rem;
+    letter-spacing: 0.05em;
+    line-height: 2;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.op-chrono li span {
+    font-family: var(--latin);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--hover-blue);
+    opacity: 0.75;
+    min-width: 3em;
+}
+
+/* ---------- NEWS ---------- */
+.op-news {
+    list-style: none;
+}
+
+.op-news li {
+    display: grid;
+    grid-template-columns: 8.5em 1fr;
+    gap: 1.8rem;
+    align-items: baseline;
+    padding: 1.05rem 0.2rem;
+    border-bottom: 1px solid var(--border);
+    transition: padding-left 0.6s var(--ease), background 0.6s ease;
+}
+
+.op-news li:first-child {
+    border-top: none;
+}
+
+.op-news li:last-child {
+    border-bottom: none;
+}
+
+.op-news li:hover {
+    padding-left: 1.2rem;
+    background: var(--surface);
+}
+
+.op-news time {
+    font-family: var(--latin);
+    font-style: italic;
+    font-size: 0.92rem;
+    color: var(--text-lighter);
+    transition: color 0.4s ease;
+}
+
+.op-news li:hover time {
+    color: var(--hover-blue);
+}
+
+.op-news p {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 0.92rem;
+    letter-spacing: 0.05em;
+    line-height: 2;
+}
+
+.op-news a {
+    color: var(--text);
+    text-decoration: none;
+    background-image: linear-gradient(var(--border), var(--border));
+    background-size: 100% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: color 0.4s ease, background-image 0.4s ease;
+}
+
+.op-news a:hover {
+    color: var(--hover-blue);
+    background-image: linear-gradient(var(--hover-blue), var(--hover-blue));
+}
+
+/* 棚は時間差で立ち上がる */
+html.js .op-shelf .op-book:nth-child(2) { transition-delay: 0.08s; }
+html.js .op-shelf .op-book:nth-child(3) { transition-delay: 0.16s; }
+html.js .op-shelf .op-book:nth-child(4) { transition-delay: 0.06s; }
+html.js .op-shelf .op-book:nth-child(5) { transition-delay: 0.14s; }
+html.js .op-shelf .op-book:nth-child(6) { transition-delay: 0.22s; }
+
+@media (prefers-reduced-motion: reduce) {
+    .op-scroll-cue span { animation: none; }
+}
+
+/* ---------- モバイル ---------- */
+@media (max-width: 768px) {
+    .op-hero { padding: 76px 1.2rem 0; min-height: auto; padding-bottom: 3rem; }
+    .op-hero-name { font-size: clamp(2.8rem, 14vw, 4.8rem); }
+    .op-hero-ghost { font-size: clamp(4rem, 22vw, 7rem); bottom: 1rem; }
+    .op-hero-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    .op-feature {
+        width: 180px;
+        justify-self: start;
+        margin-right: 0;
+    }
+    .op-hero-lead br { display: none; }
+    .op-hero-lead {
+        font-size: 0.88rem;
+        letter-spacing: 0.04em;
+        line-height: 2.3;
+    }
+    .op-scroll-cue { right: 1.2rem; bottom: 1.6rem; }
+
+    .op-section { padding: 2.8rem 1.2rem 0.8rem; }
+        .op-shelf { grid-template-columns: repeat(2, 1fr); gap: 3.8rem 1.4rem; }
+        .op-others li { flex-wrap: wrap; gap: 0.6rem 1.4rem; }
+    .op-others li em { margin-left: 0; width: 100%; text-align: left; }
+
+    .op-about { grid-template-columns: 1fr; gap: 2.4rem; }
+    .op-portrait { max-width: 250px; }
+    .op-chrono { columns: 1; margin-top: 3rem; }
+
+    .op-news li { grid-template-columns: 1fr; gap: 0.2rem; }
+}

@@ -1,0 +1,74 @@
+/* ==========================================================
+   theme.css — サイト共通デザインシステム
+   読み込み順: common.css → theme.css → ページ別CSS
+   ========================================================== */
+
+:root {
+    --bg: #F1F2F4;            /* 薄いグレー — 寒色寄りのギャラリートーン */
+    --text: #1B1C1F;
+    --accent: #1B1C1F;
+    --hover-blue: #2F3E7E;    /* ウルトラマリンの墨 — 唯一の彩度 */
+    --meter-fill: #2F3E7E;
+    --meter-bg: #E1E3E7;
+    --border: #DCDEE2;
+    --surface: #FAFBFC;
+    --text-light: #63666C;
+    --text-lighter: #9CA0A8;
+    --serif: "Shippori Mincho B1", "Hiragino Mincho ProN", serif;
+    --latin: "Cormorant Garamond", Georgia, serif;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+    scroll-behavior: smooth;
+    background: var(--bg);
+}
+
+/* ---------- ヘッダー: 完全に透明、ロゴなし ---------- */
+.header {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: none;
+}
+
+.header .logo {
+    display: none;
+}
+
+.header-content {
+    justify-content: flex-end;
+}
+
+nav a.is-active {
+    border-bottom: 1px solid var(--text);
+    padding-bottom: 2px;
+}
+
+/* ---------- フッター ---------- */
+footer {
+    margin-top: 3rem;
+    padding: 2.5rem 0 2rem;
+    border-top: 1px solid var(--border);
+}
+
+/* ---------- スクロールリビール ---------- */
+html.js [data-reveal] {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(5px);
+    transition: opacity 1.2s var(--ease),
+                transform 1.2s var(--ease),
+                filter 1.2s var(--ease);
+}
+
+html.js [data-reveal].is-in {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    html.js [data-reveal] { opacity: 1; transform: none; filter: none; transition: none; }
+}
