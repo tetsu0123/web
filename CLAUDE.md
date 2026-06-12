@@ -4,115 +4,53 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is a **production deployment repository** for Tetsuya Sano's (佐野徹夜) author website hosted on GitHub Pages at https://tetsu0123.github.io/web/. The repository contains two distinct projects:
+This is the **production repository** for Tetsuya Sano's (佐野徹夜) official author website, deployed on **Cloudflare Pages** at **https://web-aki.pages.dev/**. It contains two projects:
 
-1. **Main Author Website** - A static HTML/CSS/JS portfolio site
-2. **English Vocabulary App** - A pre-built React application in the `/app` directory
+1. **Main Author Website** — a static HTML/CSS/JS portfolio site (no build step)
+2. **English Vocabulary App** — a pre-built React application in `/app` (build output only; do not edit)
 
-## Important Context
+## Deployment
 
-**This is NOT a source code repository** - all JavaScript and CSS files in `/app/assets/` are minified production builds. The actual source code for the vocabulary app exists in a separate repository at `/Users/sano/Desktop/claudecode/英単語アプリ/word-swipe/`.
-
-## Deployment Workflow
-
-When deploying updates to the vocabulary app:
-
-```bash
-# 1. Build in the source repository
-cd /Users/sano/Desktop/claudecode/英単語アプリ/word-swipe
-npm run build
-
-# 2. Copy built files to this repository
-cd /Users/sano/Desktop/web-repo-for-app
-cp -r /Users/sano/Desktop/claudecode/英単語アプリ/word-swipe/dist/* app/
-
-# 3. Commit and push
-git add -A
-git commit -m "Your commit message"
-git push origin main
-```
-
-**Critical**: Always deploy to the `/app` subdirectory, never to the root directory.
+- Cloudflare Pages is Git-connected to this repository (project name `web` in the dashboard, account foucaultjb3@gmail.com).
+- **Pushing to `main` triggers an automatic production deploy.** Every commit gets a Cloudflare Pages check with a preview URL (`<hash>.web-aki.pages.dev`); non-main branches get preview deployments.
+- No build command — files are served as-is.
+- The old GitHub Pages URL (tetsu0123.github.io/web) is retired; always use https://web-aki.pages.dev/ in canonical/og/sitemap URLs.
 
 ## Repository Structure
 
-### Main Website Files
-- `index.html` - Homepage
-- `about.html` - Author profile
-- `works.html` - Bibliography/works list
-- `news.html` - News and updates
-- Individual work pages: `kimitsuki.html`, `konosekainii.html`, etc.
-- `css/common.css` - Shared styles for all pages
-- `js/main.js` - Hamburger menu functionality
+### Main Website Pages
+- `index.html` — Homepage (profile digest, works grid, news digest, progress meter)
+- `about.html` — Author biography
+- `works.html` — Bibliography/works list
+- `news.html` — News and updates
+- Book detail pages: `kimitsuki.html`, `konosekainii.html`, `toumei.html`, `sayonara.html`, `aohal.html`, `fragments.html`
+- `404.html` — Custom not-found page (served automatically by Cloudflare Pages)
+
+### Shared Assets
+- `css/common.css` — Sitewide layout: header, hamburger nav, footer, theme variables
+- `css/book.css` — Shared styles for the six book detail pages
+- `js/main.js` — Hamburger menu (all pages)
+- `js/book.js` — Scroll/fade interactions for book detail pages
+- `profile.jpg`, `body.jpg` — Photos; `x.png`, `insta.png`, `note.png` — social icons (64px)
+- Book cover images are hot-linked from Amazon (`images-na.ssl-images-amazon.com`)
 
 ### Vocabulary App (`/app`)
-- `index.html` - App entry point
-- `assets/` - Minified JS and CSS files (do NOT edit directly)
-- CSV vocabulary files:
-  - `a2-words.csv` - A2 level vocabulary (528 words)
-  - `vocabulary-100-a2b1.csv` - A2-B1 level words (100 words)
-  - `next-100-words.csv` - Additional vocabulary set
+- Pre-built React + TypeScript + Vite output. **Never edit `/app` directly.**
+- CSV vocabulary data lives inside `/app`.
 
-## Key Architecture Decisions
+## Editing Guidelines
 
-### Static Site Architecture
-- **No build process** for the main website - direct HTML/CSS/JS editing
-- Mobile-first responsive design using CSS Grid and Flexbox
-- Custom CSS properties for theming
-- Google Fonts integration (BIZ UDMincho, Zen Kaku Gothic)
+### Main Website
+1. Edit HTML files directly; shared styles go in `css/common.css` (sitewide) or `css/book.css` (book pages).
+2. Book pages link `common.css` → `book.css` → optional small inline `<style>` for page-specific overrides (e.g. `.award-note` on kimitsuki, `.reviews` on konosekainii). Keep overrides inline only when truly page-specific.
+3. Maintain the same header/nav/footer markup across pages.
+4. When adding a page: add it to `sitemap.xml` (web-aki.pages.dev URLs) and include a `<link rel="canonical">`.
+5. Test mobile layout (hamburger menu) before pushing — pushing main publishes immediately.
 
-### Vocabulary App Architecture
-- Built with React + TypeScript + Vite (source code elsewhere)
-- Uses IndexedDB for local data persistence
-- Web Speech API for pronunciation
-- Swipeable card interface for learning
-- CSV import/export functionality
+### Vocabulary App
+Rebuild in its source repository and copy the `dist/` output into `/app`. The historical source path (`/Users/sano/Desktop/claudecode/英単語アプリ/word-swipe/`) referred to an old machine and may no longer exist.
 
-## Development Guidelines
-
-### When Updating the Main Website
-1. Edit HTML files directly
-2. Update `css/common.css` for styling changes
-3. Maintain consistent navigation structure across all pages
-4. Test responsive design on mobile devices
-5. Update `sitemap.xml` if adding new pages
-
-### When Updating the Vocabulary App
-1. **Never edit files in `/app` directly** - they are build outputs
-2. Make changes in the source repository
-3. Follow the deployment workflow above
-4. Preserve existing CSV files unless explicitly updating vocabulary
-
-### Git Workflow
-- This repository uses a simple single-branch workflow (main)
-- Direct pushes to main are allowed
-- Commit messages should be in English or Japanese
-- If push conflicts occur: `git pull --rebase origin main`
-
-## Common Issues and Solutions
-
-### Push Conflicts
-```bash
-git pull --rebase origin main
-git push origin main
-```
-
-### App Not Updating After Deploy
-- Clear browser cache
-- Check that files were copied to `/app` not root
-- Verify new hash in built file names (e.g., `index-NEWHASH.js`)
-
-### Mobile Display Issues
-- The site uses viewport meta tags and responsive CSS
-- Test with browser dev tools mobile emulation
-- Check hamburger menu functionality on touch devices
-
-## Vocabulary Data Format
-
-CSV files use simple two-column format:
-```csv
-english,japanese
-example,例
-```
-
-No headers needed when importing into the app. The app automatically detects and handles the format.
+## Git Workflow
+- Production branch: `main` (direct pushes allowed; they auto-deploy).
+- For risky/visual changes, push a branch first and check the Cloudflare preview URL on the commit status.
+- Stale `codex/*` branches are historical PR branches from Codex web edits.
