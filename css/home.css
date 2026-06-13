@@ -124,35 +124,8 @@ section[id] {
     max-width: 100%;
 }
 
-.op-scroll-cue {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 2.2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.7rem;
-    font-family: var(--latin);
-    font-style: italic;
-    font-size: 0.72rem;
-    letter-spacing: 0.4em;
-    color: var(--text-lighter);
-}
 
-.op-scroll-cue span {
-    width: 1px;
-    height: 52px;
-    background: linear-gradient(var(--text-lighter), transparent);
-    animation: op-cue 2.8s var(--ease) infinite;
-}
 
-@keyframes op-cue {
-    0%   { transform: scaleY(0); transform-origin: top; }
-    45%  { transform: scaleY(1); transform-origin: top; }
-    55%  { transform: scaleY(1); transform-origin: bottom; }
-    100% { transform: scaleY(0); transform-origin: bottom; }
-}
 
 /* ---------- セクション見出し ---------- */
 .op-section {
@@ -190,12 +163,15 @@ section[id] {
 }
 
 /* ---------- WORKS ---------- */
+/* 横一列の本棚: 5冊の表紙が左から右に並ぶ */
 .op-shelf {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3.2rem 2.4rem;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.8rem;
+    align-items: start;
 }
 
+/* 1作品=表紙の下に書誌 */
 .op-book {
     position: relative;
 }
@@ -230,7 +206,7 @@ section[id] {
 }
 
 .op-book-data {
-    margin-top: 1.5rem;
+    margin-top: 1.3rem;
 }
 
 .op-book-data h3 {
@@ -365,10 +341,25 @@ section[id] {
     text-align: right;
 }
 
+.op-others li a {
+    color: var(--text);
+    text-decoration: none;
+    background-image: linear-gradient(var(--hover-blue), var(--hover-blue));
+    background-size: 0 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.5s var(--ease), color 0.4s ease;
+}
+
+.op-others li a:hover {
+    color: var(--hover-blue);
+    background-size: 100% 1px;
+}
+
 /* ---------- PROFILE ---------- */
 .op-about {
     display: grid;
-    grid-template-columns: minmax(200px, 300px) 1fr;
+    grid-template-columns: minmax(160px, 230px) 1fr;
     gap: 2.5rem 4rem;
     align-items: start;
 }
@@ -487,16 +478,16 @@ section[id] {
 .op-news a {
     color: var(--text);
     text-decoration: none;
-    background-image: linear-gradient(var(--border), var(--border));
-    background-size: 100% 1px;
+    background-image: linear-gradient(var(--hover-blue), var(--hover-blue));
+    background-size: 0 1px;
     background-position: 0 100%;
     background-repeat: no-repeat;
-    transition: color 0.4s ease, background-image 0.4s ease;
+    transition: background-size 0.6s var(--ease), color 0.4s ease;
 }
 
 .op-news a:hover {
     color: var(--hover-blue);
-    background-image: linear-gradient(var(--hover-blue), var(--hover-blue));
+    background-size: 100% 1px;
 }
 
 /* 棚は時間差で立ち上がる */
@@ -507,7 +498,6 @@ html.js .op-shelf .op-book:nth-child(5) { transition-delay: 0.14s; }
 html.js .op-shelf .op-book:nth-child(6) { transition-delay: 0.22s; }
 
 @media (prefers-reduced-motion: reduce) {
-    .op-scroll-cue span { animation: none; }
 }
 
 /* ---------- モバイル ---------- */
@@ -531,15 +521,24 @@ html.js .op-shelf .op-book:nth-child(6) { transition-delay: 0.22s; }
         letter-spacing: 0.04em;
         line-height: 2.3;
     }
-    .op-scroll-cue { display: none; }
 
     .op-section { padding: 2.8rem 1.2rem 0.8rem; }
-        .op-shelf { grid-template-columns: repeat(2, 1fr); gap: 3.8rem 1.4rem; }
-        .op-others li { flex-wrap: wrap; gap: 0.6rem 1.4rem; }
+    /* スマホ: 横スクロールの本棚（5冊を1列のまま横に流す） */
+    .op-shelf {
+        grid-template-columns: repeat(5, 42vw);
+        gap: 1.2rem;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 -1.2rem;
+        padding: 0 1.2rem 0.8rem;
+    }
+    .op-book { scroll-snap-align: start; }
+    .op-others li { flex-wrap: wrap; gap: 0.6rem 1.4rem; }
     .op-others li em { margin-left: 0; width: 100%; text-align: left; }
 
     .op-about { grid-template-columns: 1fr; gap: 2.4rem; }
-    .op-portrait { max-width: 250px; }
+    .op-portrait { max-width: 150px; }
     .op-chrono { columns: 1; margin-top: 3rem; }
 
     .op-news li { grid-template-columns: 1fr; gap: 0.2rem; }

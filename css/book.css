@@ -20,7 +20,9 @@ main {
     letter-spacing: 0.25em;
     color: var(--text-lighter);
     text-decoration: none;
-    margin-bottom: 2.6rem;
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
     transition: color 0.4s ease;
 }
 

@@ -24,6 +24,12 @@ html {
     background: var(--bg);
 }
 
+/* 背景シェーダー(z-index:-1)を見せるため、bodyは塗らない。
+   htmlのvar(--bg)がWebGL非対応時のフォールバックになる */
+body {
+    background: transparent;
+}
+
 /* ---------- ヘッダー: 完全に透明、ロゴなし ---------- */
 .header {
     background: transparent;
