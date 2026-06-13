@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://web-aki.pages.dev/sitemap.xml
+Sitemap: https://sanotetsuya.jp/sitemap.xml
