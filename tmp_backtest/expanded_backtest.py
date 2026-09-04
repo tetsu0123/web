@@ -195,13 +195,16 @@ def get_universes() -> tuple[set[str], set[str], pd.DataFrame, dict[str, int]]:
     if len(current_sp500) < 450:
         current_sp500 = symbols_from_tables(sp500_url)
     if changes.empty:
-        raise RuntimeError("Could not parse S&P 500 historical changes")
-
-    changes["date"] = pd.to_datetime(changes["date"], errors="coerce")
-    changes["added"] = changes["added"].map(normalize_symbol)
-    changes["removed"] = changes["removed"].map(normalize_symbol)
-    changes = changes.dropna(subset=["date"]).sort_values("date")
-    changes = changes[changes["date"] >= DATA_START - pd.Timedelta(days=7)]
+        # Wikipedia occasionally changes the historical-changes table headers.
+        # The broad test does not depend on that table: fall back to the current
+        # S&P 500 list and label the comparison explicitly as current-static.
+        changes = pd.DataFrame(columns=["date", "added", "removed"])
+    else:
+        changes["date"] = pd.to_datetime(changes["date"], errors="coerce")
+        changes["added"] = changes["added"].map(normalize_symbol)
+        changes["removed"] = changes["removed"].map(normalize_symbol)
+        changes = changes.dropna(subset=["date"]).sort_values("date")
+        changes = changes[changes["date"] >= DATA_START - pd.Timedelta(days=7)]
 
     sp400 = symbols_from_tables(sp400_url)
     sp600 = symbols_from_tables(sp600_url)
@@ -507,7 +510,7 @@ def prepare_market(
     membership_by_date = build_membership_by_date(calendar, current_sp500, changes)
     modes = {
         "original_28_static": defaultdict(list),
-        "sp500_dynamic": defaultdict(list),
+        "sp500_current_static": defaultdict(list),
         "expanded_static": defaultdict(list),
     }
     for event in all_events:
@@ -515,7 +518,7 @@ def prepare_market(
         if event.symbol in ORIGINAL_28:
             modes["original_28_static"][event.signal_idx].append(event)
         if event.symbol in membership_by_date.get(date, frozenset()):
-            modes["sp500_dynamic"][event.signal_idx].append(event)
+            modes["sp500_current_static"][event.signal_idx].append(event)
         if event.symbol in expanded_symbols:
             modes["expanded_static"][event.signal_idx].append(event)
 
@@ -957,7 +960,7 @@ def analyze_mode(mode, calendar, open_matrix, events_by_idx):
     }
 
     sensitivity_rows = []
-    if mode in {"sp500_dynamic", "expanded_static"}:
+    if mode in {"sp500_current_static", "expanded_static"}:
         for side_cost in [0.0015, 0.0025, 0.0040, 0.0060, 0.0100]:
             daily_cost, trades_cost = simulate(
                 calendar, open_matrix, events_by_idx, ensemble_provider,
@@ -1088,7 +1091,7 @@ def create_markdown_report(counts, downloaded_count, missing_count, events_df, r
         "", "## 制約", "",
         "- 日足の価格・出来高だけを使った近似で、ニュース内容や決算予想差は未使用",
         "- expanded_staticは現在のS&P 1500・Nasdaq-100等を過去へ遡るためサバイバーシップ・バイアスがある",
-        "- sp500_dynamicはWikipediaの構成変更表から過去構成を逆算したが、消滅銘柄の価格取得失敗は残る",
+        "- sp500_current_staticは現在のS&P 500構成銘柄を過去へ遡るため、サバイバーシップ・バイアスがある",
         "- Yahoo Financeから取得できなかった銘柄は除外",
         "- 直近一年は過去の改善過程でも参照済みで、完全な未使用ホールドアウトではない",
     ])
@@ -1142,7 +1145,7 @@ def main():
     )
 
     results = {}
-    for mode in ["original_28_static", "sp500_dynamic", "expanded_static"]:
+    for mode in ["original_28_static", "sp500_current_static", "expanded_static"]:
         results[mode] = analyze_mode(mode, calendar, open_matrix, mode_events[mode])
         result = results[mode]
         result["base_daily"].to_csv(OUTPUT_DIR / f"{mode}_base_equity.csv")
