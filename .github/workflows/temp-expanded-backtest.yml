@@ -1,9 +1,9 @@
-name: Temporary expanded stock backtest
+name: Temporary self-improvement event panel
 
 on:
   push:
     branches:
-      - backtest-expanded-20260903
+      - backtest-self-improve-20260904
     paths:
       - "tmp_backtest/**"
       - ".github/workflows/temp-expanded-backtest.yml"
@@ -12,7 +12,7 @@ permissions:
   contents: read
 
 jobs:
-  backtest:
+  build-panel:
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
@@ -29,16 +29,16 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install "pandas>=2.2" "numpy>=1.26" "yfinance>=0.2.65" requests lxml html5lib beautifulsoup4
 
-      - name: Run expanded backtest
+      - name: Build broad event panel
         run: |
           sed -i 's/len(temp) > 50/len(temp) > 5/' tmp_backtest/expanded_backtest.py
-          python tmp_backtest/expanded_backtest.py
+          python tmp_backtest/build_event_panel.py
 
-      - name: Upload results
+      - name: Upload event panel
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: expanded-backtest-results
-          path: tmp_backtest/output/
+          name: self-improvement-event-panel
+          path: tmp_backtest/event_output/
           if-no-files-found: warn
           retention-days: 1
