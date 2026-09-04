@@ -208,7 +208,12 @@ def get_universes() -> tuple[set[str], set[str], pd.DataFrame, dict[str, int]]:
 
     sp400 = symbols_from_tables(sp400_url)
     sp600 = symbols_from_tables(sp600_url)
-    nasdaq100 = symbols_from_tables(nasdaq_url)
+    try:
+        nasdaq100 = symbols_from_tables(nasdaq_url)
+    except RuntimeError:
+        # Nasdaq-100 page structure changes often; S&P 1500 plus the explicit
+        # supplemental growth/ADR list is already the main broad universe.
+        nasdaq100 = set()
 
     historical_sp500 = set(current_sp500)
     historical_sp500.update(s for s in changes["added"].dropna() if s)
