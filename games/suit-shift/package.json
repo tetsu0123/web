@@ -1,0 +1,6 @@
+{
+  "name": "suit-shift", "version": "1.0.0", "private": true,
+  "description": "Offline-first, mobile card-sliding puzzle with 120 verified levels",
+  "scripts": {"test": "node --test tests/core.test.cjs", "generate": "node scripts/generate-levels.cjs", "build": "node scripts/build.cjs", "start": "python3 -m http.server 4173"},
+  "engines": {"node": ">=20"}
+}
