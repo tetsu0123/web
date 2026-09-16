@@ -25,9 +25,15 @@ const icon=name=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" str
 const suitSvg=(s,cls='')=>`<svg class="${cls}" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">${SUIT_PATHS[s]}</svg>`;
 function applyIcons(el=document){el.querySelectorAll('[data-icon]').forEach(n=>n.innerHTML=icon(n.dataset.icon));}
 applyIcons();
-const KEY='suit-shift.save.v1';
-const defaultPrefs={sound:true,music:false,haptic:true,reduced:matchMedia('(prefers-reduced-motion: reduce)').matches,buttons:false,preview:true,theme:'midnight'};
-let data={version:1,prefs:{...defaultPrefs},best:{},session:null};
+const KEY='suit-shift.save.v2', OLD_KEY='suit-shift.save.v1', EDITION='strategy-20260916';
+const challenge=()=>mode==='challenge';
+const moveLimit=()=>challenge()?LEVELS[index].limit:Infinity;
+const remaining=()=>Math.max(0,moveLimit()-moves);
+const failed=()=>challenge()&&moves>=moveLimit()&&C.count(board)>0;
+const mayAssist=used=>!challenge()||used<1;
+const defaultPrefs={sound:true,music:false,haptic:true,reduced:matchMedia('(prefers-reduced-motion: reduce)').matches,buttons:false,preview:true,theme:'casino'};
+let data={version:2,edition:EDITION,prefs:{...defaultPrefs},best:{},pureBest:{},practiceBest:{},mode:'challenge',session:null};
+let mode='challenge',undoUsed=0,hintsUsed=0,oldSave=false;
 let storageFailed=false, index=0, board=[], history=[], moves=0, selected=null, busy=false, searching=false, gesture=null, hinted=null, searchToken=0, cw=78,ch=106,gap=8;
 let toastTimer, feedbackTimer, clearTimer, confirmAction=null, animations=[], motionEpoch=0;
 const boardEl=$('#board'), cardsEl=$('#cards'), previewEl=$('#preview');
@@ -40,49 +46,72 @@ function validBoard(b,initial){
  }
  if(Object.values(ranks).some(n=>n%2))throw Error('Unpaired cards');
 }
-function validateSave(raw){
- if(!raw||raw.version!==1)throw Error('Unknown save version');
- const p={...defaultPrefs};for(const k of Object.keys(p))if(k!=='theme'&&typeof raw.prefs?.[k]==='boolean')p[k]=raw.prefs[k];
- if(['midnight','graphite','forest'].includes(raw.prefs?.theme))p.theme=raw.prefs.theme;
- const best={};for(const [k,v] of Object.entries(raw.best||{})){const id=Number(k);if(Number.isInteger(id)&&id>=1&&id<=120&&Number.isInteger(v)&&v>=1&&v<10000)best[id]=v;}
- let session=null;
- if(raw.session){const s=raw.session;if(!Number.isInteger(s.index)||s.index<0||s.index>=120||!Array.isArray(s.history)||s.history.length>10000)throw Error('Invalid session');
-   const initial=LEVELS[s.index].board;let b=initial.slice();
-   for(const h of s.history){validBoard(h.board,initial);if(C.key(h.board)!==C.key(b)||!Array.isArray(h.action)||h.action.length!==2)throw Error('Invalid history');const r=C.step(b,...h.action,false);if(!r.changed)throw Error('Invalid action');b=r.board;}
-   validBoard(s.board,initial);if(C.key(b)!==C.key(s.board)||s.moves!==s.history.length)throw Error('Invalid state');
-   session={index:s.index,board:s.board.slice(),history:s.history.map(h=>({board:h.board.slice(),action:h.action.slice()})),moves:s.moves};
- }
- return {version:1,prefs:p,best,session};
+function cleanPrefs(raw){
+ const p={...defaultPrefs};for(const k of Object.keys(p))if(k!=='theme'&&typeof raw?.[k]==='boolean')p[k]=raw[k];
+ if(['casino','ruby','noir'].includes(raw?.theme))p.theme=raw.theme;
+ return p;
 }
-try{const saved=localStorage.getItem(KEY);if(saved)data=validateSave(JSON.parse(saved));}catch(e){storageFailed=true;}
+function cleanRecords(raw){
+ const out={};for(const [k,v] of Object.entries(raw||{})){const id=Number(k);if(Number.isInteger(id)&&id>=1&&id<=LEVELS.length&&Number.isInteger(v)&&v>=1&&v<10000)out[id]=v;}return out;
+}
+function validateSave(raw){
+ if(!raw||raw.version!==2||raw.edition!==EDITION)throw Error('Different puzzle edition');
+ const p=cleanPrefs(raw.prefs), m=raw.mode==='practice'?'practice':'challenge';
+ const best=cleanRecords(raw.best),pureBest=cleanRecords(raw.pureBest),practiceBest=cleanRecords(raw.practiceBest);
+ for(const [id,v] of Object.entries(best))if(v>LEVELS[id-1].limit||v<LEVELS[id-1].par)delete best[id];
+ for(const [id,v] of Object.entries(pureBest))if(v>LEVELS[id-1].limit||v<LEVELS[id-1].par)delete pureBest[id];
+ let session=null;
+ if(raw.session){const t=raw.session;
+  if(!Number.isInteger(t.index)||t.index<0||t.index>=LEVELS.length||!Array.isArray(t.history)||t.history.length>10000)throw Error('Invalid session');
+  if(!['practice','challenge'].includes(t.mode)||t.mode!==m)throw Error('Invalid mode');
+  if(!Number.isInteger(t.undoUsed)||t.undoUsed<0||!Number.isInteger(t.hintsUsed)||t.hintsUsed<0)throw Error('Invalid assistance');
+  if(t.mode==='challenge'&&(t.undoUsed>1||t.hintsUsed>1||t.moves>LEVELS[t.index].limit))throw Error('Invalid budget');
+  const initial=LEVELS[t.index].board;let b=initial.slice();
+  for(const h of t.history){validBoard(h.board,initial);if(C.key(h.board)!==C.key(b)||!Array.isArray(h.action)||h.action.length!==2)throw Error('Invalid history');const r=C.step(b,...h.action,false);if(!r.changed)throw Error('Invalid action');b=r.board;}
+  validBoard(t.board,initial);if(C.key(b)!==C.key(t.board)||t.moves!==t.history.length)throw Error('Invalid state');
+  session={index:t.index,board:t.board.slice(),history:t.history.map(h=>({board:h.board.slice(),action:h.action.slice()})),moves:t.moves,mode:t.mode,undoUsed:t.undoUsed,hintsUsed:t.hintsUsed};
+ }
+ return {version:2,edition:EDITION,prefs:p,best,pureBest,practiceBest,mode:m,session};
+}
+try{
+ const saved=localStorage.getItem(KEY);
+ if(saved)data=validateSave(JSON.parse(saved));
+ else {const old=localStorage.getItem(OLD_KEY);if(old){data.prefs=cleanPrefs(JSON.parse(old).prefs);oldSave=true;}}
+}catch(e){storageFailed=true;}
 function persist(){
- data.session={index,board:board.slice(),history:history.map(h=>({board:h.board.slice(),action:h.action.slice()})),moves};
+ data.mode=mode;data.session={index,board:board.slice(),history:history.map(h=>({board:h.board.slice(),action:h.action.slice()})),moves,mode,undoUsed,hintsUsed};
  try{localStorage.setItem(KEY,JSON.stringify(data));}catch(e){if(!storageFailed){storageFailed=true;toast('保存できません。設定からセーブを書き出せます。');}}
 }
 function toast(text){clearTimeout(toastTimer);$('#toast').textContent=text;$('#toast').hidden=false;toastTimer=setTimeout(()=>$('#toast').hidden=true,3200);}
 function setMessage(text,active=false){$('#message').textContent=text;$('#message').classList.toggle('active',active);}
 function defaultMessage(){
+ if(failed()){setMessage('手数切れ。手順を変えてもう一度。');return;}
  if(hinted){setMessage(`${symbols[hinted[0]]}を${arrows[hinted[1]]}へスワイプ`,true);return;}
  if(!C.count(board)){setMessage('');return;}
  if(moves===0&&LEVELS[index].tip){setMessage(LEVELS[index].tip);return;}
  if(selected!==null){setMessage(`${symbols[selected]} がまとめて動く${data.prefs.buttons?' · 方向を選択':''}`);return;}
- setMessage(index<5?'同じ数字をぶつけて、すべて消そう':'カードを選んでスワイプ');
+ setMessage(index<4?'同じ数字をぶつけて、すべて消そう':challenge()?'残りの手数で、すべて消そう':'練習 · 手数制限なし');
 }
 function position(p){return{x:(p%4)*(cw+gap),y:Math.floor(p/4)*(ch+gap)};}
 function transform(p){const {x,y}=position(p);return`translate(${x}px,${y}px)`;}
 function resize(){
  const game=$('.game'), availableW=game.clientWidth-(innerWidth>=850?56:32),short=innerHeight<=680;
- const extras=(short?190:234)+(data.prefs.buttons?52:0), availableH=game.clientHeight-extras;
+ const css=getComputedStyle(game),height=sel=>$(sel).getBoundingClientRect().height;
+ const padding=parseFloat(css.paddingTop)+parseFloat(css.paddingBottom);
+ const extras=padding+height('.topbar')+4+height('.levelbar')+height('.actions')+height('.bottom-mark')+(short?6+39:8+46)+(data.prefs.buttons?height('#pad'):0)+2;
+ const availableH=game.clientHeight-extras;
  gap=innerWidth<=350?7:8;
- cw=Math.min(78,(availableW-24)/4,(availableH-gap*4)/5/1.359);
- cw=Math.max(30,Math.floor(cw*10)/10);ch=Math.round(cw*1.359*10)/10;
+ const aspect=short?1.22:1.359;
+ cw=Math.min(78,(availableW-24)/4,(availableH-gap*4)/5/aspect);
+ cw=Math.max(30,Math.floor(cw*10)/10);ch=Math.round(cw*aspect*10)/10;
  const r=document.documentElement;r.style.setProperty('--cw',cw+'px');r.style.setProperty('--ch',ch+'px');r.style.setProperty('--gap',gap+'px');r.style.setProperty('--bw',(cw*4+gap*3)+'px');r.style.setProperty('--bh',(ch*5+gap*4)+'px');
- if(board.length){cancelVisuals();renderBoard();if(!C.count(board)&&$('#win').hidden)finish();}
+ if(board.length){cancelVisuals();renderBoard();settle();}
 }
 function applyPrefs(){
  document.body.dataset.theme=data.prefs.theme;document.body.classList.toggle('reduced',data.prefs.reduced);$('#pad').hidden=!data.prefs.buttons;
  $$('[data-pref]').forEach(el=>el.checked=data.prefs[el.dataset.pref]);$$('.theme').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.theme===data.prefs.theme)));
  audio.update();resize();
+ $$('[data-mode]').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.mode===(board.length?mode:data.mode))));
 }
 function makeCard(id,p){
  const s=C.suit(id),r=C.rank(id),label=r===1?'A':r===11?'J':r===12?'Q':r===13?'K':String(r);
@@ -97,16 +126,25 @@ function renderBoard(){
  updateSelection();updateHud();
 }
 function updateHud(){
- $('#level-number').textContent=String(index+1).padStart(3,'0');$('#chapter-label').textContent=`${String(Math.floor(index/20)+1).padStart(2,'0')} / ${chapterEN[Math.floor(index/20)]}`;
- $('#move-count').textContent=moves;$('#par-label').textContent=`目標 ${LEVELS[index].par}手`;
- $('#levels-btn').disabled=busy;$('#settings-btn').disabled=busy;$('#undo').disabled=history.length===0||busy;$('#restart').disabled=moves===0||busy;$('#hint').disabled=busy||searching||!C.count(board);
+ $('#level-number').textContent=String(index+1).padStart(3,'0');$('#chapter-label').textContent=`${String(Math.floor(index/20)+1).padStart(2,'0')} / ${chapterNames[Math.floor(index/20)]}`;
+ $('#move-count').textContent=challenge()?remaining():moves;
+ $('#move-caption').textContent=challenge()?'残り':'練習';
+ $('#par-label').textContent=challenge()?`${moves} / ${moveLimit()}手 · 最短 ${LEVELS[index].par}手`:`${moves}手 · 制限なし`;
+ $('.move-budget').classList.toggle('low',challenge()&&remaining()<=2&&C.count(board)>0);
+ const ended=failed()||!C.count(board);
+ $('#levels-btn').disabled=busy;$('#settings-btn').disabled=busy;
+ $('#undo').disabled=!history.length||busy||!mayAssist(undoUsed)||!C.count(board);
+ $('#restart').disabled=busy;$('#hint').disabled=busy||searching||ended||!mayAssist(hintsUsed);
+ $('#undo-label').textContent=challenge()?`戻す ${Math.max(0,1-undoUsed)}`:'戻す';
+ $('#hint-label').textContent=challenge()?`ヒント ${Math.max(0,1-hintsUsed)}`:'ヒント';
+ $('#mode-label').textContent=challenge()?'手数チャレンジ':'練習モード';
 }
 function updateSelection(){
  $$('.card').forEach(el=>{const s=Number(el.dataset.suit);el.classList.toggle('selected',s===selected);el.classList.remove('match');el.classList.toggle('hint-card',Boolean(hinted&&s===hinted[0]));el.setAttribute('aria-pressed',String(s===selected));});
- $$('.pad button').forEach(el=>el.disabled=selected===null||busy||!C.count(board));
+ $$('.pad button').forEach(el=>el.disabled=selected===null||busy||failed()||!C.count(board));
  if(hinted)drawHint(hinted);
 }
-function select(s){if(busy||!C.count(board))return;selected=s;hinted=null;previewEl.innerHTML='';updateSelection();defaultMessage();audio.select();vibrate(5);}
+function select(s){if(busy||failed()||!C.count(board))return;selected=s;hinted=null;previewEl.innerHTML='';updateSelection();defaultMessage();audio.select();vibrate(5);}
 function preview(s,d){
  if(d===null){previewEl.innerHTML='';updateSelection();defaultMessage();return;}
  const result=C.step(board,s,d);previewEl.innerHTML='';$$('.card').forEach(el=>el.classList.remove('match'));
@@ -123,7 +161,7 @@ function preview(s,d){
 }
 function direction(dx,dy){if(Math.hypot(dx,dy)<18)return null;const x=Math.abs(dx),y=Math.abs(dy);if(Math.max(x,y)<Math.min(x,y)*1.25)return null;return x>y?(dx>0?1:3):(dy>0?2:0);}
 boardEl.addEventListener('pointerdown',e=>{
- if(gesture||busy||e.button>0||document.querySelector('dialog[open]'))return;
+ if(gesture||busy||failed()||e.button>0||document.querySelector('dialog[open]'))return;
  const card=e.target.closest('.card');if(!card)return;
  e.preventDefault();audio.ensure();select(Number(card.dataset.suit));
  boardEl.setPointerCapture(e.pointerId);gesture={id:e.pointerId,x:e.clientX,y:e.clientY,s:selected,d:null,max:0};
@@ -177,36 +215,53 @@ function particles(p){
  for(let i=0;i<5;i++){const el=document.createElement('div');el.className='particle';el.style.left=x+cw/2+'px';el.style.top=y+ch/2+'px';boardEl.append(el);const angle=i*Math.PI*2/5;animateElement(el,[{transform:'translate(0,0) rotate(0)',opacity:.7},{transform:`translate(${Math.cos(angle)*28}px,${Math.sin(angle)*28}px) rotate(${i*53}deg)`,opacity:0}],{duration:190,easing:'ease-out'}).then(()=>el.remove());}
 }
 async function act(s,d){
- if(busy||!C.count(board))return false;
+ if(busy||failed()||!C.count(board)||document.querySelector('dialog[open]'))return false;
  const result=C.step(board,s,d);hinted=null;previewEl.innerHTML='';
  if(!result.changed){updateSelection();setMessage('この方向には動かせません');return false;}
  searchToken++;searching=false;clearTimeout(feedbackTimer);busy=true;selected=null;
  const epoch=++motionEpoch;history.push({board:board.slice(),action:[s,d]});board=result.board;moves++;persist();updateSelection();updateHud();
  await animateMove(result);if(epoch!==motionEpoch)return false;animations=[];busy=false;renderBoard();
  if(result.won){finish();}
- else if(!C.moves(board).length){setMessage('動かせるカードがありません。「戻す」で再考できます。');}
+ else if(failed()){lose();}
+ else if(!C.moves(board).length){lose(true);}
  else if(result.pairs){setMessage(`${result.pairs}組消去`,true);feedbackTimer=setTimeout(defaultMessage,1100);}
  else defaultMessage();
  return true;
 }
+function settle(){
+ if(!$('#win').hidden)return;
+ if(!C.count(board))finish();else if(failed())lose();else if(!C.moves(board).length)lose(true);
+}
 function finish(){
- const old=data.best[index+1];data.best[index+1]=old?Math.min(old,moves):moves;persist();
+ if(C.count(board)||challenge()&&moves>moveLimit())return;
+ const records=challenge()?data.best:data.practiceBest,old=records[index+1];records[index+1]=old?Math.min(old,moves):moves;
+ if(challenge()&&!hintsUsed&&!undoUsed){const pure=data.pureBest[index+1];data.pureBest[index+1]=pure?Math.min(pure,moves):moves;}
+ persist();clearTimeout(clearTimer);
  clearTimer=setTimeout(()=>{
-  const win=$('#win'),last=index===119,perfect=moves<=LEVELS[index].par;
-  win.innerHTML=`<div class="win-symbol">${icon('check')}</div><div class="win-eyebrow">LEVEL ${String(index+1).padStart(3,'0')} COMPLETE</div><h1>${last?'クリア':'クリア'}</h1><div class="win-score">${moves}手 <span style="opacity:.5">／</span> 目標 ${LEVELS[index].par}手</div><div class="perfect">${perfect?'✦ 目標手数を達成':''}</div><button class="primary win-next" id="next-level">${last?'ステージを選ぶ':'次へ'} ${icon('right')}</button><button class="text-button" id="replay-level">もう一度解く</button>`;
-  win.hidden=false;applyIcons(win);$('#next-level').onclick=()=>last?openLevels():loadLevel(index+1);$('#replay-level').onclick=()=>loadLevel(index);audio.win();vibrate([12,65,12]);setMessage('');
-  $('#next-level').focus({preventScroll:true});
+  const win=$('#win'),last=index===LEVELS.length-1,perfect=moves===LEVELS[index].par,clean=!hintsUsed&&!undoUsed;
+  const label=!challenge()?'練習クリア':perfect&&clean?'最短クリア':'クリア';
+  win.classList.remove('lost');win.setAttribute('aria-label','クリア結果');
+  win.innerHTML=`<div class="win-symbol">${suitSvg(3)}</div><div class="win-eyebrow">TABLE ${String(index+1).padStart(3,'0')} CLEARED</div><h1>${label}</h1><div class="win-score">${moves}手 <span>／ 最短 ${LEVELS[index].par}手</span></div><div class="perfect">${!challenge()?'練習記録として保存':!clean?'補助あり · 通常クリアとして記録':perfect?'✦ 最短・補助なし':'手数内に全消去'}</div><button class="primary win-next" id="next-level">${last?'ステージを選ぶ':'次のテーブルへ'} ${icon('right')}</button><button class="text-button" id="replay-level">もう一度挑戦</button>${LEVELS[index].quality?'<button class="text-button compare-button" id="compare-routes">手順の差を見る</button>':''}`;
+  win.hidden=false;$('#next-level').onclick=()=>last?openLevels():loadLevel(index+1);$('#replay-level').onclick=()=>loadLevel(index);$('#compare-routes')?.addEventListener('click',openComparison);
+  audio.win();vibrate([12,65,12]);setMessage('');$('#next-level').focus({preventScroll:true});
  },data.prefs.reduced?20:280);
+}
+function lose(stuck=false){
+ clearTimeout(clearTimer);const win=$('#win');win.classList.add('lost');win.setAttribute('aria-label','チャレンジ失敗');
+ win.innerHTML=`<div class="win-symbol">${icon('close')}</div><div class="win-eyebrow">TABLE ${String(index+1).padStart(3,'0')} · TRY AGAIN</div><h1>${stuck?'動かせません':'手数切れ'}</h1><div class="win-score">${moves}手使用 · 残り${C.count(board)/2}組</div><p class="result-note">${stuck?'消す順番や、止める位置を変えてみよう。':'消せる組をすぐ消さず、配置を整える手順も試してみよう。'}</p><button class="primary win-next" id="retry-level">もう一度挑戦 ${icon('restart')}</button>${history.length&&mayAssist(undoUsed)?'<button class="text-button" id="failure-undo">一手戻す（残り1回）</button>':''}<button class="text-button" id="failure-practice">制限なしで練習する</button>`;
+ win.hidden=false;$('#retry-level').onclick=()=>loadLevel(index);$('#failure-undo')?.addEventListener('click',undo);$('#failure-practice').onclick=()=>switchMode('practice',true);setMessage('');updateHud();$('#retry-level').focus({preventScroll:true});
 }
 function loadLevel(i,session=null){
  if(!Number.isInteger(i)||i<0||i>=LEVELS.length)return;
- searchToken++;searching=false;cancelVisuals();clearTimeout(feedbackTimer);gesture=null;hinted=null;selected=null;$('#win').hidden=true;
+ searchToken++;searching=false;cancelVisuals();clearTimeout(feedbackTimer);gesture=null;hinted=null;selected=null;$('#win').hidden=true;$('#win').classList.remove('lost');
  index=i;board=session?session.board.slice():LEVELS[i].board.slice();history=session?session.history.slice():[];moves=session?session.moves:0;
- document.querySelectorAll('dialog[open]').forEach(d=>d.close());renderBoard();defaultMessage();persist();if(!C.count(board))finish();
+ mode=session?.mode||data.mode;undoUsed=session?.undoUsed||0;hintsUsed=session?.hintsUsed||0;
+ document.querySelectorAll('dialog[open]').forEach(d=>d.close());renderBoard();defaultMessage();persist();settle();
 }
 function undo(){
- if(busy||!history.length)return;searchToken++;searching=false;clearTimeout(feedbackTimer);clearTimeout(clearTimer);$('#win').hidden=true;
- const last=history.pop();board=last.board.slice();moves=history.length;selected=null;hinted=null;audio.select();renderBoard();defaultMessage();persist();
+ if(busy||!history.length||!C.count(board)||!mayAssist(undoUsed))return false;
+ searchToken++;searching=false;clearTimeout(feedbackTimer);clearTimeout(clearTimer);$('#win').hidden=true;$('#win').classList.remove('lost');
+ const last=history.pop();board=last.board.slice();moves=history.length;undoUsed++;selected=null;hinted=null;audio.select();renderBoard();defaultMessage();persist();return true;
 }
 $('#undo').onclick=undo;
 function confirmDialog(title,text,label,action){$('#confirm-title').textContent=title;$('#confirm-text').textContent=text;$('#confirm-yes').textContent=label;confirmAction=action;$('#confirm-dialog').showModal();}
@@ -219,41 +274,51 @@ function drawHint(move){
  previewEl.innerHTML='';const p=board.findIndex(id=>id>0&&C.suit(id)===move[0]);if(p<0)return;
  const at=position(p),el=document.createElement('div');el.className='hint-arrow';el.style.left=at.x+cw/2-18+'px';el.style.top=at.y+ch-27+'px';el.innerHTML=icon(C.DIRS[move[1]]);previewEl.append(el);
 }
-function showHint(route){if(!route?.length)return;hinted=route[0];selected=hinted[0];updateSelection();defaultMessage();}
+function showHint(route){if(!route?.length||!mayAssist(hintsUsed))return;hintsUsed++;hinted=route[0];selected=hinted[0];updateSelection();updateHud();defaultMessage();persist();}
 let solverWorker=null,workerSeq=0;const workerPending=new Map();
-function searchAsync(b){
+function searchAsync(b,depth=40){
  try{
   if(!solverWorker){
    const coreSource=document.getElementById('core-source')?.textContent||'';
-   if(!coreSource.trim())solverWorker=new Worker('./src/hint-worker.js');
+   if(!coreSource.trim())solverWorker=new Worker('./src/hint-worker.js?v=2.0.0');
    else {
-   const blob=new Blob([coreSource,'\nonmessage=e=>{const {id,board}=e.data;try{postMessage({id,result:SuitShiftCore.solve(board,{maxNodes:18000,weight:1.25,maxDepth:40})});}catch(err){postMessage({id,result:{status:"limit"}});}};'],{type:'application/javascript'});
+   const blob=new Blob([coreSource,'\nonmessage=e=>{const {id,board,depth}=e.data;try{postMessage({id,result:SuitShiftCore.solve(board,{maxNodes:50000,weight:0,maxDepth:depth})});}catch(err){postMessage({id,result:{status:"limit"}});}};'],{type:'application/javascript'});
    const url=URL.createObjectURL(blob);solverWorker=new Worker(url);URL.revokeObjectURL(url);
    }
    solverWorker.onmessage=e=>{const p=workerPending.get(e.data.id);if(p){clearTimeout(p.timer);workerPending.delete(e.data.id);p.resolve(e.data.result);}};
    solverWorker.onerror=()=>{for(const p of workerPending.values()){clearTimeout(p.timer);p.resolve({status:'limit'});}workerPending.clear();solverWorker?.terminate();solverWorker=null;};
   }
-  return new Promise(resolve=>{const id=++workerSeq;const timer=setTimeout(()=>{workerPending.delete(id);resolve({status:'limit'});},4000);workerPending.set(id,{resolve,timer});solverWorker.postMessage({id,board:b});});
+  return new Promise(resolve=>{const id=++workerSeq;const timer=setTimeout(()=>{workerPending.delete(id);resolve({status:'limit'});},4000);workerPending.set(id,{resolve,timer});solverWorker.postMessage({id,board:b,depth});});
  }catch(e){return Promise.resolve({status:'limit'});}
 }
 async function hint(){
- if(busy||searching||!C.count(board))return;
- const route=knownRoutes.get(C.key(board));if(route){showHint(route);return;}
- searching=true;const token=++searchToken;setMessage('次の一手を確認中…');updateHud();
- const result=await searchAsync(board.slice());if(token!==searchToken)return;searching=false;updateHud();
- if(result.status==='solved'&&result.solution?.length){knownRoutes.set(C.key(board),result.solution);showHint(result.solution);return;}
- let target=0;for(let i=history.length-1;i>=0;i--)if(knownRoutes.has(C.key(history[i].board))){target=i;break;}
- const steps=history.length-target;
- confirmDialog('確認済みの配置からヒントを表示',result.status==='unsolvable'?`現在の配置では全消去できません。${steps}手戻ると解法を確認できる配置になります。`:`探索上限に達したため、この配置の解法は未確認です。${steps}手戻って確認済みの配置からヒントを表示します。`,'戻ってヒント',()=>{
-   if(history[target]){board=history[target].board.slice();history=history.slice(0,target);moves=history.length;renderBoard();persist();}
-   showHint(knownRoutes.get(C.key(board)));
- });
+ if(busy||searching||failed()||!C.count(board)||!mayAssist(hintsUsed))return;
+ const route=knownRoutes.get(C.key(board));if(route&&(!challenge()||route.length<=remaining())){showHint(route);return;}
+ searching=true;const token=++searchToken;setMessage('残り手数で解ける手順を確認中…');updateHud();
+ const result=await searchAsync(board.slice(),challenge()?remaining():40);if(token!==searchToken)return;searching=false;updateHud();
+ if(result.status==='solved'&&result.solution?.length&&(!challenge()||result.solution.length<=remaining())){knownRoutes.set(C.key(board),result.solution);showHint(result.solution);return;}
+ toast(result.status==='unsolvable'?'この配置からは全消去できません。戻すか、最初から試してください。':'残り手数で解ける手順を確認できませんでした。ヒント回数は減りません。');defaultMessage();
 }
 $('#hint').onclick=hint;
 function openLevels(){
- $('#progress-label').textContent=`${Object.keys(data.best).length} / 120面クリア · 開発版はすべて無料`;
- $('#level-list').innerHTML=chapterNames.map((name,chapter)=>`<section class="chapter-section"><h3>${String(chapter+1).padStart(2,'0')} / ${name}</h3><div class="level-grid">${LEVELS.slice(chapter*20,chapter*20+20).map(l=>{const best=data.best[l.id];return`<button class="level-tile${l.id===index+1?' current':''}${best?' done':''}${best&&best<=l.par?' perfect-level':''}" data-level="${l.id-1}" aria-label="ステージ${l.id}${best?'、クリア済み':''}" ${l.id===index+1?'aria-current="true"':''}>${String(l.id).padStart(2,'0')}</button>`;}).join('')}</div></section>`).join('');
+ const records=challenge()?data.best:data.practiceBest;
+ $('#progress-label').textContent=`${challenge()?'チャレンジ':'練習'} ${Object.keys(records).length} / 120面 · 全問最短手数検証済み`;
+ $$('[data-mode]').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.mode===mode)));
+ $('#level-list').innerHTML=chapterNames.map((name,chapter)=>`<section class="chapter-section"><h3>${String(chapter+1).padStart(2,'0')} / ${name}</h3><div class="level-grid">${LEVELS.slice(chapter*20,chapter*20+20).map(l=>{const best=records[l.id],pure=data.pureBest[l.id];return`<button class="level-tile${l.id===index+1?' current':''}${best?' done':''}${challenge()&&pure===l.par?' perfect-level':''}" data-level="${l.id-1}" aria-label="ステージ${l.id}${best?'、クリア済み':''}" ${l.id===index+1?'aria-current="true"':''}>${String(l.id).padStart(2,'0')}</button>`;}).join('')}</div></section>`).join('');
  $('#levels-dialog').showModal();$('#levels-dialog .current')?.scrollIntoView({block:'nearest'});
+}
+function switchMode(next,immediate=false){
+ if(!['challenge','practice'].includes(next)||next===mode)return;
+ const change=()=>{data.mode=next;mode=next;loadLevel(index);applyPrefs();toast(next==='practice'?'練習モード。チャレンジ記録には入りません。':'手数チャレンジ。戻す・ヒントは各1回。');};
+ if(immediate||!moves||!$('#win').hidden)change();else confirmDialog('モードを切り替える','現在の挑戦を終了し、同じ問題を最初から開始します。記録はモード別です。','切り替える',change);
+}
+$$('[data-mode]').forEach(el=>el.onclick=()=>switchMode(el.dataset.mode));
+function openComparison(){
+ const l=LEVELS[index],q=l.quality;if(!q)return;
+ const routes=[l.solution,q.alternativeSolution];
+ const row=(route,which)=>{let b=l.board.slice();return route.map(([s,d],i)=>{const r=C.step(b,s,d,false);b=r.board;return `<li><span>${i+1}</span><b>${symbols[s]} ${['↑','→','↓','←'][d]}</b><small>${r.pairs?`${r.pairs}組消去`:'配置調整'}</small></li>`;}).join('');};
+ $('#comparison-body').innerHTML=`<p class="comparison-intro">最短は${l.par}手。${symbols[q.temptingMove[0]]}を${arrows[q.temptingMove[1]]}へ動かして先に${q.temptingPairs}組消すと、その後を最短で解いても${q.alternativeMoves}手必要です。</p><div class="route-columns"><section><h3>最短 ${l.par}手</h3><ol>${row(routes[0],0)}</ol></section><section><h3>先に消す ${q.alternativeMoves}手</h3><ol>${row(routes[1],1)}</ol></section></div><p class="dialog-note">差は${q.saving}手。どちらも探索で最短手数を確認した手順です。無駄な往復を足した比較ではありません。</p>`;
+ $('#comparison-dialog').showModal();
 }
 $('#level-list').onclick=e=>{const t=e.target.closest('[data-level]');if(t)loadLevel(Number(t.dataset.level));};
 $('#levels-btn').onclick=openLevels;$('#settings-btn').onclick=()=>{applyPrefs();$('#settings-dialog').showModal();};
@@ -285,8 +350,8 @@ const audio={
 };
 document.addEventListener('visibilitychange',()=>{if(document.hidden){persist();audio.ctx?.suspend().catch(()=>{});}else if(audio.ctx)audio.ctx.resume().then(()=>audio.update()).catch(()=>{});audio.update();});
 window.addEventListener('pagehide',persist);window.addEventListener('resize',resize);window.visualViewport?.addEventListener('resize',resize);
-const session=data.session;applyPrefs();loadLevel(session?.index||0,session);if(storageFailed)setTimeout(()=>toast('前のセーブを読み込めなかったため、新しく開始しました'),300);
-if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol))navigator.serviceWorker.register('./sw.js',{scope:'./'}).catch(()=>{});
+const session=data.session;applyPrefs();loadLevel(session?.index||0,session);if(oldSave)setTimeout(()=>toast('問題を作り直しました。旧版の記録は残し、新しい120面を開始します。'),400);if(storageFailed)setTimeout(()=>toast('前のセーブを読み込めなかったため、新しく開始しました'),300);
+if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol))navigator.serviceWorker.register('./sw.js',{scope:'./',updateViaCache:'none'}).catch(()=>{});
 /* Small diagnostic API: no network calls, used by automated browser tests. */
-window.SuitShift={getState:()=>({index,board:board.slice(),moves,busy,selected,best:{...data.best}}),loadLevel,act,undo,hint,core:C,levels:LEVELS,validateSave};
+window.SuitShift={getState:()=>({index,board:board.slice(),moves,busy,selected,mode,remaining:remaining(),limit:moveLimit(),failed:failed(),undoUsed,hintsUsed,best:{...data.best},pureBest:{...data.pureBest},practiceBest:{...data.practiceBest}}),loadLevel,act,undo,hint,switchMode,openComparison,core:C,levels:LEVELS,validateSave};
 })();
