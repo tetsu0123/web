@@ -117,7 +117,7 @@ function makeCard(id,p){
  const s=C.suit(id),r=C.rank(id),label=r===1?'A':r===11?'J':r===12?'Q':r===13?'K':String(r);
  const el=document.createElement('button');el.className='card'+(s<2?' red':'');el.dataset.id=id;el.dataset.suit=s;el.style.transform=transform(p);
  el.setAttribute('aria-label',`${names[s]}の${label}、${Math.floor(p/4)+1}行${p%4+1}列。${names[s]}を選択`);
- el.innerHTML=`<span class="index">${label}</span>${suitSvg(s,'mini')}${suitSvg(s,'main-suit')}<span class="index bottom">${label}</span>`;
+ el.innerHTML=`<span class="card-face"><span class="index">${label}</span>${suitSvg(s,'mini')}${suitSvg(s,'main-suit')}<span class="index bottom">${label}</span></span>`;
  return el;
 }
 function renderBoard(){
@@ -199,7 +199,17 @@ async function animateMove(result){
    const delay=Math.min(ev.order*65,195),distance=Math.abs(ev.to%4-ev.from%4)+Math.abs(Math.floor(ev.to/4)-Math.floor(ev.from/4));
    const duration=130+Math.min(distance,4)*24;
    const task=(async()=>{
-     await animateElement(el,[{transform:transform(ev.from)},{transform:transform(ev.to)}],{duration,delay,easing:'cubic-bezier(.2,.65,.25,1)',fill:'forwards'});
+     // Lift the visual face; keep the logical grid and swipe hit box unchanged.
+     const bank=Math.sign(ev.to%4-ev.from%4)*-2;
+     el?.classList.add('in-flight');
+     const lift=animateElement(el?.querySelector('.card-face'),[
+       {transform:'translate3d(0,0,0)'},
+       {transform:`translate3d(0,-8px,12px) rotateX(4deg) rotateZ(${bank}deg)`,offset:.24},
+       {transform:`translate3d(0,-6px,9px) rotateX(2deg) rotateZ(${bank*.5}deg)`,offset:.72},
+       {transform:'translate3d(0,0,0)'}
+     ],{duration:duration+55,delay,easing:'ease-out',fill:'forwards'});
+     await Promise.all([lift,animateElement(el,[{transform:transform(ev.from)},{transform:transform(ev.to)}],{duration,delay,easing:'cubic-bezier(.2,.65,.25,1)',fill:'forwards'})]);
+     el?.classList.remove('in-flight');
      if(ev.removed){
        particles(ev.to);audio.pair(result.events.filter(e=>e.removed).indexOf(ev));vibrate(12);
        const fade=[{opacity:1,scale:1},{opacity:.5,scale:1.04,offset:.3},{opacity:0,scale:.86}];
@@ -280,7 +290,7 @@ function searchAsync(b,depth=40){
  try{
   if(!solverWorker){
    const coreSource=document.getElementById('core-source')?.textContent||'';
-   if(!coreSource.trim())solverWorker=new Worker('./src/hint-worker.js?v=2.0.0');
+   if(!coreSource.trim())solverWorker=new Worker('./src/hint-worker.js?v=2.1.0');
    else {
    const blob=new Blob([coreSource,'\nonmessage=e=>{const {id,board,depth}=e.data;try{postMessage({id,result:SuitShiftCore.solve(board,{maxNodes:50000,weight:0,maxDepth:depth})});}catch(err){postMessage({id,result:{status:"limit"}});}};'],{type:'application/javascript'});
    const url=URL.createObjectURL(blob);solverWorker=new Worker(url);URL.revokeObjectURL(url);

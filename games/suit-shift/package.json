@@ -1,6 +1,6 @@
 {
   "name": "suit-shift",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
   "description": "120 shortest-certified mobile card puzzles with turn limits and casino styling",
   "scripts": {

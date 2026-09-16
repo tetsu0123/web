@@ -2,12 +2,13 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#092b24"><meta name="description" content="同じマークをまとめて動かし、同じ数字をぶつけて消す。最短手順を考え、手数以内に全消去。120面のトランプパズル。">
+<meta name="theme-color" content="#071410"><meta name="description" content="同じマークをまとめて動かし、同じ数字をぶつけて消す。最短手順を考え、手数以内に全消去。120面のトランプパズル。">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>SUIT SHIFT — トランプパズル</title>
 <link rel="icon" href="./assets/icon.svg" type="image/svg+xml"><link rel="manifest" href="./manifest.webmanifest">
-<link rel="stylesheet" href="./src/style.css?v=2.0.0">
-<link rel="stylesheet" href="./src/casino.css?v=2.0.0">
+<link rel="stylesheet" href="./src/style.css?v=2.1.0">
+<link rel="stylesheet" href="./src/casino.css?v=2.1.0">
+<link rel="stylesheet" href="./src/premium.css?v=2.1.0">
 </head>
 <body>
 <div class="texture" aria-hidden="true"></div>
@@ -35,7 +36,7 @@
 <label class="setting-row"><span>移動先プレビュー</span><input type="checkbox" class="toggle" data-pref="preview"></label>
 <div class="section-caption">APPEARANCE</div><div class="themes"><button class="theme" data-theme="casino"><span class="theme-dot" style="background:#092b24"></span>クラシック</button><button class="theme" data-theme="ruby"><span class="theme-dot" style="background:#622735"></span>ルビー</button><button class="theme" data-theme="noir"><span class="theme-dot" style="background:#27241f"></span>ノワール</button></div>
 <button class="setting-button" id="rules-btn">遊び方<i data-icon="right"></i></button><button class="setting-button" id="export-save">セーブデータを書き出す<i data-icon="download"></i></button><button class="setting-button" id="import-save">セーブデータを読み込む<i data-icon="upload"></i></button><input type="file" accept="application/json,.json" id="save-file" hidden>
-<div class="version">SUIT SHIFT 2.0.0<br>全120面を再構成 · 広告・課金なし<br>進行状況はこのブラウザに保存されます。</div>
+<div class="version">SUIT SHIFT 2.1.0<br>立体グラフィック · 全120面 · 広告・課金なし<br>進行状況はこのブラウザに保存されます。</div>
 </div></dialog>
 <dialog id="rules-dialog" aria-labelledby="rules-title"><header class="dialog-header"><h2 id="rules-title">遊び方</h2><button class="icon-btn" data-close aria-label="閉じる" data-icon="close"></button></header><div class="dialog-body">
 <div class="rules-row"><div class="rules-icon">♥</div><div><h3>同じマークがまとめて動く</h3><p>カードから上下左右へスワイプ。同じマークのカードが、端か障害物まで滑ります。</p></div></div>
@@ -48,7 +49,7 @@
 <dialog id="comparison-dialog" aria-labelledby="comparison-title"><header class="dialog-header"><h2 id="comparison-title">手順の差</h2><button class="icon-btn" data-close aria-label="閉じる" data-icon="close"></button></header><div class="dialog-body" id="comparison-body"></div></dialog>
 <div class="toast" id="toast" hidden role="status"></div>
 <noscript>このゲームにはJavaScriptが必要です。ブラウザの設定で有効にしてください。</noscript>
-<script src="./src/core.js?v=2.0.0"></script>
-<script src="./src/levels.js?v=2.0.0"></script>
-<script src="./src/app.js?v=2.0.0"></script>
+<script src="./src/core.js?v=2.1.0"></script>
+<script src="./src/levels.js?v=2.1.0"></script>
+<script src="./src/app.js?v=2.1.0"></script>
 </body></html>
