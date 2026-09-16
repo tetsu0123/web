@@ -105,6 +105,13 @@
       for (const r of moves(n.board)) {
         const k = key(r.board), g = n.g + 1;
         if (seen.has(k) && seen.get(k) <= g) continue;
+        // For exact breadth-first search, the first generated goal is already shortest.
+        // Returning here avoids expanding every other state on the final depth.
+        if (weight === 0 && r.won) {
+          const solution = [[r.s, r.d]]; let cursor = n;
+          while (cursor.parent) { solution.push(cursor.action); cursor = cursor.parent; }
+          return {status: 'solved', solution: solution.reverse(), nodes, optimal: true};
+        }
         seen.set(k, g);
         heap.push({board: r.board, g, parent: n, action: [r.s, r.d], f: g + count(r.board) * weight});
       }
