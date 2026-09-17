@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#071410"><meta name="description" content="同じマークをまとめて動かし、同じ数字をぶつけて消す。最短手順を考え、手数以内に全消去。120面のトランプパズル。">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>SUIT SHIFT — トランプパズル</title>
+<link rel="icon" href="./assets/icon.svg" type="image/svg+xml"><link rel="manifest" href="./manifest.webmanifest">
+<link rel="stylesheet" href="./src/style.css?v=2.1.0">
+<link rel="stylesheet" href="./src/casino.css?v=2.1.0">
+<link rel="stylesheet" href="./src/premium.css?v=2.1.0">
+</head>
+<body>
+<div class="texture" aria-hidden="true"></div>
+<div class="desktop-signature" aria-hidden="true"><span class="side-suits">♠ <i>♥</i> ♣ <i>♦</i></span><strong>SUIT<br>SHIFT</strong><span>CASINO PATIENCE</span><p>同じマークを動かす。<br>指定手数で、すべて消す。</p></div>
+<div class="desktop-note" aria-hidden="true">カードをドラッグ、または選択して矢印キー<br>1 ♥ &nbsp; 2 ♦ &nbsp; 3 ♣ &nbsp; 4 ♠ &nbsp; · &nbsp; Z で戻す</div>
+<main id="app">
+<section class="game" aria-label="SUIT SHIFT">
+<header class="topbar"><button class="icon-btn" id="levels-btn" aria-label="ステージを選ぶ" data-icon="grid"></button><div class="wordmark"><span class="brand-suits" aria-hidden="true">♠ <i>♦</i> ♣ <i>♥</i></span><strong>SUIT <span class="shift">SHIFT</span></strong><span class="brand-caption">CASINO PATIENCE</span></div><button class="icon-btn" id="settings-btn" aria-label="設定" data-icon="settings"></button></header>
+<div class="spacer"></div>
+<div class="levelbar"><div><div class="chapter-label" id="chapter-label"></div><div class="level-label"><span>TABLE</span><b id="level-number" style="font-weight:400">001</b></div></div><div class="move-budget"><div class="moves"><span id="move-caption">残り</span><b id="move-count">0</b><small>手</small></div><div class="par-label" id="par-label"></div></div></div>
+<div class="play-area"><div class="board" id="board" role="group" aria-label="4列5行のカード盤面"><div id="slots" class="slots" aria-hidden="true"></div><div id="cards" class="cards"></div><div id="preview" class="preview" aria-hidden="true"></div></div><section class="win-layer" id="win" hidden aria-label="クリア結果"></section></div>
+<div class="message-area"><div class="message" id="message" role="status" aria-live="polite"></div></div>
+<div class="pad" id="pad" hidden aria-label="選択したマークを動かす"><button data-dir="3" aria-label="左へ" data-icon="left"></button><button data-dir="0" aria-label="上へ" data-icon="up"></button><button data-dir="2" aria-label="下へ" data-icon="down"></button><button data-dir="1" aria-label="右へ" data-icon="right"></button></div>
+<nav class="actions" aria-label="パズルの操作"><button class="tool" id="undo"><i data-icon="undo"></i><span id="undo-label">戻す 1</span></button><button class="tool" id="restart"><i data-icon="restart"></i><span>やり直す</span></button><button class="tool hint-tool" id="hint"><i data-icon="bulb"></i><span id="hint-label">ヒント 1</span></button></nav>
+<div class="bottom-mark"><span aria-hidden="true">♠</span> <span id="mode-label">手数チャレンジ</span> <span aria-hidden="true">♠</span></div>
+</section>
+</main>
+<dialog id="levels-dialog" aria-labelledby="levels-title"><header class="dialog-header"><div><h2 id="levels-title">ステージ</h2><small id="progress-label"></small></div><button class="icon-btn" data-close aria-label="閉じる" data-icon="close"></button></header><div class="mode-tabs" aria-label="ゲームモード"><button data-mode="challenge" aria-pressed="true">手数チャレンジ</button><button data-mode="practice" aria-pressed="false">制限なしで練習</button></div><div class="dialog-body" id="level-list"></div></dialog>
+<dialog id="settings-dialog" aria-labelledby="settings-title"><header class="dialog-header"><h2 id="settings-title">設定</h2><button class="icon-btn" data-close aria-label="閉じる" data-icon="close"></button></header><div class="dialog-body">
+<div class="mode-tabs" aria-label="ゲームモード"><button data-mode="challenge" aria-pressed="true">手数チャレンジ</button><button data-mode="practice" aria-pressed="false">制限なしで練習</button></div><label class="setting-row"><span>効果音</span><input type="checkbox" class="toggle" data-pref="sound"></label>
+<label class="setting-row"><span>BGM</span><input type="checkbox" class="toggle" data-pref="music"></label>
+<label class="setting-row"><span>振動<span class="detail" style="display:block">対応端末のみ</span></span><input type="checkbox" class="toggle" data-pref="haptic"></label>
+<label class="setting-row"><span>動きを減らす</span><input type="checkbox" class="toggle" data-pref="reduced"></label>
+<label class="setting-row"><span>方向ボタンで操作<span class="detail" style="display:block">カードをタップしてから方向を選択</span></span><input type="checkbox" class="toggle" data-pref="buttons"></label>
+<label class="setting-row"><span>移動先プレビュー</span><input type="checkbox" class="toggle" data-pref="preview"></label>
+<div class="section-caption">APPEARANCE</div><div class="themes"><button class="theme" data-theme="casino"><span class="theme-dot" style="background:#092b24"></span>クラシック</button><button class="theme" data-theme="ruby"><span class="theme-dot" style="background:#622735"></span>ルビー</button><button class="theme" data-theme="noir"><span class="theme-dot" style="background:#27241f"></span>ノワール</button></div>
+<button class="setting-button" id="rules-btn">遊び方<i data-icon="right"></i></button><button class="setting-button" id="export-save">セーブデータを書き出す<i data-icon="download"></i></button><button class="setting-button" id="import-save">セーブデータを読み込む<i data-icon="upload"></i></button><input type="file" accept="application/json,.json" id="save-file" hidden>
+<div class="version">SUIT SHIFT 2.1.0<br>立体グラフィック · 全120面 · 広告・課金なし<br>進行状況はこのブラウザに保存されます。</div>
+</div></dialog>
+<dialog id="rules-dialog" aria-labelledby="rules-title"><header class="dialog-header"><h2 id="rules-title">遊び方</h2><button class="icon-btn" data-close aria-label="閉じる" data-icon="close"></button></header><div class="dialog-body">
+<div class="rules-row"><div class="rules-icon">♥</div><div><h3>同じマークがまとめて動く</h3><p>カードから上下左右へスワイプ。同じマークのカードが、端か障害物まで滑ります。</p></div></div>
+<div class="rules-row"><div class="rules-icon">7</div><div><h3>同じ数字をぶつけて消す</h3><p>♥7と♠7など、同じ数字がぶつかると二枚とも消えます。違う数字は動かせず、手前で止まります。</p></div></div>
+<div class="rules-row"><div class="rules-icon" data-icon="grid"></div><div><h3>すべて消せばクリア</h3><p>補充や落下はありません。消さずに位置を調整する一手も使って、盤面を空にしてください。</p></div></div>
+<div class="rules-row"><div class="rules-icon" data-icon="undo"></div><div><h3>指定手数以内に全消去</h3><p>手数を使い切ってカードが残ると失敗。考える時間は自由です。「戻す」とヒントは一挑戦に各一回。無効な操作は手数に含めません。</p></div></div>
+<p class="dialog-note">練習モードは手数と補助の制限がなく、記録も別です。最短クリアの印には、戻す・ヒントを使わず最短手数で解く必要があります。</p><p class="dialog-note">A・J・Q・Kも同じ文字同士で消えます。■は固定壁です。PCではカードを選んで矢印キーでも操作できます。</p>
+</div></dialog>
+<dialog id="confirm-dialog" aria-labelledby="confirm-title"><header class="dialog-header"><h2 id="confirm-title"></h2><button class="icon-btn" data-close aria-label="閉じる" data-icon="close"></button></header><div class="dialog-body"><p class="confirm-text" id="confirm-text"></p><div class="dialog-buttons"><button class="secondary" data-close>キャンセル</button><button class="primary" id="confirm-yes">やり直す</button></div></div></dialog>
+<dialog id="comparison-dialog" aria-labelledby="comparison-title"><header class="dialog-header"><h2 id="comparison-title">手順の差</h2><button class="icon-btn" data-close aria-label="閉じる" data-icon="close"></button></header><div class="dialog-body" id="comparison-body"></div></dialog>
+<div class="toast" id="toast" hidden role="status"></div>
+<noscript>このゲームにはJavaScriptが必要です。ブラウザの設定で有効にしてください。</noscript>
+<script src="./src/core.js?v=2.1.0"></script>
+<script src="./src/levels.js?v=2.1.0"></script>
+<script src="./src/app.js?v=2.1.0"></script>
+</body></html>

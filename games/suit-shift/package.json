@@ -1,0 +1,16 @@
+{
+  "name": "suit-shift",
+  "version": "2.1.0",
+  "private": true,
+  "description": "120 shortest-certified mobile card puzzles with turn limits and casino styling",
+  "scripts": {
+    "test": "node --test tests/core.test.cjs",
+    "generate": "g++ -O3 -std=c++17 scripts/solve-exact.cpp -o /tmp/suitshift-solver && SUIT_SOLVER=/tmp/suitshift-solver python3 scripts/curate-levels.py",
+    "build": "node scripts/build.cjs",
+    "start": "python3 -m http.server 4173",
+    "verify": "node scripts/verify-strategy.cjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

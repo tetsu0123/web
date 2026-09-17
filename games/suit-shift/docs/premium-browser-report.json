@@ -1,0 +1,24 @@
+{
+  "version": "2.1.0",
+  "source": "set_content standalone.html with explicit memory storage",
+  "checks": [
+    "Standalone entry loads premium styling and visual faces without runtime errors",
+    "Lift and landing animation preserves pointer hit boxes, preview and two-pair clear",
+    "A v2-format save is restored into a fresh document with identical board, moves and schema (storage test double)",
+    "All three materials/themes and reduced-motion mode apply correctly",
+    "Six viewport sizes fit; desktop and high-DPI mobile screenshots saved"
+  ],
+  "viewports": [
+    {"width": 320, "height": 568, "fit": true},
+    {"width": 360, "height": 640, "fit": true},
+    {"width": 390, "height": 844, "fit": true},
+    {"width": 430, "height": 932, "fit": true},
+    {"width": 768, "height": 1024, "fit": true},
+    {"width": 1440, "height": 1000, "fit": true}
+  ],
+  "errors": [],
+  "limitations": [
+    "HTTP navigation was blocked by the execution environment (ERR_BLOCKED_BY_ADMINISTRATOR). No HTTP reload, real browser persistent storage, service-worker/offline lifecycle or deployed CDN check was completed.",
+    "Physical iOS/Android devices and native installation are not tested."
+  ]
+}

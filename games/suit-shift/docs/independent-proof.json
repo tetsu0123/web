@@ -1,0 +1,1 @@
+{"shortestRoutesVerified":120,"constrainedShortestContinuationsVerified":117,"independentEngine":"JavaScript game-core breadth-first search; different queue implementation from C++ generation solver","allPassed":true,"searches":237,"maxExpandedNodes":37691,"elapsedSeconds":12.037}
