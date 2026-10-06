@@ -1,0 +1,22 @@
+{
+  "checks": [
+    "Real pointer swipe / preview / first-level two-pair clear",
+    "Save serialization and fresh-document restore via storage test double / undo restores all cards",
+    "Verified hint selects a suit and displays a direction",
+    "Tap + direction buttons / settings / themes",
+    "All 120 levels cleared via app actions and packaged solutions",
+    "Malformed save rejected"
+  ],
+  "consoleErrors": [],
+  "viewports": [
+    {"width":320,"height":568,"fits":true},
+    {"width":360,"height":640,"fits":true},
+    {"width":390,"height":844,"fits":true},
+    {"width":430,"height":932,"fits":true},
+    {"width":768,"height":1024,"fits":true},
+    {"width":1440,"height":1000,"fits":true}
+  ],
+  "limitations": [
+    "Browser URL navigation is blocked by environment administrator policy. HTML was tested through set_content; storage is an explicit in-memory test double. Actual HTTP reload, Service Worker installation/offline navigation, iOS Safari, Android hardware haptics and native installation remain unverified."
+  ]
+}

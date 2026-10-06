@@ -1,0 +1,45 @@
+/* SUIT SHIFT v2.1.3: gold frame opening correction.
+ * Standalone baseline: SUIT_SHIFT_v2_1_2.html from the conversation.
+ * Apply after premium.css. This archived patch is not linked into the older
+ * 2.1.0 browser entry: the complete current build is the conversation artifact.
+ * The previous metal background filled its box. Increasing the negative inset
+ * only widened the metal strip; its inner edge still touched the grid.
+ * Clip the metal to a true border and extend opaque felt to the padding edge.
+ * Result: 8 CSS px between every edge of the unchanged grid and the gold rim.
+ * Verified in local Chromium set_content at 320x568, 360x640, 390x844,
+ * 430x932, 768x1024 and 1440x1000. No physical-device or HTTP test claimed.
+ */
+.play-area:after {
+  content:'';
+  position:absolute;
+  inset:-11px;
+  border:3px solid transparent;
+  border-radius:19px;
+  background:
+    radial-gradient(ellipse at 25% 4%,#78b17b26,transparent 66%) padding-box,
+    var(--grain) padding-box,
+    repeating-linear-gradient(43deg,#ffffff03 0 1px,#00000003 1px 2px,transparent 2px 4px) padding-box,
+    radial-gradient(ellipse at 37% 22%,var(--felt-light),var(--felt) 48%,var(--felt-dark) 100%) padding-box,
+    var(--metal) border-box;
+  box-shadow:0 1px 0 #f9e3b36b,0 -1px 0 #f1d7a855,
+    inset 0 2px 4px #0008,inset 0 0 0 1px #04150e,0 0 0 1px #080d08;
+  z-index:-1;
+  pointer-events:none;
+}
+.board {
+  border-radius:10px;
+  background:transparent;
+  box-shadow:none;
+}
+.board:before { display:none; }
+@media (max-height:680px) {
+  .play-area:before {
+    inset:-14px;
+    border-radius:22px;
+  }
+  .play-area:after {
+    inset:-11px;
+    border-radius:19px;
+    border-width:3px;
+  }
+}

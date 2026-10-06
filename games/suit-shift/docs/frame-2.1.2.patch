@@ -1,0 +1,116 @@
+SUIT SHIFT 2.1.2 — frame clearance
+
+Base: the v2.1.1 source ZIP delivered in this conversation, NOT the older
+v2.1.0 files currently on this GitHub branch. This patch is saved for version
+control; it does not modify the hosted game by itself. The separately delivered
+v2.1.2 HTML/ZIP contains the working update.
+
+Apply inside the v2.1.1 game source directory with git apply, then npm run build.
+The rail and cloth extend 8 CSS px outwards. Grid coordinates, card dimensions,
+game logic, settings and level data remain unchanged. Adjacent labels move a
+few pixels to maintain clearance. Local Chromium checks passed at 320x568,
+360x640, 390x844, 430x932, 768x1024 and 1440x1000, including selected cards,
+pointer swipe/undo, and direction-button mode. 15 Node tests passed.
+No physical-device, hosted-page or offline lifecycle validation was performed.
+
+--- a/index.html
++++ b/index.html
+@@ -6,9 +6,10 @@
+ <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+ <title>SUIT SHIFT — トランプパズル</title>
+ <link rel="icon" href="./assets/icon.svg" type="image/svg+xml"><link rel="manifest" href="./manifest.webmanifest">
+-<link rel="stylesheet" href="./src/style.css?v=2.1.1">
+-<link rel="stylesheet" href="./src/casino.css?v=2.1.1">
+-<link rel="stylesheet" href="./src/premium.css?v=2.1.1">
++<link rel="stylesheet" href="./src/style.css?v=2.1.2">
++<link rel="stylesheet" href="./src/casino.css?v=2.1.2">
++<link rel="stylesheet" href="./src/premium.css?v=2.1.2">
++<link rel="stylesheet" href="./src/frame.css?v=2.1.2">
+ </head>
+ <body>
+ <div class="texture" aria-hidden="true"></div>
+@@ -32,7 +33,7 @@
+ <label class="setting-row"><span>動きを減らす</span><input type="checkbox" class="toggle" data-pref="reduced"></label>
+ <label class="setting-row"><span>方向ボタン</span><input type="checkbox" class="toggle" data-pref="buttons"></label>
+ <button class="setting-button" id="rules-btn">遊び方<i data-icon="right"></i></button>
+-<div class="version">SUIT SHIFT 2.1.1</div>
++<div class="version">SUIT SHIFT 2.1.2</div>
+ </div></dialog>
+ <dialog id="rules-dialog" aria-labelledby="rules-title"><header class="dialog-header"><h2 id="rules-title">遊び方</h2><button class="icon-btn" data-close aria-label="閉じる" data-icon="close"></button></header><div class="dialog-body">
+ <div class="rules-row"><div class="rules-icon">♥</div><div><h3>同じマークが動く</h3><p>触れたカードと同じマークが、まとめて滑ります。</p></div></div>
+@@ -45,7 +46,7 @@
+ <dialog id="comparison-dialog" aria-labelledby="comparison-title"><header class="dialog-header"><h2 id="comparison-title">手順の差</h2><button class="icon-btn" data-close aria-label="閉じる" data-icon="close"></button></header><div class="dialog-body" id="comparison-body"></div></dialog>
+ <div class="toast" id="toast" hidden role="status"></div>
+ <noscript>このゲームにはJavaScriptが必要です。ブラウザの設定で有効にしてください。</noscript>
+-<script src="./src/core.js?v=2.1.1"></script>
+-<script src="./src/levels.js?v=2.1.1"></script>
+-<script src="./src/app.js?v=2.1.1"></script>
++<script src="./src/core.js?v=2.1.2"></script>
++<script src="./src/levels.js?v=2.1.2"></script>
++<script src="./src/app.js?v=2.1.2"></script>
+ </body></html>
+--- a/package.json
++++ b/package.json
+@@ -1,6 +1,6 @@
+ {
+   "name": "suit-shift",
+-  "version": "2.1.1",
++  "version": "2.1.2",
+   "private": true,
+   "description": "120 shortest-certified mobile card puzzles with turn limits and casino styling",
+   "scripts": {
+--- a/scripts/build.cjs
++++ b/scripts/build.cjs
+@@ -5,6 +5,7 @@
+  .replace('<link rel="stylesheet" href="./src/style.css">',()=>'<style>\n'+read('src/style.css')+'\n</style>')
+  .replace('<link rel="stylesheet" href="./src/casino.css">',()=>'<style>\n'+read('src/casino.css')+'\n</style>')
+  .replace('<link rel="stylesheet" href="./src/premium.css">',()=>'<style>\n'+read('src/premium.css')+'\n</style>')
++ .replace('<link rel="stylesheet" href="./src/frame.css">',()=>'<style>\n'+read('src/frame.css')+'\n</style>')
+  .replace('<script src="./src/core.js"></script>',()=>'<script id="core-source">\n'+read('src/core.js')+'\n</script>')
+  .replace('<script src="./src/levels.js"></script>',()=>'<script>\n'+read('src/levels.js')+'\n</script>')
+  .replace('<script src="./src/app.js"></script>',()=>'<script>\n'+read('src/app.js')+'\n</script>');
+--- a/sw.js
++++ b/sw.js
+@@ -1,8 +1,8 @@
+ 'use strict';
+ /* This worker is scoped to games/suit-shift only; never cache the parent website. */
+-const VERSION='suit-shift-v2.1.1';
++const VERSION='suit-shift-v2.1.2';
+ const CACHE=VERSION+'-'+self.registration.scope;
+-const FILES=['./','./index.html','./manifest.webmanifest','./assets/icon.svg','./src/core.js','./src/core.js?v=2.1.1','./src/levels.js?v=2.1.1','./src/app.js?v=2.1.1','./src/style.css?v=2.1.1','./src/casino.css?v=2.1.1','./src/premium.css?v=2.1.1','./src/hint-worker.js?v=2.1.1'];
++const FILES=['./','./index.html','./manifest.webmanifest','./assets/icon.svg','./src/core.js','./src/core.js?v=2.1.2','./src/levels.js?v=2.1.2','./src/app.js?v=2.1.2','./src/style.css?v=2.1.2','./src/casino.css?v=2.1.2','./src/premium.css?v=2.1.2','./src/frame.css?v=2.1.2','./src/hint-worker.js?v=2.1.2','./src/hint-worker.js?v=2.1.1'];
+ self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(FILES)).then(()=>self.skipWaiting())));
+ self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('suit-shift-')&&k.endsWith(self.registration.scope)&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
+ self.addEventListener('fetch',event=>{
+--- /dev/null
++++ b/src/frame.css
+@@ -0,0 +1,29 @@
++/* Frame clearance only: the card grid, its dimensions and hit targets do not move. */
++.play-area { --frame-clearance:8px; }
++.play-area::before {
++  inset:calc(-10px - var(--frame-clearance));
++  border-radius:28px;
++  box-shadow:0 1px 0 #f5dc9d20,0 2px 0 #050c08,0 4px 10px #0005,
++    inset 0 2px 1px #f1e2bc20,inset 1px 0 2px #efd3a018,inset -1px -3px 3px #000e;
++}
++.play-area::after {
++  inset:calc(-5px - var(--frame-clearance));
++  border-radius:23px;
++}
++/* The cloth extends past the last row/column; the rail no longer touches them. */
++.board { isolation:isolate;box-shadow:none; }
++.board::before {
++  display:block;content:'';position:absolute;
++  inset:calc(-1 * var(--frame-clearance));
++  border:0;border-radius:18px;background:inherit;
++  box-shadow:inset 0 2px 4px #0004;
++  z-index:-1;pointer-events:none;
++}
++/* Reserve visual separation from the enlarged rail without resizing the cards. */
++.par-label { transform:translateY(-5px); }
++.message { transform:translateY(6px); }
++@media (max-height:680px) {
++  .play-area::before { inset:calc(-8px - var(--frame-clearance));border-radius:26px; }
++  .play-area::after { inset:calc(-5px - var(--frame-clearance));border-radius:23px; }
++  .message { transform:translateY(4px); }
++}
