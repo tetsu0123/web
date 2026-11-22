@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>仕事履歴｜佐野徹夜</title>
+<style>
+:root{color-scheme:light;--bg:#f1f2f4;--ink:#1b1c1f;--sub:#585c62;--line:#cdd0d5;--accent:#2f3e7e;--mincho:"Shippori Mincho","Yu Mincho",YuMincho,"Hiragino Mincho ProN",serif;--sans:Inter,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:1rem/1.75 var(--sans)}
+.wrap{max-width:1068px;margin:auto;padding-inline:clamp(20px,4vw,32px)}
+a{color:inherit;text-underline-offset:.23em;text-decoration-thickness:1px;text-decoration-color:#91959c}
+a:hover{color:var(--accent);text-decoration-color:currentColor}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+header,footer{display:flex;align-items:baseline;justify-content:space-between;gap:1rem}
+header{padding-block:1.1rem;border-bottom:1px solid var(--line)}
+header a{text-decoration:none}
+.name{font:1.13rem var(--mincho);letter-spacing:.12em}
+nav a,footer{font-size:.875rem}
+h1{font:400 clamp(2.35rem,5vw,3.4rem)/1.35 var(--mincho);letter-spacing:.09em;margin:clamp(2rem,6vw,4rem) 0 clamp(1.5rem,4vw,2.75rem)}
+section{display:grid;grid-template-columns:120px minmax(0,1fr);gap:32px;border-top:1px solid var(--ink);padding-block:0 1.25rem}
+h2{font:400 2rem/1.25 Georgia,"Times New Roman",serif;font-variant-numeric:lining-nums tabular-nums;margin:1rem 0 0}
+ul{list-style:none;margin:0;padding:0}
+li{display:grid;grid-template-columns:9rem minmax(0,1fr);gap:1rem;padding:1rem 0}
+li+li{border-top:1px solid var(--line)}
+.meta,.credit{color:var(--sub);font-size:.875rem;margin:0}
+.meta{padding-top:.13rem}
+.credit{margin-top:.25rem}
+h3{font:400 clamp(1.05rem,1.6vw,1.25rem)/1.65 var(--mincho);margin:0;overflow-wrap:anywhere}
+footer{border-top:1px solid var(--ink);padding:1.25rem 0 2rem;color:var(--sub)}
+@media(max-width:700px){section{grid-template-columns:4.4rem minmax(0,1fr);gap:1rem;padding-bottom:.4rem}h2{font-size:1.6rem}li{display:block;padding:.85rem 0}.meta{margin-bottom:.22rem;padding:0}header{padding-block:.85rem}.credit{margin-top:.15rem}}
+@media(max-width:380px){section{grid-template-columns:3.6rem minmax(0,1fr);gap:.7rem}}
+
+.years{display:flex;flex-wrap:wrap;gap:.25rem 1.2rem;margin:-.6rem 0 1.5rem;font-variant-numeric:tabular-nums}
+.years a{padding-block:.25rem}
+.meta time,.meta span{display:block}
+.meta time{font-variant-numeric:tabular-nums;color:var(--ink)}
+.ref{white-space:nowrap}
+h2{scroll-margin-top:1rem}
+@media(max-width:700px){.meta{display:flex;align-items:baseline;flex-wrap:wrap;gap:0 .65rem}.years{gap:.1rem 1rem}}
+@media print{.years,header nav,footer a,.ref{display:none}li{break-inside:avoid}section{display:block}a{text-decoration:none}}
+
+.categories{border:0;margin:0 0 1.65rem;padding:0;min-inline-size:0}
+.categories legend{padding:0;margin-bottom:.48rem;font-size:.875rem;color:var(--sub)}
+.choices{display:flex;flex-wrap:wrap;gap:.4rem}
+.choices label{position:relative;cursor:pointer}
+.choices input{position:absolute;inline-size:1px;block-size:1px;opacity:0}
+.choices label>span{display:inline-flex;align-items:baseline;gap:.45em;padding:.32rem .75rem;border:1px solid var(--line);border-radius:4px;font-size:.88rem;background:transparent}
+.choices small{font-variant-numeric:tabular-nums}
+.choices input:checked+span{background:var(--accent);border-color:var(--accent);color:white}
+.choices input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+@media print{.categories{display:none}}
+main:has(input[value="books"]:checked) [data-kinds]:not([data-kinds~="books"]){display:none}
+main:has(input[value="magazine-short"]:checked) [data-kinds]:not([data-kinds~="magazine-short"]){display:none}
+main:has(input[value="essay"]:checked) [data-kinds]:not([data-kinds~="essay"]){display:none}
+main:has(input[value="review"]:checked) [data-kinds]:not([data-kinds~="review"]){display:none}
+main:has(input[value="comic"]:checked) [data-kinds]:not([data-kinds~="comic"]){display:none}
+main:has(input[value="screen"]:checked) [data-kinds]:not([data-kinds~="screen"]){display:none}
+main:has(input[value="ad-script"]:checked) [data-kinds]:not([data-kinds~="ad-script"]){display:none}
+main:has(input[value="talk"]:checked) [data-kinds]:not([data-kinds~="talk"]){display:none}
+main:has(input[value="comment"]:checked) [data-kinds]:not([data-kinds~="comment"]){display:none}
+main:has(input[value="judging"]:checked) [data-kinds]:not([data-kinds~="judging"]){display:none}
+main:has(input[value="intl"]:checked) [data-kinds]:not([data-kinds~="intl"]){display:none}
+main:has(input[value="other"]:checked) [data-kinds]:not([data-kinds~="other"]){display:none}
+
+main:has(input[value="domestic"]:checked) [data-kinds]:not([data-kinds~="domestic"]){display:none}
+
+.short-title{display:none}
+main:has(input[value="magazine-short"]:checked) .book-title{display:none}
+main:has(input[value="magazine-short"]:checked) span.short-title{display:inline}
+main:has(input[value="magazine-short"]:checked) p.short-title{display:block}
+</style></head><body id="top"><div class="wrap">
+<header><a class="name" href="index.html">佐野徹夜</a><nav aria-label="サイトナビゲーション"><a href="index.html">公式サイトトップ</a></nav></header>
+<main><h1>仕事履歴</h1>
+<fieldset class="categories"><legend>カテゴリ</legend><div class="choices">
+<label><input type="radio" name="category" value="domestic" checked><span>主なお仕事<small>62</small></span></label>
+<label><input type="radio" name="category" value="books"><span>書籍<small>9</small></span></label>
+<label><input type="radio" name="category" value="magazine-short"><span>雑誌掲載などの短編<small>11</small></span></label>
+<label><input type="radio" name="category" value="essay"><span>エッセイ・寄稿<small>6</small></span></label>
+<label><input type="radio" name="category" value="review"><span>書評<small>1</small></span></label>
+<label><input type="radio" name="category" value="comic"><span>漫画原作<small>7</small></span></label>
+<label><input type="radio" name="category" value="screen"><span>映像化<small>2</small></span></label>
+<label><input type="radio" name="category" value="ad-script"><span>広告脚本<small>1</small></span></label>
+<label><input type="radio" name="category" value="talk"><span>出演・インタビュー<small>11</small></span></label>
+<label><input type="radio" name="category" value="comment"><span>推薦・コメント<small>10</small></span></label>
+<label><input type="radio" name="category" value="judging"><span>審査<small>2</small></span></label>
+<label><input type="radio" name="category" value="intl"><span>海外版<small>31</small></span></label>
+<label><input type="radio" name="category" value="other"><span>その他<small>4</small></span></label>
+</div></fieldset>
+<nav class="years" aria-label="掲載年"><a data-kinds="books comic comment domestic essay intl review" href="#y2025">2025</a><a data-kinds="books comic comment domestic intl magazine-short screen talk" href="#y2024">2024</a><a data-kinds="books comment domestic essay magazine-short talk" href="#y2023">2023</a><a data-kinds="domestic judging" href="#y2022">2022</a><a data-kinds="ad-script domestic intl talk" href="#y2021">2021</a><a data-kinds="books comment domestic essay intl talk" href="#y2020">2020</a><a data-kinds="books comic comment domestic intl judging magazine-short other screen talk" href="#y2019">2019</a><a data-kinds="books comic comment domestic essay intl magazine-short" href="#y2018">2018</a><a data-kinds="books domestic essay intl magazine-short other talk" href="#y2017">2017</a><a href="#y2016" data-kinds="domestic other">2016</a></nav>
+<section data-kinds="books comic comment domestic essay intl review" aria-labelledby="y2025"><h2 id="y2025">2025</h2><ul>
+<li data-kinds="domestic review"><p class="meta"><time datetime="2025-12-26">12月26日</time><span>寄稿書評</span></p><div><h3><a href="https://ohtabookstand.com/2025/12/suizobakuhatsu-01/">人生というクソゲーの攻略本</a></h3><p class="credit">太田出版「OHTABOOKSTAND」。たろちん『毎日酒を飲みながらゲーム実況してたら膵臓が爆発して何度も死にかけた話』の書評</p></div></li>
+<li data-kinds="domestic books"><p class="meta"><time datetime="2025-12-12">12月12日</time><span>アンソロジー・文庫版</span></p><div><h3><a href="https://www.kodansha.co.jp/book/products/0000418522">嘘をついたのは、初めてだった（文庫版）</a></h3><p class="credit">講談社文庫。短編「おやすみ、ずっとそばにいるね」を再録</p></div></li>
+<li data-kinds="domestic essay"><p class="meta"><time datetime="2025-10-17">10月17日</time><span>エッセイ・最新回</span></p><div><h3><a href="https://www.bookbang.jp/yomyom/content/essay/dm/15387">「母へ」第18回「新しい生活を始めて」</a></h3><p class="credit">新潮社「yom yom」</p></div></li>
+<li data-kinds="domestic comic"><p class="meta"><time datetime="2025-08-16">8月16日</time><span>漫画単行本</span></p><div><h3><a href="https://data.ichijinsha.co.jp/month/2025-08">『一年に一度しか会えない君の話。』第3巻</a></h3><p class="credit">HOWLコミックス。原作・佐野徹夜、作画・伊緒直道</p></div></li>
+<li data-kinds="domestic comic"><p class="meta"><time datetime="2025-08-16">8月16日</time><span>漫画単行本</span></p><div><h3><a href="https://data.ichijinsha.co.jp/detail/75802959">『一年に一度しか会えない君の話。』第4巻（完結）</a></h3><p class="credit">HOWLコミックス。原作・佐野徹夜、作画・伊緒直道</p></div></li>
+<li data-kinds="domestic comment"><p class="meta"><time datetime="2025-04-26">4月26日</time><span>映画推薦</span></p><div><h3><a href="https://lp.p.pia.jp/article/news/417505/index.html">ジャ・ジャンクー監督『新世紀ロマンティクス』</a></h3><p class="credit">映画公開に寄せた推薦コメント</p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2025-01">1月</time><span>海外版</span></p><div><h3><a href="https://read.douban.com/ebook/638125594/">你在月夜里闪耀光辉</a></h3><p class="credit">小説『君は月夜に光り輝く』中国大陸・簡体字版。四川文艺出版社</p></div></li>
+</ul></section>
+<section data-kinds="books comic comment domestic intl magazine-short screen talk" aria-labelledby="y2024"><h2 id="y2024">2024</h2><ul>
+<li data-kinds="domestic books magazine-short"><p class="meta"><time datetime="2024-12-25">12月25日</time><span>アンソロジー</span></p><div><h3><a href="https://www.kadokawa.co.jp/product/322407000894/"><span class="book-title">君に贈る15ページ</span><span class="short-title">「わたしたちの教室」</span></a></h3><p class="credit book-title">メディアワークス文庫創刊15周年アンソロジー。短編「わたしたちの教室」を書き下ろし</p><p class="credit short-title">メディアワークス文庫創刊15周年アンソロジー『君に贈る15ページ』に書き下ろし</p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2024-12-20">12月20日</time><span>海外版</span></p><div><h3><a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=353587885">아오하루 포인트</a></h3><p class="credit">『アオハル・ポイント』韓国語版。GCBooks、訳・박정원</p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2024-11">11月</time><span>海外版・漫画原作</span></p><div><h3><a href="https://www.normaeditorial.com/ficha/manga/tu-brillo-en-las-noches-de-luna-integral">Tu brillo en las noches de luna integral</a></h3><p class="credit">漫画版『君は月夜に光り輝く』スペイン語合本版。Norma Editorial</p></div></li>
+<li data-kinds="domestic comment"><p class="meta"><time datetime="2024-07-25">7月25日</time><span>帯推薦</span></p><div><h3><a href="https://www.kadokawa.co.jp/product/322402001813/">持田冥介『ノイズ・キャンセル』</a></h3><p class="credit">メディアワークス文庫</p></div></li>
+<li data-kinds="domestic comic"><p class="meta"><time datetime="2024-06-14">6月14日</time><span>漫画単行本</span></p><div><h3><a href="https://books.rakuten.co.jp/rb/17846718/">『一年に一度しか会えない君の話。』第2巻</a></h3><p class="credit">HOWLコミックス。原作・佐野徹夜、作画・伊緒直道</p></div></li>
+<li data-kinds="domestic comment"><p class="meta"><time datetime="2024-04-25">4月25日</time><span>帯推薦</span></p><div><h3><a href="https://www.kadokawa.co.jp/product/322310000067/">にのまえあきら『無貌の君へ、白紙の僕より』</a></h3><p class="credit">メディアワークス文庫</p></div></li>
+<li data-kinds="domestic comic"><p class="meta"><time datetime="2024-03-18">3月18日</time><span>漫画単行本</span></p><div><h3><a href="https://data.ichijinsha.co.jp/month/2024-03">『一年に一度しか会えない君の話。』第1巻</a></h3><p class="credit">HOWLコミックス。原作・佐野徹夜、作画・伊緒直道</p></div></li>
+<li data-kinds="domestic talk"><p class="meta"><time datetime="2024-02-20">2月20日</time><span>インタビュー</span></p><div><h3><a href="https://bessatsu-bunshun.com/n/na882f357409a">『透明になれなかった僕たちのために』刊行インタビュー</a></h3><p class="credit">『別冊文藝春秋』2024年3月号</p></div></li>
+<li data-kinds="domestic screen"><p class="meta"><span>ドラマ原作</span></p><div><h3><a href="https://prtimes.jp/main/html/rd/p/000000246.000020367.html">縦型ショートドラマ『おやすみ、ずっとそばにいるね』</a></h3><p class="credit">講談社・FYSS。『嘘をついたのは、初めてだった』収録作を映像化</p></div></li>
+</ul></section>
+<section data-kinds="books comment domestic essay magazine-short talk" aria-labelledby="y2023"><h2 id="y2023">2023</h2><ul>
+<li data-kinds="domestic comment"><p class="meta"><time datetime="2023-12">12月</time><span>映画推薦</span></p><div><h3><a href="https://movies.shochiku.co.jp/my-knight/comment/">映画『MY (K)NIGHT マイ・ナイト』</a></h3><p class="credit">映画公式サイトに推薦コメント掲載</p></div></li>
+<li data-kinds="domestic talk"><p class="meta"><time datetime="2023-11-30">11月30日</time><span>鼎談</span></p><div><h3><a href="https://www.youtube.com/watch?v=kiNaGavt_-Q">〈物語〉と〈小説〉</a></h3><p class="credit">FLAT STUDIO INSIDE/OUTSIDE #9。『透明になれなかった僕たちのために』刊行記念。loundraw、石井龍と出演</p></div></li>
+<li data-kinds="domestic comment"><p class="meta"><time datetime="2023-11-21">11月21日</time><span>映画推薦</span></p><div><h3><a href="https://www.anemo.co.jp/movienews/newmovie/sicilysummer_05-20231121/">映画『シチリア・サマー』</a></h3><p class="credit">映画公開に寄せた推薦コメント</p></div></li>
+<li data-kinds="domestic essay"><p class="meta"><time datetime="2023-11-17">11月17日</time><span>連載開始</span></p><div><h3><a href="https://www.bookbang.jp/yomyom/content/essay/dm/8492">エッセイ「母へ」連載開始</a></h3><p class="credit">新潮社「yom yom」。第1回「僕が生まれて」</p></div></li>
+<li data-kinds="domestic books magazine-short"><p class="meta"><time datetime="2023-11-15">11月15日</time><span>アンソロジー</span></p><div><h3><a href="https://www.kodansha.co.jp/book/products/0000375070"><span class="book-title">嘘をついたのは、初めてだった</span><span class="short-title">「おやすみ、ずっとそばにいるね」</span></a></h3><p class="credit book-title">講談社。短編「おやすみ、ずっとそばにいるね」を収録。初出はメフィストリーダーズクラブのショートショート連載</p><p class="credit short-title">講談社「MRCショートショート」で初出。『嘘をついたのは、初めてだった』に収録（単行本刊行日）</p></div></li>
+<li data-kinds="domestic talk"><p class="meta"><time datetime="2023-11-11">11月11日</time><span>テレビ出演</span></p><div><h3><a href="https://sanotetsuya.jp/">『王様のブランチ』BOOKコーナー</a></h3><p class="credit">TBS。『透明になれなかった僕たちのために』著者インタビュー</p></div></li>
+<li data-kinds="domestic books"><p class="meta"><time datetime="2023-11-09">11月9日</time><span>長編小説</span></p><div><h3><a href="https://www.kawade.co.jp/np/isbn/9784309031293/">透明になれなかった僕たちのために</a></h3><p class="credit">河出書房新社。『文藝』掲載の短編をもとに長編化</p></div></li>
+</ul></section>
+<section data-kinds="domestic judging" aria-labelledby="y2022"><h2 id="y2022">2022</h2><ul>
+<li data-kinds="domestic judging"><p class="meta"><time datetime="2022-12-23">12月23日</time><span>審査・選評</span></p><div><h3><a href="https://kakuyomu.jp/contests/kakuyomukoshien2022_long">カクヨム甲子園2022</a></h3><p class="credit">ロングストーリー部門・ショートストーリー部門の最終選考と総評</p></div></li>
+</ul></section>
+<section data-kinds="ad-script domestic intl talk" aria-labelledby="y2021"><h2 id="y2021">2021</h2><ul>
+<li data-kinds="domestic talk"><p class="meta"><time datetime="2021-12-01">12月1日</time><span>トークショー</span></p><div><h3><a href="https://www.summerghost.jp/news/detail/?id=1095850">映画『サマーゴースト』上映後スタッフトーク</a></h3><p class="credit">監督・loundrawとのトークにゲスト登壇</p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2021-11">11月</time><span>海外版</span></p><div><h3><a href="https://www.paperyard.co/product-page/9786161843625">เศษเสี้ยวจากแสงจันทร์ที่ครั้งหนึ่งนั้นเคยเปล่งประกาย</a></h3><p class="credit">『君は月夜に光り輝く ＋Fragments』タイ語版。Piccolo Publishing</p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2021-08-28">8月28日</time><span>海外版</span></p><div><h3><a href="https://www.akata.fr/publications/nos-mondes-i-magines">Nos mondes i-maginés</a></h3><p class="credit">小説『この世界にiをこめて』フランス語版。Akata、訳・Diane Durocher</p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2021-08">8月</time><span>海外版</span></p><div><h3><a href="https://store.minimore.com/piccolo/items/9786161843229">แด่เธอผู้เปล่งประกายใต้แสงจันทร์</a></h3><p class="credit">小説『君は月夜に光り輝く』タイ語版。Piccolo Publishing</p></div></li>
+<li data-kinds="domestic ad-script"><p class="meta"><time datetime="2021-06-24">6月24日</time><span>広告脚本</span></p><div><h3><a href="https://www.sanwa-shurui.co.jp/news/218.html">iichiko story 第1話「君といる景色」</a></h3><p class="credit">三和酒類「いいちこ」アニメーション広告</p></div></li>
+<li data-kinds="domestic talk"><p class="meta"><time datetime="2021-06">6月</time><span>インタビュー</span></p><div><h3><a href="https://story.iichiko.co.jp/ep1/interview_staff/index.html">「君といる景色」スタッフインタビュー</a></h3><p class="credit">三和酒類。脚本の佐野徹夜、音楽のHIDEYA KOJIMA、プロデューサーの石井龍が参加</p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2021-03-18">3月18日</time><span>海外版</span></p><div><h3><a href="https://ipm.vn/products/em-la-anh-sang-giua-dem-trang">Em Là Ánh Sáng Giữa Đêm Trăng</a></h3><p class="credit">小説『君は月夜に光り輝く』ベトナム語版。Hồng Đức刊、IPM発行、訳・Ngọc Hân。ベトナム国立図書館の刊行記録　<a href="https://nlv.gov.vn/dmdocuments/tmqg-2022-p1.pdf" class="ref">2022年</a>、<a href="https://nlv.gov.vn/dmdocuments/tmqg-11-2023.pdf" class="ref">2023年</a>、<a href="https://nlv.gov.vn/dmdocuments/tmqg-09-2024.pdf" class="ref">2024年</a></p></div></li>
+<li data-kinds="intl"><p class="meta"><span>海外版</span></p><div><h3><a href="https://news.xlm.ru/ranobe/366">Ты сияешь лунной ночью</a></h3><p class="credit">小説『君は月夜に光り輝く』ロシア語版。XL Media</p></div></li>
+</ul></section>
+<section data-kinds="books comment domestic essay intl talk" aria-labelledby="y2020"><h2 id="y2020">2020</h2><ul>
+<li data-kinds="intl"><p class="meta"><time datetime="2020-12-11">12月11日</time><span>海外版</span></p><div><h3><a href="https://www.normaeditorial.com/ficha/manga/tu-brillo-en-las-noches-de-luna">Tu brillo en las noches de luna</a></h3><p class="credit">『君は月夜に光り輝く』スペイン語版。Norma Editorial</p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2020-12-03">12月3日</time><span>海外版</span></p><div><h3><a href="https://www.akata.fr/publications/fragments-de-crepuscule">Fragments de Crépuscule</a></h3><p class="credit">『君は月夜に光り輝く ＋Fragments』フランス語版。Akata、訳・Diane Durocher</p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2020-12-03">12月3日</time><span>海外版・漫画原作</span></p><div><h3><a href="https://www.akata.fr/publications/rendez-vous-au-crepuscule-manga-t2">Rendez-vous au Crépuscule 第2巻</a></h3><p class="credit">漫画版『君は月夜に光り輝く』フランス語版。Akata、作画・マツセダイチ</p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2020-10">10月</time><span>海外版・漫画原作</span></p><div><h3><a href="https://news.xlm.ru/manga/331">Ты сияешь лунной ночью. Том 2</a></h3><p class="credit">漫画版『君は月夜に光り輝く』ロシア語版・第2巻。XL Media</p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2020-09-24">9月24日</time><span>海外版・漫画原作</span></p><div><h3><a href="https://www.akata.fr/publications/rendez-vous-au-crepuscule-manga-t1">Rendez-vous au Crépuscule 第1巻</a></h3><p class="credit">漫画版『君は月夜に光り輝く』フランス語版。Akata、作画・マツセダイチ</p></div></li>
+<li data-kinds="domestic comment"><p class="meta"><time datetime="2020-07-18">7月18日</time><span>推薦コメント</span></p><div><h3><a href="https://www.kadokawa.co.jp/product/322002000963/">持田冥介『僕たちにデスゲームが必要な理由』</a></h3><p class="credit">メディアワークス文庫</p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2020-07-02">7月2日</time><span>海外版</span></p><div><h3><a href="https://www.egmont-shop.de/you-shine-in-the-moonlight-roman/">You Shine in the Moonlight</a></h3><p class="credit">小説『君は月夜に光り輝く』ドイツ語版。Egmont Manga。紙版・<a href="https://books.google.com/books?id=_NTnDwAAQBAJ" class="ref">電子版</a></p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2020-07">7月</time><span>海外版・漫画原作</span></p><div><h3><a href="https://www.hugendubel.de/de/ebook_epub/tetsuya_sano_loundraw-you_shine_in_the_moonlight_02-49592858-produkt-details.html">You Shine in the Moonlight 02</a></h3><p class="credit">漫画版『君は月夜に光り輝く』ドイツ語版・第2巻。Egmont Manga</p></div></li>
+<li data-kinds="domestic talk"><p class="meta"><time datetime="2020-06-21">6月21日</time><span>鼎談</span></p><div><h3><a href="https://www.youtube.com/watch?v=yt0T9Q_qkQk">小説どうやって書いてますか？</a></h3><p class="credit">FLAT STUDIO SESSIONS #05。出演・佐野徹夜、loundraw、石井龍</p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2020-06-20">6月20日</time><span>海外版・漫画原作</span></p><div><h3><a href="https://www.yes24.com/product/goods/90593792">너는 달밤에 빛나고 下</a></h3><p class="credit">漫画版『君は月夜に光り輝く』韓国語版・下巻。D&amp;Cメディア、訳・박정원</p></div></li>
+<li data-kinds="domestic books"><p class="meta"><time datetime="2020-05-28">5月28日</time><span>長編小説</span></p><div><h3><a href="https://www.shinchosha.co.jp/book/180190/">さよなら世界の終わり</a></h3><p class="credit">新潮文庫nex</p></div></li>
+<li data-kinds="domestic essay"><p class="meta"><time datetime="2020-05-27">5月27日</time><span>エッセイ</span></p><div><h3><a href="https://ebook.shinchosha.co.jp/nami/202006_17/">僕は小説が好きだ</a></h3><p class="credit">新潮社『波』2020年6月号。『さよなら世界の終わり』刊行に寄せて</p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2020-05-07">5月7日</time><span>海外版・漫画原作</span></p><div><h3><a href="https://www.egmont-shop.de/you-shine-in-the-moonlight-01/">You Shine in the Moonlight 01</a></h3><p class="credit">漫画版『君は月夜に光り輝く』ドイツ語版・第1巻。Egmont Manga</p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2020-04-27">4月27日</time><span>海外版・漫画原作</span></p><div><h3><a href="https://www.wbc.poznan.pl/publication/755436/lsnisz-w-ksiezycowa-noc-matsuse-daichi-1986?language=pl">Lśnisz w księżycową noc</a></h3><p class="credit">漫画版『君は月夜に光り輝く』ポーランド語版。Waneko</p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2020-03-19">3月19日</time><span>海外版</span></p><div><h3><a href="https://www.akata.fr/publications/rendez-vous-au-crepuscule">Rendez-vous au Crépuscule</a></h3><p class="credit">『君は月夜に光り輝く』フランス語版。Akata、訳・Yacine Youhat</p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2020-02-26">2月26日</time><span>海外版・漫画原作</span></p><div><h3><a href="https://www.books.com.tw/products/0010844858">妳在月夜裡閃耀光輝（下）</a></h3><p class="credit">漫画版『君は月夜に光り輝く』台湾・繁体字版。作画・マツセダイチ</p></div></li>
+<li data-kinds="intl"><p class="meta"><span>海外版・漫画原作</span></p><div><h3><a href="https://news.xlm.ru/manga/301">Ты сияешь лунной ночью. Том 1</a></h3><p class="credit">漫画版『君は月夜に光り輝く』ロシア語版・第1巻。XL Media</p></div></li>
+</ul></section>
+<section data-kinds="books comic comment domestic intl judging magazine-short other screen talk" aria-labelledby="y2019"><h2 id="y2019">2019</h2><ul>
+<li data-kinds="intl"><p class="meta"><time datetime="2019-12-20">12月20日</time><span>海外版・漫画原作</span></p><div><h3><a href="https://m.yes24.com/Goods/Detail/84899200">너는 달밤에 빛나고 上</a></h3><p class="credit">漫画版『君は月夜に光り輝く』韓国語版・上巻。D&amp;Cメディア、訳・박정원</p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2019-11-20">11月20日</time><span>海外版</span></p><div><h3><a href="https://www.books.com.tw/products/0010836393">無法計算的青春</a></h3><p class="credit">『アオハル・ポイント』台湾・繁体字版。台灣角川、訳・王靜怡</p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2019-09-26">9月26日</time><span>海外版</span></p><div><h3><a href="https://m.taaze.tw/do/mobile/actBookList.aspx?mas=1000680815&amp;unit=1000432550">妳在月夜裡閃耀光輝 散篇</a></h3><p class="credit">『君は月夜に光り輝く ＋Fragments』台湾・繁体字版。台灣角川</p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2019-09-26">9月26日</time><span>海外版・画集</span></p><div><h3><a href="https://www.kadokawa.com.tw/products/9789577432636">寫給黎明前的妳</a></h3><p class="credit">loundraw画集『夜明けより前の君へ』台湾・繁体字版。『君は月夜に光り輝く』の書き下ろし小説とloundrawとの対談を収録。台灣角川、訳・HANA</p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2019-09-26">9月26日</time><span>海外版・漫画原作</span></p><div><h3><a href="https://www.kadokawa.com.tw/products/9789577432506">妳在月夜裡閃耀光輝（上）</a></h3><p class="credit">漫画版『君は月夜に光り輝く』台湾・繁体字版。台灣角川</p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2019-09-20">9月20日</time><span>海外版</span></p><div><h3><a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=207121772">너는 달밤에 빛나고 + Fragments</a></h3><p class="credit">『君は月夜に光り輝く ＋Fragments』韓国語版。D&amp;Cメディア、訳・박정원</p></div></li>
+<li data-kinds="domestic comic"><p class="meta"><time datetime="2019-07-22">7月22日</time><span>漫画原作</span></p><div><h3><a href="https://www.kadokawa.co.jp/product/321806000203/">君は月夜に光り輝く（下）</a></h3><p class="credit">KADOKAWA・MFC。作画・マツセダイチ</p></div></li>
+<li data-kinds="domestic other"><p class="meta"><time datetime="2019-06-14">6月14日</time><span>オーディオブック</span></p><div><h3><a href="https://books.apple.com/jp/audiobook/id1468319516">君は月夜に光り輝く 朗読版</a></h3><p class="credit">著・佐野徹夜、朗読・德石勝大</p></div></li>
+<li data-kinds="domestic comment"><p class="meta"><time datetime="2019-05-25">5月25日</time><span>推薦コメント</span></p><div><h3><a href="https://store.kadokawa.co.jp/shop/g/g321901000100/">吹井賢『破滅の刑死者』</a></h3><p class="credit">メディアワークス文庫「内閣情報調査室『特務捜査』部門CIRO-S」</p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2019-05-20">5月20日</time><span>海外版</span></p><div><h3><a href="https://www.yes24.com/product/goods/73092225">이 세상에 i를 담아서</a></h3><p class="credit">『この世界にiをこめて』韓国語版。D&amp;Cメディア</p></div></li>
+<li data-kinds="domestic other"><p class="meta"><time datetime="2019-03-29">3月29日</time><span>その他</span></p><div><h3><a href="https://flatstudio.jp/updates/0196da09-061b-73f2-8ae0-0243b8498c32">FLAT STUDIOに加入</a></h3><p class="credit">小説家として参加</p></div></li>
+<li data-kinds="domestic comment"><p class="meta"><time datetime="2019-03-23">3月23日</time><span>推薦コメント</span></p><div><h3><a href="https://store.kadokawa.co.jp/shop/g/g321811000214/">松村涼哉『15歳のテロリスト』</a></h3><p class="credit">メディアワークス文庫</p></div></li>
+<li data-kinds="domestic screen"><p class="meta"><time datetime="2019-03-15">3月15日</time><span>映画原作</span></p><div><h3><a href="https://www.fashion-press.net/news/45289">映画『君は月夜に光り輝く』公開</a></h3><p class="credit">原作小説を執筆。監督・月川翔、出演・永野芽郁、北村匠海</p></div></li>
+<li data-kinds="domestic talk"><p class="meta"><time datetime="2019-03-06">3月6日</time><span>座談会</span></p><div><h3><a href="https://catalog.library.metro.tokyo.lg.jp/winj/opac/switch-detail.do?bibid=2261215244&amp;lang=ja">永野芽郁・北村匠海・佐野徹夜・loundraw 座談会</a></h3><p class="credit">『ダ・ヴィンチ』2019年4月号、映画『君は月夜に光り輝く』特集</p></div></li>
+<li data-kinds="domestic talk"><p class="meta"><time datetime="2019-03-06">3月6日</time><span>対談</span></p><div><h3><a href="https://catalog.library.metro.tokyo.lg.jp/winj/opac/switch-detail.do?bibid=2261215244&amp;lang=ja">マツセダイチと語る『君は月夜に光り輝く』</a></h3><p class="credit">『ダ・ヴィンチ』2019年4月号。漫画版の原作者・作画担当者対談</p></div></li>
+<li data-kinds="domestic magazine-short"><p class="meta"><time datetime="2019-02-28">2月28日</time><span>書き下ろし小説</span></p><div><h3><a href="https://www.kadokawa.co.jp/product/321811001116/">画集『夜明けより前の君へ featuring 君は月夜に光り輝く』に小説を寄稿</a></h3><p class="credit">loundraw画集、KADOKAWA</p></div></li>
+<li data-kinds="domestic talk"><p class="meta"><time datetime="2019-02-28">2月28日</time><span>対談</span></p><div><h3><a href="https://www.kadokawa.co.jp/topics/3003/">『君は月夜に光り輝く』をめぐるloundrawとの対談</a></h3><p class="credit">画集『夜明けより前の君へ featuring 君は月夜に光り輝く』収録</p></div></li>
+<li data-kinds="domestic books"><p class="meta"><time datetime="2019-02-23">2月23日</time><span>短編集</span></p><div><h3><a href="https://www.kadokawa.co.jp/product/321810000223/">君は月夜に光り輝く ＋Fragments</a></h3><p class="credit">メディアワークス文庫。収録短編　<a href="https://www.toshokan.city.shizuoka.jp/licsxp-opac/WOpacMsgNewListToTifTilDetailAction.do?tilcod=1001103579367">「私がいつか死ぬまでの日々」</a>、<a href="https://www.toshokan.city.shizuoka.jp/licsxp-opac/WOpacMsgNewListToTifTilDetailAction.do?tilcod=1001103579367">「ユーリと声」</a>、<a href="https://www.toshokan.city.shizuoka.jp/licsxp-opac/WOpacMsgNewListToTifTilDetailAction.do?tilcod=1001103579367">「海を抱きしめて」</a></p></div></li>
+<li data-kinds="domestic comment"><p class="meta"><time datetime="2019-02-23">2月23日</time><span>著者コメント</span></p><div><h3><a href="https://prtimes.jp/a/?c=7006&amp;f=d7006-5579-pdf-0.pdf&amp;r=5579">『君は月夜に光り輝く』シリーズ累計50万部に寄せて</a></h3><p class="credit">KADOKAWA『＋Fragments』発売時のニュースリリースに寄稿</p></div></li>
+<li data-kinds="domestic comic"><p class="meta"><time datetime="2019-02-22">2月22日</time><span>漫画原作</span></p><div><h3><a href="https://www.kadokawa.co.jp/product/321806000202/">君は月夜に光り輝く（上）</a></h3><p class="credit">KADOKAWA・MFC。作画・マツセダイチ</p></div></li>
+<li data-kinds="domestic judging"><p class="meta"><time datetime="2019-02-13">2月13日</time><span>審査</span></p><div><h3><a href="https://prtimes.jp/main/html/rd/p/000005532.000007006.html">魔法のiらんど「“儚い恋”小説＆ポエムコンテスト」</a></h3><p class="credit">小説部門の審査員。映画『君は月夜に光り輝く』公開記念企画、同日募集開始</p></div></li>
+<li data-kinds="domestic magazine-short"><p class="meta"><time datetime="2019-01-07">1月7日</time><span>短編小説</span></p><div><h3><a href="https://www.kawade.co.jp/sp/isbn/9784309979632/">透明になれなかった僕たちのために</a></h3><p class="credit">河出書房新社『文藝』2019年春季号。後の同名長編のもとになった短編</p></div></li>
+</ul></section>
+<section data-kinds="books comic comment domestic essay intl magazine-short" aria-labelledby="y2018"><h2 id="y2018">2018</h2><ul>
+<li data-kinds="domestic books"><p class="meta"><time datetime="2018-10-25">10月25日</time><span>長編小説</span></p><div><h3><a href="https://www.kadokawa.co.jp/product/321805000206/">アオハル・ポイント</a></h3><p class="credit">メディアワークス文庫</p></div></li>
+<li data-kinds="domestic comment"><p class="meta"><time datetime="2018-10-15">10月15日</time><span>原作者コメント</span></p><div><h3><a href="https://lp.p.pia.jp/article/news/18056/index.html">『君は月夜に光り輝く』実写映画化に寄せて</a></h3><p class="credit">映画化発表時にコメントを寄稿</p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2018-08-16">8月16日</time><span>海外版</span></p><div><h3><a href="https://www.megbook.com.tw/mall/detail.jsp?proID=3241720">為這個世界獻上i</a></h3><p class="credit">『この世界にiをこめて』台湾・繁体字版。台灣角川、訳・柯璇</p></div></li>
+<li data-kinds="domestic comic"><p class="meta"><time datetime="2018-08">8月</time><span>漫画原作</span></p><div><h3><a href="https://www.kadokawa.co.jp/topics/3017">『君は月夜に光り輝く』漫画版 連載開始</a></h3><p class="credit">『ダ・ヴィンチ』9月号から。作画・マツセダイチ</p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2018-04-20">4月20日</time><span>海外版</span></p><div><h3><a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=139385505">너는 달밤에 빛나고</a></h3><p class="credit">『君は月夜に光り輝く』韓国語版。D&amp;Cメディア、訳・박정원</p></div></li>
+<li data-kinds="domestic essay"><p class="meta"><time datetime="2018-04-10">4月10日</time><span>エッセイ・最新掲載回</span></p><div><h3><a href="https://store.kadokawa.co.jp/shop/g/g321802001141/">「僕と誰かの高校生活」未来にさよなら</a></h3><p class="credit">『電撃文庫MAGAZINE』2018年5月号　<a class="ref" href="https://ja.wikipedia.org/wiki/%E4%BD%90%E9%87%8E%E5%BE%B9%E5%A4%9C#%E9%9B%91%E8%AA%8C%E3%83%BBWeb%E6%8E%B2%E8%BC%89%E4%BD%9C%E5%93%81">掲載題の資料</a></p></div></li>
+<li data-kinds="domestic magazine-short"><p class="meta"><time datetime="2018-02-09">2月9日</time><span>短編小説</span></p><div><h3><a href="https://www.mangaoh.co.jp/product/4910163990383">『君は月夜に光り輝く』渡良瀬まみずの黒歴史ノート</a></h3><p class="credit">『電撃文庫MAGAZINE』2018年3月号　<a class="ref" href="https://ja.wikipedia.org/wiki/%E4%BD%90%E9%87%8E%E5%BE%B9%E5%A4%9C#%E9%9B%91%E8%AA%8C%E3%83%BBWeb%E6%8E%B2%E8%BC%89%E4%BD%9C%E5%93%81">掲載題の資料</a></p></div></li>
+<li data-kinds="domestic magazine-short"><p class="meta"><time datetime="2018-02-09">2月9日</time><span>短編小説</span></p><div><h3><a href="https://www.mangaoh.co.jp/product/4910163990383">『この世界にiをこめて』地獄荘の住人たち</a></h3><p class="credit">『電撃文庫MAGAZINE』2018年3月号　<a class="ref" href="https://ja.wikipedia.org/wiki/%E4%BD%90%E9%87%8E%E5%BE%B9%E5%A4%9C#%E9%9B%91%E8%AA%8C%E3%83%BBWeb%E6%8E%B2%E8%BC%89%E4%BD%9C%E5%93%81">掲載題の資料</a></p></div></li>
+</ul></section>
+<section data-kinds="books domestic essay intl magazine-short other talk" aria-labelledby="y2017"><h2 id="y2017">2017</h2><ul>
+<li data-kinds="domestic magazine-short"><p class="meta"><time datetime="2017-12-09">12月9日</time><span>短編小説</span></p><div><h3><a href="https://www.kadokawa.co.jp/product/321702000954/">君の背中をいつも見てた</a></h3><p class="credit">『電撃文庫MAGAZINE』2018年1月号　<a class="ref" href="https://ja.wikipedia.org/wiki/%E4%BD%90%E9%87%8E%E5%BE%B9%E5%A4%9C#%E9%9B%91%E8%AA%8C%E3%83%BBWeb%E6%8E%B2%E8%BC%89%E4%BD%9C%E5%93%81">掲載題の資料</a></p></div></li>
+<li data-kinds="domestic books"><p class="meta"><time datetime="2017-10-25">10月25日</time><span>長編小説</span></p><div><h3><a href="https://www.kadokawa.co.jp/product/321707000186/">この世界にiをこめて</a></h3><p class="credit">メディアワークス文庫</p></div></li>
+<li data-kinds="domestic other"><p class="meta"><time datetime="2017-10-10">10月10日</time><span>特別掲載</span></p><div><h3><a href="https://www.kadokawa.co.jp/product/321702000953/">『この世界にiをこめて』試し読み特別版</a></h3><p class="credit">『電撃文庫MAGAZINE』2017年11月号　<a class="ref" href="https://ja.wikipedia.org/wiki/%E4%BD%90%E9%87%8E%E5%BE%B9%E5%A4%9C#%E9%9B%91%E8%AA%8C%E3%83%BBWeb%E6%8E%B2%E8%BC%89%E4%BD%9C%E5%93%81">掲載題の資料</a></p></div></li>
+<li data-kinds="domestic talk"><p class="meta"><time datetime="2017-10-10">10月10日</time><span>インタビュー</span></p><div><h3><a href="https://www.kadokawa.co.jp/product/321702000953/">クローズアップインタビュー　佐野徹夜</a></h3><p class="credit">『電撃文庫MAGAZINE』2017年11月号　<a class="ref" href="https://ja.wikipedia.org/wiki/%E4%BD%90%E9%87%8E%E5%BE%B9%E5%A4%9C#%E9%9B%91%E8%AA%8C%E3%83%BBWeb%E6%8E%B2%E8%BC%89%E4%BD%9C%E5%93%81">掲載題の資料</a></p></div></li>
+<li data-kinds="intl"><p class="meta"><time datetime="2017-10-06">10月6日</time><span>海外版</span></p><div><h3><a href="https://www.kadokawa.com.tw/products/9789864739356">妳在月夜裡閃耀光輝</a></h3><p class="credit">小説『君は月夜に光り輝く』台湾・繁体字版。台灣角川、訳・韓宛庭。紙版・<a href="https://www.books.com.tw/products/E050025814" class="ref">電子版</a></p></div></li>
+<li data-kinds="domestic magazine-short"><p class="meta"><time datetime="2017-08-09">8月9日</time><span>短編小説</span></p><div><h3><a href="https://www.kadokawa.co.jp/product/321702000952/">もし、キミと</a></h3><p class="credit">『電撃文庫MAGAZINE』2017年9月号　<a class="ref" href="https://ja.wikipedia.org/wiki/%E4%BD%90%E9%87%8E%E5%BE%B9%E5%A4%9C#%E9%9B%91%E8%AA%8C%E3%83%BBWeb%E6%8E%B2%E8%BC%89%E4%BD%9C%E5%93%81">掲載題の資料</a></p></div></li>
+<li data-kinds="domestic essay"><p class="meta"><time datetime="2017-06-09">6月9日</time><span>エッセイ・連載開始</span></p><div><h3><a href="https://www.kadokawa.co.jp/product/321702000951/">「僕と誰かの高校生活」弓月さんに読まれたい</a></h3><p class="credit">『電撃文庫MAGAZINE』2017年7月号　<a class="ref" href="https://ja.wikipedia.org/wiki/%E4%BD%90%E9%87%8E%E5%BE%B9%E5%A4%9C#%E9%9B%91%E8%AA%8C%E3%83%BBWeb%E6%8E%B2%E8%BC%89%E4%BD%9C%E5%93%81">掲載題の資料</a></p></div></li>
+<li data-kinds="domestic magazine-short"><p class="meta"><time datetime="2017-04-25">4月25日</time><span>ウェブ短編</span></p><div><h3><a href="https://dengekitaisho.jp/special/23/sp/kimitsuki/">『君は月夜に光り輝く』スペシャル短編 第2弾</a></h3><p class="credit">電撃小説大賞・受賞作特設サイトで公開</p></div></li>
+<li data-kinds="domestic magazine-short"><p class="meta"><time datetime="2017-04-10">4月10日</time><span>短編小説</span></p><div><h3><a href="https://www.kadokawa.co.jp/product/321702000950/">『君は月夜に光り輝く』俺の初恋の亡霊</a></h3><p class="credit">『電撃文庫MAGAZINE』2017年5月号　<a class="ref" href="https://ja.wikipedia.org/wiki/%E4%BD%90%E9%87%8E%E5%BE%B9%E5%A4%9C#%E9%9B%91%E8%AA%8C%E3%83%BBWeb%E6%8E%B2%E8%BC%89%E4%BD%9C%E5%93%81">掲載題の資料</a></p></div></li>
+<li data-kinds="domestic magazine-short"><p class="meta"><time datetime="2017-03-24">3月24日</time><span>ウェブ短編</span></p><div><h3><a href="https://dengekitaisho.jp/special/23/sp/kimitsuki/">『君は月夜に光り輝く』スペシャル短編 第1弾</a></h3><p class="credit">電撃小説大賞・受賞作特設サイトで公開</p></div></li>
+<li data-kinds="domestic talk"><p class="meta"><time datetime="2017-03-10">3月10日</time><span>インタビュー</span></p><div><h3><a href="https://dengekitaisho.jp/special/23/sp/kimitsuki/">『君は月夜に光り輝く』受賞者インタビュー</a></h3><p class="credit">第23回電撃小説大賞・受賞作特設サイト</p></div></li>
+<li data-kinds="domestic books"><p class="meta"><time datetime="2017-02-25">2月25日</time><span>長編小説</span></p><div><h3><a href="https://store.kadokawa.co.jp/shop/g/g321611000307/">君は月夜に光り輝く</a></h3><p class="credit">メディアワークス文庫</p></div></li>
+<li data-kinds="domestic essay"><p class="meta"><time datetime="2017-02-09">2月9日</time><span>雑誌掲載</span></p><div><h3><a href="https://www.fujisan.co.jp/product/1281679817/b/1463092/">小説がなかったら死んでいた</a></h3><p class="credit">『公募ガイド』2017年3月号　<a class="ref" href="https://ja.wikipedia.org/wiki/%E4%BD%90%E9%87%8E%E5%BE%B9%E5%A4%9C#%E9%9B%91%E8%AA%8C%E3%83%BBWeb%E6%8E%B2%E8%BC%89%E4%BD%9C%E5%93%81">掲載題の資料</a></p></div></li>
+</ul></section>
+<section aria-labelledby="y2016" data-kinds="domestic other"><h2 id="y2016">2016</h2><ul><li data-kinds="domestic other"><p class="meta"><time datetime="2016-10">10月</time><span>受賞</span></p><div><h3><a href="https://dengekitaisho.jp/special/23/sp/kimitsuki/">第23回電撃小説大賞〈大賞〉</a></h3><p class="credit">受賞作『君は月夜に光り輝く』</p></div></li>
+</ul></section>
+</main>
+<footer><span>© 2026 Tetsuya Sano</span><a href="#top">ページの先頭へ</a></footer></div></body></html>
