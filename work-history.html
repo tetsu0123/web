@@ -2,7 +2,7 @@
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>仕事履歴｜佐野徹夜</title>
 <style>
-:root{color-scheme:light;--bg:#f1f2f4;--ink:#1b1c1f;--sub:#585c62;--line:#cdd0d5;--accent:#2f3e7e;--mincho:"Shippori Mincho","Yu Mincho",YuMincho,"Hiragino Mincho ProN",serif;--sans:Inter,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif}
+:root{--filter-spacing:1.05rem;color-scheme:light;--bg:#f1f2f4;--ink:#1b1c1f;--sub:#585c62;--line:#cdd0d5;--accent:#2f3e7e;--mincho:"Shippori Mincho","Yu Mincho",YuMincho,"Hiragino Mincho ProN",serif;--sans:Inter,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:1rem/1.75 var(--sans)}
 .wrap{max-width:1068px;margin:auto;padding-inline:clamp(20px,4vw,32px)}
@@ -14,7 +14,7 @@ header{padding-block:1.1rem;border-bottom:1px solid var(--line)}
 header a{text-decoration:none}
 .name{font:1.13rem var(--mincho);letter-spacing:.12em}
 nav a,footer{font-size:.875rem}
-h1{font:400 clamp(2.35rem,5vw,3.4rem)/1.35 var(--mincho);letter-spacing:.09em;margin:clamp(2rem,6vw,4rem) 0 clamp(1.5rem,4vw,2.75rem)}
+h1{font:400 clamp(2.35rem,5vw,3.4rem)/1.35 var(--mincho);letter-spacing:.09em;margin:clamp(2rem,6vw,4rem) 0 var(--filter-spacing)}
 section{display:grid;grid-template-columns:120px minmax(0,1fr);gap:32px;border-top:1px solid var(--ink);padding-block:0 1.25rem}
 h2{font:400 2rem/1.25 Georgia,"Times New Roman",serif;font-variant-numeric:lining-nums tabular-nums;margin:1rem 0 0}
 ul{list-style:none;margin:0;padding:0}
@@ -28,7 +28,7 @@ footer{border-top:1px solid var(--ink);padding:1.25rem 0 2rem;color:var(--sub)}
 @media(max-width:700px){section{grid-template-columns:4.4rem minmax(0,1fr);gap:1rem;padding-bottom:.4rem}h2{font-size:1.6rem}li{display:block;padding:.85rem 0}.meta{margin-bottom:.22rem;padding:0}header{padding-block:.85rem}.credit{margin-top:.15rem}}
 @media(max-width:380px){section{grid-template-columns:3.6rem minmax(0,1fr);gap:.7rem}}
 
-.years{display:flex;flex-wrap:wrap;gap:.25rem 1.2rem;margin:-.6rem 0 1.5rem;font-variant-numeric:tabular-nums}
+.years{display:flex;flex-wrap:wrap;gap:.25rem 1.2rem;margin:0 0 1.5rem;font-variant-numeric:tabular-nums}
 .years a{padding-block:.25rem}
 .meta time,.meta span{display:block}
 .meta time{font-variant-numeric:tabular-nums;color:var(--ink)}
@@ -37,7 +37,7 @@ h2{scroll-margin-top:1rem}
 @media(max-width:700px){.meta{display:flex;align-items:baseline;flex-wrap:wrap;gap:0 .65rem}.years{gap:.1rem 1rem}}
 @media print{.years,header nav,footer a,.ref{display:none}li{break-inside:avoid}section{display:block}a{text-decoration:none}}
 
-.categories{border:0;margin:0 0 1.65rem;padding:0;min-inline-size:0}
+.categories{border:0;margin:0 0 var(--filter-spacing);padding:0;min-inline-size:0}
 .categories legend{padding:0;margin-bottom:.48rem;font-size:.875rem;color:var(--sub)}
 .choices{display:flex;flex-wrap:wrap;gap:.4rem}
 .choices label{position:relative;cursor:pointer}
