@@ -14,7 +14,7 @@ header{padding-block:1.1rem;border-bottom:1px solid var(--line)}
 header a{text-decoration:none}
 .name{font:1.13rem var(--mincho);letter-spacing:.12em}
 nav a,footer{font-size:.875rem}
-h1{font:400 clamp(2.35rem,5vw,3.4rem)/1.35 var(--mincho);letter-spacing:.09em;margin:clamp(2rem,6vw,4rem) 0 var(--filter-spacing)}
+h1{font:400 clamp(2.35rem,5vw,3.4rem)/1 var(--mincho);letter-spacing:.09em;margin:var(--filter-spacing) 0}
 section{display:grid;grid-template-columns:120px minmax(0,1fr);gap:32px;border-top:1px solid var(--ink);padding-block:0 1.25rem}
 h2{font:400 2rem/1.25 Georgia,"Times New Roman",serif;font-variant-numeric:lining-nums tabular-nums;margin:1rem 0 0}
 ul{list-style:none;margin:0;padding:0}
@@ -29,7 +29,7 @@ footer{border-top:1px solid var(--ink);padding:1.25rem 0 2rem;color:var(--sub)}
 @media(max-width:380px){section{grid-template-columns:3.6rem minmax(0,1fr);gap:.7rem}}
 
 .years{display:flex;flex-wrap:wrap;gap:.25rem 1.2rem;margin:0 0 1.5rem;font-variant-numeric:tabular-nums}
-.years a{padding-block:.25rem}
+.years a{line-height:1.2;padding-block:0 .5rem}
 .meta time,.meta span{display:block}
 .meta time{font-variant-numeric:tabular-nums;color:var(--ink)}
 .ref{white-space:nowrap}
@@ -38,7 +38,7 @@ h2{scroll-margin-top:1rem}
 @media print{.years,header nav,footer a,.ref{display:none}li{break-inside:avoid}section{display:block}a{text-decoration:none}}
 
 .categories{border:0;margin:0 0 var(--filter-spacing);padding:0;min-inline-size:0}
-.categories legend{padding:0;margin-bottom:.48rem;font-size:.875rem;color:var(--sub)}
+.categories legend{padding:0;margin-bottom:.48rem;font-size:.875rem;line-height:1.1;color:var(--sub)}
 .choices{display:flex;flex-wrap:wrap;gap:.4rem}
 .choices label{position:relative;cursor:pointer}
 .choices input{position:absolute;inline-size:1px;block-size:1px;opacity:0}
